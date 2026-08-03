@@ -1,0 +1,55 @@
+{
+  "date": "2026-08-03",
+  "thread": "minimax-routing",
+  "before": {
+    "8081_round_trip": {
+      "result": "fail",
+      "error": "no keys found for provider: anthropic and model: claude-minimax-m3"
+    },
+    "direct_bifrost_minimax": {
+      "result_after_model_rewrite_before_key_fix": "fail",
+      "error": "invalid API key"
+    },
+    "provider_key_mappings": 0,
+    "banner_used_as_proof": false
+  },
+  "after": {
+    "provider_key_mappings": 15,
+    "direct_bifrost_minimax": {
+      "result": "pass",
+      "model": "MiniMax-M3",
+      "provider": "Minimax",
+      "content": "OK"
+    },
+    "8081_round_trip": {
+      "result": "pass",
+      "model": "MiniMax-M3",
+      "content": "OK",
+      "stop_reason": "end_turn"
+    },
+    "catalog_translation": "claude-minimax-m3[1m] -> MiniMax-M3 -> Bifrost /v1/chat/completions -> Anthropic message response"
+  },
+  "backups": [
+    "~/.config/bifrost/config.db.bak-minimax-routing-20260803T203939Z",
+    "~/.config/bifrost/claude-model-catalog.mjs.bak-minimax-routing-20260803T203939Z",
+    "~/.config/bifrost/config.db.bak-minimax-provider-key-20260803T204304Z"
+  ],
+  "verification": {
+    "command": "curl -sS -X POST http://127.0.0.1:8081/v1/messages -H 'Content-Type: application/json' -H 'anthropic-version: 2023-06-01' -d '{\"model\":\"claude-minimax-m3[1m]\",\"max_tokens\":80,\"messages\":[{\"role\":\"user\",\"content\":\"Reply exactly OK and nothing else.\"}]}'",
+    "required_evidence": "response contains model MiniMax-M3",
+    "observed": {
+      "model": "MiniMax-M3",
+      "text": "OK",
+      "input_tokens": 183,
+      "output_tokens": 24
+    }
+  },
+  "documents_read": [
+    "HANDOVER-BRIEF.txt",
+    "VISION.md",
+    "HANDOVER.md",
+    "CHARTER.md",
+    "DECISIONS.md",
+    "SOURCES.md"
+  ]
+}
