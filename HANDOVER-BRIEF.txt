@@ -1,0 +1,51 @@
+FULL HANDOVER — you now have everything.
+
+Read in this order:
+1. ~/SISO_Library_Agent/VISION.md — why any of this exists. Read FIRST.
+2. ~/SISO_Library_Agent/HANDOVER.md — what is done, running, unfinished, plus the lessons that cost real time today.
+3. ~/SISO_Library_Agent/CHARTER.md — your job description and ranked gap list.
+
+WHAT I JUST GAVE YOU
+
+All four core repos are now cloned locally. They were MISSING entirely — you have been working blind:
+  ~/SISO_Workspace/SISO_Research/siso-foundry
+  ~/SISO_Workspace/great-library-of-siso
+  ~/SISO_Workspace/siso-people-graph
+  ~/SISO_Workspace/siso-book-library
+
+Six architecture docs in siso-foundry/docs/: LIBRARY-ARCHITECTURE, PEOPLE-GRAPH-ARCHITECTURE, INFRASTRUCTURE-LAYOUT, RETRIEVAL-UNIT, and PEOPLE-GRAPH-ENRICHMENT-LOG — that last one is 2,000+ lines of measured findings from a sibling agent across 12 rounds. Read it before touching the people graph so you do not redo its work.
+
+`ssh laptop` now works from this machine, verified. Use it to read source, check state, or find anything you are missing.
+
+You can reach the laptop main session two ways, both verified working:
+  MAILBOX (preferred, async, nothing lost):
+    ssh laptop "cat > ~/SISO_Workspace/.agents/mailbox/to-main/$(date -u +%Y-%m-%dT%H%M)-slug.md"
+  HERDR (when you want attention now) — main session pane is w658224a4ab3734-1:
+    ssh laptop "~/.local/bin/herdr pane list"          # re-resolve, ids renumber
+    ssh laptop "~/.local/bin/herdr pane run PANE 'msg'"
+    ssh laptop "~/.local/bin/herdr pane send-keys PANE Enter"
+  The Enter gets swallowed in Claude panes — always send it separately and read the pane back to confirm.
+
+gh is authed as sisodias and can push. The MiniMax key at ~/.config/siso-secrets/minimax.env works. You have 86 skills installed, more than the laptop.
+
+GREEN LIGHT ON CLEANUP
+
+You have full permission to move anything this machine does not need onto the vault at /Volumes/SISO-STORAGE-VAULT (3.8 TB free).
+
+MOVE, never delete. That rule is absolute. Copy first, verify by file count or checksum, and only then remove the original. Log every move in worklog/. The vault is USB 2.0 at ~40 MB/s, so bulk sequential is fine and SQLite is not — transactional writes stay on the internal SSD.
+
+TONIGHT, PRIORITY ONE: MINIMAX ROUTING
+
+It does not work on this machine. Every agent here is burning the Claude plan instead of a 150M MiniMax budget sitting almost untouched.
+
+HANDOVER.md section 3 has the full trace. Summary: Bifrost gates models through virtual keys. The laptop has one named "MiniMax Workers Key v2" that routes to MiniMax and is tested working. This machine has three — CAM Key, PARSER Key, Mac Mini SISO Agent Base — and none of them route MiniMax. Every request returns "no keys found that support model: MiniMax-M3".
+
+The fix is to copy that virtual key and its provider-config mapping from the laptop's ~/.config/bifrost/config.db into this machine's. Tables: governance_virtual_keys and governance_virtual_key_provider_configs. Back up config.db first. Bifrost auto-restarts on kill and reloads.
+
+VERIFY BY ROUND TRIP, never by banner:
+  curl -sS -X POST http://127.0.0.1:8081/v1/messages -H 'Content-Type: application/json' -H 'anthropic-version: 2023-06-01' -d '{"model":"claude-minimax-m3[1m]","max_tokens":20,"messages":[{"role":"user","content":"say OK"}]}'
+A working response contains "model":"MiniMax-M3". I claimed this worked today because the banner said so, Shaan asked me to prove it, and I could not. Do not repeat that.
+
+THEN: Coolify, the observatory URL Shaan wants (one page showing data bucket counts and which God Question is being worked), and the ranked gap list in CHARTER.md.
+
+Report every 30 minutes, even mid-task.
