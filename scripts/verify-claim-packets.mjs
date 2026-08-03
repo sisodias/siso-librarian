@@ -123,6 +123,35 @@ for (const file of claimFiles) {
   if (!listedClaims.has(rel)) fail(rel, 'claim packet is not listed in questions/portfolio.json');
 }
 
+const ledgerPath = join(root, 'refresh/ledger.json');
+let refreshCoveredClaims = new Set();
+if (existsSync(ledgerPath)) {
+  const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'));
+  if (ledger.schema_version !== 'refresh-ledger-v1') fail('refresh/ledger.json', 'expected schema_version refresh-ledger-v1');
+  if (!Array.isArray(ledger.entries) || ledger.entries.length < 1) fail('refresh/ledger.json', 'expected at least one entry');
+  for (const [index, entry] of (ledger.entries || []).entries()) {
+    const base = `refresh/ledger.json.entries[${index}]`;
+    if (!entry.claim_packet || typeof entry.claim_packet !== 'string') fail(base, 'missing claim_packet');
+    if (!entry.question_id || typeof entry.question_id !== 'string') fail(base, 'missing question_id');
+    if (!dateTime.test(entry.checked_at || '')) fail(base, 'checked_at must be RFC3339 UTC date-time');
+    if (!['fresh', 'stale', 'blocked'].includes(entry.result)) fail(base, 'result must be fresh, stale, or blocked');
+    if (!Array.isArray(entry.selectors_used) || entry.selectors_used.length < 1) fail(base, 'expected selectors_used');
+    if (!Array.isArray(entry.invalidate_on_considered)) fail(base, 'expected invalidate_on_considered array');
+    if (entry.claim_packet) {
+      refreshCoveredClaims.add(entry.claim_packet);
+      if (!existsSync(join(root, entry.claim_packet))) fail(base, `claim packet does not exist: ${entry.claim_packet}`);
+      if (!listedClaims.has(entry.claim_packet)) fail(base, `claim packet is not listed in questions/portfolio.json: ${entry.claim_packet}`);
+    }
+  }
+} else {
+  fail('refresh/ledger.json', 'missing refresh ledger');
+}
+
+for (const file of claimFiles) {
+  const rel = relative(root, file);
+  if (!refreshCoveredClaims.has(rel)) fail(rel, 'claim packet has no refresh ledger entry');
+}
+
 const validFixtures = results.filter((r) => !r.shouldBeInvalid && r.rel.startsWith('examples/')).length;
 const invalidFixtures = results.filter((r) => r.shouldBeInvalid).length;
 const productionClaims = results.filter((r) => r.rel.startsWith('claims/')).length;
@@ -131,6 +160,7 @@ for (const result of results) {
   console.log(`- ${result.rel}: ${result.passed ? 'ok' : 'failed'} (${result.fileErrors} schema error(s))`);
 }
 console.log(`question portfolio: ${existsSync(portfolioPath) ? 'ok' : 'missing'} (${listedClaims.size} listed claim packet(s))`);
+console.log(`refresh ledger: ${existsSync(ledgerPath) ? 'ok' : 'missing'} (${refreshCoveredClaims.size} covered claim packet(s))`);
 
 const unexpected = results.filter((r) => !r.passed).length;
 if (unexpected > 0 || validationErrors.length > 0) {

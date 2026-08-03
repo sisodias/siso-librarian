@@ -1,0 +1,16 @@
+{
+  "schema_version": "refresh-ledger-v1",
+  "generated_at": "2026-08-03T00:00:00Z",
+  "entries": [
+    {
+      "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
+      "question_id": "GQ-009",
+      "checked_at": "2026-08-03T00:00:00Z",
+      "selectors_used": ["GQ-009", "claim-layer", "evidence-selection"],
+      "invalidate_on_considered": ["schema change", "new evidence source", "approved action status change"],
+      "result": "fresh",
+      "evidence_note": "The claim packet schema, production claim packet, and question portfolio all validate in this repo; no newer conflicting claim packet exists in the portfolio.",
+      "next_check": "after any schema, evidence source, or action status change"
+    }
+  ]
+}

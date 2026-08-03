@@ -1,0 +1,47 @@
+{
+  "date": "2026-08-03",
+  "thread": "GQ-009",
+  "loop": 3,
+  "slug": "refresh-invalidation-ledger",
+  "before": {
+    "proposals": 2,
+    "worklogs": 2,
+    "metrics_files": 1,
+    "schemas": 1,
+    "production_claim_packets": 1,
+    "portfolio_files": 1,
+    "refresh_or_invalidation_files": 0,
+    "refresh_ledger_entries": 0,
+    "production_claims_with_refresh_coverage": 0,
+    "verifier_scope": "claim packet fixtures, production claim packets, and question portfolio referential checks"
+  },
+  "after": {
+    "proposals": 3,
+    "worklogs": 3,
+    "metrics_files": 2,
+    "schemas": 1,
+    "production_claim_packets": 1,
+    "portfolio_files": 1,
+    "refresh_or_invalidation_files": 1,
+    "refresh_ledger_entries": 1,
+    "production_claims_with_refresh_coverage": 1,
+    "verifier_scope": "claim packet fixtures, production claim packets, question portfolio referential checks, and refresh coverage checks"
+  },
+  "machine_health_before": {
+    "root_available": "23Gi",
+    "load_average": "3.13 3.73 3.40"
+  },
+  "verification": {
+    "command": "npm run verify",
+    "result": "pass",
+    "observed_summary": "2 fixtures, 1 valid fixture, 1 invalid fixture, 1 listed claim packet; question portfolio ok; refresh ledger ok with 1 covered claim packet"
+  },
+  "constraints_observed": [
+    "read CHARTER.md before work",
+    "read people-graph enrichment log before work",
+    "did not open or mutate ~/passages.sqlite",
+    "did not mutate /tmp/people_v2_gh.sqlite or canonical foundry DBs",
+    "did not mutate vault corpus",
+    "did not duplicate people-graph enrichment loaders"
+  ]
+}
