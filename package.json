@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "verify": "node scripts/verify-claim-packets.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "claim-packet-v1",
+  "question": {
+    "id": "not-a-gq-id",
+    "text": "Too short",
+    "scope": "x"
+  },
+  "claim": {
+    "id": "bad-claim-id",
+    "position": "Too short",
+    "confidence": 2,
+    "status": "maybe",
+    "created_at": "not a date",
+    "updated_at": "not a date"
+  },
+  "grounding": [],
+  "action": {
+    "status": "approved",
+    "description": "ok"
+  },
+  "refresh": {
+    "strategy": "question-loop",
+    "selectors": [],
+    "invalidate_on": []
+  },
+  "provenance": {
+    "producer": "siso-librarian",
+    "run_id": "invalid-fixture",
+    "generated_at": "not a date"
+  }
+}
