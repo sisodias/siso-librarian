@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-03",
+  "thread": "minimax-cache-control",
+  "finding": "MiniMax caching works through go-llm-proxy when cache_control is present; normal harness paths are not sending/recording it.",
+  "proxy_direct_test": {
+    "endpoint": "http://127.0.0.1:8789/v1/chat/completions",
+    "request_shape": "OpenAI chat completion with message cache_control ephemeral",
+    "call_1": { "prompt_tokens": 2887, "completion_tokens": 20, "cached_tokens": 128 },
+    "call_2": { "prompt_tokens": 2887, "completion_tokens": 20, "cached_tokens": 2816 },
+    "cache_read_delta": 2688
+  },
+  "bifrost_observation": {
+    "Minimax_cached_read_tokens_recent": 0,
+    "interpretation": "Bifrost logs do not populate cached_read_tokens for MiniMax/proxy cached_tokens, so use raw proxy usage for cache experiments until mapping is fixed."
+  },
+  "harness_observation": {
+    "mini_pi": "lean and successful for stateless bounded work; default provider comments claim caching only helps continued sessions",
+    "codex_mm": "not valid yet; misroutes to CodexOpenAI/gpt-5.5 under current config and must stay disabled until proof passes"
+  }
+}
