@@ -1,0 +1,43 @@
+{
+  "date": "2026-08-03",
+  "thread": "mac-mini-settlement",
+  "host": {
+    "hostname": "Shaans-Mac-mini.local",
+    "macos": "15.5",
+    "uptime_days": 13,
+    "load_average": "1.12 1.15 1.25"
+  },
+  "storage": {
+    "root": { "size": "228Gi", "available": "27Gi", "capacity": "39%" },
+    "vault": { "path": "/Volumes/SISO-STORAGE-VAULT", "size": "4.5Ti", "used": "745Gi", "available": "3.8Ti", "capacity": "16%" }
+  },
+  "channels": {
+    "local_herdr": { "status": "verified", "pane_id_seen": "w65828adcf66b53-1" },
+    "laptop_herdr": { "status": "verified", "panes_seen": 3, "main_session_hint_seen": "w658224a4ab3734-1" },
+    "mini_pi": { "status": "verified", "command_result": "mini-pi-ok" }
+  },
+  "top_home_usage": [
+    { "path": "~/SISO_Workspace", "size": "33G" },
+    { "path": "~/passages.sqlite", "size": "23G" },
+    { "path": "~/Pictures", "size": "11G" },
+    { "path": "~/Library", "size": "10G" },
+    { "path": "~/passages_v1.sqlite.gz", "size": "9.5G" },
+    { "path": "~/oracle-gate", "size": "8.5G" },
+    { "path": "~/foundry-data", "size": "6.7G" },
+    { "path": "~/.pi-lens", "size": "4.0G" },
+    { "path": "~/.ollama", "size": "2.6G" },
+    { "path": "~/.local", "size": "2.3G" },
+    { "path": "~/.config", "size": "2.3G" },
+    { "path": "~/tmp", "size": "939M" }
+  ],
+  "cleanup_candidates_no_delete": [
+    { "path": "~/passages_v1.sqlite.gz", "size": "9.5G", "proposed_action": "copy to vault, checksum, then consider local quarantine/rename after consumers checked" },
+    { "path": "~/tmp/whisper_ep9kyxxk/ByjjZPvNn-Y.m4a", "size": "567M", "proposed_action": "copy/quarantine if unreferenced; do not delete directly" },
+    { "path": "~/tmp/node-compile-cache", "size": "107M", "proposed_action": "cache cleanup candidate after active process check" }
+  ],
+  "actions_taken": {
+    "deleted_files": 0,
+    "moved_active_databases": 0,
+    "mutated_vault_corpus": false
+  }
+}
