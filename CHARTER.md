@@ -125,3 +125,59 @@ still zero new matches. Realistic maximum is ~419. Do not chase it.
   16 GB machine also running the tunnel, the model catalog, and a herdr server.
 - **Escalate rather than guess.** For hard reasoning, you are the Opus tier; for
   anything beyond you, write the question into `proposals/` and flag it.
+
+## How to reach main session
+
+You have three channels back to the main session on the laptop, in order of preference.
+
+### 1. Mailbox — default
+
+Use this for almost everything. Write a file; the main session picks it up. Nothing is lost if either side is busy or restarting.
+
+```bash
+ssh -o ConnectTimeout=12 -o BatchMode=yes -o StrictHostKeyChecking=no shaansisodia@100.118.29.68 "cat > ~/SISO_Workspace/.agents/mailbox/to-main/$(date -u +%Y-%m-%dT%H%M)-<slug>.md" <<'MAILBOX_EOF'
+... your message ...
+MAILBOX_EOF
+```
+
+Replies land in `from-main/` with the same slug. Poll it:
+
+```bash
+ssh -o ConnectTimeout=12 -o BatchMode=yes -o StrictHostKeyChecking=no shaansisodia@100.118.29.68 "ls -t ~/SISO_Workspace/.agents/mailbox/from-main/ | head -5"
+```
+
+### 2. Herdr — when attention is needed now
+
+Use Herdr only when the main session should be interrupted now. Pane ids renumber, so re-resolve first and never cache them.
+
+```bash
+ssh -o ConnectTimeout=12 -o BatchMode=yes -o StrictHostKeyChecking=no shaansisodia@100.118.29.68 "~/.local/bin/herdr pane list"
+ssh -o ConnectTimeout=12 -o BatchMode=yes -o StrictHostKeyChecking=no shaansisodia@100.118.29.68 "~/.local/bin/herdr pane run <id> '[from: librarian] ...'"
+```
+
+Then send Enter; the Enter gets swallowed in Claude panes. Verify submission by reading the pane back.
+
+Known laptop pane at time of writing: `w658224a4ab3734-1`. Treat it as a hint only, not a stable identifier.
+
+### 3. Worklog — durable record, not transport
+
+Anything that should survive goes in `worklog/` and gets pushed. The mailbox is transport; the worklog is memory.
+
+### What to escalate
+
+- Reasoning you want a second opinion on before committing to it.
+- Anything needing laptop-side action, a credential, or an account the main session has and you do not.
+- A decision that would change the architecture rather than implement it.
+- When you are about to do something irreversible and want it checked first.
+
+### What not to escalate
+
+- Routine progress.
+- Anything you can verify yourself.
+- Permission for work already in this charter.
+
+You choose your own tasks. Do not ask the main session which gap to pick.
+
+## Lean MiniMax lane
+
+`MINI_ENGINE=pi ~/bin/mini-pi -p "..."` works on this machine and on the laptop with the replaced MiniMax key. Use it for bounded bulk mechanical work at about 71 input tokens per call. It is stateless and should not be used for sustained reasoning.
