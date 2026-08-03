@@ -1,0 +1,27 @@
+{
+  "date": "2026-08-03",
+  "thread": "internet-archive-adapter-contract",
+  "before": {
+    "source_adapter_contract_files": 0,
+    "source_contracts_covered_by_verifier": 0,
+    "ia_legal_quality_gates_encoded": false,
+    "loader_implementation": 0
+  },
+  "after": {
+    "source_adapter_contract_files": 1,
+    "source_contracts_covered_by_verifier": 1,
+    "ia_legal_quality_gates_encoded": true,
+    "loader_implementation": 0
+  },
+  "evidence": {
+    "ia_public_domain_text_records": 1367711,
+    "sample_djvu_txt_coverage": "12/12",
+    "text_sidecar_vs_pdf_words_example": { "pdftotext_words": 3707, "ia_sidecar_words": 131713 },
+    "minimax_worker_model": "MiniMax-M3"
+  },
+  "contract": "sources/internet-archive/adapter-contract.json",
+  "verification": {
+    "command": "npm run verify",
+    "result": "pass"
+  }
+}

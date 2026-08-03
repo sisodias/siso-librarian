@@ -1,0 +1,65 @@
+{
+    "schema_version": "source-adapter-contract-v1",
+    "source": {
+        "id": "internet-archive-public-domain-texts",
+        "name": "Internet Archive public-domain texts",
+        "kind": "text-corpus-adapter",
+        "status": "proposed"
+    },
+    "scale": {
+        "candidate_records": 1367711,
+        "candidate_query": "mediatype:texts AND rights:\"public domain\"",
+        "sample_djvu_txt_coverage": "12/12"
+    },
+    "access": {
+        "search_endpoint": "https://archive.org/advancedsearch.php",
+        "metadata_endpoint_template": "https://archive.org/metadata/{identifier}",
+        "download_endpoint_template": "https://archive.org/download/{identifier}/{filename}"
+    },
+    "legal_filter": {
+        "required_rights": "public domain",
+        "exclude_borrow_only": true,
+        "excluded_sources": [
+            "HathiTrust full text",
+            "Books3",
+            "Anna's Archive content"
+        ]
+    },
+    "selection": {
+        "mode": "named-want-list-only",
+        "identifier_field": "identifier",
+        "required_file_format": "DjVuTXT",
+        "fallback_file_formats": [],
+        "category_browsing_allowed": false
+    },
+    "quality_gate": {
+        "min_language_confidence": 0.7,
+        "preferred_language": "en",
+        "max_noise_ratio": 0.25,
+        "min_ascii_ratio_for_english": 0.85,
+        "route_on_pass": "index-and-cache-text",
+        "route_on_review": "quarantine-for-human-review",
+        "route_on_fail": "do-not-ingest"
+    },
+    "measurements_required": {
+        "before": [
+            "want_list_identifiers",
+            "metadata_records_checked",
+            "djvu_txt_sidecars_found"
+        ],
+        "after": [
+            "texts_downloaded",
+            "texts_passed_quality",
+            "texts_routed_review",
+            "texts_failed",
+            "bytes_cached",
+            "index_rows_written"
+        ]
+    },
+    "non_goals": [
+        "bulk corpus claim extraction",
+        "category crawling",
+        "copyrighted or borrow-only ingestion",
+        "PDF-first extraction"
+    ]
+}

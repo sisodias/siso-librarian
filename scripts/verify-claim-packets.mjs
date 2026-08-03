@@ -152,6 +152,23 @@ for (const file of claimFiles) {
   if (!refreshCoveredClaims.has(rel)) fail(rel, 'claim packet has no refresh ledger entry');
 }
 
+const sourceContracts = walk(join(root, 'sources')).filter((path) => path.endsWith('adapter-contract.json')).sort();
+for (const file of sourceContracts) {
+  const rel = relative(root, file);
+  const contract = JSON.parse(readFileSync(file, 'utf8'));
+  if (contract.schema_version !== 'source-adapter-contract-v1') fail(rel, 'expected schema_version source-adapter-contract-v1');
+  if (!contract.source?.id) fail(rel, 'missing source.id');
+  if (contract.source?.status !== 'proposed' && contract.source?.status !== 'active') fail(rel, 'source.status must be proposed or active');
+  if (!contract.access?.metadata_endpoint_template) fail(rel, 'missing access.metadata_endpoint_template');
+  if (contract.legal_filter?.required_rights !== 'public domain') fail(rel, 'required_rights must be public domain');
+  if (contract.legal_filter?.exclude_borrow_only !== true) fail(rel, 'exclude_borrow_only must be true');
+  if (contract.selection?.mode !== 'named-want-list-only') fail(rel, 'selection.mode must be named-want-list-only');
+  if (contract.selection?.required_file_format !== 'DjVuTXT') fail(rel, 'required_file_format must be DjVuTXT');
+  if (contract.selection?.category_browsing_allowed !== false) fail(rel, 'category_browsing_allowed must be false');
+  if (!Array.isArray(contract.measurements_required?.before) || contract.measurements_required.before.length < 1) fail(rel, 'missing before measurements');
+  if (!Array.isArray(contract.measurements_required?.after) || contract.measurements_required.after.length < 1) fail(rel, 'missing after measurements');
+}
+
 const validFixtures = results.filter((r) => !r.shouldBeInvalid && r.rel.startsWith('examples/')).length;
 const invalidFixtures = results.filter((r) => r.shouldBeInvalid).length;
 const productionClaims = results.filter((r) => r.rel.startsWith('claims/')).length;
@@ -161,6 +178,7 @@ for (const result of results) {
 }
 console.log(`question portfolio: ${existsSync(portfolioPath) ? 'ok' : 'missing'} (${listedClaims.size} listed claim packet(s))`);
 console.log(`refresh ledger: ${existsSync(ledgerPath) ? 'ok' : 'missing'} (${refreshCoveredClaims.size} covered claim packet(s))`);
+console.log(`source adapter contracts: ${sourceContracts.length}`);
 
 const unexpected = results.filter((r) => !r.passed).length;
 if (unexpected > 0 || validationErrors.length > 0) {
