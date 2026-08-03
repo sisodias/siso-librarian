@@ -1,0 +1,35 @@
+{
+  "date": "2026-08-03",
+  "thread": "observatory",
+  "before": {
+    "observatory_snapshot_files": 0,
+    "observatory_html_pages": 0,
+    "local_observatory_server": "absent",
+    "visible_bucket_count_groups": 0
+  },
+  "after": {
+    "observatory_snapshot_files": 1,
+    "observatory_html_pages": 1,
+    "local_observatory_server": "127.0.0.1:8765 smoke-tested",
+    "visible_bucket_count_groups": 5,
+    "snapshot_bytes": 1588,
+    "html_bytes": 4139
+  },
+  "bucket_counts": {
+    "registry": { "works": 25, "releases": 75, "source_inventories": 0, "events": 28, "decisions": 4 },
+    "passages": { "passages": 41501325, "books": 77540 },
+    "people_graph": { "people": 280722, "content_edges": 564579, "topic_edges": 2517910, "external_ids": 845004 },
+    "claim_layer": { "production_claims": 1, "portfolio_questions": 1, "refresh_entries": 1 },
+    "routing": { "minimax_8081": "verified" }
+  },
+  "verification": {
+    "build_command": "node scripts/build-observatory.mjs",
+    "serve_command": "node scripts/serve-observatory.mjs",
+    "smoke_url": "http://127.0.0.1:8765/",
+    "smoke_result": "4139 byte HTML response"
+  },
+  "caveats": [
+    "/tmp/people_v2_gh.sqlite is a zero-byte stub; used ~/foundry-data/domains/people/people_v2.sqlite read-only.",
+    "Cloudflared uses token-managed tunnel; public hostname mapping not changed in this loop."
+  ]
+}

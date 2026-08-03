@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-03T20:55:01.040Z",
+  "bucket_counts": {
+    "registry": {
+      "works": 25,
+      "releases": 75,
+      "source_inventories": 0,
+      "events": 28,
+      "decisions": 4
+    },
+    "passages": {
+      "passages": 41501325,
+      "books": 77540
+    },
+    "people_graph": {
+      "people": 280722,
+      "content_edges": 564579,
+      "topic_edges": 2517910,
+      "external_ids": 845004
+    },
+    "claim_layer": {
+      "production_claims": 1,
+      "portfolio_questions": 1,
+      "refresh_entries": 1
+    }
+  },
+  "active_questions": [
+    {
+      "id": "GQ-009",
+      "text": "How should the Great Library make questions visible, composable, continuously updated, and connected to evidence and approved action, without becoming the corpus warehouse or execution runtime?",
+      "status": "active",
+      "action_status": "done",
+      "claim_packets": [
+        "claims/GQ-009-claim-layer-contract.claim.json"
+      ]
+    }
+  ],
+  "routing": {
+    "minimax_8081": "verified: model MiniMax-M3 via worklog/2026-08-03-2145-minimax-routing-repair.md"
+  },
+  "caveats": [
+    "/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.",
+    "Registry source inventory count uses registry/source_inventories path; if schema path changes, update builder."
+  ]
+}
