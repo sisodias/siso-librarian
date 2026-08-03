@@ -1,0 +1,35 @@
+{
+  "date": "2026-08-03",
+  "thread": "minimax-fleet-ab",
+  "machine_health_before": {
+    "root_available": "26Gi",
+    "vault_available": "3.8Ti",
+    "load_average": "1.25 1.26 1.33"
+  },
+  "fleet_attempt": {
+    "codex_mm_agents_spawned": 5,
+    "placement_error_first_attempt": "--tab requires existing tab id",
+    "actual_placement": "five panes in one tab, later corrected by closing",
+    "result": "stopped",
+    "reason": "codex-mm profile misrouted to CodexOpenAI/gpt-5.5 and agents hit 429s"
+  },
+  "bifrost_recent_after_attempt": {
+    "CodexOpenAI_gpt_5_5": { "requests": 224, "input_tokens": 22668611, "output_tokens": 57168, "cached_read_tokens": 21893120 },
+    "Minimax_MiniMax_M3": { "requests": 32, "input_tokens": 15411, "output_tokens": 6315, "cached_read_tokens": 0 }
+  },
+  "mini_pi_ab": [
+    { "task": "cache-probe", "duration_s": 9, "bytes": 874, "result": "finished useful grep targets" },
+    { "task": "cleanup-probe", "duration_s": 22, "bytes": 2055, "result": "finished safe move protocol" },
+    { "task": "ia-probe", "duration_s": 34, "bytes": 1916, "result": "finished six live IA checks" }
+  ],
+  "cache_findings": {
+    "bifrost_minimax_cached_read_tokens": 0,
+    "go_llm_proxy_direct_response_cached_tokens": 114,
+    "interpretation": "MiniMax/proxy can report cached prompt tokens; Bifrost cached_read_tokens remains zero for MiniMax route. codex-mm currently bypasses shim and was misconfigured, so it is not valid as a MiniMax fleet harness yet."
+  },
+  "actions_taken": [
+    "closed excess codex-mm panes by exact pane id, no pattern kill",
+    "added missing Codex minimax_m3 profile, but direct test showed Codex rejects legacy profile table and codex-mm still misroutes",
+    "kept MiniMax work on mini-pi and direct 8081/proxy until codex-mm is repaired"
+  ]
+}
