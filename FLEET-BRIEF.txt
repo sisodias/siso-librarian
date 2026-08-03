@@ -1,0 +1,89 @@
+FLEET DIRECTIVE — run 5-6 persistent MiniMax agents, and A/B the two harnesses.
+
+Shaan wants the MiniMax plan actually consumed. It is barely touched. Your job
+now includes running a real fleet, not working alone.
+
+1. RUN 5-6 PERSISTENT AGENTS, MINIMAX ONLY
+
+Spawn them in this herdr server, each in its own labelled tab, each on a distinct
+gap from CHARTER.md. Do not let them idle. Two harnesses are available and you
+should use BOTH so we learn which is better:
+
+  codex-mm   — Codex CLI pinned to MiniMax M3, 500K context. Installed at
+               ~/bin/codex-mm on this machine, verified working on the laptop.
+               Spawn: herdr agent start <name> --tab <tab> -- codex-mm
+               Strength: auto-compact and real session state, so it survives long
+               work. Weakness: ~48,000 input tokens on its FIRST call before you
+               ask anything, rising to ~76,000 a few turns in.
+               NOTE: interactive mode works; `codex exec` one-shots hung in
+               testing. Prefer interactive panes.
+
+  mini-pi    — MINI_ENGINE=pi ~/bin/mini-pi -p "..." — ~71 fresh input tokens per
+               call, measured 577x cheaper. Stateless: no memory between calls,
+               and it gets killed on sustained reasoning. Right for bounded
+               mechanical bulk only.
+
+2. THE A/B TEST — report back with numbers
+
+Give the two harnesses comparable work and measure. The question is not which
+"feels" better, it is which delivers more useful work per token for a given task
+shape. Report:
+  - tokens in/out per task, from the Bifrost log (see below), not from estimates
+  - did it finish, or stall/timeout
+  - did the output need rework
+Then say plainly which lane you would use for which shape of task, and why.
+
+3. HOW TO PROVE WHAT ACTUALLY RAN — use this, do not trust banners
+
+A new skill is installed: ~/.claude/skills/prove-model-routing/SKILL.md
+
+The core query, against Bifrost's own request log:
+
+python3 -c "
+import sqlite3
+c=sqlite3.connect('file:$HOME/.config/bifrost/logs.db?mode=ro',uri=True)
+q='''select provider, model, count(*) n, sum(prompt_tokens) tin, sum(completion_tokens) tout
+     from (select * from logs order by rowid desc limit 200) group by 1,2 order by n desc'''
+for p,m,n,ti,to in c.execute(q):
+    print(f'{str(p):12} {str(m):24} {n:>4} reqs  in={ti or 0:>12,}  out={to or 0:>8,}')
+"
+
+A banner claiming MiniMax while every log row says anthropic means it is NOT on
+MiniMax. That exact failure happened today and I reported it as working before
+Shaan asked me to prove it. Do not repeat that.
+
+4. A REAL FINDING YOU SHOULD ACT ON — MiniMax caching is OFF
+
+Measured today across 42,431 MiniMax requests: cached_read_tokens = ZERO. Every
+~70,000-token call is billed at full rate.
+
+Anthropic on the same gateway caches at ~100% — 10.3 BILLION cached reads, so its
+611,000-token calls cost roughly a tenth of face value.
+
+MiniMax DOES support caching. Verified directly against api.minimax.io with an
+anthropic-style cache_control block:
+  call 1: cache_creation_input_tokens=37, cache_read=0
+  call 2: cache_creation=0, cache_read=37   <- it read the cache
+
+So the capability exists and nothing in our stack is using it. Neither
+~/.config/go-llm-proxy/minimax-codex.yaml nor the Bifrost Minimax provider config
+sets anything cache-related.
+
+Investigate whether the go-llm-proxy translation layer strips cache_control, or
+whether the harnesses never send it. If this can be switched on it is the single
+biggest efficiency win available — potentially 10x on every MiniMax call. Measure
+before and after with cached_read_tokens from the log.
+
+5. CONSTRAINTS UNCHANGED
+
+- Never delete. Move to the vault or propose.
+- Never pattern-kill processes.
+- npm run verify before any registry push.
+- Never claim a measurement you did not take.
+- Check machine health before spawning a fleet: this is a 16GB machine with ~30GB
+  free, also running the tunnel, the catalog shim, Bifrost, the proxy, ollama and
+  this herdr server. Six agents plus their subagents is real load. df -h and
+  uptime first.
+
+Report every ~30 minutes with what you spawned, what it produced, and the token
+numbers.

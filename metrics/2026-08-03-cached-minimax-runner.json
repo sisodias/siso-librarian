@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-03",
+  "thread": "cached-minimax-runner",
+  "before": {
+    "cached_minimax_runner_files": 0,
+    "raw_proxy_cache_metric_artifacts": 0,
+    "codex_mm_status": "disabled_misroutes_to_gpt_5_5",
+    "recent_bifrost_minimax": { "requests": 45, "prompt_tokens": 142475, "completion_tokens": 12258, "cached_read_tokens": 0 }
+  },
+  "after": {
+    "cached_minimax_runner_files": 1,
+    "raw_proxy_cache_metric_artifacts": 1,
+    "runner_smoke_jobs": 4,
+    "runner_smoke_ok": 4,
+    "prompt_tokens": 851,
+    "completion_tokens": 662,
+    "cached_tokens": 512
+  },
+  "smoke_jobs": [
+    { "id": "repeat-1", "model": "MiniMax-M3", "prompt_tokens": 223, "completion_tokens": 40, "cached_tokens": 128, "output": "OK" },
+    { "id": "repeat-2", "model": "MiniMax-M3", "prompt_tokens": 223, "completion_tokens": 41, "cached_tokens": 128, "output": "OK" },
+    { "id": "safe-move", "model": "MiniMax-M3", "prompt_tokens": 203, "completion_tokens": 300, "cached_tokens": 128, "finish_reason": "length" },
+    { "id": "ia-checks", "model": "MiniMax-M3", "prompt_tokens": 202, "completion_tokens": 281, "cached_tokens": 128 }
+  ],
+  "accounting_note": "scripts/mm-bulk-runner.mjs talks to go-llm-proxy on 127.0.0.1:8789, so its jobs do not appear as Minimax rows in Bifrost logs. Use runner JSONL raw usage for proxy-only cache accounting; use Bifrost logs for shim/Claude/Codex routes."
+}
