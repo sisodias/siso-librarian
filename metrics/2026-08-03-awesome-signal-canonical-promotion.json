@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-03",
+  "thread": "awesome-signal-canonical-promotion",
+  "backup": "/Users/shaansisodia/foundry-data/domains/people/_snapshots/people_v2.PRE-AWESOME-PROMOTE-20260803T220449Z.sqlite",
+  "before": {
+    "integrity_check": "ok",
+    "person_topic_total": 2517910,
+    "curated_awesome": 53072,
+    "edges_with_list_count": 64411
+  },
+  "apply": {
+    "owner_signal_rows": 177123,
+    "matched_owners": 90208,
+    "unmatched_owners": 86915,
+    "topic_rows": 90208,
+    "edges_matched": 119654,
+    "edges_owner_missing": 187526,
+    "elapsed_s": 5.36
+  },
+  "after": {
+    "integrity_check": "ok",
+    "person_topic_total": 2555047,
+    "curated_awesome": 90209,
+    "edges_with_list_count": 119898
+  },
+  "delta": {
+    "person_topic_total": 37137,
+    "curated_awesome": 37137,
+    "edges_with_list_count": 55487
+  },
+  "idempotency_second_apply": {
+    "before": { "person_topic_total": 2555047, "curated_awesome": 90209, "edges_with_list_count": 119898 },
+    "after": { "person_topic_total": 2555047, "curated_awesome": 90209, "edges_with_list_count": 119898 },
+    "elapsed_s": 3.41,
+    "idempotent": true
+  },
+  "observatory_rebuilt": true
+}

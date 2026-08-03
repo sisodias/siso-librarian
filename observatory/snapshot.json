@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T20:55:01.040Z",
+  "generated_at": "2026-08-03T22:06:06.704Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -15,7 +15,7 @@
     "people_graph": {
       "people": 280722,
       "content_edges": 564579,
-      "topic_edges": 2517910,
+      "topic_edges": 2555047,
       "external_ids": 845004
     },
     "claim_layer": {
