@@ -9,7 +9,12 @@
     "scale": {
         "candidate_records": 1367711,
         "candidate_query": "mediatype:texts AND rights:\"public domain\"",
-        "sample_djvu_txt_coverage": "12/12"
+        "sample_djvu_txt_coverage": "12/12",
+        "live_public_domain_count_2026_08_03": 1367676,
+        "live_probe_summary_2026_08_03": {
+            "explicit_public_domain_sample": "5/5 metadata OK, 5/5 public-domain signal, 5/5 DjVuTXT found, 4/5 sidecar HEAD OK",
+            "famous_identifier_sample": "3/3 metadata OK, 2/3 DjVuTXT found, 0/3 item-level public-domain signal"
+        }
     },
     "access": {
         "search_endpoint": "https://archive.org/advancedsearch.php",
@@ -23,14 +28,36 @@
             "HathiTrust full text",
             "Books3",
             "Anna's Archive content"
-        ]
+        ],
+        "rights_provenance": {
+            "accepted_sources": [
+                "advancedsearch rights field",
+                "item metadata rights field",
+                "item metadata licenseurl field"
+            ],
+            "required_for_ingest": true,
+            "missing_or_ambiguous_route": "review",
+            "carry_search_result_rights_into_want_list": true
+        }
     },
     "selection": {
         "mode": "named-want-list-only",
         "identifier_field": "identifier",
         "required_file_format": "DjVuTXT",
         "fallback_file_formats": [],
-        "category_browsing_allowed": false
+        "category_browsing_allowed": false,
+        "head_failure_route": "review",
+        "metadata_sidecar_evidence_fields": [
+            "name",
+            "format",
+            "size",
+            "md5"
+        ],
+        "download_allowed_when": [
+            "rights provenance present",
+            "DjVuTXT metadata sidecar present",
+            "quality gate can run on fetched sidecar"
+        ]
     },
     "quality_gate": {
         "min_language_confidence": 0.7,
@@ -39,7 +66,8 @@
         "min_ascii_ratio_for_english": 0.85,
         "route_on_pass": "index-and-cache-text",
         "route_on_review": "quarantine-for-human-review",
-        "route_on_fail": "do-not-ingest"
+        "route_on_fail": "do-not-ingest",
+        "head_failure_semantics": "HEAD failure is not final rejection when metadata provides DjVuTXT name, size, and md5; route to review or controlled GET probe."
     },
     "measurements_required": {
         "before": [

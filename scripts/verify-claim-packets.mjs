@@ -162,8 +162,13 @@ for (const file of sourceContracts) {
   if (!contract.access?.metadata_endpoint_template) fail(rel, 'missing access.metadata_endpoint_template');
   if (contract.legal_filter?.required_rights !== 'public domain') fail(rel, 'required_rights must be public domain');
   if (contract.legal_filter?.exclude_borrow_only !== true) fail(rel, 'exclude_borrow_only must be true');
+  if (contract.legal_filter?.rights_provenance?.required_for_ingest !== true) fail(rel, 'rights_provenance.required_for_ingest must be true');
+  if (contract.legal_filter?.rights_provenance?.missing_or_ambiguous_route !== 'review') fail(rel, 'missing rights evidence must route to review');
+  if (contract.legal_filter?.rights_provenance?.carry_search_result_rights_into_want_list !== true) fail(rel, 'search-result rights must be carried into want-list');
   if (contract.selection?.mode !== 'named-want-list-only') fail(rel, 'selection.mode must be named-want-list-only');
   if (contract.selection?.required_file_format !== 'DjVuTXT') fail(rel, 'required_file_format must be DjVuTXT');
+  if (contract.selection?.head_failure_route !== 'review') fail(rel, 'HEAD failure must route to review');
+  if (!Array.isArray(contract.selection?.metadata_sidecar_evidence_fields) || !contract.selection.metadata_sidecar_evidence_fields.includes('md5')) fail(rel, 'metadata sidecar evidence must include md5');
   if (contract.selection?.category_browsing_allowed !== false) fail(rel, 'category_browsing_allowed must be false');
   if (!Array.isArray(contract.measurements_required?.before) || contract.measurements_required.before.length < 1) fail(rel, 'missing before measurements');
   if (!Array.isArray(contract.measurements_required?.after) || contract.measurements_required.after.length < 1) fail(rel, 'missing after measurements');

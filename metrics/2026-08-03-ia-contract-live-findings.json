@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-03",
+  "thread": "ia-contract-live-findings",
+  "before": {
+    "rights_provenance_encoded": false,
+    "head_failure_review_route_encoded": false,
+    "live_probe_summary_in_contract": false
+  },
+  "after": {
+    "rights_provenance_encoded": true,
+    "head_failure_review_route_encoded": true,
+    "live_probe_summary_in_contract": true,
+    "verifier_enforces_rights_provenance": true,
+    "verifier_enforces_head_failure_route": true
+  },
+  "live_probe_evidence": {
+    "public_domain_count_2026_08_03": 1367676,
+    "explicit_public_domain_sample": "5/5 metadata OK, 5/5 public-domain signal, 5/5 DjVuTXT found, 4/5 sidecar HEAD OK",
+    "famous_identifier_sample": "3/3 metadata OK, 2/3 DjVuTXT found, 0/3 item-level public-domain signal"
+  },
+  "verification": {
+    "command": "npm run verify",
+    "result": "pass"
+  }
+}
