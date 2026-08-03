@@ -1,0 +1,41 @@
+{
+  "date": "2026-08-03",
+  "thread": "awesome-signal-staging",
+  "catalog": {
+    "path": "~/SISO_Workspace/SISO_Research/siso-foundry/pipelines/github/awesome/catalog_full.sqlite",
+    "size": "437M",
+    "entry_rows": 652851,
+    "repo_rows": 307180,
+    "owner_signal_rows": 179370
+  },
+  "dry_run_real_graph": {
+    "graph": "~/foundry-data/domains/people/people_v2.sqlite",
+    "owner_signal_rows_after_fold_filter": 177123,
+    "matched_owners": 90208,
+    "unmatched_owners": 86915,
+    "edges_matched": 119654,
+    "edges_owner_missing": 187526,
+    "before": {
+      "person_topic_total": 2517910,
+      "curated_awesome": 53072,
+      "edges_with_list_count": 64411
+    }
+  },
+  "staged_apply_copy": {
+    "copy_path": "/tmp/people_v2_awesome_20260803T210710Z.sqlite",
+    "integrity_check": "ok",
+    "first_apply_after": {
+      "person_topic_total": 2555047,
+      "curated_awesome": 90209,
+      "edges_with_list_count": 119898
+    },
+    "deltas": {
+      "person_topic_total": 37137,
+      "curated_awesome": 37137,
+      "edges_with_list_count": 55487
+    },
+    "second_apply_idempotent": true,
+    "curated_semantics": "scheme='curated', topic='awesome-cited'"
+  },
+  "canonical_mutated": false
+}
