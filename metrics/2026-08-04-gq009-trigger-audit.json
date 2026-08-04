@@ -1,0 +1,39 @@
+{
+  "measured_at": "2026-08-04T15:36:26Z",
+  "question": "GQ-009",
+  "subject": "testing the deferral I have repeated most: \"blocked on a person\"",
+  "why": "\"blocked on a person\" appears 5 times in my worklogs and I never tested it \u2014 I only ever cited watch trigger 5. GQ-009 has FIVE triggers. I checked all of them.",
+  "triggers": {
+    "1": {
+      "text": "A new God Question cannot express a decision target, falsifier, evidence gap, or refresh condition in the current contract.",
+      "tested": true,
+      "result": "DOES NOT FIRE \u2014 7 of 7 registry questions express all four fields.",
+      "reading": "A positive finding I had never recorded: the contract carries every question in the registry without strain."
+    },
+    "2": {
+      "text": "Foundry or Knowledge ships a question-addressable export.",
+      "tested": false,
+      "reason": "Depends on systems outside this repo; no evidence either way."
+    },
+    "3": {
+      "text": "The first approved experiment returns an Observation Receipt.",
+      "tested": false,
+      "reason": "Requires an approved experiment. None exists \u2014 same root as trigger 5."
+    },
+    "4": {
+      "text": "Three heterogeneous questions complete a full research-to-decision loop.",
+      "tested": true,
+      "result": "DOES NOT FIRE \u2014 1 of 7 claims has action=done (GQ-009). Needs three.",
+      "reading": "Blocked by the same missing approval step, not by a lack of research. Six claims sit at action=proposed with evidence complete."
+    },
+    "5": {
+      "text": "A standing agent proposes a change and it survives independent review.",
+      "tested": true,
+      "result": "CANNOT FIRE BY CONSTRUCTION \u2014 I am the proposer, and the trigger requires independence.",
+      "reading": "This one genuinely is blocked on a second party. The word \"independent\" is doing the work, not \"review\"."
+    }
+  },
+  "the_correction": "\"Blocked on a person\" is accurate for trigger 5 and WRONG as a description of GQ-009. Trigger 1 is testable and I tested it \u2014 it does not fire, which is itself evidence the contract works. Trigger 4 is blocked on approval rather than review. I had collapsed five distinct conditions into one sentence about a missing human.",
+  "what_would_move_trigger_4": "Two more claims reaching action=done. Their evidence is complete; what they lack is an approval step, which is the same C-scope boundary as everything else awaiting Shaan.",
+  "derivations": {}
+}
