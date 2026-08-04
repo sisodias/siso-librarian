@@ -1,0 +1,44 @@
+{
+  "measured_at": "2026-08-04T04:19:50Z",
+  "question": "GQ-008",
+  "source": "~/.config/bifrost/logs.db",
+  "method": "read-only aggregate over the gateway request log; no sampling",
+  "providers": [
+    {
+      "provider": "anthropic",
+      "requests": 240,
+      "prompt_tokens": 133886639,
+      "completion_tokens": 148380,
+      "cached_read_tokens": 122550295,
+      "pct_input_cached": 91.5,
+      "avg_billed_input_per_request": 47235
+    },
+    {
+      "provider": "CodexOpenAI",
+      "requests": 408,
+      "prompt_tokens": 45285517,
+      "completion_tokens": 109467,
+      "cached_read_tokens": 44010496,
+      "pct_input_cached": 97.2,
+      "avg_billed_input_per_request": 3125
+    },
+    {
+      "provider": "Minimax",
+      "requests": 143,
+      "prompt_tokens": 3703946,
+      "completion_tokens": 93730,
+      "cached_read_tokens": 0,
+      "pct_input_cached": 0.0,
+      "avg_billed_input_per_request": 25902
+    },
+    {
+      "provider": "CodexProxy",
+      "requests": 4,
+      "prompt_tokens": 1235,
+      "completion_tokens": 118,
+      "cached_read_tokens": 0,
+      "pct_input_cached": 0.0,
+      "avg_billed_input_per_request": 309
+    }
+  ]
+}

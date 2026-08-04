@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T01:25:00Z",
+  "generated_at": "2026-08-04T04:20:20Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -39,6 +39,32 @@
         "GQ-010",
         "fame-vs-dependence",
         "adoption-signal"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
+    },
+    {
+      "id": "GQ-008",
+      "text": "Which available model should own each recurring work shape after quality, reliability, tool use, latency, quota, and cost are evaluated together?",
+      "status": "active",
+      "registry_work": "gls:work:3b4c4fa6-31f2-4cfc-9542-00f32e200621",
+      "note": "Registered God Question, not minted here. Registry marks it 'answered' with no falsifiers; this claim proposes a cost-dimension correction.",
+      "claim_packets": [
+        "claims/GQ-008-routing-cache-economics.claim.json"
+      ],
+      "current_claim": "claims/GQ-008-routing-cache-economics.claim.json",
+      "selectors": [
+        "GQ-008",
+        "routing",
+        "cache-economics",
+        "billed-input"
       ],
       "refresh": {
         "strategy": "on-evidence-change",

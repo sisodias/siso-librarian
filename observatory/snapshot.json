@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:17:04.188Z",
+  "generated_at": "2026-08-04T04:21:04.405Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 3,
-      "portfolio_questions": 2,
-      "refresh_entries": 3
+      "production_claims": 4,
+      "portfolio_questions": 3,
+      "refresh_entries": 4
     }
   },
   "derivations": {
@@ -143,6 +143,15 @@
       "action_status": "proposed",
       "claim_packets": [
         "claims/GQ-010-fame-vs-dependence.claim.json"
+      ]
+    },
+    {
+      "id": "GQ-008",
+      "text": "Which available model should own each recurring work shape after quality, reliability, tool use, latency, quota, and cost are evaluated together?",
+      "status": "active",
+      "action_status": "proposed",
+      "claim_packets": [
+        "claims/GQ-008-routing-cache-economics.claim.json"
       ]
     }
   ],
@@ -263,14 +272,13 @@
     "coverage": {
       "registered": 7,
       "with_testable_contract": 1,
-      "with_local_claims": 1,
+      "with_local_claims": 2,
       "unclaimed": [
         "GQ-001",
         "GQ-002",
         "GQ-004",
         "GQ-005",
-        "GQ-006",
-        "GQ-008"
+        "GQ-006"
       ]
     }
   },

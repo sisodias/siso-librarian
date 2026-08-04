@@ -1,0 +1,58 @@
+{
+  "schema_version": "claim-packet-v1",
+  "question": {
+    "id": "GQ-008:cache-economics",
+    "text": "Which available model should own each recurring work shape after quality, reliability, tool use, latency, quota, and cost are evaluated together?",
+    "scope": "cost dimension — billed input tokens after prompt caching, measured on this gateway",
+    "parents": ["GQ-008"]
+  },
+  "claim": {
+    "id": "claim:GQ-008.cache-economics.v1",
+    "position": "Routing decisions made on raw token counts misprice the lanes, because caching is not uniform across providers: on this gateway MiniMax caches 0% of its input while Anthropic caches 91.4% and CodexOpenAI 97.2%, so MiniMax's apparent 21x raw-input advantage over Anthropic collapses to 1.8x in billed input, and CodexOpenAI bills roughly 8x fewer input tokens per request than the designated cheap lane.",
+    "confidence": 0.74,
+    "status": "proposed",
+    "created_at": "2026-08-04T06:20:00Z",
+    "updated_at": "2026-08-04T06:20:00Z",
+    "supersedes": []
+  },
+  "grounding": [
+    {
+      "quote": "\"pct_input_cached\": 0.0",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq008-routing-cache-economics.json",
+        "title": "Routing cache economics, measured from the gateway log"
+      },
+      "locator": "providers[].pct_input_cached (Minimax)",
+      "passage_id": "gq008:minimax-zero-cache",
+      "byte_range": { "start": 864, "end": 887 }
+    },
+    {
+      "quote": "\"avg_billed_input_per_request\": 3125",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq008-routing-cache-economics.json",
+        "title": "Routing cache economics, measured from the gateway log"
+      },
+      "locator": "providers[].avg_billed_input_per_request (CodexOpenAI)",
+      "passage_id": "gq008:codex-billed-input",
+      "byte_range": { "start": 659, "end": 695 }
+    }
+  ],
+  "action": {
+    "status": "proposed",
+    "description": "Re-evaluate the routing matrix on billed input tokens rather than raw. Either enable prompt caching on the MiniMax path or stop treating it as the default cheap lane for large-context work; the two options have very different costs and the choice is not mine to make.",
+    "owner": "librarian"
+  },
+  "refresh": {
+    "strategy": "on-evidence-change",
+    "selectors": ["GQ-008", "routing", "cache-economics", "billed-input"],
+    "invalidate_on": ["schema change", "new evidence source", "approved action status change"]
+  },
+  "provenance": {
+    "producer": "siso-librarian",
+    "run_id": "GQ-008-loop-2026-08-04-cache-economics",
+    "model": "claude-opus-5",
+    "generated_at": "2026-08-04T06:20:00Z"
+  }
+}
