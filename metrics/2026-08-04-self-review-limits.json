@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-04T19:50:41Z",
+  "question": "GQ-009",
+  "subject": "what a self-review can and cannot do, tested rather than assumed",
+  "the_carried_claim": "\"7 claims lacking independent review \u2014 genuinely blocked on a second party.\" Half right, and I never tested the other half.",
+  "what_i_COULD_check_alone": {
+    "GQ-001": {
+      "verdict": "STALE, corrected",
+      "was": "5 gates and 12 self-test cases",
+      "now": "6 gates, 14 cases + 2 probes",
+      "cause": "my own work today made my own claim wrong",
+      "direction": "understated"
+    },
+    "GQ-001-second-assertion": {
+      "verdict": "HOLDS",
+      "assertion": "\"the gates have blocked ZERO pushes\"",
+      "test": "verify exited 6 once today \u2014 during development, before any push attempt. No push has been stopped."
+    },
+    "GQ-006": {
+      "verdict": "HOLDS",
+      "77540": "re-derived exactly from book_body",
+      "90209": "re-derived exactly"
+    },
+    "GQ-004": {
+      "verdict": "HONEST",
+      "note": "the ~41,000 figure is already attributed to mini-pi's own comments, not measured here"
+    },
+    "GQ-002": {
+      "verdict": "GROUNDING SOUND",
+      "note": "grounds in metrics files, not the live log, so eviction cannot orphan it"
+    }
+  },
+  "my_own_error_a_third_time": {
+    "what": "queried person_topic (2,555,047) to test a claim about 90,209 \"curated owners\" and nearly disputed a true claim",
+    "the_real_derivation": "select count(*) from person_topic where scheme='curated' and topic='awesome-cited' -> 90209",
+    "lesson": "THIRD time today I reached for a table name instead of the DECLARED derivation. The derivation block exists precisely so I do not have to guess the query."
+  },
+  "a_trap_i_set_for_myself_an_hour_ago": {
+    "what": "6 declared derivations read ~/.config/bifrost/logs.db",
+    "what_i_did": "set that database to expire rows after 3 days",
+    "consequence": "those derivations re-derive today only because the Aug 1 rows have not aged out yet; the audit re-runs them on every push",
+    "current_state": "31 derivations re-derived, 1 unavailable, 0 skipped \u2014 passing NOW",
+    "why_it_matters": "I changed a retention policy without asking what grounds in the data it retains. The claim layer survived by architecture (grounding cites metrics snapshots, not the live DB); the derivations did not get that protection."
+  },
+  "what_remains_genuinely_blocked": "Independence. I can re-derive every number and re-check every assertion \u2014 and did \u2014 but I cannot be a second party to my own reasoning. The three questions the packet asks (does the evidence support the position, is the confidence justified, is the action right) are exactly the ones where my agreeing with myself proves nothing.",
+  "derivations": {}
+}

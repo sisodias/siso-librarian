@@ -39,6 +39,10 @@ const SIBLINGS = [
 ];
 
 const findings = [];
+// Warnings are TRUE but not yet failing. They are reported, never fatal:
+// blocking a push on a condition that has not broken teaches me to bypass the
+// gate, and a bypassed gate protects nothing.
+const warnings = [];
 const scriptsDir = join(root, 'scripts');
 const files = existsSync(scriptsDir)
   ? readdirSync(scriptsDir).filter((f) => /\.(mjs|js|sh)$/.test(f))
@@ -83,6 +87,37 @@ for (const f of files) {
   }
 }
 
+// Derivations that read EPHEMERAL sources. On 2026-08-04 I set the bifrost log
+// to expire rows after 3 days, then found 6 declared derivations reading it.
+// They re-derive today only because the oldest rows have not aged out yet — and
+// the audit re-runs them on every push, so this becomes a gate failure on a
+// timer I set myself. A derivation is a promise that a number can be recomputed;
+// pointing one at data with a retention policy quietly breaks that promise.
+const EPHEMERAL = [
+  { path: '.config/bifrost/logs.db', why: 'log_retention_days = 3 (set 2026-08-04)' },
+];
+const metricsDir = join(root, 'metrics');
+if (existsSync(metricsDir)) {
+  for (const f of readdirSync(metricsDir).filter((x) => x.endsWith('.json'))) {
+    let doc;
+    try { doc = JSON.parse(readFileSync(join(metricsDir, f), 'utf8')); } catch { continue; }
+    for (const [label, d] of Object.entries(doc.derivations || {})) {
+      const src = JSON.stringify(d);
+      for (const e of EPHEMERAL) {
+        if (src.includes(e.path)) {
+          warnings.push({
+            kind: 'derivation-reads-ephemeral-source',
+            file: `metrics/${f}`,
+            derivation: label,
+            source: e.path,
+            why: `${e.why} — this derivation will stop re-deriving when the rows it reads are evicted, and the audit runs it on every push`,
+          });
+        }
+      }
+    }
+  }
+}
+
 // The gate must be able to fail. If SIBLINGS ever stops matching reality — the
 // table renamed, the file moved — this reports zero findings and looks healthy,
 // which is the exact failure it exists to prevent. So assert the primary table
@@ -110,6 +145,7 @@ if (existsSync(dbPath)) {
 console.log(JSON.stringify({
   checked_files: files.length,
   siblings: SIBLINGS.map((s) => s.tables),
+  warnings,
   sanity,
   findings,
 }, null, 2));
