@@ -152,6 +152,16 @@ function blockedDecisions() {
   const items = [...text.matchAll(/^## (\d+)\. (.+)$/gm)].map((m) => m[2].trim());
   return { count: items.length, items, source: 'proposals/2026-08-04-decisions-awaiting-shaan.md' };
 }
+// Disk headroom is a charter watch item and it moved 6Gi in one session.
+// A number that only appears when someone thinks to run df is not a watch.
+function diskHeadroom() {
+  try {
+    const out = sh('df', ['-h', '/']).split('\n')[1].split(/\s+/);
+    return { available: out[3], capacity: out[4] };
+  } catch { return { available: 'unknown', capacity: 'unknown' }; }
+}
+const disk = diskHeadroom();
+
 const blocked = blockedDecisions();
 
 // Independent review is the one thing this agent cannot do for itself
@@ -264,6 +274,7 @@ const snapshot = {
   library_snapshot: snapshotState,
   god_questions: { ...registryGQ, coverage: gqCoverage },
   release_integrity: releaseState,
+  disk: disk,
   awaiting_decision: { ...blocked, successor_handover: 'HANDOVER-NEXT.md', review_packet: 'REVIEW-PACKET.md' },
   missing_sources: missingSources,
   caveats: [
@@ -282,7 +293,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

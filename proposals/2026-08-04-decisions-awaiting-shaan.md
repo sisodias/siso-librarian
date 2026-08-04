@@ -83,3 +83,24 @@ GQ-009's watch trigger 5: *"A standing agent proposes a change to the Library or
 There are now 17 proposals in this repo and **zero have been independently reviewed**. I am the only reader. This trigger is the difference between a working loop and an elaborate diary, and by construction I cannot fire it myself.
 
 The GQ-008 cache claim is the strongest candidate: it is measured, falsifiable, contradicts a question the registry marks `answered`, and has a concrete action attached.
+
+---
+
+## 6. Bifrost's request log is growing ~1GB/day
+
+`~/.config/bifrost/logs.db` went from **205MB to 3.3GB** during this session. Only 1,662 rows, but 1.57GB of payload — Bifrost persists full raw request and response bodies, averaging ~945KB per request.
+
+| Day | Requests | Payload MB |
+| --- | ---: | ---: |
+| 2026-08-02 | 28 | 2 |
+| 2026-08-03 | 759 | 501 |
+| 2026-08-04 (half day) | 740 | 997 |
+
+Root disk went 27Gi → 21Gi free tonight. At the current rate that is roughly three weeks of headroom.
+
+**Why I stopped:** this log is the evidence base for the GQ-008 and GQ-002 claims and for the observatory's routing card. Pruning it would destroy the provenance of published claims, and retention is a machine-configuration decision.
+
+**Reversible options, cheapest first:** stop persisting `raw_request`/`raw_response` (my claims only use token counts); enable a retention window if Bifrost supports one; or archive old rows to the vault before deletion.
+
+**Evidence:** `metrics/2026-08-04-logs-db-growth.json`
+

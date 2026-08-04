@@ -1,0 +1,49 @@
+{
+  "measured_at": "2026-08-04T05:32:35Z",
+  "thread": "disk-growth",
+  "finding": "Bifrost's request log grew from 205MB to 3.3GB during this session. It stores full raw request and response bodies, so 1,662 rows carry 1.57GB of payload \u2014 roughly 945KB per request.",
+  "logs_db": {
+    "path": "~/.config/bifrost/logs.db",
+    "size_bytes": 3589701632,
+    "rows": 1664,
+    "oldest": "2026-08-01 19:34:55.669612+00:00",
+    "newest": "2026-08-04 05:31:58.629837+00:00",
+    "payload_bytes": 1579930167,
+    "avg_payload_bytes_per_row": 949477
+  },
+  "daily": [
+    {
+      "day": "2026-08-01",
+      "requests": 136,
+      "payload_mb": 0
+    },
+    {
+      "day": "2026-08-02",
+      "requests": 28,
+      "payload_mb": 2
+    },
+    {
+      "day": "2026-08-03",
+      "requests": 759,
+      "payload_mb": 501
+    },
+    {
+      "day": "2026-08-04",
+      "requests": 741,
+      "payload_mb": 1001
+    }
+  ],
+  "disk": {
+    "root_available_at_session_start": "27Gi",
+    "root_available_now": "21Gi",
+    "consumed_this_session": "~6Gi"
+  },
+  "projection": "At the 2026-08-04 rate (997MB in a half-day) the remaining 21Gi absorbs roughly three weeks.",
+  "cause": "My own large-context traffic. anthropic requests average 557,371 raw input tokens and Bifrost persists the bodies.",
+  "why_i_did_not_prune": "logs.db is the evidence base for the GQ-008 and GQ-002 claims and for the observatory's routing card. Deleting rows would destroy the provenance of published claims, and retention is a machine-configuration decision. Recorded as decision 6 rather than acted on.",
+  "reversible_options": [
+    "Enable a retention window in Bifrost config if one exists",
+    "Stop persisting raw_request/raw_response, keeping token counts (which is all my claims use)",
+    "Archive rows older than N days to the vault before deletion"
+  ]
+}
