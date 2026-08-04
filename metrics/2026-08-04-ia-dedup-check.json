@@ -1,0 +1,201 @@
+{
+  "checked": 24,
+  "distinct_author": 12,
+  "review_possible_duplicate": 0,
+  "no_creator_metadata": 12,
+  "library_authors_indexed": 35312,
+  "results": [
+    {
+      "identifier": "caargm_000284",
+      "title": "Letter to Alice from Uncle Fred, 1918",
+      "ia_creators": [
+        "Sampson, Fred V."
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451",
+      "title": "Mowa w Dzien Rocznicy Otwarcia Towarzystwa Do Ksiąg Elementarnych na Sessyi Dnia 7. Marca ",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442",
+      "title": "Głos Jasnie Wielmoznego Juliana Ursyna Niemcewicza, Posła Inflantskiego, na Sessyi Seymowe",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064",
+      "title": "Mowa Jasnie Oswieconego Xiązęcia Jmci Lubomirskiego Marszałka W. Kor. na Sessyi Seymowey D",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149",
+      "title": "Mowa Do N. M. Stanisława Szczęsnego Potockiego ..., witaiąc go na W W. N.",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381",
+      "title": "Przymowienie Się Jaśnie Wielmożnego Jmci Pana Antoniego Nałęcz Małachowskiego Woiewody Gen",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934",
+      "title": "Głos Jaśnie Wielmożnego hrabiego Bielińskiego, senatora wojewody, prezesa Sądu Seymowego K",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605",
+      "title": "Głos Jasnje Oswjeconego Xjęcja Giedroycia Biskupa Zmudzkiego Na Sessyi Seymowey Dnia 2. Wr",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971",
+      "title": "Mowa Zambrzyckiego, Posła Nurskiego, Na Sessyi Seymowey d. 15. Mca Listopada R. 1791. O pr",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253",
+      "title": "Głos Jasnie Wielmoznego Iana Nepomucena Zboinskiego Starosty Mszanskiego, Posła Dobrzynski",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_16300_XVIII-2-459_turski-podziekowanie_o_3985",
+      "title": "Podziękowanie J.O. Xcia Jmci Felixa Pawła Turskiego Biskupa Krakowskiego Xcia Siewierskieg",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_13493_XVIII-2-336_poniatowski-glos-o_4459",
+      "title": "Głos J.O. Xcia Jmci Stanisława Poniatowskiego Marszałka Rady Nieustaiącey Przy Usprawiedli",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_188510_P-I-1066_epoka16_o_158884",
+      "title": "Epoka : tygodnik poświęcony polityce, sprawom społecznym, literaturze i sztuce 1922 N.16",
+      "ia_creators": [],
+      "author_matches": [],
+      "verdict": "no_creator_metadata"
+    },
+    {
+      "identifier": "labor-092070-0368",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0699",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0886",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0097",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0098",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0141",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0003",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0685",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0550",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0573",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0428",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    }
+  ]
+}
