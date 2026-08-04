@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T06:54:38.827Z",
+  "generated_at": "2026-08-04T06:58:27.141Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,7 +36,7 @@
     "verify_steps": 5,
     "scripts_on_disk": 12,
     "metrics_files": 36,
-    "worklogs": 70,
+    "worklogs": 71,
     "proposals": 17
   },
   "derivations": {
@@ -271,13 +271,13 @@
         "id": "GQ-002",
         "title": "10× the Agent Layer",
         "lifecycle": "active",
-        "updated_at": "2026-08-01",
-        "state": "answered",
-        "decision_to_change": null,
-        "success_criteria": 0,
-        "falsifiers": 0,
-        "watch_triggers": 0,
-        "evidence_gaps": 0,
+        "updated_at": "2026-08-04",
+        "state": "partial",
+        "decision_to_change": "Where to spend the next unit of agent-layer engineering effort: fixing an existing path's economics versus substituting a model or harness.",
+        "success_criteria": 4,
+        "falsifiers": 4,
+        "watch_triggers": 4,
+        "evidence_gaps": 3,
         "answer_shape": "A ranked leverage map whose recommendations each carry measurements, external analogues, an experiment, and a falsifiable success threshold."
       },
       {
@@ -348,7 +348,7 @@
     ],
     "coverage": {
       "registered": 7,
-      "with_testable_contract": 1,
+      "with_testable_contract": 2,
       "with_local_claims": 7,
       "unclaimed": []
     }
@@ -383,7 +383,7 @@
     "queued": 2,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 1,
+    "oldest_queued_age_hours": 1.1,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"
