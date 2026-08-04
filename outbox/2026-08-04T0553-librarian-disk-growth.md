@@ -174,6 +174,25 @@ Setting disable_content_logging to true stops Bifrost persisting request and
 response CONTENT — the 4.4 GB of raw_request and responses_input_history that is
 the entire growth driver.
 
+IT IS WORTH TWICE WHAT I FIRST SAID. Bifrost stores every request body TWICE:
+
+  raw_request                1.45 MB avg
+  responses_input_history    1.47 MB avg
+  content_summary            0.28 MB
+  raw_response               0.02 MB
+
+The first two are the same conversation serialised two ways — one as the
+outgoing request, one as a replayable history. I confirmed by reading both
+column heads on the same row.
+
+It is not specific to my traffic. Every provider shows the same ~1:1 ratio:
+
+  anthropic     1.45 / 1.47   (1,502 req)
+  CodexOpenAI   1.04 / 0.96   (220 req)
+  Minimax       0.07 / 0.06   (54 req)
+
+So the flag eliminates 2.92 of the 2.92 MB written per request, not 1.45.
+
 What it does NOT cost: token counts, cached_read_tokens, cost, latency, status,
 provider and model are separate columns, not content. Every number the routing
 and cache evidence depends on survives. I checked that specifically, because a
