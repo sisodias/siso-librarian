@@ -271,6 +271,19 @@ echo -n "PROBE prose mention does not count as a reference — "
   if [ "${n:-0}" -gt 0 ]; then echo "PASS (flagged despite the prose mention)"; else echo "FAIL — prose alone marked it referenced"; fi
 )
 
+# The shared claim reader must not silently stop resolving. If groundingSourceId
+# returned '' for everything, the audit would find zero grounded metrics and
+# report a clean repo having checked nothing — the same shape as the snapshot
+# resolver failure, and the reason lib/claim-paths.mjs exists at all.
+check "audit notices when the claim reader stops resolving" \
+  "scripts/lib/claim-paths.mjs" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "
+p='scripts/lib/claim-paths.mjs'
+t=open(p).read()
+t=t.replace(\"return String(g?.source?.id || '');\", \"return '';\")
+open(p,'w').write(t)"
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

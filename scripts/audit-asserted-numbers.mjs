@@ -11,6 +11,7 @@
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { basename, join, relative } from 'node:path';
+import { groundingSourceId } from './lib/claim-paths.mjs';
 import { resolveLabel, labelForPath } from './lib/snapshot-paths.mjs';
 
 const root = process.cwd();
@@ -467,7 +468,10 @@ for (const cf of walk(join(root, 'claims'))) {
   const status = cd?.claim?.status;
   if (status === 'superseded' || status === 'disputed') continue;
   for (const g of cd?.grounding || []) {
-    const id = g?.source?.id;
+    // via lib/claim-paths.mjs — one place knows this shape. I mis-keyed it five
+    // times on 2026-08-04 writing throwaway readers; the production code was
+    // always right, so the fix is making the correct reader the reachable one.
+    const id = groundingSourceId(g);
     if (typeof id === 'string' && id.startsWith('metrics/')) groundedMetrics.add(id);
   }
 }

@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-04T21:10:30Z",
+  "question": "GQ-009",
+  "subject": "a mechanism for the wrong-key class, not another resolution",
+  "the_problem": "Five wrong keys in one session, and my stated fix was \"read the structure before writing the query\" \u2014 a resolution, not a mechanism. Resolutions I cannot verify fail silently.",
+  "the_precedent": "lib/snapshot-paths.mjs was written after four snapshot mis-keys and that class stopped recurring. Nothing equivalent existed for claim structure, which is where four of today five landed.",
+  "the_finding_that_sharpened_it": "The production scripts were NEVER wrong. audit-asserted-numbers.mjs, verify-claim-packets.mjs and build-review-packet.mjs all read source.id correctly and agree. The defect was that I kept writing throwaway readers instead of using them. So the fix is not correcting code \u2014 it is making the correct reader the one that is easy to reach for.",
+  "built": "scripts/lib/claim-paths.mjs \u2014 groundingSourceId, readClaims, groundedMetrics, checkability, unverifiableEvidence",
+  "proven_against_a_known_wrong_answer": {
+    "my_hand_rolled_reader": "0 metrics files cited by live claims",
+    "the_helper": "14",
+    "why_zero_was_worse_than_an_error": "a confident zero looks like a finding"
+  },
+  "what_it_then_told_me": {
+    "load_bearing_metrics": 14,
+    "unverifiable": 1,
+    "oversights_needing_work": 0,
+    "the_one": "metrics/2026-08-04-gq005-category-momentum.json",
+    "and_it_is_honest": "its source field already says \"UNKNOWN \u2014 see dispute in the claim\", the claim carries the portfolio lowest confidence at 0.15, and its action explicitly says \"not a basis for investment\". The claim layer worked: unsourceable evidence produced a low-confidence no-action claim rather than a hidden one.",
+    "so_the_helper_now_distinguishes": "disclosed limit vs oversight \u2014 lumping them would make the honest case look negligent"
+  },
+  "a_sixth_wrong_key_while_fixing_the_fifth": {
+    "what": "my patch script guarded on \"claim-paths.mjs\" not being in the file, but the COMMENT I had just added contained that string",
+    "result": "the import was silently skipped and the audit threw ReferenceError at runtime despite passing node --check",
+    "the_pattern": "FIFTH time today a comment satisfied a check about code \u2014 this time inside my own patch script"
+  },
+  "result": {
+    "verify_exit": 0,
+    "gate_selftest": "15 passed, 0 failed",
+    "derivations": 32,
+    "checks_skipped": 0,
+    "new_case": "audit notices when the claim reader stops resolving \u2014 gate exited 3"
+  },
+  "derivations": {}
+}
