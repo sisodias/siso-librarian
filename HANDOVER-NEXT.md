@@ -12,7 +12,7 @@ I did not edit `HANDOVER.md`. It is an accurate record of what was known then, a
 
 **Seven decisions are blocked on Shaan.** `proposals/2026-08-04-decisions-awaiting-shaan.md`, also on the observatory as `Awaiting your decision: 7`. The observatory now also lists each queued escalation by headline under "Escalations you have not seen" — a count alone told him nothing. The mailbox has been unreachable since ~00:25 UTC (laptop offline; ping and ssh time out). Retry it — if it answers, send that file.
 
-Highest value by far is item 1: MiniMax traffic bypasses prompt caching, costing ~97% of input tokens on repeated prompts. `scripts/minimax-cache-route.sh apply` is written, tested in every segment but one, and reversible. **Do not run it without approval** — it changes gateway topology for every agent on this machine.
+Highest value by far is item 1: MiniMax traffic bypasses prompt caching, costing ~97% of input tokens on repeated prompts. `scripts/minimax-cache-route.sh apply` is written, tested in every segment but one, and reversible. **Do not run it without approval** — but the scope is narrower than I first wrote. Measured 2026-08-04: the patch is gated on `effectiveModel === 'MiniMax-M3'`, so only MiniMax traffic reroutes and everything else keeps its existing Bifrost path. That is **73 of 1,986 requests today, 3.7%**. The real risk is that it edits `~/.config/bifrost/claude-model-catalog.mjs`, a file EVERY Claude Code session on this machine loads (including yours — check `ANTHROPIC_BASE_URL`). A bad edit breaks all of them; a correct edit changes 3.7% of routing. The script takes a timestamped backup and has a `rollback` subcommand.
 
 ---
 

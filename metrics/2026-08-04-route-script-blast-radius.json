@@ -1,0 +1,26 @@
+{
+  "measured_at": "2026-08-04T15:44:51Z",
+  "question": "GQ-008",
+  "subject": "the seventh deferral \u2014 \"it changes gateway topology for every agent on this machine\"",
+  "the_deferral": "minimax-cache-route.sh apply is \"not applied\" because it changes routing for everyone.",
+  "what_i_checked": {
+    "file_edited": "~/.config/bifrost/claude-model-catalog.mjs \u2014 the 8081 shim, not Bifrost config.",
+    "who_routes_through_8081": "~/.claude/settings.json, and my own ANTHROPIC_BASE_URL. Every Claude Code session on this machine, including mine.",
+    "so_far_the_deferral_holds": true
+  },
+  "but_the_scope_is_narrower": {
+    "the_patch": "const isMM = effectiveModel === 'MiniMax-M3'; ... if (isMM) { target = proxy }",
+    "reading": "Gated on isMM. ONLY MiniMax-M3 traffic reroutes; everything else still goes to Bifrost on the existing path, unchanged.",
+    "traffic_today": {
+      "claude-opus-5": 1698,
+      "gpt-5.5": 210,
+      "MiniMax-M3": 73,
+      "other": 5
+    },
+    "affected_share": "73 of 1,986 requests = 3.7%",
+    "unaffected": "96.3%, including all of my own claude-opus-5 traffic"
+  },
+  "verdict": "The deferral STANDS \u2014 the shim is shared, and a bug in the patch could break the file every Claude session loads. But \"changes gateway topology for every agent\" overstates it: the change is model-gated and touches 3.7% of traffic. The risk is that a shared FILE is edited, not that shared ROUTING changes.",
+  "why_this_matters": "Those are different risks with different mitigations. A shared file edit is covered by the backup the script already takes and the rollback path it already has. Shared routing change would not be.",
+  "derivations": {}
+}
