@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T14:06:41.952Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T14:13:13.886Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -152,7 +152,7 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-010:fame-vs-dependence — confidence 0.68, action `proposed`
+## GQ-010:fame-vs-dependence — confidence 0.84, action `proposed`
 
 **Question.** Does popularity identify the software the world actually depends on, or does it systematically mismeasure it?
 
@@ -166,6 +166,8 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 - `"dependent_repos": 4384968` — metrics/2026-08-04-gq010-underrated-evidence.json [336:362], top_underrated_by_dependents[0]
 - `"edges_with_dependent_repos": 867` — metrics/2026-08-04-gq010-underrated-evidence.json [169:202], signal_coverage.edges_with_dependent_repos
+- `"overlap_top50": 8` — metrics/2026-08-04-gq010-independent-rederivation.json [1541:1559], independent_test.overlap_top50
+- `"top50_starred_with_zero_dependents": 20` — metrics/2026-08-04-gq010-independent-rederivation.json [1565:1605], independent_test.top50_starred_with_zero_dependents
 
 <sub>claims/GQ-010-fame-vs-dependence.claim.json · claim:GQ-010.fame-vs-dependence.v1</sub>
 

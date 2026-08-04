@@ -3,16 +3,18 @@
   "question": {
     "id": "GQ-010:fame-vs-dependence",
     "text": "Does popularity identify the software the world actually depends on, or does it systematically mismeasure it?",
-    "scope": "people graph — github domain, fame versus adoption",
-    "parents": ["GQ-010"]
+    "scope": "people graph \u2014 github domain, fame versus adoption",
+    "parents": [
+      "GQ-010"
+    ]
   },
   "claim": {
     "id": "claim:GQ-010.fame-vs-dependence.v1",
     "position": "Stars measure attention, not dependence, and the two diverge by orders of magnitude at the top: the most depended-upon packages in this graph carry thousands of times more dependent repositories than their star counts would predict, so any ranking built on popularity systematically misses the infrastructure it is standing on.",
-    "confidence": 0.68,
+    "confidence": 0.84,
     "status": "proposed",
     "created_at": "2026-08-04T01:25:00Z",
-    "updated_at": "2026-08-04T01:25:00Z",
+    "updated_at": "2026-08-04T14:09:59Z",
     "supersedes": []
   },
   "grounding": [
@@ -25,7 +27,10 @@
       },
       "locator": "top_underrated_by_dependents[0]",
       "passage_id": "gq010:yargs-parser-deps",
-      "byte_range": { "start": 336, "end": 362 }
+      "byte_range": {
+        "start": 336,
+        "end": 362
+      }
     },
     {
       "quote": "\"edges_with_dependent_repos\": 867",
@@ -36,7 +41,38 @@
       },
       "locator": "signal_coverage.edges_with_dependent_repos",
       "passage_id": "gq010:coverage-limit",
-      "byte_range": { "start": 169, "end": 202 }
+      "byte_range": {
+        "start": 169,
+        "end": 202
+      }
+    },
+    {
+      "quote": "\"overlap_top50\": 8",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq010-independent-rederivation.json",
+        "title": "GQ-010 re-derived from the people graph, independent of its own metrics"
+      },
+      "locator": "independent_test.overlap_top50",
+      "passage_id": "gq010:ranking-overlap",
+      "byte_range": {
+        "start": 1541,
+        "end": 1559
+      }
+    },
+    {
+      "quote": "\"top50_starred_with_zero_dependents\": 20",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq010-independent-rederivation.json",
+        "title": "GQ-010 re-derived from the people graph, independent of its own metrics"
+      },
+      "locator": "independent_test.top50_starred_with_zero_dependents",
+      "passage_id": "gq010:starred-zero-deps",
+      "byte_range": {
+        "start": 1565,
+        "end": 1605
+      }
     }
   ],
   "action": {
@@ -46,8 +82,16 @@
   },
   "refresh": {
     "strategy": "on-evidence-change",
-    "selectors": ["GQ-010", "fame-vs-dependence", "adoption-signal"],
-    "invalidate_on": ["schema change", "new evidence source", "approved action status change"]
+    "selectors": [
+      "GQ-010",
+      "fame-vs-dependence",
+      "adoption-signal"
+    ],
+    "invalidate_on": [
+      "schema change",
+      "new evidence source",
+      "approved action status change"
+    ]
   },
   "provenance": {
     "producer": "siso-librarian",

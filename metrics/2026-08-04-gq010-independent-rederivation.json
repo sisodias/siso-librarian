@@ -1,0 +1,64 @@
+{
+  "measured_at": "2026-08-04T14:09:14Z",
+  "question": "GQ-010",
+  "action": "independent re-derivation of a live claim from the source graph, not from its own metrics file",
+  "why": "Six of seven live claims ground ONLY in metrics files this agent wrote. That is self-referential evidence: re-deriving the metric confirms the metric, not the position. GQ-010 asserts stars and dependence \"diverge by orders of magnitude\" while grounding in two numbers that show neither divergence nor a comparison.",
+  "independent_test": {
+    "population": "498 repos carrying BOTH stars_observed and dependent_repos",
+    "top_5_by_stars": [
+      {
+        "repo": "vuejs/vue",
+        "stars": 209864,
+        "dependents": 0
+      },
+      {
+        "repo": "affaan-m/ECC",
+        "stars": 209165,
+        "dependents": 0
+      },
+      {
+        "repo": "trekhleb/javascript-algorithms",
+        "stars": 196067,
+        "dependents": 7
+      },
+      {
+        "repo": "microsoft/vscode",
+        "stars": 186011,
+        "dependents": 166
+      }
+    ],
+    "top_5_by_dependents": [
+      {
+        "repo": "mathiasbynens/emoji-regex",
+        "stars": 1909,
+        "dependents": 4193583
+      },
+      {
+        "repo": "sindresorhus/globby",
+        "stars": 2643,
+        "dependents": 3765491
+      },
+      {
+        "repo": "sindresorhus/p-map",
+        "stars": 1499,
+        "dependents": 3047734
+      },
+      {
+        "repo": "webpack/webpack-dev-server",
+        "stars": 7851,
+        "dependents": 2955806
+      }
+    ],
+    "overlap_top50": 8,
+    "top50_starred_with_zero_dependents": 20
+  },
+  "verdict": "CONFIRMED, and the claim was UNDER-evidenced. Only 8 of 50 repos appear in both top-50 lists, and 20 of the 50 most-starred have zero dependents. vuejs/vue at 209,864 stars has 0 dependents while emoji-regex at 1,909 stars has 4,193,583 \u2014 the rankings are nearly disjoint, which is a stronger statement than \"diverge by orders of magnitude\".",
+  "what_this_is_not": "Not independent REVIEW. I re-derived my own claim from the source, which removes the self-reference but not the single reviewer. A second party could still find a flaw in the query.",
+  "derivations": {
+    "independent_test.overlap_top50": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "with b as (select distinct content_ref cr, json_extract(meta_json,'$.stars_observed') s, json_extract(meta_json,'$.dependent_repos') d from person_content where domain='github' and json_extract(meta_json,'$.dependent_repos') is not null and json_extract(meta_json,'$.stars_observed') is not null), ts as (select cr from b order by s desc limit 50), td as (select cr from b order by d desc limit 50) select (select count(*) from ts where cr in (select cr from td));"
+    }
+  }
+}
