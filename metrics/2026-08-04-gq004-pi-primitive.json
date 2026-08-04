@@ -23,7 +23,9 @@
     "version": "0.80.10",
     "direct_dependencies": 18,
     "measured_input_tokens_per_call": 71,
-    "comparison": "~41,000 through the full harness"
+    "comparison": "~41,000 through the full harness",
+    "provenance": "NOT MEASURED BY THIS AGENT. Both figures come from comments in ~/bin/mini-pi dated 2026-07-10, written by its author: \"~40K input tokens (measured median)\" for claude-mini and \"measured ~71 fresh input tokens ... (~300-500x cut)\" for mini-pi. No traffic on this machine reproduces them \u2014 the gateway log has no ~71-token lane. Recorded 2026-08-04 after tracing where the number came from.",
+    "ratio_drift": "The claim states ~577x (71 vs 41,000). The source comment states ~300-500x."
   },
   "reasons_not_to_choose": [
     "Stateless \u2014 no memory between calls, wrong for anything needing session context.",

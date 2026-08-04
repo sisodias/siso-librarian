@@ -1,0 +1,18 @@
+{
+  "measured_at": "2026-08-04T14:15:32Z",
+  "question": "GQ-004",
+  "action": "independent re-derivation of the second self-referential claim",
+  "claim_headline": "~71 input tokens per call against ~41,000 through the full harness \u2014 a 577x ratio, and the basis for \"safe to reuse\".",
+  "finding": "PROVENANCE DEFECT. The ratio is not mine, is undeclared, and is not reproducible from any log on this machine.",
+  "trace": {
+    "1": "The claim grounds in two quotes from my metrics file \u2014 both about licence and package resolution, NEITHER about tokens.",
+    "2": "The metrics file records adoption_cost.measured_input_tokens_per_call: 71 with no source and no derivation. Its four declared derivations cover licence and resolution only.",
+    "3": "The gateway log has no matching traffic. Smallest average across all providers is 11 tokens on 2 requests; there is no ~71-token lane.",
+    "4": "The numbers come from COMMENTS IN ~/bin/mini-pi, dated 2026-07-10, written by its author: \"every bulk worker call ships ~40K input tokens (measured median)\" and \"measured ~71 fresh input tokens ... (~300-500x cut)\"."
+  },
+  "verdict": "The underlying figures may well be correct \u2014 mini-pi's author says they are measured. But my claim presents them as measurement without attribution, my metrics file restates them without a source, and nothing on this machine reproduces them. A reader would reasonably believe I measured 71 tokens. I did not; I read a comment.",
+  "also_note": "The claim says the ratio is ~577x (71 vs 41,000). The source comment says ~300-500x. Even the restatement drifted.",
+  "what_is_solid": "The resolution finding and rights gate ARE mine and re-derive cleanly: @earendil-works/pi-coding-agent installed, @mariozechner path absent, MIT, no LICENSE file shipped. Version 0.80.10 confirmed on disk, matching the claim.",
+  "action_taken": "Confidence lowered and the token claim attributed rather than deleted. An unverified number with known provenance is more useful than a silent removal.",
+  "derivations": {}
+}

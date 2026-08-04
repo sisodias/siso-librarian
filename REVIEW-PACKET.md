@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T14:13:13.886Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T14:18:20.753Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -56,13 +56,13 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-004:pi-primitive — confidence 0.83, action `proposed`
+## GQ-004:pi-primitive — confidence 0.62, action `proposed`
 
 **Question.** For a named software primitive, which implementation is best for the stated context, and is it safe and valuable to reuse, vendor, or learn from?
 
 **Scope.** the pi coding agent, as the binary behind this agent's own bulk lane
 
-**Position.** The pi coding agent is safe to reuse for bounded stateless bulk work — MIT, same author, ~71 input tokens per call against ~41,000 through the full harness — but its resolution is unsound: mini-pi documents @mariozechner/pi-coding-agent, that path does not exist, and it silently falls back to whatever pi is on PATH, which is @earendil-works/pi-coding-agent. The dependency is fine; the way it is named and located is not.
+**Position.** The pi coding agent is safe to reuse for bounded stateless bulk work — MIT, same author, ~71 input tokens per call against ~41,000 through the full harness (figures from mini-pi's own comments, not measured here) — but its resolution is unsound: mini-pi documents @mariozechner/pi-coding-agent, that path does not exist, and it silently falls back to whatever pi is on PATH, which is @earendil-works/pi-coding-agent. The dependency is fine; the way it is named and located is not.
 
 **Proposed action.** Pin the resolution rather than falling back to PATH: point PI_BIN at the installed @earendil-works path and update mini-pi's comments, which name a package that is not installed. A wrapper whose binary can change without it noticing is a supply-chain surface, even when the current binary is fine.
 
