@@ -29,10 +29,30 @@
     "edges_with_list_count": 55487
   },
   "idempotency_second_apply": {
-    "before": { "person_topic_total": 2555047, "curated_awesome": 90209, "edges_with_list_count": 119898 },
-    "after": { "person_topic_total": 2555047, "curated_awesome": 90209, "edges_with_list_count": 119898 },
+    "before": {
+      "person_topic_total": 2555047,
+      "curated_awesome": 90209,
+      "edges_with_list_count": 119898
+    },
+    "after": {
+      "person_topic_total": 2555047,
+      "curated_awesome": 90209,
+      "edges_with_list_count": 119898
+    },
     "elapsed_s": 3.41,
     "idempotent": true
   },
-  "observatory_rebuilt": true
+  "observatory_rebuilt": true,
+  "derivations": {
+    "after.person_topic_total": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(*) from person_topic;"
+    },
+    "after.curated_awesome": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(*) from person_topic where scheme='curated' and topic='awesome-cited';"
+    }
+  }
 }

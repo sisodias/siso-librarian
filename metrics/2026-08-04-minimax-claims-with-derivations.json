@@ -5,29 +5,45 @@
   "rederivable": {
     "minimax_cached_read_tokens_total": {
       "asserted_2026_08_03": 0,
-      "derivation": { "kind": "sqlite", "source": "~/.config/bifrost/logs.db", "query": "select sum(cached_read_tokens) from logs where provider='Minimax';" },
+      "derivation": {
+        "kind": "sqlite",
+        "source": "~/.config/bifrost/logs.db",
+        "query": "select sum(cached_read_tokens) from logs where provider='Minimax';"
+      },
       "rederived_2026_08_04": 0,
       "agrees": true,
       "note": "Now over 207 requests and 3,703,946 prompt tokens, up from 45 requests. The finding strengthened rather than drifted: MiniMax has never once recorded a cached read through Bifrost."
     },
     "codexopenai_caches_by_contrast": {
       "asserted_2026_08_03": 23581696,
-      "derivation": { "kind": "sqlite", "source": "~/.config/bifrost/logs.db", "query": "select sum(cached_read_tokens) from logs where provider='CodexOpenAI';" },
+      "derivation": {
+        "kind": "sqlite",
+        "source": "~/.config/bifrost/logs.db",
+        "query": "select sum(cached_read_tokens) from logs where provider='CodexOpenAI';"
+      },
       "rederived_2026_08_04": 44010496,
       "agrees": "grew_as_expected",
-      "note": "A cumulative counter over a live log; growth is correct behaviour. The claim it supports — that Bifrost cache accounting works for at least one provider, so zero for MiniMax is meaningful — holds."
+      "note": "A cumulative counter over a live log; growth is correct behaviour. The claim it supports \u2014 that Bifrost cache accounting works for at least one provider, so zero for MiniMax is meaningful \u2014 holds."
     },
     "runner_smoke_totals": {
       "asserted_prompt_tokens": 851,
       "asserted_completion_tokens": 662,
       "asserted_cached_tokens": 512,
-      "derivation": { "kind": "jsonl-sum", "source": "metrics/2026-08-03-mm-bulk-runner-smoke.jsonl", "query": "sum of prompt_tokens, completion_tokens, cached_tokens over all lines" },
+      "derivation": {
+        "kind": "jsonl-sum",
+        "source": "metrics/2026-08-03-mm-bulk-runner-smoke.jsonl",
+        "query": "sum of prompt_tokens, completion_tokens, cached_tokens over all lines"
+      },
       "note": "The raw per-job JSONL survives, so these totals are re-derivable from the artifact rather than trusted."
     }
   },
   "not_rederivable": {
     "proxy_cache_control_two_call_test": {
-      "asserted": { "call_1_cached_tokens": 128, "call_2_cached_tokens": 2816, "prompt_tokens": 2887 },
+      "asserted": {
+        "call_1_cached_tokens": 128,
+        "call_2_cached_tokens": 2816,
+        "prompt_tokens": 2887
+      },
       "why_not": "Point-in-time responses from a live provider. go-llm-proxy does not persist per-request usage, and these calls bypassed Bifrost, so nothing on disk records them. The numbers were read from the responses at the time and cannot be re-checked now.",
       "status": "unverifiable_by_construction",
       "how_to_make_future_runs_verifiable": "Have the runner write its raw usage to a JSONL artifact, as scripts/mm-bulk-runner.mjs already does for smoke jobs."
@@ -38,5 +54,12 @@
       "status": "unverifiable_by_construction"
     }
   },
-  "conclusion": "Of the MiniMax figures asserted on 2026-08-03, the load-bearing one — MiniMax cached reads are zero while another provider on the same gateway caches — re-derives exactly and has strengthened. The per-call proxy figures cannot be re-checked and are now labelled as such rather than presented as settled measurements."
+  "conclusion": "Of the MiniMax figures asserted on 2026-08-03, the load-bearing one \u2014 MiniMax cached reads are zero while another provider on the same gateway caches \u2014 re-derives exactly and has strengthened. The per-call proxy figures cannot be re-checked and are now labelled as such rather than presented as settled measurements.",
+  "derivations": {
+    "rederivable.minimax_cached_read_tokens_total.rederived_2026_08_04": {
+      "kind": "sqlite",
+      "source": "~/.config/bifrost/logs.db",
+      "query": "select coalesce(sum(cached_read_tokens),0) from logs where provider='Minimax';"
+    }
+  }
 }

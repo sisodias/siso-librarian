@@ -8,7 +8,7 @@
 // Prose is where unchecked claims accumulate, because nothing validates it.
 //
 // Read-only. Reports; never rewrites.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
@@ -93,29 +93,71 @@ if (existsSync(SNAPSHOT)) {
   }
 }
 
-// --- Check 3: JSONL artifact sums asserted in metrics files ----------------
-// The runner writes raw per-job usage, so totals quoted elsewhere can be summed
-// back out of the artifact instead of trusted.
-const JSONL_SUMS = [
-  {
-    artifact: 'metrics/2026-08-03-mm-bulk-runner-smoke.jsonl',
-    asserted_in: 'metrics/2026-08-03-cached-minimax-runner.json',
-    fields: { prompt_tokens: 851, completion_tokens: 662, cached_tokens: 512 },
-  },
-];
+// --- Check 3: any metrics file that declares its own derivations ------------
+// Nothing is hardcoded here. A metrics file states how each number it asserts
+// can be re-derived, and this re-runs those declarations. The previous version
+// listed specific totals in this script, which meant every new artifact needed
+// a hand-edit here to be covered — the manual step that rots, and the reason
+// most of the repo's numbers went unchecked in the first place.
+//
+// Shape, in any metrics/*.json:
+//   "derivations": {
+//     "some.dotted.path": { "kind": "...", "source": "...", "query": "..." }
+//   }
+// The dotted path is resolved against the file's own contents.
+function resolvePath(doc, dotted) {
+  return dotted.split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
+}
 
-let jsonlSumsChecked = 0;
-for (const s of JSONL_SUMS) {
-  if (!existsSync(s.artifact)) continue;
-  const rows = readFileSync(s.artifact, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
-  for (const [field, asserted] of Object.entries(s.fields)) {
-    const derived = rows.reduce((a, r) => a + (r[field] || 0), 0);
-    jsonlSumsChecked += 1;
+function deriveValue(d) {
+  if (d.kind === 'sqlite') {
+    const src = d.source.replace(/^~/, process.env.HOME);
+    if (!existsSync(src)) return null;
+    return Number(execFileSync('sqlite3', [`file:${src}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
+  }
+  if (d.kind === 'jsonl-sum') {
+    if (!existsSync(d.source)) return null;
+    const rows = readFileSync(d.source, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+    return rows.reduce((a, r) => a + (r[d.query] || 0), 0);
+  }
+  if (d.kind === 'jsonl-count') {
+    if (!existsSync(d.source)) return null;
+    return readFileSync(d.source, 'utf8').split('\n').filter(Boolean).length;
+  }
+  if (d.kind === 'file-bytes') {
+    const src = d.source.replace(/^~/, process.env.HOME);
+    if (!existsSync(src)) return null;
+    return statSync(src).size;
+  }
+  return deriveCount(d); // file-count / json-length reuse
+}
+
+let declaredChecked = 0;
+let declaredUnavailable = 0;
+const metricsFiles = git(['ls-files', 'metrics/']).split('\n').filter((p) => p.endsWith('.json'));
+
+for (const file of metricsFiles) {
+  if (!existsSync(file)) continue;
+  let doc;
+  try { doc = JSON.parse(readFileSync(file, 'utf8')); } catch { continue; }
+  if (!doc || typeof doc !== 'object' || !doc.derivations) continue;
+  for (const [dotted, d] of Object.entries(doc.derivations)) {
+    const asserted = resolvePath(doc, dotted);
+    if (typeof asserted !== 'number') continue;
+    let derived = null;
+    try { derived = deriveValue(d); } catch { derived = null; }
+    if (derived === null) {
+      declaredUnavailable += 1;
+      findings.push({ check: 'declared-derivation', file, path: dotted, asserted, derived: 'unavailable', status: 'source_missing' });
+      continue;
+    }
+    declaredChecked += 1;
     if (derived !== asserted) {
-      findings.push({ check: 'jsonl-sum', artifact: s.artifact, asserted_in: s.asserted_in, field, asserted, derived, delta: derived - asserted });
+      findings.push({ check: 'declared-derivation', file, path: dotted, asserted, derived, delta: derived - asserted });
     }
   }
 }
+const jsonlSumsChecked = declaredChecked;
 
 const drift = findings.filter((f) => f.check === 'worklog-timestamp');
 const counts = findings.filter((f) => f.check === 'metric-count');
@@ -125,7 +167,8 @@ console.log(JSON.stringify({
   timestamp_drift_findings: drift.length,
   metric_count_findings: counts.length,
   counts_independently_rederived: countsChecked,
-  jsonl_sums_rederived: jsonlSumsChecked,
+  declared_derivations_rederived: declaredChecked,
+  declared_derivations_unavailable: declaredUnavailable,
   findings,
 }, null, 2));
 

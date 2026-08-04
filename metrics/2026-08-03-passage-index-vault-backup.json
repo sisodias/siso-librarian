@@ -39,5 +39,15 @@
     "vault_copy_sample_passage_row": "gid=10000 seq=0 start=845 end=1312 chars=467",
     "source_mutated": false,
     "source_deleted": false
+  },
+  "derivations": {
+    "after.source_bytes": {
+      "kind": "file-bytes",
+      "source": "~/passages.sqlite"
+    },
+    "after.destination_bytes": {
+      "kind": "file-bytes",
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/passage-index/passages.sqlite"
+    }
   }
 }
