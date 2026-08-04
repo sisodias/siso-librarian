@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T03:35:29.049Z",
+  "generated_at": "2026-08-04T03:48:30.074Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -94,6 +94,11 @@
       "source": "/Users/shaansisodia/SISO_Library_Agent/refresh/ledger.json",
       "kind": "json-length",
       "query": "entries[]"
+    },
+    "routing.requests": {
+      "source": "/Users/shaansisodia/.config/bifrost/logs.db",
+      "kind": "sqlite",
+      "query": "select count(*) from logs where provider='Minimax' and model='MiniMax-M3' and timestamp >= datetime('now','-24 hours');"
     }
   },
   "active_questions": [
@@ -118,7 +123,14 @@
     }
   ],
   "routing": {
-    "minimax_8081": "verified: model MiniMax-M3 via worklog/2026-08-03-2145-minimax-routing-repair.md"
+    "minimax_8081": "observed",
+    "measured": true,
+    "window": "last 24h",
+    "requests": 120,
+    "prompt_tokens": 2641786,
+    "completion_tokens": 64759,
+    "source": "~/.config/bifrost/logs.db",
+    "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
   "caveats": [
     "/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.",

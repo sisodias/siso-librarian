@@ -49,6 +49,36 @@ const claimLayer = {
 // re-derive it without knowing anything about this script. Written after an
 // audit found fabricated values elsewhere in the repo: a number with no stated
 // derivation is indistinguishable from one that was typed.
+// Routing state is measured from Bifrost's own request log, never asserted.
+// This card previously read a hardcoded "verified" citing a worklog — a banner
+// claiming a present-tense fact from a past observation, which is precisely the
+// failure the prove-model-routing skill exists to prevent. If the log has no
+// recent MiniMax rows, the page must say so rather than reassure.
+function measureRouting() {
+  const logs = join(home, '.config/bifrost/logs.db');
+  if (!existsSync(logs)) return { minimax_8081: 'unknown', reason: 'bifrost log not present', measured: false };
+  try {
+    const q = "select count(*), coalesce(sum(prompt_tokens),0), coalesce(sum(completion_tokens),0) "
+      + "from logs where provider='Minimax' and model='MiniMax-M3' and timestamp >= datetime('now','-24 hours');";
+    const [n, tin, tout] = sh('sqlite3', [`file:${logs}?mode=ro`, q]).split('|').map(Number);
+    return {
+      minimax_8081: n > 0 ? 'observed' : 'no recent traffic',
+      measured: true,
+      window: 'last 24h',
+      requests: n,
+      prompt_tokens: tin,
+      completion_tokens: tout,
+      source: '~/.config/bifrost/logs.db',
+      note: n > 0
+        ? 'Provider and model read from the gateway request log, not from a banner or a config label.'
+        : 'No MiniMax-M3 rows in the window. Routing may still be configured; it is simply unproven right now.',
+    };
+  } catch (error) {
+    return { minimax_8081: 'unknown', reason: `log query failed: ${error.message}`, measured: false };
+  }
+}
+const minimaxRouting = measureRouting();
+
 const derivations = {
   'passages.passages': { source: passagesDb, kind: 'sqlite', query: "select count(*) from passage;" },
   'passages.books': { source: passagesDb, kind: 'sqlite', query: "select count(*) from book_body;" },
@@ -64,6 +94,7 @@ const derivations = {
   'claim_layer.production_claims': { source: join(root, 'claims'), kind: 'file-count', query: "*.json" },
   'claim_layer.portfolio_questions': { source: join(root, 'questions/portfolio.json'), kind: 'json-length', query: "questions[]" },
   'claim_layer.refresh_entries': { source: join(root, 'refresh/ledger.json'), kind: 'json-length', query: "entries[]" },
+  'routing.requests': { source: join(home, '.config/bifrost/logs.db'), kind: 'sqlite', query: "select count(*) from logs where provider='Minimax' and model='MiniMax-M3' and timestamp >= datetime('now','-24 hours');" },
 };
 
 const snapshot = {
@@ -71,7 +102,7 @@ const snapshot = {
   bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer },
   derivations,
   active_questions: portfolio.questions.map(q => ({ id: q.id, text: q.text, status: q.status, action_status: q.action_status, claim_packets: q.claim_packets })),
-  routing: { minimax_8081: 'verified: model MiniMax-M3 via worklog/2026-08-03-2145-minimax-routing-repair.md' },
+  routing: minimaxRouting,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
     'Registry source inventory count uses registry/source_inventories path; if schema path changes, update builder.'
@@ -84,7 +115,7 @@ writeFileSync(join(root, 'observatory/snapshot.json'), JSON.stringify(snapshot, 
 const cards = [
   ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()],
-  ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route', 'verified']
+  ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>
