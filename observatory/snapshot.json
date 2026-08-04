@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:50:47.343Z",
+  "generated_at": "2026-08-04T04:54:08.035Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 7,
-      "portfolio_questions": 5,
-      "refresh_entries": 7
+      "production_claims": 8,
+      "portfolio_questions": 6,
+      "refresh_entries": 8
     }
   },
   "derivations": {
@@ -172,6 +172,15 @@
       "claim_packets": [
         "claims/GQ-002-caching-multiplier.claim.json"
       ]
+    },
+    {
+      "id": "GQ-004",
+      "text": "For a named software primitive, which implementation is best for the stated context, and is it safe and valuable to reuse, vendor, or learn from?",
+      "status": "active",
+      "action_status": "proposed",
+      "claim_packets": [
+        "claims/GQ-004-pi-primitive.claim.json"
+      ]
     }
   ],
   "routing": {
@@ -291,10 +300,9 @@
     "coverage": {
       "registered": 7,
       "with_testable_contract": 1,
-      "with_local_claims": 4,
+      "with_local_claims": 5,
       "unclaimed": [
         "GQ-001",
-        "GQ-004",
         "GQ-005"
       ]
     }

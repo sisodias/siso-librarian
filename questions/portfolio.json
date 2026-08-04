@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T04:50:29Z",
+  "generated_at": "2026-08-04T04:53:50Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -118,6 +118,32 @@
         "effectiveness",
         "caching",
         "compute"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
+    },
+    {
+      "id": "GQ-004",
+      "text": "For a named software primitive, which implementation is best for the stated context, and is it safe and valuable to reuse, vendor, or learn from?",
+      "status": "active",
+      "registry_work": "registered; registry state 'scoped'",
+      "note": "Registered God Question, not minted here. Primitive assessed: the pi coding agent behind this agent's own bulk lane.",
+      "claim_packets": [
+        "claims/GQ-004-pi-primitive.claim.json"
+      ],
+      "current_claim": "claims/GQ-004-pi-primitive.claim.json",
+      "selectors": [
+        "GQ-004",
+        "pi",
+        "primitive",
+        "supply-chain"
       ],
       "refresh": {
         "strategy": "on-evidence-change",

@@ -1,0 +1,34 @@
+{
+  "measured_at": "2026-08-04T04:53:27Z",
+  "question": "GQ-004",
+  "primitive": "pi coding agent \u2014 the binary behind the mini-pi bulk lane",
+  "context": "stateless bounded bulk work for a standing agent, invoked as mini-pi -p",
+  "resolution_finding": {
+    "documented_in_mini_pi": "@mariozechner/pi-coding-agent",
+    "actually_installed": "@earendil-works/pi-coding-agent",
+    "documented_path_exists": false,
+    "resolved_via": "PATH fallback at mini-pi line 48",
+    "same_author": true,
+    "note": "Author field is Mario Zechner in both; the package was republished under a different scope. Not a supply-chain substitution, but mini-pi's comments name a package that is not installed."
+  },
+  "rights_gate": {
+    "license": "MIT",
+    "declared_in_package_json": true,
+    "license_file_shipped": false,
+    "repository": "git+https://github.com/earendil-works/pi.git",
+    "verdict": "pass \u2014 MIT declared, author consistent with upstream",
+    "caveat": "No LICENSE file in the installed tree; the declaration is package.json only."
+  },
+  "adoption_cost": {
+    "version": "0.80.10",
+    "direct_dependencies": 18,
+    "measured_input_tokens_per_call": 71,
+    "comparison": "~41,000 through the full harness"
+  },
+  "reasons_not_to_choose": [
+    "Stateless \u2014 no memory between calls, wrong for anything needing session context.",
+    "Killed on sustained reasoning; bounded mechanical work only.",
+    "Resolution is implicit: mini-pi silently falls back to whatever `pi` is on PATH, so the binary can change without the wrapper noticing.",
+    "No LICENSE file in the installed tree despite an MIT declaration."
+  ]
+}

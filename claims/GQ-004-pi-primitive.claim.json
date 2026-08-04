@@ -1,0 +1,75 @@
+{
+  "schema_version": "claim-packet-v1",
+  "question": {
+    "id": "GQ-004:pi-primitive",
+    "text": "For a named software primitive, which implementation is best for the stated context, and is it safe and valuable to reuse, vendor, or learn from?",
+    "scope": "the pi coding agent, as the binary behind this agent's own bulk lane",
+    "parents": [
+      "GQ-004"
+    ]
+  },
+  "claim": {
+    "id": "claim:GQ-004.pi-primitive.v1",
+    "position": "The pi coding agent is safe to reuse for bounded stateless bulk work \u2014 MIT, same author, ~71 input tokens per call against ~41,000 through the full harness \u2014 but its resolution is unsound: mini-pi documents @mariozechner/pi-coding-agent, that path does not exist, and it silently falls back to whatever pi is on PATH, which is @earendil-works/pi-coding-agent. The dependency is fine; the way it is named and located is not.",
+    "confidence": 0.83,
+    "status": "proposed",
+    "created_at": "2026-08-04T04:53:50Z",
+    "updated_at": "2026-08-04T04:53:50Z",
+    "supersedes": []
+  },
+  "grounding": [
+    {
+      "quote": "\"actually_installed\": \"@earendil-works/pi-coding-agent\"",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq004-pi-primitive.json",
+        "title": "pi primitive assessment"
+      },
+      "locator": "resolution_finding.actually_installed",
+      "passage_id": "gq004:actual-package",
+      "byte_range": {
+        "start": 328,
+        "end": 383
+      }
+    },
+    {
+      "quote": "\"license_file_shipped\": false",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq004-pi-primitive.json",
+        "title": "pi primitive assessment"
+      },
+      "locator": "rights_gate.license_file_shipped",
+      "passage_id": "gq004:no-license-file",
+      "byte_range": {
+        "start": 791,
+        "end": 820
+      }
+    }
+  ],
+  "action": {
+    "status": "proposed",
+    "description": "Pin the resolution rather than falling back to PATH: point PI_BIN at the installed @earendil-works path and update mini-pi's comments, which name a package that is not installed. A wrapper whose binary can change without it noticing is a supply-chain surface, even when the current binary is fine.",
+    "owner": "librarian"
+  },
+  "refresh": {
+    "strategy": "on-evidence-change",
+    "selectors": [
+      "GQ-004",
+      "pi",
+      "primitive",
+      "supply-chain"
+    ],
+    "invalidate_on": [
+      "schema change",
+      "new evidence source",
+      "approved action status change"
+    ]
+  },
+  "provenance": {
+    "producer": "siso-librarian",
+    "run_id": "GQ-004-loop-2026-08-04-pi-primitive",
+    "model": "claude-opus-5",
+    "generated_at": "2026-08-04T04:53:50Z"
+  }
+}
