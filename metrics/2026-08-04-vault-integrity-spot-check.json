@@ -1,0 +1,43 @@
+{
+  "measured_at": "2026-08-04T15:31:57Z",
+  "question": "GQ-006",
+  "subject": "testing the \"needs hardware\" deferral, and what I could actually check",
+  "the_deferral": "\"The single-volume vault risk needs hardware Shaan controls.\"",
+  "reassessed": {
+    "vault_free": "3.8Ti",
+    "librarian_vault_size": "45G",
+    "finding": "A second copy ON THE SAME DEVICE is trivially possible \u2014 there is 3.8Ti free. I dismissed it because it does not survive drive failure, which conflated two different risks.",
+    "what_a_same_device_copy_buys": {
+      "drive_failure": "no",
+      "accidental_deletion": "yes",
+      "single_file_corruption": "yes",
+      "bulk_rm": "partially"
+    },
+    "verdict": "The deferral stands, but for a narrower reason than I gave. It is not that no second copy is possible \u2014 it is that a same-device copy addresses risks which have not materialised (zero losses so far) while doubling 45G, and the risk that WOULD justify it needs a second device. My original phrasing implied nothing could be done at all."
+  },
+  "what_i_did_instead": {
+    "action": "pragma quick_check on every vaulted database",
+    "verified_ok": 8,
+    "skipped_too_slow": 4,
+    "total": 12,
+    "ok": [
+      "foundry_usage_ledger",
+      "intents",
+      "people_video_queue",
+      "books",
+      "momentum",
+      "people-v1",
+      "people_v2",
+      "passage_summary"
+    ],
+    "skipped": [
+      "identity 1.9 GB",
+      "logs 5.4 GB",
+      "logs 3.4 GB",
+      "passages.sqlite 22.6 GB"
+    ],
+    "why_skipped": "quick_check on multi-GB files over USB exceeds ten minutes \u2014 the same limit that stalled the gate chain earlier today."
+  },
+  "honest_limit": "8 of 12, not 12 of 12. The four largest are unverified TODAY, though passages.sqlite was checked by banded checksum across 250,005 rows and both logs were quick_checked when written. Reporting \"all vault databases verified\" would be false.",
+  "derivations": {}
+}
