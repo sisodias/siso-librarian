@@ -1,0 +1,37 @@
+{
+  "measured_at": "2026-08-04T17:05:23Z",
+  "question": "GQ-009",
+  "subject": "auditing the decisions I have been asking Shaan to make",
+  "why": "Seven decisions have sat unanswered all day while I worked on the things they describe. I never checked whether they were still accurate. A decision queue that drifts is worse than an empty one \u2014 it asks for judgement on a situation that no longer exists.",
+  "audited": 7,
+  "stale_found": 3,
+  "corrections": {
+    "5": {
+      "said": "Six registered God Questions have no testable contract. Testable contracts: 1 of 7.",
+      "actual": "7 of 7 carry success criteria, falsifiers and watch triggers. I wrote them.",
+      "action": "Marked RESOLVED in place, struck through, original text retained below it."
+    },
+    "6": {
+      "said": "Bifrost log growing ~1GB/day.",
+      "actual": "4.68 GB today, hourly rate rising, and 91% of it is this agent. Root at 16Gi.",
+      "action": "Header rewritten with the measured rate, the attribution, and the per-request override lead."
+    },
+    "7": {
+      "said": "IA expansion is blocked on a rights judgement.",
+      "actual": "Rights was never the blocker for the 270,049 texts carrying an explicit IA rights field. Selection was, and the Library answers it from its own book_subject table. An 81-identifier want-list now exists.",
+      "action": "Header rewritten; the original text retained since it stands for the sparse-metadata cases."
+    }
+  },
+  "the_counter_defect": {
+    "symptom": "After marking decision 5 resolved, awaiting_decision.count stayed at 7.",
+    "cause": "blockedDecisions() counts every \"## N.\" heading. A struck-through heading still matches.",
+    "consequence": "A resolved item would have been reported as pending forever \u2014 the observatory would have kept asking Shaan for something already done.",
+    "fix": "Filter headings starting with ~~ or containing RESOLVED.",
+    "proven": "Struck through decision 2 as a fixture: count went 6 -> 5, then back to 6 on restore."
+  },
+  "result": {
+    "awaiting_decision_before": 7,
+    "after": 6
+  },
+  "derivations": {}
+}

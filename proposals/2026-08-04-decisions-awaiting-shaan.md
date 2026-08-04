@@ -66,7 +66,17 @@ The observatory serves on the tailnet (`100.66.34.21:8765`) and loopback, verifi
 
 ---
 
-## 5. Six registered God Questions have no testable contract
+## 5. ~~Six registered God Questions have no testable contract~~ RESOLVED 2026-08-04
+
+**No longer a decision.** `Testable contracts: 7 of 7` — every registered God
+Question now carries success criteria, falsifiers and watch triggers. I wrote
+them rather than continuing to ask. Two were downgraded from `answered` to
+`partial` in the process: they had been marked answered while carrying zero
+falsifiers, so nothing could contradict them.
+
+Left here so the numbering is stable and the record shows what changed.
+
+The original text follows.
 
 `Testable contracts: 1 of 7`. Only GQ-009 carries success criteria, falsifiers, or watch triggers. GQ-002 and GQ-008 are marked `answered` with no falsifier that could ever reopen them — which is why my GQ-008 cache finding had to arrive as an outside proposal rather than a trigger firing.
 
@@ -86,7 +96,24 @@ The GQ-008 cache claim is the strongest candidate: it is measured, falsifiable, 
 
 ---
 
-## 6. Bifrost's request log is growing ~1GB/day
+## 6. Bifrost's request log — RE-MEASURED at 4.68 GB/day, and 91% of it is me
+
+The headline below said ~1GB/day. Measured 2026-08-04 across the full log:
+**4.68 GB today**, hourly rate rising (0.10 -> 0.33 GB), root down to 16Gi.
+
+Attribution: **anthropic 1,490 requests / 4.25 GB = 91% of the day's growth.**
+That is this agent. Each turn writes ~2.92 MB, and Bifrost stores the body
+TWICE (`raw_request` + `responses_input_history`).
+
+The 93% prompt-cache rate does not help — caching saves tokens and nothing on
+disk. Projection is a range, not a number: ~22 hours if per-turn context keeps
+compounding, ~94 hours if it goes flat.
+
+There may also be a third option I had not seen: `allow_per_request_content_storage_override`
+exists in `config_client`. Client side is confirmed capable; the gateway-side
+header contract is unknown. See the escalation.
+
+The original text follows.
 
 `~/.config/bifrost/logs.db` went from **205MB to 3.3GB** during this session. Only 1,662 rows, but 1.57GB of payload — Bifrost persists full raw request and response bodies, averaging ~945KB per request.
 
@@ -106,7 +133,25 @@ Root disk went 27Gi → 21Gi free tonight. At the current rate that is roughly t
 
 ---
 
-## 7. Internet Archive expansion is blocked on a rights judgement, not on tooling
+## 7. Internet Archive expansion — NOT blocked on rights. Selection was, and it is now answered.
+
+The headline below is wrong in scope. **270,049 IA texts carry an explicit
+rights field set by IA** — those need no judgement from me. Only the
+sparse-metadata cases (the Twain example) need one, and that deferral stands.
+
+What was actually blocked was SELECTION, and the Library answers it: its own
+`book_subject` table records what it collects. Filtering IA by subjects the
+Library is WEAK in, then deduping by title, yields a concrete want-list:
+
+  `sources/internet-archive/want-list-weak-subjects.json` — **81 identifiers**,
+  Gutenberg mirrors excluded by rule, rights evidence graded in four tiers,
+  8 of 8 sampled confirmed fetchable with DjVuTXT sidecars.
+
+Caveat measured after building it: the Essays tier (30 of 81) is 18th-century
+medical serials, because IA's subject vocabulary is looser than the Library's.
+Poetry and cookery are on-subject. Dropping Essays leaves ~51.
+
+The original text follows.
 
 The adapter machinery works — contract, want-list, probe, author-dedup against 35,312 Library authors, all passing. The blocker is IA's metadata.
 

@@ -149,7 +149,12 @@ function blockedDecisions() {
   // missing directory counting as zero. Absence is not an empty queue.
   if (!existsSync(f)) return { count: null, items: [], error: 'decision file missing' };
   const text = readFileSync(f, 'utf8');
-  const items = [...text.matchAll(/^## (\d+)\. (.+)$/gm)].map((m) => m[2].trim());
+  // A resolved decision is struck through (~~heading~~) and kept in place so the
+  // numbering stays stable and the record shows what changed. Counting it as
+  // pending would report a finished item as awaiting Shaan forever — which is
+  // exactly what happened when decision 5 was resolved and the count stayed at 7.
+  const all = [...text.matchAll(/^## (\d+)\. (.+)$/gm)].map((m) => m[2].trim());
+  const items = all.filter((s) => !/^~~/.test(s) && !/\bRESOLVED\b/.test(s));
   return { count: items.length, items, source: 'proposals/2026-08-04-decisions-awaiting-shaan.md' };
 }
 // Disk headroom is a charter watch item and it moved 6Gi in one session.
