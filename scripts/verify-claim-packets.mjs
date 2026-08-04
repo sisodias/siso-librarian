@@ -66,6 +66,21 @@ function validate(value, node, path, sink = validationErrors) {
     for (const [key, child] of Object.entries(properties)) {
       if (key in value) validate(value[key], child, `${path}.${key}`, sink);
     }
+
+    // Conditional subschemas. This validator is a hand-rolled subset of JSON
+    // Schema, and on 2026-08-04 I added an allOf/if-then to the claim schema
+    // requiring a `dispute` block whenever status is `disputed` — then proved
+    // by reasoning that it would be caught. It was not: unsupported keywords
+    // are silently ignored, so the constraint existed in the schema file and
+    // enforced nothing. Running the negative fixture through the real verifier
+    // is what exposed it; the reasoning-only check had said "correctly caught".
+    for (const clause of node.allOf || []) {
+      if (!clause.if) { validate(value, clause, path, sink); continue; }
+      const probe = [];
+      validate(value, clause.if, path, probe);
+      const branch = probe.length === 0 ? clause.then : clause.else;
+      if (branch) validate(value, branch, path, sink);
+    }
   }
 }
 

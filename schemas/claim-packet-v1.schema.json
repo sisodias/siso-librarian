@@ -4,33 +4,159 @@
   "title": "SISO Great Library Claim Packet v1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "question", "claim", "grounding", "action", "refresh", "provenance"],
+  "required": [
+    "schema_version",
+    "question",
+    "claim",
+    "grounding",
+    "action",
+    "refresh",
+    "provenance"
+  ],
   "properties": {
-    "schema_version": { "const": "claim-packet-v1" },
+    "schema_version": {
+      "const": "claim-packet-v1"
+    },
     "question": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "text", "scope"],
+      "required": [
+        "id",
+        "text",
+        "scope"
+      ],
       "properties": {
-        "id": { "type": "string", "pattern": "^GQ-[0-9]{3}(:[A-Za-z0-9._-]+)?$" },
-        "text": { "type": "string", "minLength": 12 },
-        "scope": { "type": "string", "minLength": 3 },
-        "parents": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] }
+        "id": {
+          "type": "string",
+          "pattern": "^GQ-[0-9]{3}(:[A-Za-z0-9._-]+)?$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 12
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 3
+        },
+        "parents": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        }
       }
     },
     "claim": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "position", "confidence", "status", "created_at", "updated_at"],
+      "required": [
+        "id",
+        "position",
+        "confidence",
+        "status",
+        "created_at",
+        "updated_at"
+      ],
       "properties": {
-        "id": { "type": "string", "pattern": "^claim:[A-Za-z0-9._:-]+$" },
-        "position": { "type": "string", "minLength": 20 },
-        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-        "status": { "enum": ["proposed", "accepted", "superseded", "rejected"] },
-        "created_at": { "type": "string", "format": "date-time" },
-        "updated_at": { "type": "string", "format": "date-time" },
-        "supersedes": { "type": "array", "items": { "type": "string", "pattern": "^claim:[A-Za-z0-9._:-]+$" }, "uniqueItems": true, "default": [] }
-      }
+        "id": {
+          "type": "string",
+          "pattern": "^claim:[A-Za-z0-9._:-]+$"
+        },
+        "position": {
+          "type": "string",
+          "minLength": 20
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "accepted",
+            "superseded",
+            "rejected",
+            "disputed"
+          ],
+          "description": "'rejected' asserts the position is wrong. 'disputed' asserts the position could not be verified \u2014 its evidence does not re-derive \u2014 which is a different state and was previously unrepresentable. Added 2026-08-04 when a review found a claim whose per-category counts matched no database on this machine: calling that 'rejected' would have overclaimed, and leaving it 'proposed' would have let an unreproducible number stay live."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^claim:[A-Za-z0-9._:-]+$"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "dispute": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Required when status is disputed: what was checked, what reproduced, what did not, and what would resolve it.",
+          "required": [
+            "raised_at",
+            "raised_by",
+            "finding",
+            "verdict",
+            "remedy"
+          ],
+          "properties": {
+            "raised_at": {
+              "type": "string"
+            },
+            "raised_by": {
+              "type": "string"
+            },
+            "finding": {
+              "type": "string",
+              "minLength": 20
+            },
+            "checks": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "verdict": {
+              "type": "string",
+              "minLength": 20
+            },
+            "remedy": {
+              "type": "string",
+              "minLength": 20
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "disputed"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "dispute"
+            ]
+          }
+        }
+      ]
     },
     "grounding": {
       "type": "array",
@@ -38,28 +164,67 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["quote", "source", "locator", "byte_range"],
+        "required": [
+          "quote",
+          "source",
+          "locator",
+          "byte_range"
+        ],
         "properties": {
-          "quote": { "type": "string", "minLength": 12 },
+          "quote": {
+            "type": "string",
+            "minLength": 12
+          },
           "source": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["kind", "id"],
+            "required": [
+              "kind",
+              "id"
+            ],
             "properties": {
-              "kind": { "enum": ["book", "person", "release", "source_inventory", "external"] },
-              "id": { "type": "string", "minLength": 1 },
-              "title": { "type": "string" }
+              "kind": {
+                "enum": [
+                  "book",
+                  "person",
+                  "release",
+                  "source_inventory",
+                  "external"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string"
+              }
             }
           },
-          "locator": { "type": "string", "minLength": 1 },
-          "passage_id": { "type": "string", "minLength": 1 },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          },
           "byte_range": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["start", "end"],
+            "required": [
+              "start",
+              "end"
+            ],
             "properties": {
-              "start": { "type": "integer", "minimum": 0 },
-              "end": { "type": "integer", "minimum": 1 }
+              "start": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 1
+              }
             }
           }
         }
@@ -68,34 +233,95 @@
     "action": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["status", "description"],
+      "required": [
+        "status",
+        "description"
+      ],
       "properties": {
-        "status": { "enum": ["none", "proposed", "approved", "done", "blocked"] },
-        "description": { "type": "string", "minLength": 3 },
-        "owner": { "type": "string" },
-        "approval_ref": { "type": "string" },
-        "artifact": { "type": "string" }
+        "status": {
+          "enum": [
+            "none",
+            "proposed",
+            "approved",
+            "done",
+            "blocked"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 3
+        },
+        "owner": {
+          "type": "string"
+        },
+        "approval_ref": {
+          "type": "string"
+        },
+        "artifact": {
+          "type": "string"
+        }
       }
     },
     "refresh": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["strategy", "selectors", "invalidate_on"],
+      "required": [
+        "strategy",
+        "selectors",
+        "invalidate_on"
+      ],
       "properties": {
-        "strategy": { "enum": ["manual", "on-evidence-change", "scheduled", "question-loop"] },
-        "selectors": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "invalidate_on": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+        "strategy": {
+          "enum": [
+            "manual",
+            "on-evidence-change",
+            "scheduled",
+            "question-loop"
+          ]
+        },
+        "selectors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "invalidate_on": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
       }
     },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["producer", "run_id", "generated_at"],
+      "required": [
+        "producer",
+        "run_id",
+        "generated_at"
+      ],
       "properties": {
-        "producer": { "type": "string", "minLength": 1 },
-        "run_id": { "type": "string", "minLength": 1 },
-        "model": { "type": "string" },
-        "generated_at": { "type": "string", "format": "date-time" }
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     }
   }

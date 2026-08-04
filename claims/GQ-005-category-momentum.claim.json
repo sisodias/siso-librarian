@@ -11,11 +11,25 @@
   "claim": {
     "id": "claim:GQ-005.category-momentum.v1",
     "position": "Agent infrastructure is where maintenance effort is concentrating: agent-memory-store (74.4%), agent-extension-pack (70.5%) and agent-ecosystem-artifact (69.9%) sit far above the 44.8% corpus baseline for repos pushed in 2025-2026, while ml-paper-impl sits below it at 34.9% \u2014 so attention appears to be moving from reproducing published research toward building durable agent tooling, rather than AI activity rising uniformly.",
-    "confidence": 0.62,
-    "status": "proposed",
+    "confidence": 0.15,
+    "status": "disputed",
     "created_at": "2026-08-04T04:57:46Z",
     "updated_at": "2026-08-04T04:57:46Z",
-    "supersedes": []
+    "supersedes": [],
+    "dispute": {
+      "raised_at": "2026-08-04",
+      "raised_by": "librarian (self-review)",
+      "finding": "The claim's population cannot be reproduced from any database on this machine. Its metrics file names no source (source: null) and carries no derivations block, so nothing re-derived it until now.",
+      "checks": {
+        "corpus_baseline": "REPRODUCES EXACTLY. 463,221 edges with pushed_at, 207,329 recent, 44.8% \u2014 re-derived from people_v2.sqlite.",
+        "gh_category_field": "ABSENT. The caveat cites a \"curated gh_category taxonomy\"; that key appears in none of the 38 meta_json keys in people_v2, and 0 rows mention these category slugs.",
+        "taxonomy_located": "A real curated taxonomy exists in foundry-data/domains/github/identity/identity.sqlite (category + repo_category, 385,964 rows) \u2014 a DIFFERENT database than the metric implies.",
+        "counts_disagree": "agent-memory-store: claim says 929 repos, taxonomy holds 181. agent-extension-pack: claim says 17,538, taxonomy holds 3,052.",
+        "recompute_blocked": "repo_observation has no pushed_at column, so pct_recent cannot be recomputed from the taxonomy at all."
+      },
+      "verdict": "The headline ordering (agent infrastructure above baseline, ml-paper-impl below) is neither confirmed nor refuted \u2014 it is UNVERIFIABLE as recorded. Confidence dropped from 0.62 to 0.15: the single number that reproduces is the baseline the comparison is measured against, not the comparison itself.",
+      "remedy": "Whoever produced 2026-08-04-gq005-category-momentum.json must name the database and add a derivations block. Until then this claim must not inform any decision."
+    }
   },
   "grounding": [
     {

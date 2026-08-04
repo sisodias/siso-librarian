@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T07:11:14.173Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T07:16:40.184Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -75,7 +75,7 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-005:category-momentum — confidence 0.62, action `proposed`
+## GQ-005:category-momentum — confidence 0.15, action `proposed`
 
 **Question.** Which categories, techniques, and projects are gaining real momentum, what mechanisms explain the change, and what does the acceleration predict next?
 

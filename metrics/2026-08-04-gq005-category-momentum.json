@@ -108,5 +108,7 @@
     "Categories come from the curated gh_category taxonomy, not raw topics.",
     "A 2025-2026 window on a 2026-08 snapshot spans ~19 months, so 'recent' is generous.",
     "This is momentum within one corpus of 463,221 edges, not the field at large."
-  ]
+  ],
+  "source": "UNKNOWN \u2014 see dispute in claims/GQ-005-category-momentum.claim.json",
+  "integrity_note": "2026-08-04: this file names no source and carries no derivations block, so its numbers went unchecked. On review the corpus_baseline reproduces exactly against people_v2.sqlite, but the per-category counts match no database found on this machine: the curated taxonomy in identity.sqlite holds 181 repos for agent-memory-store against the 929 asserted here, and 3,052 for agent-extension-pack against 17,538. Do not use the leaders/laggards until the source is named."
 }
