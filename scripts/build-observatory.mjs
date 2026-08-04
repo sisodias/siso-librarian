@@ -138,6 +138,21 @@ function releaseIntegrity() {
   };
 }
 const releaseState = releaseIntegrity();
+
+// Decisions the librarian has deliberately not made. The point of a standing
+// agent is that it acts without asking — which makes the short list of things
+// it genuinely cannot decide alone the most important thing on the page, not
+// an afterthought buried in a proposal file.
+function blockedDecisions() {
+  const f = join(root, 'proposals/2026-08-04-decisions-awaiting-shaan.md');
+  // 0 would read as 'nothing blocked' — the same false reassurance as a
+  // missing directory counting as zero. Absence is not an empty queue.
+  if (!existsSync(f)) return { count: null, items: [], error: 'decision file missing' };
+  const text = readFileSync(f, 'utf8');
+  const items = [...text.matchAll(/^## (\d+)\. (.+)$/gm)].map((m) => m[2].trim());
+  return { count: items.length, items, source: 'proposals/2026-08-04-decisions-awaiting-shaan.md' };
+}
+const blocked = blockedDecisions();
 const portfolioIds = new Set(portfolio.questions.map(q => q.id));
 const contractComplete = registryGQ.questions.filter(q =>
   q.success_criteria > 0 && q.falsifiers > 0 && q.watch_triggers > 0).length;
@@ -226,6 +241,7 @@ const snapshot = {
   library_snapshot: snapshotState,
   god_questions: { ...registryGQ, coverage: gqCoverage },
   release_integrity: releaseState,
+  awaiting_decision: blocked,
   missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
@@ -243,7 +259,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

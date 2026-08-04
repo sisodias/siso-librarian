@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:26:45.550Z",
+  "generated_at": "2026-08-04T04:30:38.089Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -289,6 +289,17 @@
     "works_total": 25,
     "works_without_releases": 0,
     "orphaned_releases": 0
+  },
+  "awaiting_decision": {
+    "count": 5,
+    "items": [
+      "Repoint MiniMax traffic away from Bifrost — ~97% input-token saving",
+      "Where should the rescue refs go?",
+      "What was SEC-F16 actually called?",
+      "Cloudflare ingress for the observatory",
+      "Six registered God Questions have no testable contract"
+    ],
+    "source": "proposals/2026-08-04-decisions-awaiting-shaan.md"
   },
   "missing_sources": [],
   "caveats": [
