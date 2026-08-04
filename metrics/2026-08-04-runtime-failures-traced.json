@@ -1,0 +1,53 @@
+{
+  "measured_at": "2026-08-04T13:40:41Z",
+  "question": "GQ-006",
+  "subject": "the remaining runtime failures, and a correction to my own classification",
+  "traced": {
+    "com.siso.kengine-index": {
+      "exit": 126,
+      "error": "/Projects/youtube-ai-research/venv/bin/python: No such file or directory",
+      "class": "MISSING FILE"
+    },
+    "com.siso.learnings-health": {
+      "exit": 2,
+      "error": "can't open file '/Projects/learnings-health/...'",
+      "class": "MISSING FILE"
+    },
+    "com.siso.pwa": {
+      "exit": 1,
+      "error": "Cannot find module '.../node_modules/.bin/vite'",
+      "class": "MISSING FILE"
+    },
+    "com.siso.property-auctions": {
+      "exit": 1,
+      "error": "mkdir: /Volumes/SISO-STORAGE-VAULT 1: Permission denied",
+      "class": "REMOUNT ARTIFACT"
+    },
+    "com.siso.refresh-tailscale-upnp": {
+      "exit": 7,
+      "error": "curl (7): Failed to connect to 192.168.0.1 port 49153",
+      "class": "GENUINE RUNTIME \u2014 router unreachable"
+    },
+    "com.siso.codex-bifrost-shim": {
+      "exit": -15,
+      "error": "log empty",
+      "class": "killed by signal 15, not a failure"
+    }
+  },
+  "correction": {
+    "what_i_said": "10 runtime failures \u2014 \"the program exists, so these are real failures rather than dangling references\".",
+    "what_is_true": "Three of them are the SAME missing-file defect, one layer deeper. My test checked whether ProgramArguments[0] existed; for these the interpreter (/bin/bash, node, python3) exists and the thing it was told to load does not. Exactly the 127-vs-78 relationship I had already found, and I still classified by the shallow test.",
+    "revised_totals": {
+      "deleted_path": 29,
+      "remount_artifact": 2,
+      "genuine_runtime": 1,
+      "signal_kill": 1,
+      "malformed_plist": 1,
+      "untraced": 2
+    },
+    "note": "29 = 26 previously + kengine-index, learnings-health, pwa."
+  },
+  "remount_artifact_is_plural": "property-classq AND property-auctions both point at \"SISO-STORAGE-VAULT 1\". Two jobs frozen against the same transient mount name, so this is a pattern rather than a one-off typo.",
+  "untraced_remaining": 2,
+  "derivations": {}
+}

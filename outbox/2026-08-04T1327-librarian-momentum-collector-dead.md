@@ -84,9 +84,32 @@ Same defect, different field. So exit-78 is 15 of 15.
 
 FINAL CLASSIFICATION OF ALL 36
 
-  deleted path        26   (11 exit-127 + 15 exit-78)
-  runtime failure     10   program exists, job runs, then fails
+  deleted path        29
+  remount artifact     2   point at "SISO-STORAGE-VAULT 1", a mount that healed
+  genuine runtime      1   refresh-tailscale-upnp: router at 192.168.0.1 unreachable
+  killed by signal     1   codex-bifrost-shim, exit -15 (SIGTERM, not a failure)
   malformed plist      1   com.siso.hermes.kengine is not well-formed XML
+  untraced             2
+
+I revised this after tracing further. I had reported 10 "runtime failures" on
+the grounds that the program existed. Three of them are the same missing-file
+defect one layer deeper — the interpreter exists, the thing it loads does not:
+
+  kengine-index     venv/bin/python: No such file or directory
+  learnings-health  can't open file .../learnings-health/...
+  pwa               Cannot find module .../node_modules/.bin/vite
+
+That is the same 127-vs-78 relationship I had already worked out, and I still
+classified by the shallow test. The corrected count is 29 deleted paths.
+
+THE TWO EASY ONES
+
+property-classq and property-auctions both point at "/Volumes/SISO-STORAGE-VAULT 1"
+— with a space and a 1. A macOS remount artifact from a volume that mounted
+while an old mount point was held. The numbered mount is gone; the real paths
+exist. Both are fixed by deleting two characters from a plist.
+
+Two jobs share it, so it is a pattern, not a typo.
 
 The 26 are one sweep: restore the file or unload the job.
 
