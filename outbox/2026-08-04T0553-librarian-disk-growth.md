@@ -57,6 +57,32 @@ being a file nobody dared touch.
 Deleting it would buy ~2.5 days at the current burn rate. That is your call, not
 mine. If you want it gone: rm ~/quarantine-2026-08-04/passages_v1.sqlite.gz
 
+THE GATEWAY LOG IS NOW SAFE TO PRUNE (still your call)
+
+Snapshotted the live 5.36 GB log to the vault with sqlite3 .backup — safe while
+the daemon writes — and verified it rather than trusting the exit code:
+
+  quick_check       ok
+  rows queryable    2,261  (live was 2,262; one row written during the copy)
+  path              SISO-VAULT/librarian-vault/bifrost-logs/logs-20260804T091934Z.db
+
+The earlier 05:35 archive is now superseded and moved to superseded/, after
+PROVING containment: attach both, "select count(*) from old where id not in
+(select id from new)" returned 0. Every row it held survives in the new one.
+
+RETENTION BY AGE WILL NOT WORK — measured, not assumed:
+
+  all request bodies          4.88 GB
+  bodies older than 24 hours  0.02 GB   (187 rows)
+
+A 24-hour retention policy frees ~0.4% of the log while looking like a fix. The
+driver is that Bifrost persists a full request body per call — 4.4 GB of it from
+today alone — not accumulation over time. Any real fix disables body persistence
+or caps body size; trimming old rows does nothing.
+
+So the options are yours, and now safely reversible: the log is on the vault, so
+truncating the live copy loses nothing.
+
 NOT pruned, and the reason has now been removed: the log is archived to
 /Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/ via
 sqlite3 .backup (WAL-safe), verified at 1,674 rows with both claim aggregates

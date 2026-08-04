@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-04T09:26:52Z",
+  "question": "GQ-006",
+  "action": "snapshot live gateway log to vault, verify, supersede the stale archive \u2014 never delete (C1)",
+  "vault_snapshot": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/logs-20260804T091934Z.db",
+  "vault_snapshot_bytes": 5752414208,
+  "quick_check": "ok",
+  "rows_in_vault_snapshot": 2261,
+  "rows_live_at_snapshot": 2262,
+  "snapshot_lag_note": "One row behind live: the daemon wrote during .backup. Expected for a consistent point-in-time copy, not a defect.",
+  "superseded_archive": {
+    "file": "logs-20260804T053544Z.db",
+    "rows": 1674,
+    "containment_proof": "attach + select count(*) from old where id not in (select id from new) returned 0",
+    "disposition": "moved to superseded/, not deleted"
+  },
+  "retention_finding": {
+    "gb_all_bodies": 4.88,
+    "gb_bodies_older_than_24h": 0.02,
+    "rows_older_than_24h": 187,
+    "conclusion": "Age-based retention is NOT the fix. Only 0.02 of 4.88 GB is older than 24 hours \u2014 the volume is traffic from the last few hours. A 24h retention policy would free ~0.4% of the log while appearing to be a solution. The driver is body persistence per request, not accumulation over time."
+  },
+  "derivations": {
+    "rows_in_vault_snapshot": {
+      "kind": "sqlite",
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/logs-20260804T091934Z.db",
+      "query": "select count(*) from logs;"
+    }
+  }
+}
