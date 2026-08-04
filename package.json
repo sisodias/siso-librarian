@@ -6,7 +6,7 @@
     "review:packet": "node scripts/build-review-packet.mjs",
     "observatory:build": "node scripts/build-observatory.mjs",
     "observatory:serve": "node scripts/serve-observatory.mjs",
-    "ia:probe": "node scripts/probe-ia-metadata.mjs",
+    "ia:probe": "node scripts/ia-probe-reproduce.mjs",
     "mm:bulk": "node scripts/mm-bulk-runner.mjs",
     "scratch": "bash scripts/scratch-test.sh",
     "mailbox:flush": "bash scripts/mailbox-flush.sh",

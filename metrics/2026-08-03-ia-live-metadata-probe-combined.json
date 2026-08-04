@@ -254,5 +254,8 @@
     "General famous identifiers can lack rights metadata and/or block HEAD; search result rights are stronger for want-list seed selection.",
     "Explicit rights:public domain sample found DjVuTXT in 5/5 records.",
     "HEAD may return 401 for at least one public-domain sidecar; metadata size/md5 still exists, so loader should not treat HEAD failure alone as final rejection."
-  ]
+  ],
+  "source": "live Internet Archive API \u2014 not re-derivable from any local source",
+  "reproduced_by": "scripts/ia-probe-reproduce.mjs",
+  "reproduction_note": "Re-run 2026-08-04: contract holds exactly \u2014 5/5 metadata reachable, 5/5 rights signal, 5/5 DjVuTXT sidecar. numFound moved 1,367,676 -> 1,367,701 (+25), which is the archive growing. The reproducer gates on the contract shape and NOT on the census, because an exact numFound match would be surprising and treating drift as failure would train me to ignore the check."
 }

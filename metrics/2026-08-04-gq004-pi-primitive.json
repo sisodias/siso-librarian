@@ -30,5 +30,27 @@
     "Killed on sustained reasoning; bounded mechanical work only.",
     "Resolution is implicit: mini-pi silently falls back to whatever `pi` is on PATH, so the binary can change without the wrapper noticing.",
     "No LICENSE file in the installed tree despite an MIT declaration."
-  ]
+  ],
+  "source": "/opt/homebrew/lib/node_modules/@earendil-works/pi-coding-agent (installed package) + mini-pi on PATH",
+  "derivations": {
+    "resolution_finding.actually_installed": {
+      "kind": "json-field",
+      "source": "/opt/homebrew/lib/node_modules/@earendil-works/pi-coding-agent/package.json",
+      "query": "name"
+    },
+    "resolution_finding.documented_path_exists": {
+      "kind": "file-exists",
+      "source": "/opt/homebrew/lib/node_modules/@mariozechner/pi-coding-agent"
+    },
+    "rights_gate.license": {
+      "kind": "json-field",
+      "source": "/opt/homebrew/lib/node_modules/@earendil-works/pi-coding-agent/package.json",
+      "query": "license"
+    },
+    "rights_gate.license_file_shipped": {
+      "kind": "glob-exists",
+      "source": "/opt/homebrew/lib/node_modules/@earendil-works/pi-coding-agent",
+      "query": "^licen[sc]e"
+    }
+  }
 }

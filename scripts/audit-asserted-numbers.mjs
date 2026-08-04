@@ -72,13 +72,38 @@ const SNAPSHOT = 'observatory/snapshot.json';
 function derive(d) {
   const src = String(d.source || '').replace(/^~/, process.env.HOME);
   if (!src) return null;
-  if (!existsSync(src)) return d.kind === 'file-count' ? 0 : null;
+  // For file-exists, a missing path IS the answer (false), not an absent
+  // measurement — returning null here would make "this path does not exist"
+  // unverifiable, which is exactly the fact GQ-004 asserts about the package
+  // its documentation names.
+  if (!existsSync(src)) {
+    if (d.kind === 'file-exists') return false;
+    return d.kind === 'file-count' ? 0 : null;
+  }
   switch (d.kind) {
     case 'sqlite':
       return Number(execFileSync('sqlite3', [`file:${src}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
     case 'file-count': {
       const out = execFileSync('find', [src, '-type', 'f', '-name', d.query], { encoding: 'utf8' }).trim();
       return out ? out.split('\n').length : 0;
+    }
+    // Non-numeric facts about what is actually installed on this machine.
+    // `derive` returning null means "unavailable", so file-exists must return a
+    // boolean and never null — a missing path is the answer `false`, not an
+    // absent measurement.
+    case 'file-exists':
+      return existsSync(src);
+    case 'json-field': {
+      const doc = JSON.parse(readFileSync(src, 'utf8'));
+      const v = String(d.query).split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
+      return v === undefined ? null : v;
+    }
+    case 'glob-exists': {
+      // Whether any entry in a directory matches — e.g. did a package ship a
+      // LICENSE file, under whatever capitalisation.
+      if (!statSync(src).isDirectory()) return false;
+      const re = new RegExp(d.query, 'i');
+      return readdirSync(src).some((f) => re.test(f));
     }
     case 'file-bytes':
       return statSync(src).size;
@@ -256,7 +281,14 @@ for (const file of metricsFiles) {
   for (const [dotted, d] of Object.entries(doc.derivations)) {
     checkSourceExists(dotted, d, file);
     const asserted = resolvePath(doc, dotted);
-    if (typeof asserted !== 'number') continue;
+    // Strings and booleans are checkable too. Restricting this to numbers meant
+    // a declared derivation over a non-numeric fact was SKIPPED SILENTLY — the
+    // same shape as the missing-derivations skip and the bucket_counts skip.
+    // GQ-004's evidence is mostly non-numeric (an installed package name, a
+    // licence field, whether a LICENSE file shipped), so declaring derivations
+    // for it under the old guard would have been decorative: present in the
+    // file, checking nothing, and reported as success.
+    if (asserted === null || asserted === undefined || typeof asserted === 'object') continue;
     let derived = null;
     try { derived = derive(d); } catch { derived = null; }
     if (derived === null) {
@@ -266,7 +298,9 @@ for (const file of metricsFiles) {
     }
     declaredChecked += 1;
     if (derived !== asserted) {
-      findings.push({ check: 'declared-derivation', file, path: dotted, asserted, derived, delta: derived - asserted });
+      const finding = { check: 'declared-derivation', file, path: dotted, asserted, derived };
+      if (typeof derived === 'number' && typeof asserted === 'number') finding.delta = derived - asserted;
+      findings.push(finding);
     }
   }
 }
