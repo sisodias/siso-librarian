@@ -1,0 +1,28 @@
+{
+  "measured_at": "2026-08-04T09:49:56Z",
+  "question": "GQ-006",
+  "action": "preserve session history, quarantine dead analysis caches by rename \u2014 never delete (C1)",
+  "target": "~/.pi-lens",
+  "before_bytes_human": "4.0G",
+  "after_bytes_human": "804M",
+  "cache_dirs_moved": 41,
+  "quarantined_human": "3.2G",
+  "history_preserved": {
+    "path": "SISO-VAULT/librarian-vault/pi-lens-history/pi-lens-non-cache-20260804.tar.gz",
+    "files": 133,
+    "bytes": 521817,
+    "verified": "lists without error"
+  },
+  "why_dead": "Every cached project is a worktree under a .claude-worktrees path, and that directory does not exist anywhere under ~/SISO_Workspace. The caches are derived artifacts (knip.json, project-snapshot.json) describing source trees that are gone \u2014 unregenerable and unusable.",
+  "method_correction": "My first check reconstructed source paths by replacing hyphens with slashes in the cache directory names and reported alive=0 dead=60. That reconstruction is unreliable \u2014 hyphens are ambiguous between path separators and real name characters \u2014 so the right answer came from an actual find for .claude-worktrees, not from the naive transform.",
+  "separation": {
+    "session_history_mb": 0.5,
+    "cache_gb": 3.2,
+    "note": "Clean split: history is small and worth keeping, cache is the entire bulk."
+  },
+  "root_avail_before": "18Gi",
+  "root_avail_after": "18Gi",
+  "honest_note": "Rename within one filesystem frees nothing. Root is unchanged; the space is now SAFE to reclaim, not reclaimed.",
+  "total_quarantined_human": "13G",
+  "derivations": {}
+}

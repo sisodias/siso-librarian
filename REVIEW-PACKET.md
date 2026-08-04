@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T09:47:34.335Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T09:50:54.655Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
