@@ -10,7 +10,7 @@
 // Read-only. Reports; never rewrites.
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { join, relative } from 'node:path';
+import { basename, join, relative } from 'node:path';
 import { resolveLabel, labelForPath } from './lib/snapshot-paths.mjs';
 
 const root = process.cwd();
@@ -578,7 +578,19 @@ if (existsSync('README.md') && existsSync('package.json')) {
   for (const f of walk(join(root, 'scripts'))) {
     const rel = relative(root, f);
     if (!/\.(mjs|sh)$/.test(rel)) continue;
-    const referenced = readme.includes(rel) || [...scripts].some((k) =>
+    // A README must INVOKE the script, not merely name it. Measured 2026-08-04:
+    // appending "We once considered scripts/orphan-probe.mjs but abandoned it."
+    // marked that script as referenced — a sentence saying it was ABANDONED
+    // satisfied the reachability check. Require the path inside a command
+    // (fenced block, `node scripts/x`, `bash scripts/x`) or an npm script.
+    const invoked = new RegExp(`(?:node|bash|sh|npm run [\\w:-]+\\s*#?[^\\n]*)\\s+${rel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+    // A library is reachable by IMPORT, not invocation. lib/snapshot-paths.mjs
+    // is imported by this very file and was flagged as an orphan by the first
+    // version of this fix — tightening a check is not free, and the tightened
+    // rule must still model how the code is actually reached.
+    const importedBy = walk(join(root, 'scripts')).some((g) => g !== f && /\.(mjs|js)$/.test(g)
+      && new RegExp(`from\\s+['"\`][^'"\`]*${basename(rel).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"\`]`).test(readFileSync(g, 'utf8')));
+    const referenced = importedBy || invoked.test(readme) || [...scripts].some((k) =>
       JSON.parse(readFileSync('package.json', 'utf8')).scripts[k].includes(relative(root, f)));
     if (!referenced) {
       findings.push({ check: 'script-unreferenced', file: rel,

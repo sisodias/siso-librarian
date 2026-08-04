@@ -1,0 +1,37 @@
+{
+  "measured_at": "2026-08-04T20:24:07Z",
+  "question": "GQ-001",
+  "subject": "prose satisfying a check, hunted rather than stumbled upon",
+  "why_i_went_looking": "Three times today I matched prose instead of the field it describes, each caught by accident. A pattern found three times by luck will be found a fourth time by luck unless someone goes looking.",
+  "the_fourth_instance": {
+    "where": "audit-asserted-numbers.mjs script-unreferenced check",
+    "was": "readme.includes(rel) \u2014 any mention of the path anywhere in the README",
+    "demonstrated": "appending \"We once considered scripts/orphan-probe.mjs but abandoned it.\" made it count as referenced",
+    "the_sting": "a sentence stating the script was ABANDONED marked it as reachable",
+    "fix": "require an actual invocation \u2014 node/bash/sh/npm run followed by the path \u2014 or a package.json script"
+  },
+  "tightening_broke_something_and_i_checked": {
+    "what": "the tightened rule flagged scripts/lib/snapshot-paths.mjs",
+    "why_that_was_wrong": "it is a LIBRARY, imported by audit-asserted-numbers.mjs, never invoked",
+    "fix": "count an import as a reference",
+    "lesson": "tightening a check is not free; the tightened rule must still model how the code is actually reached"
+  },
+  "two_real_orphans_it_found": {
+    "scripts/minimax-cache-route.sh": "carried all day as \"written, tested, not applied\" \u2014 and unreachable from any command",
+    "scripts/probe-ia-metadata.mjs": "named in the README, absent from package.json",
+    "resolution": "both registered as npm scripts rather than loosening the gate"
+  },
+  "ledger": {
+    "trigger": "approved action status change fired by c29a235, my own claim correction",
+    "order_of_operations": "grounding re-derived FIRST (30 byte ranges checked, 0 broken), then the ledger updated",
+    "entries_refreshed": 10,
+    "note": "all ten shared checked_at 2026-08-04T17:01:03Z, so the update touched all of them; the grounding re-derivation covered every claim, so that is honest"
+  },
+  "result": {
+    "script_unreferenced_findings": 0,
+    "verify_exit": 0,
+    "gate_selftest": "14 passed, 0 failed",
+    "new_probe": "prose mention does not count as a reference \u2014 PASS"
+  },
+  "derivations": {}
+}

@@ -255,6 +255,22 @@ t=open(p).read()
 i=t.find(' union all select ext_id'); j=t.find(chr(39)+',', i)
 open(p,'w').write(t[:i]+';'+t[j+1:])"
 
+# A script named in README PROSE but never invoked. Measured 2026-08-04: adding
+# "We once considered scripts/orphan-probe.mjs but abandoned it." marked it as
+# reachable — a sentence saying it was ABANDONED satisfied the reachability
+# check. Fourth instance that day of prose satisfying a check meant for code.
+echo -n "PROBE prose mention does not count as a reference — "
+(
+  P=$(mktemp -d "/tmp/gate-prose-XXXXXX")
+  rsync -a --quiet --exclude '.git' --exclude 'node_modules' "$ROOT"/ "$P/repo/"
+  cd "$P/repo" || exit 1
+  echo 'console.log(1);' > scripts/orphan-probe.mjs
+  printf '\nWe once considered scripts/orphan-probe.mjs but abandoned it.\n' >> README.md
+  n=$(node scripts/audit-asserted-numbers.mjs 2>/dev/null | grep -c 'orphan-probe')
+  rm -rf "$P"
+  if [ "${n:-0}" -gt 0 ]; then echo "PASS (flagged despite the prose mention)"; else echo "FAIL — prose alone marked it referenced"; fi
+)
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

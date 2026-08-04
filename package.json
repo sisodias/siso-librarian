@@ -24,7 +24,9 @@
     "books:migrate-external": "node scripts/migrate-book-external.mjs",
     "audit:source-coverage": "node scripts/audit-source-coverage.mjs",
     "log:archive": "bash scripts/archive-log-slice.sh",
-    "log:archive-verify": "bash scripts/archive-log-slice.sh --verify"
+    "log:archive-verify": "bash scripts/archive-log-slice.sh --verify",
+    "minimax:cache-route": "bash scripts/minimax-cache-route.sh",
+    "ia:probe-metadata": "node scripts/probe-ia-metadata.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
