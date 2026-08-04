@@ -1,0 +1,28 @@
+{
+  "measured_at": "2026-08-04T09:34:01Z",
+  "question": "GQ-006",
+  "finding": "Bifrost exposes a single flag that stops full body persistence; it is currently off.",
+  "source": "GET http://127.0.0.1:8080/api/config and ~/.config/bifrost/config.db (config_client)",
+  "live_config": {
+    "enable_logging": true,
+    "disable_content_logging": false,
+    "log_retention_days": 365,
+    "max_request_body_size_mb": 100,
+    "allow_per_request_content_storage_override": false
+  },
+  "the_flag": {
+    "name": "disable_content_logging",
+    "current": false,
+    "effect": "When true, Bifrost stops persisting request/response content \u2014 the 4.4 GB of raw_request and responses_input_history driving growth.",
+    "scope": "gateway-wide; token accounting, latency, cost and status are separate columns and are NOT content"
+  },
+  "contradiction_noted": "config_log_store.config carries retention_days: 0 while config_client carries log_retention_days: 365. Two different fields; the client one is what the running gateway reports. Recorded rather than resolved \u2014 I did not want to assume which the daemon honours.",
+  "why_this_matters": "Decision 6 was 'the log grows, what should we do'. It is now 'flip one boolean, keeping every number the routing evidence depends on'. Measured token/cost/latency columns survive; only the request and response bodies stop being stored.",
+  "not_applied": "This is a gateway configuration change. Not a librarian decision (C-scope), and not applied.",
+  "derivations": {},
+  "token_survival_proof": {
+    "rows_with_tokens": 2280,
+    "rows_with_tokens_but_no_raw_request": 176,
+    "note": "Not an assumption. 176 rows in the live log already carry full token accounting with an empty raw_request, which demonstrates the columns are independent \u2014 disabling content logging cannot blind the routing or cache evidence."
+  }
+}

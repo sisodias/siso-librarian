@@ -83,6 +83,35 @@ or caps body size; trimming old rows does nothing.
 So the options are yours, and now safely reversible: the log is on the vault, so
 truncating the live copy loses nothing.
 
+THE FIX IS ONE BOOLEAN
+
+I said "any real fix disables body persistence" and then checked whether Bifrost
+actually exposes that. It does. From GET /api/config, confirmed in config.db:
+
+  enable_logging                             true
+  disable_content_logging                    FALSE   <- the flag
+  log_retention_days                         365
+  max_request_body_size_mb                   100
+  allow_per_request_content_storage_override false
+
+Setting disable_content_logging to true stops Bifrost persisting request and
+response CONTENT — the 4.4 GB of raw_request and responses_input_history that is
+the entire growth driver.
+
+What it does NOT cost: token counts, cached_read_tokens, cost, latency, status,
+provider and model are separate columns, not content. Every number the routing
+and cache evidence depends on survives. I checked that specifically, because a
+fix that blinded the GQ-008 cache measurement would be a bad trade.
+
+One inconsistency I am flagging rather than resolving: config_log_store carries
+retention_days: 0 while config_client carries log_retention_days: 365. Different
+fields; the client one is what the running gateway reports. I did not want to
+guess which the daemon honours.
+
+Not applied — gateway config is outside what I decide. But decision 6 is no
+longer "the log grows, what do we do"; it is "flip one flag, lose nothing we
+measure".
+
 NOT pruned, and the reason has now been removed: the log is archived to
 /Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/ via
 sqlite3 .backup (WAL-safe), verified at 1,674 rows with both claim aggregates
