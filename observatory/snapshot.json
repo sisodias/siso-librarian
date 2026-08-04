@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T08:05:37.193Z",
+  "generated_at": "2026-08-04T08:16:03.945Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -26,7 +26,8 @@
       "production_claims": 10,
       "portfolio_questions": 8,
       "refresh_entries": 10,
-      "claims_live": 8,
+      "claims_live": 7,
+      "claims_disputed": 1,
       "claims_superseded": 2,
       "claims_unreadable": 0
     }
@@ -36,7 +37,7 @@
     "verify_steps": 5,
     "scripts_on_disk": 16,
     "metrics_files": 38,
-    "worklogs": 83,
+    "worklogs": 84,
     "proposals": 17
   },
   "derivations": {
@@ -44,6 +45,31 @@
       "source": "/Users/shaansisodia/SISO_Library_Agent/scripts",
       "kind": "file-count",
       "query": "*"
+    },
+    "claim_layer.claims_live": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/claims",
+      "kind": "json-status-count",
+      "query": "!superseded,disputed"
+    },
+    "claim_layer.claims_disputed": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/claims",
+      "kind": "json-status-count",
+      "query": "disputed"
+    },
+    "claim_layer.claims_superseded": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/claims",
+      "kind": "json-status-count",
+      "query": "superseded"
+    },
+    "escalations.queued": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/outbox",
+      "kind": "file-count",
+      "query": "*.md"
+    },
+    "release_integrity.works_total": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
+      "kind": "file-count",
+      "query": "*.json"
     },
     "god_questions.total": {
       "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
@@ -175,6 +201,24 @@
       "kind": "sqlite",
       "query": "select count(*) from logs where provider='Minimax' and model='MiniMax-M3' and timestamp >= datetime('now','-24 hours');"
     }
+  },
+  "undeclared_rationale": {
+    "bucket_counts.claim_layer.claims_unreadable": "un-derivable: counts files that failed to parse. Re-deriving it would re-run the same parse and agree with itself by construction.",
+    "repo_health.verify_steps": "derivable, not yet: counts && segments in one npm script. Needs a kind that splits a named script, not json-scripts-count, which counts scripts.",
+    "routing.prompt_tokens": "derivable: sum over the Bifrost log in a trailing window. Not declared because the window is relative to build time, so the value legitimately moves between builds.",
+    "routing.completion_tokens": "derivable: same as routing.prompt_tokens, same moving-window caveat.",
+    "library_snapshot.n": "derivable, not yet: version count of the whole-library snapshot in the registry.",
+    "library_snapshot.releases": "derivable, not yet: release count carried inside the current snapshot version.",
+    "god_questions.coverage.with_testable_contract": "derivable, not yet: requires counting registry questions whose contract arrays are all non-empty — a predicate over JSON, not a file count.",
+    "god_questions.coverage.with_local_claims": "derivable, not yet: intersection of registry question ids with the local portfolio.",
+    "release_integrity.works_referenced": "derivable, not yet: distinct work ids referenced by releases; needs a join across two directories.",
+    "release_integrity.works_without_releases": "derivable, not yet: same join, complement.",
+    "release_integrity.orphaned_releases": "derivable, not yet: same join, other direction.",
+    "awaiting_decision.count": "derivable, not yet: counts decisions in a proposals markdown file; needs a text predicate rather than a JSON one.",
+    "escalations.on_remote": "un-derivable offline: asks whether each queued file exists on origin/main. Depends on network reachability, so it is an observation, not a re-derivation.",
+    "escalations.delivered_ever": "derivable, not yet: file count of outbox/sent. Currently 0 and the directory may not exist, which file-count reports as 0 — indistinguishable from a real 0.",
+    "escalations.oldest_queued_age_hours": "un-derivable: age relative to build time. Any re-derivation computes a different number by design.",
+    "escalations.independent_push_routes_up": "un-derivable: result of a live ssh probe. Re-deriving it re-probes, which can legitimately disagree."
   },
   "active_questions": [
     {
@@ -381,7 +425,7 @@
     "orphaned_releases": 0
   },
   "disk": {
-    "available": "20Gi",
+    "available": "19Gi",
     "capacity": "47%"
   },
   "awaiting_decision": {
@@ -404,7 +448,7 @@
     "queued": 2,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 2.2,
+    "oldest_queued_age_hours": 2.3,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"

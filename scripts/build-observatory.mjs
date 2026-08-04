@@ -189,7 +189,13 @@ const gqCoverage = {
 const claimStatuses = sh('find', [join(root, 'claims'), '-type', 'f', '-name', '*.json'])
   .split('\n').filter(Boolean)
   .map((f) => { try { return JSON.parse(readFileSync(f, 'utf8')).claim.status; } catch { return 'unreadable'; } });
-const claimsLive = claimStatuses.filter((s) => s !== 'superseded' && s !== 'unreadable').length;
+// `disputed` was added to the schema on 2026-08-04 and this filter was not
+// updated, so a claim whose evidence matched NO database on this machine was
+// still being published as live. An allow-list would have failed loudly on a
+// new status; this deny-list failed silently, which is how a disputed claim
+// spent a full loop counted among the sound ones.
+const claimsLive = claimStatuses.filter((s) => s !== 'superseded' && s !== 'unreadable' && s !== 'disputed').length;
+const claimsDisputed = claimStatuses.filter((s) => s === 'disputed').length;
 const claimsSuperseded = claimStatuses.filter((s) => s === 'superseded').length;
 const claimsUnreadable = claimStatuses.filter((s) => s === 'unreadable').length;
 
@@ -198,6 +204,7 @@ const claimLayer = {
   portfolio_questions: portfolio.questions.length,
   refresh_entries: refresh.entries.length,
   claims_live: claimsLive,
+  claims_disputed: claimsDisputed,
   claims_superseded: claimsSuperseded,
   claims_unreadable: claimsUnreadable,
 };
@@ -252,6 +259,11 @@ const derivations = {
   // are left undeclared rather than given a derivation that re-reads the
   // stored value.
   'repo_health.scripts_on_disk': { source: join(root, 'scripts'), kind: 'file-count', query: '*' },
+  'claim_layer.claims_live': { source: join(root, 'claims'), kind: 'json-status-count', query: '!superseded,disputed' },
+  'claim_layer.claims_disputed': { source: join(root, 'claims'), kind: 'json-status-count', query: 'disputed' },
+  'claim_layer.claims_superseded': { source: join(root, 'claims'), kind: 'json-status-count', query: 'superseded' },
+  'escalations.queued': { source: join(root, 'outbox'), kind: 'file-count', query: '*.md' },
+  'release_integrity.works_total': { source: join(registry, 'works'), kind: 'file-count', query: '*.json' },
   'god_questions.total': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
   'god_questions.coverage.registered': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
   'release_integrity.releases': { source: join(registry, 'releases'), kind: 'file-count', query: '*.json' },
@@ -366,11 +378,37 @@ escalations.independent_push_routes_up = peerUp ? 2 : 0;
 escalations.channels.mailbox.status = peerUp ? 'up' : 'down';
 escalations.channels.herdr.status = peerUp ? 'up' : 'down';
 
+// Why each remaining published number carries no derivation. I reported "20 is
+// a mixture I am describing rather than a set I have classified" — this is the
+// classification. Every path here is either derivable-in-principle-but-not-yet
+// (work owed) or genuinely un-derivable (a fact about a moment, a live probe, a
+// count of things that failed to parse). Writing the reason down is what stops
+// "un-derivable" from becoming a place to hide unfinished work.
+const undeclared_rationale = {
+  'bucket_counts.claim_layer.claims_unreadable': 'un-derivable: counts files that failed to parse. Re-deriving it would re-run the same parse and agree with itself by construction.',
+  'repo_health.verify_steps': 'derivable, not yet: counts && segments in one npm script. Needs a kind that splits a named script, not json-scripts-count, which counts scripts.',
+  'routing.prompt_tokens': 'derivable: sum over the Bifrost log in a trailing window. Not declared because the window is relative to build time, so the value legitimately moves between builds.',
+  'routing.completion_tokens': 'derivable: same as routing.prompt_tokens, same moving-window caveat.',
+  'library_snapshot.n': 'derivable, not yet: version count of the whole-library snapshot in the registry.',
+  'library_snapshot.releases': 'derivable, not yet: release count carried inside the current snapshot version.',
+  'god_questions.coverage.with_testable_contract': 'derivable, not yet: requires counting registry questions whose contract arrays are all non-empty — a predicate over JSON, not a file count.',
+  'god_questions.coverage.with_local_claims': 'derivable, not yet: intersection of registry question ids with the local portfolio.',
+  'release_integrity.works_referenced': 'derivable, not yet: distinct work ids referenced by releases; needs a join across two directories.',
+  'release_integrity.works_without_releases': 'derivable, not yet: same join, complement.',
+  'release_integrity.orphaned_releases': 'derivable, not yet: same join, other direction.',
+  'awaiting_decision.count': 'derivable, not yet: counts decisions in a proposals markdown file; needs a text predicate rather than a JSON one.',
+  'escalations.on_remote': 'un-derivable offline: asks whether each queued file exists on origin/main. Depends on network reachability, so it is an observation, not a re-derivation.',
+  'escalations.delivered_ever': 'derivable, not yet: file count of outbox/sent. Currently 0 and the directory may not exist, which file-count reports as 0 — indistinguishable from a real 0.',
+  'escalations.oldest_queued_age_hours': 'un-derivable: age relative to build time. Any re-derivation computes a different number by design.',
+  'escalations.independent_push_routes_up': 'un-derivable: result of a live ssh probe. Re-deriving it re-probes, which can legitimately disagree.',
+};
+
 const snapshot = {
   generated_at: new Date().toISOString(),
   bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer },
   repo_health: repoHealth,
   derivations,
+  undeclared_rationale,
   active_questions: portfolio.questions.map(q => ({ id: q.id, text: q.text, status: q.status, action_status: q.action_status, claim_packets: q.claim_packets })),
   routing: minimaxRouting,
   library_snapshot: snapshotState,
@@ -396,7 +434,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations queued', escalations.queued === 0 ? '0' : `${escalations.queued} · ${escalations.on_remote} readable on remote${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Push routes up', `${escalations.independent_push_routes_up} of 2 · mailbox and herdr share one peer`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations queued', escalations.queued === 0 ? '0' : `${escalations.queued} · ${escalations.on_remote} readable on remote${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Push routes up', `${escalations.independent_push_routes_up} of 2 · mailbox and herdr share one peer`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (disputed)', claimsDisputed], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

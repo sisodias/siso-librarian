@@ -98,6 +98,20 @@ function derive(d) {
       const v = String(d.query).split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
       return v === undefined ? null : v;
     }
+    // Count files in a directory whose claim.status matches (or, with a leading
+    // '!', does not match) any of the given values. Claim counts were among the
+    // 20 undeclared numbers, and a disputed claim was being published as live
+    // because nothing re-derived them.
+    case 'json-status-count': {
+      const wanted = String(d.query).split(',').map((s) => s.trim());
+      const negate = wanted[0].startsWith('!');
+      const set = new Set(wanted.map((s) => s.replace(/^!/, '')));
+      return readdirSync(src).filter((f) => f.endsWith('.json')).filter((f) => {
+        let st;
+        try { st = JSON.parse(readFileSync(join(src, f), 'utf8'))?.claim?.status; } catch { return false; }
+        return negate ? !set.has(st) : set.has(st);
+      }).length;
+    }
     case 'glob-exists': {
       // Whether any entry in a directory matches — e.g. did a package ship a
       // LICENSE file, under whatever capitalisation.
@@ -186,9 +200,28 @@ if (existsSync(SNAPSHOT)) {
     }
   };
   walkNums(snap);
+  // Each undeclared number must carry a written reason, and the rationale list
+  // must not outlive the numbers it explains. Without both directions a stale
+  // rationale would keep vouching for a path that no longer exists, and a new
+  // undeclared number would inherit the appearance of having been considered.
+  const rationale = snap.undeclared_rationale || {};
+  const unexplained = snapshotUndeclared.filter((p) => !rationale[p]);
+  const orphanRationale = Object.keys(rationale).filter((p) => !snapshotUndeclared.includes(p));
+  if (unexplained.length) {
+    findings.push({ check: 'snapshot-undeclared-unexplained', count: unexplained.length, paths: unexplained,
+      note: 'Published with no derivation AND no rationale. Every undeclared number must say why it cannot be derived, or "un-derivable" becomes a place to hide unfinished work.' });
+  }
+  if (orphanRationale.length) {
+    findings.push({ check: 'snapshot-rationale-orphaned', count: orphanRationale.length, paths: orphanRationale,
+      note: 'Rationale for a path that is no longer undeclared. Stale explanations vouch for numbers nobody is checking.' });
+  }
   if (snapshotUndeclared.length) {
     findings.push({ check: 'snapshot-undeclared-numbers', severity: 'info',
-      count: snapshotUndeclared.length, of: snapshotNumbers, paths: snapshotUndeclared,
+      count: snapshotUndeclared.length, of: snapshotNumbers,
+      explained: snapshotUndeclared.length - unexplained.length,
+      derivable_not_yet: Object.values(rationale).filter((r) => String(r).startsWith('derivable')).length,
+      genuinely_underivable: Object.values(rationale).filter((r) => String(r).startsWith('un-derivable')).length,
+      paths: snapshotUndeclared,
       note: 'Published on the observatory with no declared derivation. Not necessarily wrong — some are un-derivable in principle — but nothing re-derives them, so a wrong one would stay wrong silently.' });
   }
 }
