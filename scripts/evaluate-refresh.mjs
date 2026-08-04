@@ -25,7 +25,11 @@ const TRIGGER_PATHS = {
 
 function gitCommitsSince(since, paths) {
   try {
-    const out = execFileSync('git', ['log', `--since=${since}`, '--format=%h %s', '--', ...paths], {
+    // HEAD is excluded deliberately. The commit that introduces or refreshes a
+    // ledger entry necessarily touches claims/ or schemas/, so counting it would
+    // make every entry invalidate itself the moment it was written — drift that
+    // is an artifact of recording, not of the world changing.
+    const out = execFileSync('git', ['log', `--since=${since}`, 'HEAD~1', '--format=%h %s', '--', ...paths], {
       cwd: root, encoding: 'utf8',
     }).trim();
     return out ? out.split('\n') : [];

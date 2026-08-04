@@ -1,0 +1,68 @@
+{
+  "measured_at": "2026-08-04T01:25:00Z",
+  "graph": "~/foundry-data/domains/people/people_v2.sqlite",
+  "signal_coverage": {
+    "edges_with_rated_value": 303403,
+    "edges_with_dependent_repos": 867,
+    "curated_awesome_owners": 90209
+  },
+  "top_underrated_by_dependents": [
+    {
+      "name": "yargs",
+      "stars": 517,
+      "dependent_repos": 4384968,
+      "fame_gap": 46.6,
+      "dependents_per_star": 8482
+    },
+    {
+      "name": "Mathias Bynens",
+      "stars": 1909,
+      "dependent_repos": 4193583,
+      "fame_gap": 42.4,
+      "dependents_per_star": 2197
+    },
+    {
+      "name": "Sindre Sorhus",
+      "stars": 1499,
+      "dependent_repos": 3047734,
+      "fame_gap": 44.6,
+      "dependents_per_star": 2033
+    },
+    {
+      "name": "follow-redirects",
+      "stars": 582,
+      "dependent_repos": 2023308,
+      "fame_gap": 53.3,
+      "dependents_per_star": 3476
+    },
+    {
+      "name": "jshttp",
+      "stars": 404,
+      "dependent_repos": 1780334,
+      "fame_gap": 53.3,
+      "dependents_per_star": 4407
+    },
+    {
+      "name": "Kent C. Dodds",
+      "stars": 2635,
+      "dependent_repos": 1650407,
+      "fame_gap": 49.3,
+      "dependents_per_star": 626
+    }
+  ],
+  "high_value_low_fame": [
+    {
+      "name": "David Tolnay",
+      "repos_rated_90_plus": 10,
+      "avg_value": 91.9,
+      "stars": 30910
+    },
+    {
+      "name": "Boost.org",
+      "repos_rated_90_plus": 12,
+      "avg_value": 91.2,
+      "stars": 21649
+    }
+  ],
+  "method": "read-only queries against the canonical people graph; no writes"
+}

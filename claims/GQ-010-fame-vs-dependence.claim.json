@@ -1,0 +1,58 @@
+{
+  "schema_version": "claim-packet-v1",
+  "question": {
+    "id": "GQ-010:fame-vs-dependence",
+    "text": "Does popularity identify the software the world actually depends on, or does it systematically mismeasure it?",
+    "scope": "people graph — github domain, fame versus adoption",
+    "parents": ["GQ-010"]
+  },
+  "claim": {
+    "id": "claim:GQ-010.fame-vs-dependence.v1",
+    "position": "Stars measure attention, not dependence, and the two diverge by orders of magnitude at the top: the most depended-upon packages in this graph carry thousands of times more dependent repositories than their star counts would predict, so any ranking built on popularity systematically misses the infrastructure it is standing on.",
+    "confidence": 0.68,
+    "status": "proposed",
+    "created_at": "2026-08-04T01:25:00Z",
+    "updated_at": "2026-08-04T01:25:00Z",
+    "supersedes": []
+  },
+  "grounding": [
+    {
+      "quote": "\"dependent_repos\": 4384968",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq010-underrated-evidence.json",
+        "title": "Fame versus dependence, measured from the people graph"
+      },
+      "locator": "top_underrated_by_dependents[0]",
+      "passage_id": "gq010:yargs-parser-deps",
+      "byte_range": { "start": 336, "end": 362 }
+    },
+    {
+      "quote": "\"edges_with_dependent_repos\": 867",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq010-underrated-evidence.json",
+        "title": "Fame versus dependence, measured from the people graph"
+      },
+      "locator": "signal_coverage.edges_with_dependent_repos",
+      "passage_id": "gq010:coverage-limit",
+      "byte_range": { "start": 169, "end": 202 }
+    }
+  ],
+  "action": {
+    "status": "proposed",
+    "description": "Do not rank people or work by stars alone in any Library-facing query. Where adoption data exists, prefer it; where it does not, say so rather than silently falling back to fame.",
+    "owner": "librarian"
+  },
+  "refresh": {
+    "strategy": "on-evidence-change",
+    "selectors": ["GQ-010", "fame-vs-dependence", "adoption-signal"],
+    "invalidate_on": ["schema change", "new evidence source", "approved action status change"]
+  },
+  "provenance": {
+    "producer": "siso-librarian",
+    "run_id": "GQ-010-loop-2026-08-04-fame-vs-dependence",
+    "model": "claude-opus-5",
+    "generated_at": "2026-08-04T01:25:00Z"
+  }
+}

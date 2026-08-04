@@ -1,7 +1,7 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T01:10:00Z",
-  "scope": "GQ-009 claim-layer control surface",
+  "generated_at": "2026-08-04T01:25:00Z",
+  "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
       "id": "GQ-009",
@@ -26,6 +26,29 @@
       },
       "action_status": "done",
       "current_claim": "claims/GQ-009-claim-layer-contract.v2.claim.json"
+    },
+    {
+      "id": "GQ-010",
+      "text": "Does popularity identify the software the world actually depends on, or does it systematically mismeasure it?",
+      "status": "active",
+      "claim_packets": [
+        "claims/GQ-010-fame-vs-dependence.claim.json"
+      ],
+      "current_claim": "claims/GQ-010-fame-vs-dependence.claim.json",
+      "selectors": [
+        "GQ-010",
+        "fame-vs-dependence",
+        "adoption-signal"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
     }
   ]
 }
