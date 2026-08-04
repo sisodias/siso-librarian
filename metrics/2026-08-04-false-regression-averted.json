@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-08-04T20:35:38Z",
+  "question": "GQ-008",
+  "subject": "a false regression I nearly reported against my own claim",
+  "what_i_set_out_to_check": "\"minimax-cache-route.sh written, tested, NOT APPLIED\" \u2014 carried all day, never re-tested",
+  "the_not_applied_part_is_true": {
+    "method": "ran the script's own status mode rather than trusting the note",
+    "upstream": "http://127.0.0.1:8080 (Bifrost) \u2014 unchanged",
+    "live_probe": "max_cache_read 0",
+    "verdict": "confirmed by measurement, not memory"
+  },
+  "then_i_nearly_reported_a_regression": {
+    "what_i_saw": "my own probe against the proxy returned cache_read=0 on BOTH attempts",
+    "why_that_looked_serious": "decision 1 rests on the proxy caching where Bifrost does not; 0 on both arms would kill it",
+    "what_i_did_before_reporting": "ran the ORIGINAL reproducer, scripts/gq008-cache-experiment.sh",
+    "result": "{\"proxy\": 128 cached}, {\"bifrost\": 0 cached} \u2014 REPRODUCES",
+    "my_error": "my probe sent a 3,473-token prompt where the experiment sends 1,078, and issued its two calls too far apart. Cold cache both times. The experiment warms deliberately.",
+    "lesson": "I wrote a reproducer for exactly this experiment and then hand-rolled a different probe to re-check it. Use the reproducer."
+  },
+  "two_scares_that_were_my_shell": {
+    "gate_key": "my inline heredoc mangled the regex quoting and printed \"gate key readable: NO\"; the script's own extraction returns a 125-char key correctly",
+    "proxy_401": "unauthenticated GET on 8789 returns 401 by design \u2014 the script documents the auth swap. A 401 is the service answering, not a dead service."
+  },
+  "evidence_status_for_decision_1": {
+    "direction": "proxy non-zero, Bifrost exactly zero \u2014 holds on every run today",
+    "magnitude": "varies with cache age (2944, 1024, 128, 1024, 128) and the claim already says the direction is what it rests on",
+    "confirmations_today": 6
+  },
+  "still_not_applied": "This is a routing change to a live gateway Shaan owns. Decision 1 covers it; the evidence under it is now re-verified rather than assumed.",
+  "derivations": {}
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T20:24:32.935Z",
+  "generated_at": "2026-08-04T20:37:29.753Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 27,
     "verify_steps": 7,
     "scripts_on_disk": 26,
-    "metrics_files": 120,
-    "worklogs": 179,
+    "metrics_files": 121,
+    "worklogs": 180,
     "proposals": 18
   },
   "derivations": {
@@ -320,9 +320,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 134,
-    "prompt_tokens": 2062039,
-    "completion_tokens": 57625,
+    "requests": 125,
+    "prompt_tokens": 2067181,
+    "completion_tokens": 57689,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
@@ -467,7 +467,7 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 14.5,
+    "oldest_queued_age_hours": 14.7,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",
