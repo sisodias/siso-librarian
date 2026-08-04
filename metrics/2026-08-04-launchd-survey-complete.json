@@ -1,0 +1,42 @@
+{
+  "measured_at": "2026-08-04T13:34:09Z",
+  "question": "GQ-006",
+  "subject": "closing out the launchd survey \u2014 every failing job now classified",
+  "the_exception_resolved": {
+    "job": "com.siso.foundry-interface",
+    "exit": 78,
+    "why_it_looked_different": "Its program is /opt/homebrew/bin/node, which exists \u2014 so my \"missing program\" test passed it.",
+    "actual_cause": "WorkingDirectory is ~/foundry-interface and that directory DOES NOT EXIST. launchd fails with EX_CONFIG before running anything, which is why /tmp/foundry-interface.err is empty. The command arguments are relative paths (node_modules/tsx/dist/cli.mjs, server.ts) that only resolve inside it.",
+    "verdict": "Same defect after all \u2014 a deleted path, just the working directory rather than the program. So exit-78 is 15 of 15, not 14 of 15."
+  },
+  "remaining_ten": {
+    "all_programs_present": true,
+    "jobs": {
+      "com.siso.refresh-tailscale-upnp": 7,
+      "com.siso.pwa": 1,
+      "com.siso.kengine-index": 126,
+      "com.siso.learnings-health": 2,
+      "com.siso.property-classq": 2,
+      "com.siso.property-auctions": 1,
+      "com.siso.foundry-momentum": 1,
+      "com.siso.agentbase": 7,
+      "com.siso.codex-bifrost-shim": -15
+    },
+    "reading": "These are genuinely different: the program exists and the job runs and then fails. foundry-momentum is the one I already traced \u2014 its program runs fine and dies on an empty source database. The other nine are real runtime failures, not deleted files."
+  },
+  "malformed_plist": {
+    "job": "com.siso.hermes.kengine",
+    "exit": 126,
+    "finding": "Its plist is not well-formed XML (ExpatError at line 9). Found because it crashed my survey loop mid-scan.",
+    "lesson": "One malformed file terminated the scan and would have hidden the six jobs after it. Guarded, then re-run."
+  },
+  "final_classification": {
+    "total_failing": 36,
+    "deleted_path": 26,
+    "runtime_failure": 9,
+    "traced_earlier": 1,
+    "malformed_plist": 1,
+    "note": "26 = 11 exit-127 + 15 exit-78, every one pointing at a path that no longer exists."
+  },
+  "derivations": {}
+}

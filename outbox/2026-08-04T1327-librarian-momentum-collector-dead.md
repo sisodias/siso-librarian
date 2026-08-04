@@ -74,10 +74,30 @@ program. Exit 127 means launchd started /bin/bash fine and bash then could not
 find the script — one layer deeper, same root cause. Verified directly:
 `bash /tmp/definitely-not-here.sh` returns exactly 127.
 
-One exit-78 job DOES have its program present and still fails; I have not found
-why. And 10 jobs with other codes (126, 2, 1, 7, -15) are untraced.
+I found the exception. com.siso.foundry-interface runs /opt/homebrew/bin/node,
+which exists — so my "missing program" test passed it. But its WorkingDirectory
+is ~/foundry-interface, and that directory does not exist. launchd fails with
+EX_CONFIG before running anything, which is why its error log is 0 bytes. Its
+arguments are relative paths that only resolve inside that directory.
 
-So the honest split is: 25 explained, 11 not.
+Same defect, different field. So exit-78 is 15 of 15.
+
+FINAL CLASSIFICATION OF ALL 36
+
+  deleted path        26   (11 exit-127 + 15 exit-78)
+  runtime failure     10   program exists, job runs, then fails
+  malformed plist      1   com.siso.hermes.kengine is not well-formed XML
+
+The 26 are one sweep: restore the file or unload the job.
+
+The 10 are individually different — the program is present in every case, so
+these are real failures rather than dangling references. foundry-momentum is one
+of them (it runs fine and dies on the empty repos.db). I have not traced the
+other nine.
+
+One more thing: com.siso.hermes.kengine's plist is invalid XML. I found it
+because it crashed my survey loop mid-scan and would have hidden the six jobs
+listed after it.
 
 Nothing repaired or unloaded — deleting a launchd job is destructive and these
 are your operational jobs. Some may be intentionally
