@@ -300,6 +300,22 @@ const oldestQueuedISO = queuedMsgs.length
   ? sh('git', ['log', '--diff-filter=A', '--format=%aI', '-1', '--', `outbox/${queuedMsgs[0]}`]).trim()
   : '';
 const escalations = {
+  // Two channels, not one. Every escalation is ALSO pushed to the GitHub remote
+  // as a tracked file, and that route has worked the entire session — remote
+  // HEAD matches local. Reporting only the mailbox made "queued: 2, delivered:
+  // 0" read as "Shaan has seen nothing", which was false: both messages have
+  // been readable at sisodias/siso-librarian since the moment they were written,
+  // corrected text included.
+  //
+  // A channel being down is not the same as a message being undelivered, and
+  // conflating them understated what had actually reached him for hours.
+  on_remote: queuedMsgs.filter((f) => {
+    try {
+      execFileSync('git', ['cat-file', '-e', `origin/main:outbox/${f}`],
+        { cwd: root, stdio: 'ignore' });
+      return true;
+    } catch { return false; }
+  }).length,
   queued: queuedMsgs.length,
   delivered_ever: existsSync(join(outboxDir, 'sent'))
     ? readdirSync(join(outboxDir, 'sent')).filter((f) => f.endsWith('.md')).length
@@ -342,7 +358,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations undelivered', escalations.queued === 0 ? '0' : `${escalations.queued}${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations queued', escalations.queued === 0 ? '0' : `${escalations.queued} · ${escalations.on_remote} readable on remote${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>
