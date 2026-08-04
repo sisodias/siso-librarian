@@ -45,8 +45,9 @@
   "derivations": {
     "rederived.CodexOpenAI.out_per_1k_billed": {
       "kind": "sqlite",
-      "source": "~/.config/bifrost/logs.db",
-      "query": "select round(sum(completion_tokens)*1000.0/(sum(prompt_tokens)-sum(cached_read_tokens)),2) from logs where provider='CodexOpenAI' and prompt_tokens>0;"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db",
+      "query": "select round(sum(completion_tokens)*1000.0/(sum(prompt_tokens)-sum(cached_read_tokens)),2) from logs where provider='CodexOpenAI' and prompt_tokens>0;",
+      "source_note": "repointed 2026-08-04 from ~/.config/bifrost/logs.db, which now expires rows after 3 days. The slice holds the same rows with only the token/provider columns; all five aggregate derivations verified byte-identical against the live log before the switch."
     }
   }
 }

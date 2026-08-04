@@ -102,7 +102,12 @@ if (existsSync(metricsDir)) {
     let doc;
     try { doc = JSON.parse(readFileSync(join(metricsDir, f), 'utf8')); } catch { continue; }
     for (const [label, d] of Object.entries(doc.derivations || {})) {
-      const src = JSON.stringify(d);
+      // Match the SOURCE FIELD, not the whole serialised object. First version
+      // stringified the derivation, so a source_note explaining the repoint —
+      // which necessarily names the old path — kept the warning alive after the
+      // fix. Third time today prose has been mistaken for the thing it
+      // describes; the field is the fact, the note is commentary.
+      const src = String(d.source || '');
       for (const e of EPHEMERAL) {
         if (src.includes(e.path)) {
           warnings.push({

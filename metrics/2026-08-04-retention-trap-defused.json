@@ -1,0 +1,61 @@
+{
+  "measured_at": "2026-08-04T20:06:16Z",
+  "question": "GQ-009",
+  "subject": "defusing the retention trap instead of watching it count down",
+  "the_trap": "I set log_retention_days 365 -> 3 to stop the log filling the disk, then found 6 declared derivations reading that database. They re-derived only because the oldest rows had not aged out. The audit runs them on every push.",
+  "the_fix": {
+    "what": "a column slice of the log on the vault, holding the rows the derivations read",
+    "kept": [
+      "id",
+      "timestamp",
+      "provider",
+      "virtual_key_name",
+      "model",
+      "prompt_tokens",
+      "completion_tokens",
+      "total_tokens",
+      "cached_read_tokens",
+      "status"
+    ],
+    "NOT_kept": [
+      "raw_request (3,681 MB)",
+      "content_summary",
+      "params",
+      "tools",
+      "any prompt body"
+    ],
+    "size_bytes": 643072,
+    "source_size_bytes": 9433612288,
+    "ratio": "643 KB preserves what 9.43 GB was needed for \u2014 0.007%",
+    "rows": 3353,
+    "span": "2026-08-01 to 2026-08-04"
+  },
+  "verified_before_switching": {
+    "method": "ran all five aggregate derivations against live and slice",
+    "result": "5/5 byte-identical (45285517, 109467, 408, 85.86, 0)",
+    "eviction_simulation": "the slice answers 45285517 with no reference to the live log at all"
+  },
+  "repointed": 5,
+  "deliberately_left_pointing_at_the_live_log": {
+    "derivation": "free_pages",
+    "why": "it reads a pragma about the FILE, not its rows \u2014 a statement about the live database that would be meaningless against an archive",
+    "so": "1 warning remains, and it is correct"
+  },
+  "my_own_check_was_wrong_again": {
+    "what": "after repointing all 5, the warning count stayed at 6",
+    "cause": "the check stringified the whole derivation object, so the source_note explaining the repoint \u2014 which necessarily names the old path \u2014 kept the warning alive",
+    "fix": "match d.source, the field, not the serialised object",
+    "the_pattern": "THIRD time today I matched prose instead of the thing it describes: a comment satisfied the coverage gate, a comment in gate-selftest.sh triggered a false positive, and now a note kept a resolved warning alive. The field is the fact; the note is commentary."
+  },
+  "result": {
+    "warnings_before": 6,
+    "warnings_after": 1,
+    "findings": 0,
+    "verify_exit": 0,
+    "gate_selftest": "14 passed, 0 failed",
+    "derivations_rederived": 31,
+    "unavailable": 1,
+    "skipped": 0
+  },
+  "derivations": {}
+}

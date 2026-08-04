@@ -68,18 +68,21 @@
   "derivations": {
     "providers.1.raw_input": {
       "kind": "sqlite",
-      "source": "~/.config/bifrost/logs.db",
-      "query": "select sum(prompt_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db",
+      "query": "select sum(prompt_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';",
+      "source_note": "repointed 2026-08-04 from ~/.config/bifrost/logs.db, which now expires rows after 3 days. The slice holds the same rows with only the token/provider columns; all five aggregate derivations verified byte-identical against the live log before the switch."
     },
     "providers.1.output": {
       "kind": "sqlite",
-      "source": "~/.config/bifrost/logs.db",
-      "query": "select sum(completion_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db",
+      "query": "select sum(completion_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';",
+      "source_note": "repointed 2026-08-04 from ~/.config/bifrost/logs.db, which now expires rows after 3 days. The slice holds the same rows with only the token/provider columns; all five aggregate derivations verified byte-identical against the live log before the switch."
     },
     "providers.1.requests": {
       "kind": "sqlite",
-      "source": "~/.config/bifrost/logs.db",
-      "query": "select count(*) from logs where provider='CodexOpenAI' and prompt_tokens>0 and timestamp <= '2026-08-04 04:19:50';"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db",
+      "query": "select count(*) from logs where provider='CodexOpenAI' and prompt_tokens>0 and timestamp <= '2026-08-04 04:19:50';",
+      "source_note": "repointed 2026-08-04 from ~/.config/bifrost/logs.db, which now expires rows after 3 days. The slice holds the same rows with only the token/provider columns; all five aggregate derivations verified byte-identical against the live log before the switch."
     }
   }
 }

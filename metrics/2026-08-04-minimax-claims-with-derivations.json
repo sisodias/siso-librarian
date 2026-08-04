@@ -58,8 +58,9 @@
   "derivations": {
     "rederivable.minimax_cached_read_tokens_total.rederived_2026_08_04": {
       "kind": "sqlite",
-      "source": "~/.config/bifrost/logs.db",
-      "query": "select coalesce(sum(cached_read_tokens),0) from logs where provider='Minimax';"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db",
+      "query": "select coalesce(sum(cached_read_tokens),0) from logs where provider='Minimax';",
+      "source_note": "repointed 2026-08-04 from ~/.config/bifrost/logs.db, which now expires rows after 3 days. The slice holds the same rows with only the token/provider columns; all five aggregate derivations verified byte-identical against the live log before the switch."
     }
   }
 }

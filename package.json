@@ -22,7 +22,9 @@
     "ia:want-list": "node scripts/build-want-list.mjs",
     "ia:ingest": "node scripts/ia-ingest.mjs",
     "books:migrate-external": "node scripts/migrate-book-external.mjs",
-    "audit:source-coverage": "node scripts/audit-source-coverage.mjs"
+    "audit:source-coverage": "node scripts/audit-source-coverage.mjs",
+    "log:archive": "bash scripts/archive-log-slice.sh",
+    "log:archive-verify": "bash scripts/archive-log-slice.sh --verify"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
