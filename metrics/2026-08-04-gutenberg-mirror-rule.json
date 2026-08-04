@@ -1,0 +1,34 @@
+{
+  "measured_at": "2026-08-04T16:56:53Z",
+  "question": "GQ-004",
+  "subject": "the flagged item resolved, and a rule that existed only as an act",
+  "flagged_item_resolved": {
+    "identifier": "dilip-simeon-closing-the-circle-...-2025",
+    "collection": "opensource",
+    "sponsor": null,
+    "licenseurl": null,
+    "date": "2025-10-23",
+    "creator": "Uploaded for the author by Harsh Kapoor, SACW.NET",
+    "verdict": "The user-upload collection, no institutional sponsor, no licence URL, a 2025 book by a living author. Its \"Public Domain License\" tag is free text. Still in the list and still flagged \u2014 excluding it on those grounds would be a copyright judgement, but the EVIDENCE grade now says exactly what it is."
+  },
+  "the_gutenberg_finding": {
+    "observed": "3 of 5 sampled items came from collection: gutenberg",
+    "in_the_list": "25 of 106 identifiers ended in \"gut\"",
+    "why_title_dedup_missed_them": "IA titles differ slightly from Gutenberg's \u2014 \"Ermeline a ballad\" against \"Ermeline: A Ballad\" \u2014 so normalised titles do not match even though the works are identical.",
+    "the_original_contract": "want-list.json records \"gutenberg_mirrors_excluded: 1\" \u2014 a COUNT, not a rule. The exclusion was an act someone performed, not something a later generator could inherit. That is why mine reproduced a solved problem."
+  },
+  "after_the_fix": {
+    "items": 81,
+    "was": 106,
+    "gutenberg_mirrors_excluded": 309,
+    "provenance": {
+      "formal-designation": 72,
+      "institutional-review": 6,
+      "bare-assertion": 2,
+      "not-a-designation": 1
+    },
+    "note": "309 excluded against 25 visible in the output: most mirrors were already dropped by title dedup before reaching the identifier check. The jurisdiction-scoped group vanished entirely \u2014 all 25 \"Public domain in the USA.\" items were Gutenberg mirrors."
+  },
+  "lesson": "A constraint recorded as its result cannot be re-applied. \"We excluded 1 mirror\" is a fact about the past; \"exclude identifiers ending in gut\" is a rule. The first is what the artifact carried.",
+  "derivations": {}
+}

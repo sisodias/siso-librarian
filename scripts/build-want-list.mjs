@@ -90,6 +90,7 @@ function classifyRights(s) {
 
 const items = [];
 const seen = new Set();
+let gutSkipped = 0;
 const perSubject = [];
 
 for (const subject of subjects) {
@@ -102,6 +103,17 @@ for (const subject of subjects) {
     const key = normaliseTitle(title);
     // Two dedup passes: against the Library, and against items already added
     // from an earlier subject. A book can carry several subjects.
+    // Gutenberg mirrors. IA hosts copies of Gutenberg texts under identifiers
+    // ending in "gut", and the Library already ingests Gutenberg wholesale — so
+    // these are guaranteed duplicates that TITLE dedup misses, because IA's
+    // title differs slightly from Gutenberg's ("Ermeline a ballad" vs
+    // "Ermeline: A Ballad").
+    //
+    // The first want-list excluded these too, but recorded only the COUNT
+    // ("gutenberg_mirrors_excluded: 1"), not the rule. An exclusion that lives
+    // in someone's head is not inherited by the next generator — measured
+    // 2026-08-04: 25 of my 106 candidates were Gutenberg mirrors.
+    if (/gut$/.test(d.identifier)) { gutSkipped += 1; continue; }
     if (!key || held.has(key) || seen.has(key)) continue;
     seen.add(key);
     added += 1;
@@ -132,6 +144,7 @@ const out = {
   rationale: 'Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. '
     + 'Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.',
   query_totals: perSubject,
+  gutenberg_mirrors_excluded: { count: gutSkipped, rule: 'identifier ends in "gut" — IA-hosted Gutenberg copies, already ingested by the Library' },
   contract: {
     rights: 'IA metadata rights:"public domain" only; no rights judgement made here',
     excluded: 'collection:printdisabled, collection:inlibrary (controlled digital lending)',

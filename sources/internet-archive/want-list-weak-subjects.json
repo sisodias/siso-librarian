@@ -1,35 +1,39 @@
 {
   "schema_version": "want-list-v1",
-  "generated_at": "2026-08-04T16:52:25.886Z",
+  "generated_at": "2026-08-04T16:56:25.334Z",
   "supersedes": "sources/internet-archive/want-list.json",
   "rationale": "Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.",
   "query_totals": [
     {
       "subject": "English poetry",
       "fetched": 92,
-      "new": 30
+      "new": 29
     },
     {
       "subject": "Essays",
       "fetched": 77,
-      "new": 31
+      "new": 30
     },
     {
       "subject": "Cookery",
       "fetched": 60,
-      "new": 26
+      "new": 21
     },
     {
       "subject": "Detective and mystery stories",
       "fetched": 128,
-      "new": 14
+      "new": 0
     },
     {
       "subject": "Historical fiction",
       "fetched": 58,
-      "new": 5
+      "new": 1
     }
   ],
+  "gutenberg_mirrors_excluded": {
+    "count": 309,
+    "rule": "identifier ends in \"gut\" — IA-hosted Gutenberg copies, already ingested by the Library"
+  },
   "contract": {
     "rights": "IA metadata rights:\"public domain\" only; no rights judgement made here",
     "excluded": "collection:printdisabled, collection:inlibrary (controlled digital lending)",
@@ -224,16 +228,6 @@
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "ermelineaballad26791gut",
-      "title": "Ermeline a ballad",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -448,7 +442,7 @@
     },
     {
       "identifier": "willan-72743",
-      "title": "An essay on the surgical treatment of h\u00e6morrhoidal tumours",
+      "title": "An essay on the surgical treatment of hæmorrhoidal tumours",
       "year": 1854,
       "language": "eng",
       "tier": "weak-subject:Essays",
@@ -484,16 +478,6 @@
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "alltheyearroundc01464gut",
-      "title": "All the Year Round: Contributions",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -657,16 +641,6 @@
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "cultureandcookin29982gut",
-      "title": "Culture and Cooking Art in the Kitchen",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
       "identifier": "b21471733",
       "title": "The young cook's guide; with practical observations [electronic resource] : a new treatise on French and English cookery, combining economy with elegance. To which is added an appendix, containing M. ",
       "year": 1836,
@@ -678,7 +652,7 @@
     },
     {
       "identifier": "b21504830",
-      "title": "Soups, broths, pur\u00e9es : with directions how to prepare them easily and economically",
+      "title": "Soups, broths, purées : with directions how to prepare them easily and economically",
       "year": 1894,
       "language": "eng",
       "tier": "weak-subject:Cookery",
@@ -688,7 +662,7 @@
     },
     {
       "identifier": "b28407313",
-      "title": "Practical \u0153conomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
+      "title": "Practical œconomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
       "year": 1801,
       "language": "eng",
       "tier": "weak-subject:Cookery",
@@ -697,18 +671,8 @@
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "foodforthetravel27245gut",
-      "title": "Food for the Traveler What to Eat and Why",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
       "identifier": "b2150491x",
-      "title": "Cyclop\u00e6dia of foods, condiments and beverages : the greatest delicacies and common necessaries",
+      "title": "Cyclopædia of foods, condiments and beverages : the greatest delicacies and common necessaries",
       "year": 1890,
       "language": "eng",
       "tier": "weak-subject:Cookery",
@@ -747,26 +711,6 @@
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "thekhakikookbook25914gut",
-      "title": "The Khaki Kook Book A Collection of a Hundred Cheap and Practical Recipes Mostly from Hindustan",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "theartofconfecti30121gut",
-      "title": "The Art of Confectionary Shewing the Various Methods of Preserving All Sorts of Fruits, Dry and Liquid; viz. Oranges, Lemons, Citrons, Golden Pippins, Wardens, Apricots Green, Almonds, Goosberries, Ch",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
       "identifier": "b21471691",
       "title": "The gastronomic regenerator [electronic resource] : a simplified and entirely new system of cookery with nearly two thousand practical receipts suited to the income of all classes. Illustrated with nu",
       "year": 1847,
@@ -794,16 +738,6 @@
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "theitaliancookbo24407gut",
-      "title": "The Italian Cook Book The Art of Eating Well",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -907,156 +841,6 @@
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "twowonderfuldete26155gut",
-      "title": "Two Wonderful Detectives Jack and Gil's Marvelous Skill",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "billiebradleyonl25762gut",
-      "title": "Billie Bradley on Lighthouse Island The Mystery of the Wreck",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "theroverboysinth20053gut",
-      "title": "The Rover Boys in the Air From College Campus to the Clouds",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "rholmesco20559gut",
-      "title": "R. Holmes & Co.",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "masterpiecesofmy29704gut",
-      "title": "Masterpieces of Mystery Riddle Stories",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "thecampfiregirls28448gut",
-      "title": "The Campfire Girls of Roselawn Or, a Strange Message from the Air",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "thecaptainofthep00294gut",
-      "title": "The Captain of the Polestar",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "smugglersreef28849gut",
-      "title": "Smugglers' Reef",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "therivalcampersa28504gut",
-      "title": "The Rival Campers Ashore The Mystery of the Mill",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "thebradysbeyondt26925gut",
-      "title": "The Bradys Beyond Their Depth The Great Swamp Mystery",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "asuccessfulshado26175gut",
-      "title": "A Successful Shadow A Detective's Successful Quest",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "masterpiecesofmy27722gut",
-      "title": "Masterpieces of Mystery, Vol. 1 (of 4) Ghost Stories",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "radioboysloyalty25753gut",
-      "title": "Radio Boys Loyalty Bill Brown Listens In",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "thestarkmunrolet00290gut",
-      "title": "The Stark Munro Letters",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "theredbadgeofcou00463gut",
-      "title": "The Red Badge of Courage",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
       "identifier": "namaqua_by_pierce_egan",
       "title": "Namaqua by Pierce Egan, PDF Download",
       "year": 1925,
@@ -1065,56 +849,6 @@
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is now in public domain.",
       "rights_provenance": "bare-assertion",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "themartyroftheca24680gut",
-      "title": "The Martyr of the Catacombs A Tale of Ancient Rome",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "howardpylesbooko26862gut",
-      "title": "Howard Pyle's Book of Pirates",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "seadogsallataleo25670gut",
-      "title": "Sea-Dogs All! A Tale of Forest and Sea",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "jurisdiction-scoped",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     }
-  ],
-  "rights_provenance_summary": {
-    "counts": {
-      "formal-designation": 72,
-      "jurisdiction-scoped": 25,
-      "institutional-review": 6,
-      "bare-assertion": 2,
-      "not-a-designation": 1
-    },
-    "grades": {
-      "institutional-review": "A named institution recorded a copyright review with its source (HathiTrust via Princeton). Strongest.",
-      "formal-designation": "Creative Commons Public Domain Mark \u2014 a formal designation for works already in the public domain.",
-      "jurisdiction-scoped": "\"Public domain in the USA.\" True as stated, scoped to one jurisdiction.",
-      "bare-assertion": "Says public domain with no source or review.",
-      "not-a-designation": "\"Public Domain License\" \u2014 not a real thing. One item, a 2025 third-party upload."
-    },
-    "how_to_use": "Pick a threshold. institutional-review + formal-designation is 78 of 106 and the strongest subset. Excluding only not-a-designation leaves 105. No copyright judgement is made here \u2014 this grades the EVIDENCE, not the works.",
-    "the_one_to_look_at": [
-      "dilip-simeon-closing-the-circle-essays-in-contemporary-history-politics-2025"
-    ]
-  }
+  ]
 }
