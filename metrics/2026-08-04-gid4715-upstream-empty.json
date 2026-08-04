@@ -1,0 +1,43 @@
+{
+  "measured_at": "2026-08-04T12:21:58Z",
+  "question": "GQ-006",
+  "subject": "gid 4715 \u2014 the one book of 77,540 with zero passages",
+  "finding": "NOT a local extraction bug. The upstream plain-text file is empty.",
+  "evidence": {
+    "url": "https://www.gutenberg.org/ebooks/4715.txt.utf-8",
+    "resolves_to": "https://www.gutenberg.org/cache/epub/4715/pg4715.txt",
+    "http": "302 then 200",
+    "bytes_fetched": 20054,
+    "content": "Project Gutenberg header, licence and footer only \u2014 22 lines matching licence/boilerplate patterns.",
+    "start_marker_line": 27,
+    "end_marker_line": 31,
+    "bytes_between_markers": 4,
+    "reading": "The START and END markers are four lines apart with 4 bytes between them. The file has a title, a licence, and no book. Our extractor recorded body_end - body_start = 8 and zero passages, which is the CORRECT result for this input."
+  },
+  "recoverable": {
+    "html_edition": "https://www.gutenberg.org/cache/epub/4715/pg4715-images.html",
+    "bytes": 430508,
+    "reading": "The full novel exists in the HTML edition. The text is not lost upstream \u2014 only the plain-text rendering is empty."
+  },
+  "correction": "Last loop I called this 'an extraction failure, isolated to one book'. Half right: it is isolated, and it is not a failure of ours. Re-running our extractor against the same URL would produce the same 8 bytes forever.",
+  "not_done": "No ingestion attempted. Pulling from the HTML edition means a different parser and a write to Shaan's passage index \u2014 C6. Recorded with both URLs and the byte counts so the decision needs no re-investigation.",
+  "derivations": {},
+  "is_it_systemic": {
+    "corpus_distribution": {
+      "under_100_bytes": 2,
+      "under_2kb": 157,
+      "under_10kb": 1129,
+      "total": 77540
+    },
+    "second_case_tested": {
+      "gid": 9320,
+      "title": "A Doctor of the Old School \u2014 Complete",
+      "local_body_bytes": 75,
+      "upstream_bytes_between_markers": 66,
+      "reading": "Same defect. A work titled \"Complete\" with 66 bytes of body upstream."
+    },
+    "sample_size": "2 of 157 tested \u2014 both empty upstream.",
+    "not_concluded": "157 books under 2 KB is NOT 157 defects. The sample includes short carols ('Hark! The Herald Angels Sing', 106 bytes) that may be genuinely complete at that length. Two confirmed cases establish the defect is real and not unique; they do not establish its rate. Testing all 157 means 157 network fetches and that is worth doing deliberately, not as a side effect of investigating one book.",
+    "what_would_settle_it": "Fetch each of the 157 and compare bytes-between-markers to the local body size. Cheap per item, bounded, and produces a rate rather than an anecdote."
+  }
+}
