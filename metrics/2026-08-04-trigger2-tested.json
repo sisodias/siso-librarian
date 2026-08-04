@@ -1,0 +1,33 @@
+{
+  "measured_at": "2026-08-04T15:41:11Z",
+  "question": "GQ-009",
+  "subject": "watch trigger 2, which I marked \"not evaluated \u2014 outside this repo\"",
+  "the_deferral": "\"Depends on Foundry/Knowledge exports outside this repo; no evidence either way.\"",
+  "what_i_found": {
+    "location": "~/foundry-data/research/",
+    "exports": 4,
+    "shape": "one directory per question, each containing answer.md and evidence.json",
+    "reading": "This IS a question-addressable export. The deferral said no evidence either way; the evidence was one ls away."
+  },
+  "the_test": {
+    "trigger": "\"...ships a question-addressable export that can REPLACE A MANUAL EVIDENCE LINK\"",
+    "evidence_json_keys": [
+      "question",
+      "slice",
+      "deep",
+      "calls",
+      "evidence"
+    ],
+    "record_keys": [
+      "relevant",
+      "patterns"
+    ],
+    "has_url": false,
+    "has_quote": false,
+    "has_citation": false,
+    "verdict": "DOES NOT FIRE, for a measured reason. The exports are question-addressable but their evidence records are model-extracted summaries \u2014 {relevant, patterns} \u2014 with no URL, no quote and no citation. Nothing dereferences. A claim packet grounding requires a byte range into a source that resolves to its quoted text; these cannot supply one, so they cannot replace a manual evidence link."
+  },
+  "what_would_change_it": "Evidence records carrying a source identifier and a quotable span. The structure is otherwise already right.",
+  "correction": "\"Not evaluated, outside this repo\" was wrong twice: the exports are on this machine, and the trigger is testable against their structure without any external system. Sixth deferral, sixth narrowing.",
+  "derivations": {}
+}
