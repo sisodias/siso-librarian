@@ -14,11 +14,31 @@
     "restored_objects_in_pack": 79459
   },
   "rescue_refs": [
-    { "ref": "refs/rescue/domain-batch-backend/TASK-0272-a3", "sha": "21280f247e2ae41ba395cccaed6e106882bca9b7", "subject": "TASK-0272: consolidate adapter routing registry" },
-    { "ref": "refs/rescue/domain-batch-backend/TASK-0326-a1", "sha": "43fc45bc9d9e8aa03b4d880dffe8e0d9296f10c2", "subject": "TASK-0326: add whole-pipe offline integration proof" },
-    { "ref": "refs/rescue/domain-batch-backend/TASK-0390-a2", "sha": "ee08a17b2675f1de53c19c91d22b34bbf3dc21af", "subject": "TASK-0390: complete CAM4 VPS embed-own readback" },
-    { "ref": "refs/rescue/domain-batch-backend/TASK-0668-a1", "sha": "48fc3be5a95359ce0ff15ae90ccfcddb16ffb0a2", "subject": "TASK-0668: shed readback load at resource ceilings" },
-    { "ref": "refs/rescue/domain-batch-backend/TASK-0776", "sha": "1fbe5e39d9050eb3dab745f97a1c3573bfdf443b", "subject": "TASK-0776: fail close uncertain CB offline proof" }
+    {
+      "ref": "refs/rescue/domain-batch-backend/TASK-0272-a3",
+      "sha": "21280f247e2ae41ba395cccaed6e106882bca9b7",
+      "subject": "TASK-0272: consolidate adapter routing registry"
+    },
+    {
+      "ref": "refs/rescue/domain-batch-backend/TASK-0326-a1",
+      "sha": "43fc45bc9d9e8aa03b4d880dffe8e0d9296f10c2",
+      "subject": "TASK-0326: add whole-pipe offline integration proof"
+    },
+    {
+      "ref": "refs/rescue/domain-batch-backend/TASK-0390-a2",
+      "sha": "ee08a17b2675f1de53c19c91d22b34bbf3dc21af",
+      "subject": "TASK-0390: complete CAM4 VPS embed-own readback"
+    },
+    {
+      "ref": "refs/rescue/domain-batch-backend/TASK-0668-a1",
+      "sha": "48fc3be5a95359ce0ff15ae90ccfcddb16ffb0a2",
+      "subject": "TASK-0668: shed readback load at resource ceilings"
+    },
+    {
+      "ref": "refs/rescue/domain-batch-backend/TASK-0776",
+      "sha": "1fbe5e39d9050eb3dab745f97a1c3573bfdf443b",
+      "subject": "TASK-0776: fail close uncertain CB offline proof"
+    }
   ],
   "restore_test": {
     "bundle": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/gap4-gap7-2026-08-03-2116/oracle-streaming-unremote-heads.bundle",
@@ -34,5 +54,17 @@
     "no deletes, no force-push, no history rewrite",
     "no push to any remote in this loop",
     "source worktrees untouched"
-  ]
+  ],
+  "continuous_checks": {
+    "bundle_bytes": 651653470,
+    "rechecked_at": "2026-08-04T09:35Z",
+    "bundle_verify": "records a complete history (re-run 12h after creation)",
+    "note": "Both rescue copies \u2014 local refs and the vault bundle \u2014 live on this one machine. Neither is offsite. The derivation below makes bit-level loss visible on every verify instead of on the day someone needs it."
+  },
+  "derivations": {
+    "continuous_checks.bundle_bytes": {
+      "kind": "file-bytes",
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/gap4-gap7-2026-08-03-2116/oracle-streaming-unremote-heads.bundle"
+    }
+  }
 }

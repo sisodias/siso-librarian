@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-04T05:12:15Z",
+  "thread": "escalation-channel-reliability",
+  "observation": "The laptop link flapped within a two-minute window on 2026-08-04.",
+  "timeline": [
+    {
+      "utc": "~00:25-09:20",
+      "state": "offline",
+      "evidence": "ping and ssh both timed out across repeated retries over ~9h"
+    },
+    {
+      "utc": "~09:20",
+      "state": "reachable",
+      "evidence": "tailscale showed direct connection 42.114.218.147:21705; ssh returned 'up'; message delivered and confirmed by directory listing"
+    },
+    {
+      "utc": "~09:30",
+      "state": "offline again",
+      "evidence": "3 consecutive ssh timeouts; tailscale reports 'relay \"sin\"; offline, tx 2652 rx 0'"
+    }
+  ],
+  "consequence": "The mailbox is a real channel but not a reliable one. Anything that matters must be durable on disk in the repo first and sent opportunistically second \u2014 which is how the five decisions were handled, and why the send succeeded despite a window of only a few minutes.",
+  "what_this_does_not_change": "The message was delivered and confirmed present before the link dropped. Nothing needs resending."
+}
