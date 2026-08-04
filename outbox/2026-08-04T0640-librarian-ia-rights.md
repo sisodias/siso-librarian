@@ -105,9 +105,18 @@ enough to check in full, one query each, no sampling error:
                                                   ---
                                                   124
 
-  Science fiction                 535        40   ~13   (still sampled)
+  Science fiction                 535       462     4               13
 
-124 NEW BOOKS COUNTED, plus ~13 estimated for science fiction.
+128 NEW BOOKS COUNTED. All six subjects, nothing estimated.
+
+Science fiction needed pagination (200 rows/page, 3 pages) rather than one
+query. Its 40-title sample had OVERSTATED it by 3x — 2.5% sampled against 0.9%
+actual. So small samples were noisy in BOTH directions, not systematically
+pessimistic as I said last loop.
+
+One more thing worth knowing: 535 search results collapsed to 462 unique titles.
+IA's reported pool size is not the number of distinct works — there are 73
+duplicates inside IA itself.
 
 The samples had understated every weak subject — Detective went 4 to 14, Essays
 26 to 37. Small samples on small pools were noisy in the pessimistic direction,

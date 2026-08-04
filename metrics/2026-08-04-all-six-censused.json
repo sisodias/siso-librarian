@@ -1,0 +1,61 @@
+{
+  "measured_at": "2026-08-04T16:37:27Z",
+  "question": "GQ-004",
+  "subject": "all six subjects censused \u2014 decision 7 fully counted",
+  "method": "Paginated the 535-item science-fiction pool (200 rows/page, 3 pages) rather than leaving it sampled.",
+  "census": [
+    {
+      "subject": "English poetry",
+      "pool": 92,
+      "checked": 92,
+      "new": 38,
+      "pct": 41.3
+    },
+    {
+      "subject": "Essays",
+      "pool": 77,
+      "checked": 77,
+      "new": 37,
+      "pct": 48.1
+    },
+    {
+      "subject": "Cookery",
+      "pool": 60,
+      "checked": 60,
+      "new": 30,
+      "pct": 50.0
+    },
+    {
+      "subject": "Detective and mystery stories",
+      "pool": 128,
+      "checked": 128,
+      "new": 14,
+      "pct": 10.9
+    },
+    {
+      "subject": "Historical fiction",
+      "pool": 58,
+      "checked": 58,
+      "new": 5,
+      "pct": 8.6
+    },
+    {
+      "subject": "Science fiction",
+      "pool": 535,
+      "checked": 462,
+      "new": 4,
+      "pct": 0.9
+    }
+  ],
+  "total_new_books": 128,
+  "science_fiction_correction": {
+    "sampled_estimate": 13,
+    "counted": 4,
+    "sample_pct": 2.5,
+    "true_pct": 0.9,
+    "note": "The 40-title sample OVERSTATED science fiction by 3x \u2014 the opposite direction from the weak subjects, which were all understated. Small samples were noisy in BOTH directions; the pessimism I noted last loop was not a systematic bias, just noise."
+  },
+  "unique_title_note": "535 search results collapsed to 462 unique titles \u2014 73 duplicates within IA itself, which the dedup handled silently. Worth stating: the pool size IA reports is not the number of distinct works.",
+  "final_answer": "128 new books across six subjects, every one counted rather than estimated. That is the answer to decision 7 as far as these subjects go.",
+  "derivations": {}
+}
