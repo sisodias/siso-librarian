@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-04T08:58:58Z",
+  "question": "GQ-006",
+  "source": "~/.config/bifrost/logs.db",
+  "method": "read-only aggregate over the gateway request log; dbstat for physical size",
+  "file_bytes": 5687062528,
+  "rows": 2232,
+  "bulk_columns_mb": {
+    "raw_request": 2247,
+    "responses_input_history": 2185,
+    "content_summary": 367,
+    "params": 179,
+    "tools": 178,
+    "raw_response": 126,
+    "error_details": 107
+  },
+  "daily_body_gb": {
+    "2026-08-01": 0.0,
+    "2026-08-02": 0.01,
+    "2026-08-03": 0.72,
+    "2026-08-04": 3.61
+  },
+  "free_pages": 0,
+  "correction": "My escalation to Shaan said the log grows '~1GB/day'. Measured: 3.61 GB on 2026-08-04 alone with the day incomplete, against 0.72 GB the previous day. Growth tracks fleet activity and is accelerating, not linear \u2014 the figure I sent him understates it by roughly 4x.",
+  "vacuum_would_not_help": "freelist_count is 0, so no space is reclaimable by VACUUM. The pages are live request bodies, not deleted rows. My first theory \u2014 5.2 GB of unvacuumed free space \u2014 was wrong and I checked it before recording it.",
+  "root_disk_available_at_measure": "19Gi",
+  "derivations": {
+    "free_pages": {
+      "kind": "sqlite",
+      "source": "~/.config/bifrost/logs.db",
+      "query": "select freelist_count from pragma_freelist_count;"
+    }
+  },
+  "live_counter_note": "rows and file_bytes are NOT declared as derivations. Both moved while this file was being written \u2014 2,232 -> 2,237 rows and +10 MB within a minute \u2014 because the gateway is serving traffic. A derivation over a live counter disagrees by construction, and declaring one would make the audit fail on every run for a reason that is not a defect. They are observations with a timestamp."
+}
