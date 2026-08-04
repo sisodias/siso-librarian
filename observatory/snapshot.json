@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T06:07:36.828Z",
+  "generated_at": "2026-08-04T06:14:23.086Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -30,6 +30,14 @@
       "claims_superseded": 2,
       "claims_unreadable": 0
     }
+  },
+  "repo_health": {
+    "npm_scripts": 11,
+    "verify_steps": 5,
+    "scripts_on_disk": 11,
+    "metrics_files": 31,
+    "worklogs": 63,
+    "proposals": 17
   },
   "derivations": {
     "passages.passages": {
@@ -121,6 +129,26 @@
       "source": "/Users/shaansisodia/SISO_Library_Agent/refresh/ledger.json",
       "kind": "json-length",
       "query": "entries[]"
+    },
+    "repo_health.npm_scripts": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/package.json",
+      "kind": "json-scripts-count",
+      "query": "scripts"
+    },
+    "repo_health.metrics_files": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/metrics",
+      "kind": "file-count",
+      "query": "*.json"
+    },
+    "repo_health.worklogs": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/worklog",
+      "kind": "file-count",
+      "query": "*.md"
+    },
+    "repo_health.proposals": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/proposals",
+      "kind": "file-count",
+      "query": "*.md"
     },
     "routing.requests": {
       "source": "/Users/shaansisodia/.config/bifrost/logs.db",

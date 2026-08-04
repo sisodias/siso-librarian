@@ -262,12 +262,30 @@ const derivations = {
   'claim_layer.production_claims': { source: join(root, 'claims'), kind: 'file-count', query: "*.json" },
   'claim_layer.portfolio_questions': { source: join(root, 'questions/portfolio.json'), kind: 'json-length', query: "questions[]" },
   'claim_layer.refresh_entries': { source: join(root, 'refresh/ledger.json'), kind: 'json-length', query: "entries[]" },
+  'repo_health.npm_scripts': { source: join(root, 'package.json'), kind: 'json-scripts-count', query: 'scripts' },
+  'repo_health.metrics_files': { source: join(root, 'metrics'), kind: 'file-count', query: '*.json' },
+  'repo_health.worklogs': { source: join(root, 'worklog'), kind: 'file-count', query: '*.md' },
+  'repo_health.proposals': { source: join(root, 'proposals'), kind: 'file-count', query: '*.md' },
   'routing.requests': { source: join(home, '.config/bifrost/logs.db'), kind: 'sqlite', query: "select count(*) from logs where provider='Minimax' and model='MiniMax-M3' and timestamp >= datetime('now','-24 hours');" },
+};
+
+// Facts about the repo itself. These kept appearing as hand-typed numbers in
+// worklog tables — "npm scripts 8 -> 10" was wrong and unchecked for two loops
+// — and prose is the one artifact no gate reads. Emitting them here puts them
+// under the existing derivation audit instead of inventing a sixth gate.
+const repoHealth = {
+  npm_scripts: Object.keys(JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts || {}).length,
+  verify_steps: (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts.verify || '').split('&&').length,
+  scripts_on_disk: sh('find', [join(root, 'scripts'), '-type', 'f']).split('\n').filter(Boolean).length,
+  metrics_files: sh('find', [join(root, 'metrics'), '-type', 'f', '-name', '*.json']).split('\n').filter(Boolean).length,
+  worklogs: sh('find', [join(root, 'worklog'), '-type', 'f', '-name', '*.md']).split('\n').filter(Boolean).length,
+  proposals: sh('find', [join(root, 'proposals'), '-type', 'f', '-name', '*.md']).split('\n').filter(Boolean).length,
 };
 
 const snapshot = {
   generated_at: new Date().toISOString(),
   bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer },
+  repo_health: repoHealth,
   derivations,
   active_questions: portfolio.questions.map(q => ({ id: q.id, text: q.text, status: q.status, action_status: q.action_status, claim_packets: q.claim_packets })),
   routing: minimaxRouting,

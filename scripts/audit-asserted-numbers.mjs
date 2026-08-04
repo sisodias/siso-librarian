@@ -65,6 +65,13 @@ let countsChecked = 0;
 const SNAPSHOT = 'observatory/snapshot.json';
 
 function deriveCount(d) {
+  // Kept in sync with deriveValue below. They drifted once: json-scripts-count
+  // was added to one and not the other, so a falsified count was caught but
+  // reported as "unavailable" instead of naming the true value.
+  if (d.kind === 'json-scripts-count') {
+    if (!existsSync(d.source)) return null;
+    return Object.keys(JSON.parse(readFileSync(d.source, 'utf8'))[d.query] || {}).length;
+  }
   if (d.kind === 'sqlite') {
     if (!existsSync(d.source)) return null;
     return Number(execFileSync('sqlite3', [`file:${d.source}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
@@ -104,7 +111,11 @@ if (existsSync(SNAPSHOT)) {
   for (const [label, d] of Object.entries(snap.derivations || {})) {
     checkSourceExists(label, d, SNAPSHOT);
     const [group, key] = label.split('.');
-    const asserted = snap?.bucket_counts?.[group]?.[key];
+    // Resolve the label against bucket_counts first (where most live), then
+    // against the snapshot root. Hardcoding bucket_counts meant a declared
+    // derivation outside it resolved to undefined and was SKIPPED SILENTLY —
+    // repo_health.* was declared, audited nothing, and reported success.
+    const asserted = snap?.bucket_counts?.[group]?.[key] ?? snap?.[group]?.[key];
     if (typeof asserted !== 'number') continue;
     let derived = null;
     try { derived = deriveCount(d); } catch { derived = null; }
@@ -149,6 +160,10 @@ function deriveValue(d) {
   if (d.kind === 'jsonl-count') {
     if (!existsSync(d.source)) return null;
     return readFileSync(d.source, 'utf8').split('\n').filter(Boolean).length;
+  }
+  if (d.kind === 'json-scripts-count') {
+    if (!existsSync(d.source)) return null;
+    return Object.keys(JSON.parse(readFileSync(d.source, 'utf8'))[d.query] || {}).length;
   }
   if (d.kind === 'file-bytes') {
     const src = d.source.replace(/^~/, process.env.HOME);
