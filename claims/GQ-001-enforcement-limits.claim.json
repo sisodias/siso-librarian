@@ -10,11 +10,11 @@
   },
   "claim": {
     "id": "claim:GQ-001.enforcement-limits.v1",
-    "position": "Automated gates and execution catch different classes of defect and neither substitutes for the other: over one session with three gates, 3 defects were caught by a gate and 6 only by running something. Gates detect drift between a recorded value and its source; they are blind to code that does not do what its description claims, to a wrong path shared by producer and checker, and to a diagnosis naming the wrong layer. A workspace that invests only in gates will pass while being wrong.",
-    "confidence": 0.58,
+    "position": "Automated gates and execution catch different classes of defect and neither substitutes for the other. Gates detect drift between a recorded value and its source; they are blind to code that does not do what its description claims, to a wrong path shared by producer and checker, and to a diagnosis naming the wrong layer \u2014 every one of which occurred this session and was found only by running something. Two measured limits sharpen this. First, the gates have blocked ZERO pushes: verify runs before every push by habit and stops voluntarily, so it is a pre-commit convention rather than an enforcement boundary \u2014 nothing prevents a push that skips it. Second, a third category exists that the gates cannot occupy: when the gate self-test was first run it found the refresh evaluator swallowing every git error and reporting ten entries fresh from zero information. The workspace now runs 5 gates and 12 self-test cases. The original 3-versus-6 defect ratio is NOT refreshed here: classifying 134 worklogs by keyword produced 11-versus-13, and sampling showed the matches were mostly gate DEMONSTRATIONS on fixtures rather than real catches, so no honest mechanical successor to the hand count exists.",
+    "confidence": 0.72,
     "status": "proposed",
     "created_at": "2026-08-04T05:01:45Z",
-    "updated_at": "2026-08-04T05:01:45Z",
+    "updated_at": "2026-08-04T14:36:11Z",
     "supersedes": []
   },
   "grounding": [
@@ -58,6 +58,34 @@
       "byte_range": {
         "start": 325,
         "end": 345
+      }
+    },
+    {
+      "quote": "\"pushes_blocked_by_verify\": 0",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq001-rederived.json",
+        "title": "GQ-001 re-derived: what is countable about enforcement, and what is not"
+      },
+      "locator": "what_is_countable.pushes_blocked_by_verify",
+      "passage_id": "gq001:never-blocked",
+      "byte_range": {
+        "start": 1333,
+        "end": 1362
+      }
+    },
+    {
+      "quote": "\"defects_the_selftest_found_on_first_run\": 1",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq001-rederived.json",
+        "title": "GQ-001 re-derived: what is countable about enforcement, and what is not"
+      },
+      "locator": "what_is_countable.defects_the_selftest_found_on_first_run",
+      "passage_id": "gq001:selftest-found",
+      "byte_range": {
+        "start": 1283,
+        "end": 1327
       }
     }
   ],

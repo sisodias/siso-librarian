@@ -1,0 +1,40 @@
+{
+  "measured_at": "2026-08-04T14:35:32Z",
+  "question": "GQ-001",
+  "action": "sixth and final re-derivation \u2014 the last self-referential claim",
+  "stale_figures": {
+    "claim_says": {
+      "automated_gates": 3,
+      "defects_caught_by_a_gate": 3,
+      "defects_caught_only_by_execution": 6
+    },
+    "now": {
+      "automated_gates": 5,
+      "verify_chain_steps": 6,
+      "gate_selftest_cases": 12,
+      "worklogs": 134
+    }
+  },
+  "what_i_could_not_count": {
+    "attempted": "Classifying every defect in 134 worklogs as gate-caught vs execution-caught, by keyword.",
+    "result": "11 gate-matches, 13 execution-matches.",
+    "why_i_discarded_it": "Sampling the matches showed the keywords do not mean what the count implies. Lines like \"CAUGHT: ['npm run mailbox:flush']\" are me DEMONSTRATING a gate fires on a deliberate fixture, not a gate catching a real defect. A keyword count over prose is the same shallow-proxy mistake as ranking databases by size or classifying launchd jobs by ProgramArguments[0].",
+    "decision": "Not publishing a ratio I cannot defend. The original 3-vs-6 was hand-counted over one session; there is no honest mechanical successor to it."
+  },
+  "what_is_countable": {
+    "automated_gates": 5,
+    "gate_selftest_cases": 12,
+    "defects_the_selftest_found_on_first_run": 1,
+    "pushes_blocked_by_verify": 0
+  },
+  "the_zero_is_a_finding": "verify has never blocked a push \u2014 not because it never fails, but because every push in this repo runs it first and stops voluntarily. The gate is a pre-commit habit, not an enforcement boundary. Nothing prevents a push that skips it.",
+  "the_selftest_finding": "When the gate self-test was first run it found the refresh evaluator swallowing all git errors and returning an empty commit list \u2014 reporting ten entries fresh from zero information. That is one defect found BY A GATE-CHECKER rather than by a gate, which is a third category the original claim did not have.",
+  "verdict": "The claim's DIRECTION survives \u2014 gates and execution catch different classes, and this session produced repeated examples of defects only execution could find. Its NUMBERS are stale and I cannot honestly refresh the ratio. Position rewritten to assert the distinction and drop the un-reproducible count.",
+  "derivations": {
+    "what_is_countable.gate_selftest_cases": {
+      "kind": "text-match-count",
+      "source": "scripts/gate-selftest.sh",
+      "query": "^check "
+    }
+  }
+}

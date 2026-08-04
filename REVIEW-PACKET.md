@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T14:33:35.709Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T14:39:07.440Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -17,13 +17,13 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-001:enforcement-limits — confidence 0.58, action `proposed`
+## GQ-001:enforcement-limits — confidence 0.72, action `proposed`
 
 **Question.** How should the complete agent workspace be designed across code layout, agent architecture, memory, enforcement, and agent-generated user interfaces?
 
 **Scope.** the enforcement and memory layers, measured over one continuous session
 
-**Position.** Automated gates and execution catch different classes of defect and neither substitutes for the other: over one session with three gates, 3 defects were caught by a gate and 6 only by running something. Gates detect drift between a recorded value and its source; they are blind to code that does not do what its description claims, to a wrong path shared by producer and checker, and to a diagnosis naming the wrong layer. A workspace that invests only in gates will pass while being wrong.
+**Position.** Automated gates and execution catch different classes of defect and neither substitutes for the other. Gates detect drift between a recorded value and its source; they are blind to code that does not do what its description claims, to a wrong path shared by producer and checker, and to a diagnosis naming the wrong layer — every one of which occurred this session and was found only by running something. Two measured limits sharpen this. First, the gates have blocked ZERO pushes: verify runs before every push by habit and stops voluntarily, so it is a pre-commit convention rather than an enforcement boundary — nothing prevents a push that skips it. Second, a third category exists that the gates cannot occupy: when the gate self-test was first run it found the refresh evaluator swallowing every git error and reporting ten entries fresh from zero information. The workspace now runs 5 gates and 12 self-test cases. The original 3-versus-6 defect ratio is NOT refreshed here: classifying 134 worklogs by keyword produced 11-versus-13, and sampling showed the matches were mostly gate DEMONSTRATIONS on fixtures rather than real catches, so no honest mechanical successor to the hand count exists.
 
 **Proposed action.** Stop adding gates at three. The marginal gate checks another recorded value; the marginal execution test checks whether something works. For a standing agent the higher-yield investment is a habit of running changed code against a copy, which caught the auth defect, the SIP block, and the misattributed cache diagnosis that no gate could see.
 
@@ -32,6 +32,8 @@ Every claim states a position, a confidence, and an action. The useful review is
 - `"defects_caught_by_a_gate": 3` — metrics/2026-08-04-gq001-workspace-enforcement.json [535:564], enforcement.defects_caught_by_a_gate
 - `"defects_caught_only_by_execution": 6` — metrics/2026-08-04-gq001-workspace-enforcement.json [570:607], enforcement.defects_caught_only_by_execution
 - `"automated_gates": 3` — metrics/2026-08-04-gq001-workspace-enforcement.json [325:345], enforcement.automated_gates
+- `"pushes_blocked_by_verify": 0` — metrics/2026-08-04-gq001-rederived.json [1333:1362], what_is_countable.pushes_blocked_by_verify
+- `"defects_the_selftest_found_on_first_run": 1` — metrics/2026-08-04-gq001-rederived.json [1283:1327], what_is_countable.defects_the_selftest_found_on_first_run
 
 <sub>claims/GQ-001-enforcement-limits.claim.json · claim:GQ-001.enforcement-limits.v1</sub>
 
