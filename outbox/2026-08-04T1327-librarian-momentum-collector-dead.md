@@ -88,8 +88,7 @@ FINAL CLASSIFICATION OF ALL 36
   remount artifact     2   point at "SISO-STORAGE-VAULT 1", a mount that healed
   genuine runtime      1   refresh-tailscale-upnp: router at 192.168.0.1 unreachable
   killed by signal     1   codex-bifrost-shim, exit -15 (SIGTERM, not a failure)
-  malformed plist      1   com.siso.hermes.kengine is not well-formed XML
-  untraced             2
+  untraced             0
 
 I revised this after tracing further. I had reported 10 "runtime failures" on
 the grounds that the program existed. Three of them are the same missing-file
@@ -118,9 +117,16 @@ these are real failures rather than dangling references. foundry-momentum is one
 of them (it runs fine and dies on the empty repos.db). I have not traced the
 other nine.
 
-One more thing: com.siso.hermes.kengine's plist is invalid XML. I found it
-because it crashed my survey loop mid-scan and would have hidden the six jobs
-listed after it.
+RETRACTION: I said com.siso.hermes.kengine's plist was invalid XML. It is not.
+`plutil -lint` reports OK. Line 9 is a comment containing "--loop", and a double
+hyphen inside an XML comment is illegal per spec — so Python's expat rejects it
+while Apple's parser accepts it. The fault was my tool, not your file. Its
+actual failure is the missing venv python, same as the rest.
+
+A consolidation worth having: FOUR jobs depend on
+~/Projects/youtube-ai-research/venv/bin/python, which is gone. So 30 failing
+jobs are fewer than 30 distinct causes — restoring one virtualenv fixes four of
+them.
 
 Nothing repaired or unloaded — deleting a launchd job is destructive and these
 are your operational jobs. Some may be intentionally

@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T13:43:58Z",
+  "question": "GQ-006",
+  "subject": "closing the launchd survey \u2014 two corrections to my own reporting",
+  "correction_1_bookkeeping": {
+    "claimed": "untraced: 2",
+    "actual": "Zero. Re-enumerating showed all 10 non-78/127 failures already had diagnoses. The \"2\" was a bookkeeping error in my own table, not a real gap \u2014 I subtracted wrong."
+  },
+  "correction_2_malformed_plist": {
+    "claimed": "com.siso.hermes.kengine has a malformed plist (invalid XML, ExpatError line 9 col 51).",
+    "actual": "THE PLIST IS FINE. `plutil -lint` reports OK.",
+    "cause": "Line 9 is a comment containing `--loop`. A double hyphen inside an XML comment is illegal per spec, so Python's expat rejects it \u2014 Apple's parser accepts it. The defect was in MY TOOL, and I reported someone else's working file as broken.",
+    "lesson": "I used a strict third-party parser on a vendor format and trusted its verdict over the vendor tool. plutil is the authority for plists."
+  },
+  "hermes_real_cause": {
+    "job": "com.siso.hermes.kengine",
+    "exit": 126,
+    "error": "/bin/bash: .../youtube-ai-research/venv/bin/python: No such file or directory",
+    "class": "MISSING FILE \u2014 same defect as the other 29."
+  },
+  "consolidation": {
+    "shared_dependency": "~/Projects/youtube-ai-research/venv/bin/python",
+    "jobs_depending_on_it": 4,
+    "reading": "One deleted virtualenv accounts for four separate job failures. The 30 deleted-path failures are fewer than 30 distinct causes."
+  },
+  "final": {
+    "total_jobs": 51,
+    "healthy": 15,
+    "failing": 36,
+    "deleted_path": 30,
+    "remount_artifact": 2,
+    "genuine_runtime": 1,
+    "killed_by_signal": 1,
+    "malformed_plist": 0,
+    "untraced": 0
+  },
+  "derivations": {}
+}
