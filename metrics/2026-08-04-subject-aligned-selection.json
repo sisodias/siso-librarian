@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-04T16:07:19Z",
+  "question": "GQ-004",
+  "subject": "selection was the blocker; the Library already answers it",
+  "the_problem": "270,049 IA texts carry explicit public-domain rights, but the head of that pool is ephemera \u2014 student newspapers, sales catalogues, family photographs. I called choosing among them \"a curation decision, not a legal one\" and left it there.",
+  "the_signal_i_had_not_used": {
+    "source": "~/foundry-data/domains/books/books.sqlite, book_subject",
+    "top_subjects": {
+      "Science fiction": 3291,
+      "Short stories": 3218,
+      "Fiction": 1959,
+      "Adventure stories": 1642,
+      "Historical fiction": 1080,
+      "Detective and mystery stories": 1013
+    },
+    "reading": "The Library has 77,540 books with recorded subjects. What it collects is measurable, not a preference I have to guess at. Literary fiction \u2014 science fiction, short stories, adventure, detective \u2014 and emphatically not ephemera."
+  },
+  "applying_it_to_IA": {
+    "Science fiction": 535,
+    "Short stories": 455,
+    "Detective and mystery stories": 128,
+    "Adventure stories": 88,
+    "Historical fiction": 58,
+    "total": 1264,
+    "sample_titles": [
+      "Vulcan's Workshop",
+      "Wanderer of Infinity",
+      "Planet of Dreams"
+    ],
+    "reading": "1,264 texts across the Library's top five subjects, every one carrying an explicit rights field. The titles are genre fiction, not newspapers. The subject filter turns an unusable 270k pool into a targeted 1.3k one."
+  },
+  "what_this_resolves": "Decision 7 offered two live options: a curated identifier list someone supplies, or post-fetch relevance sampling that inverts the check-before-download contract. This is a third: filter by the subjects the Library demonstrably collects. No new contract, no rights judgement, no human list.",
+  "not_done": "No ingestion. The want-list contract requires named identifiers and this produces a query; wiring one to the other is a real change to the source adapter, and the dedup question \u2014 77,534 books already have titles \u2014 should be answered first.",
+  "derivations": {}
+}

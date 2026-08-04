@@ -26,6 +26,33 @@ What IS open is selection, not rights: the head of that 270k pool is ephemera �
 student newspapers, sales catalogues, family photographs — and choosing which
 the Library wants is a curation decision, not a legal one.
 
+AND THE LIBRARY ALREADY ANSWERS IT. I said "curation decision" and stopped. But
+books.sqlite records subjects for all 77,540 books, so what this Library
+collects is measurable:
+
+  Science fiction 3,291   Short stories 3,218   Fiction 1,959
+  Adventure 1,642   Historical fiction 1,080   Detective 1,013
+
+Applying those subjects to the explicit-rights IA pool:
+
+  Science fiction                535
+  Short stories                  455
+  Detective and mystery stories  128
+  Adventure stories               88
+  Historical fiction              58
+                               -----
+                               1,264
+
+Sample titles: "Vulcan's Workshop", "Wanderer of Infinity", "Planet of Dreams".
+Genre fiction, not newspapers. The subject filter turns an unusable 270k pool
+into a targeted 1.3k one, with no rights judgement and no human-supplied list.
+
+That is a THIRD option for decision 7, alongside "someone supplies identifiers"
+and "sample relevance after fetch". I have not built it — the want-list contract
+takes named identifiers and this produces a query, so wiring them together is a
+real adapter change, and the dedup question should be settled first now that
+77,534 books turn out to have titles.
+
 The original text follows, and it stands for the sparse cases.
 
 This is a copyright determination, not a query problem. A 1900 Twain edition is
