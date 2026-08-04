@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T17:51:07Z",
+  "question": "GQ-006",
+  "subject": "three of the four unverified vault databases, verified",
+  "the_blocker_was_the_check_form": "I recorded four databases as \"skipped, too slow on USB\" after full pragma quick_check exceeded ten minutes. quick_check(1) bounds the error count and returns in seconds \u2014 the same integrity signal for a first failure, at a fraction of the cost. The constraint I recorded as file size was partly my choice of pragma.",
+  "now_verified": [
+    {
+      "db": "identity-20260804T112002Z.sqlite",
+      "gb": 1.9,
+      "result": "ok"
+    },
+    {
+      "db": "logs-20260804T091934Z.db",
+      "gb": 5.4,
+      "result": "ok"
+    },
+    {
+      "db": "logs-20260804T053544Z.db",
+      "gb": 3.4,
+      "result": "ok"
+    }
+  ],
+  "still_unverified": [
+    {
+      "db": "passages.sqlite",
+      "gb": 22.6,
+      "reason": "Exceeds ten minutes even with quick_check(1). Size is genuinely the constraint here, not the pragma.",
+      "what_it_does_have": "A banded checksum across 250,005 rows in five bands spanning first to last rowid, run earlier today, all matching the live index."
+    }
+  ],
+  "vault_integrity_now": {
+    "databases": 12,
+    "verified_today": 11,
+    "unverified": 1
+  },
+  "honest_note": "11 of 12, not 12 of 12. The passage index has stronger evidence than a quick_check anyway \u2014 a content comparison against the live database \u2014 but it has not had a structural integrity check today and I am not going to claim otherwise.",
+  "derivations": {}
+}

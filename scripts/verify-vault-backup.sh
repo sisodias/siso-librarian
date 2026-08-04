@@ -15,6 +15,12 @@
 # Corruption confined to an unsampled band still passes, and that is stated
 # rather than glossed.
 #
+# Use pragma quick_check(1), not bare quick_check. The bounded form stops after
+# the first error and returns in seconds; the unbounded form exceeded ten minutes
+# on the 1.9-5.4 GB vault copies and I recorded them as "too slow to verify" when
+# the real problem was my choice of pragma. Only passages.sqlite (22.6 GB) is
+# genuinely too large either way.
+#
 # immutable=1 is required for WAL-header copies (write_version 2), which cannot
 # open read-only without creating a -shm sidecar beside them.
 #
