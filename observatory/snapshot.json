@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:41:51.632Z",
+  "generated_at": "2026-08-04T04:44:20.511Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -160,9 +160,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 140,
-    "prompt_tokens": 2687270,
-    "completion_tokens": 65127,
+    "requests": 143,
+    "prompt_tokens": 2690434,
+    "completion_tokens": 65183,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
@@ -299,7 +299,8 @@
       "Cloudflare ingress for the observatory",
       "Six registered God Questions have no testable contract"
     ],
-    "source": "proposals/2026-08-04-decisions-awaiting-shaan.md"
+    "source": "proposals/2026-08-04-decisions-awaiting-shaan.md",
+    "successor_handover": "HANDOVER-NEXT.md"
   },
   "missing_sources": [],
   "caveats": [

@@ -241,7 +241,7 @@ const snapshot = {
   library_snapshot: snapshotState,
   god_questions: { ...registryGQ, coverage: gqCoverage },
   release_integrity: releaseState,
-  awaiting_decision: blocked,
+  awaiting_decision: { ...blocked, successor_handover: 'HANDOVER-NEXT.md' },
   missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',

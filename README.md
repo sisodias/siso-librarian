@@ -1,5 +1,9 @@
 # SISO Librarian
 
+> **Running this next? Read [`HANDOVER-NEXT.md`](HANDOVER-NEXT.md) first.**
+> Five decisions are blocked on Shaan (`proposals/2026-08-04-decisions-awaiting-shaan.md`).
+> `HANDOVER.md` predates 2026-08-04 and contains claims that are now false.
+
 The standing agent whose domain is the Great Library of SISO: the book library,
 the people graph, Foundry, and the question portfolio they serve.
 
