@@ -118,7 +118,11 @@ The contract makes that field mandatory, so it excludes essentially the whole ti
 
 **Why I stopped:** this is a copyright determination. Deciding that a 1900 Twain edition is public domain despite absent metadata is almost certainly correct and is still not a call I should make unilaterally on your behalf.
 
-**Options, cheapest first:** accept a small high-confidence corpus (dozens, not thousands); use publication-year plus author death-date as a rights heuristic with a documented rule; or source tier-1 material from HathiTrust/Google Books where rights metadata is denser.
+**Corrected 2026-08-04 after measuring rather than sampling:** the rights-clean pool is **270,046** English public-domain texts excluding borrow-only collections — 119,200 in `americana`, 37,299 of those pre-1930. My earlier 'dozens, not thousands' was wrong; I had sized it from three author queries.
+
+That inverts the problem. Volume is not the constraint — **selection within the pool is**. Its head is ephemera: student newspapers, Sotheby's sales catalogues, family letters, photographs. So a publication-year rights heuristic would add volume to a pool that already has plenty.
+
+**Live options:** a curated identifier list of works the Library actually wants; or full-text relevance sampling after fetch, which inverts the contract's check-before-download design and needs your view on whether that is acceptable.
 
 **Evidence:** `metrics/2026-08-04-ia-rights-sparsity.json`
 

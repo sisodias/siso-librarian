@@ -1,0 +1,17 @@
+{
+  "measured_at": "2026-08-04T06:43:21Z",
+  "thread": "ia-corpus-sizing",
+  "correction": "Decision 7 offered 'accept a small high-confidence corpus (dozens, not thousands)'. That was wrong. I had sized the corpus by sampling three authors rather than measuring the pool.",
+  "measured_pool": {
+    "english_public_domain_texts": 270065,
+    "excluding_borrow_only_collections": 270046,
+    "in_americana_published_works": 119200,
+    "pre_1930": 114811,
+    "americana_and_pre_1930": 37299
+  },
+  "but_relevance_still_fails": {
+    "observation": "Top results in every slice are ephemera: 'Golden Gater 1952' (a student newspaper), 'Sales catalogue: Sotheby's', 'William Cheyney Letter to son 1891', 'Patterson family waiting for the train'. The pool is large and its head is archival miscellany, not the essays, speeches and journalism CHARTER tier-1 names.",
+    "implication": "Volume was never the binding constraint. 270,046 high-confidence texts exist and I still cannot express which of them the Library wants, because IA subject tags are folksonomy and the rights-bearing slice is dominated by institutional scans rather than published literary work."
+  },
+  "what_this_changes_for_decision_7": "The 'small corpus' option is mis-stated and should read: a LARGE rights-clean pool exists, but selecting the tier-1 subset within it is unsolved. That makes the publication-year heuristic less attractive \u2014 it would add volume to a pool that already has volume \u2014 and makes a curated identifier list, or full-text relevance sampling, the live options."
+}
