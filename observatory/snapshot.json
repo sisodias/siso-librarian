@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T08:16:03.945Z",
+  "generated_at": "2026-08-04T08:23:50.706Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -37,7 +37,7 @@
     "verify_steps": 5,
     "scripts_on_disk": 16,
     "metrics_files": 38,
-    "worklogs": 84,
+    "worklogs": 85,
     "proposals": 17
   },
   "derivations": {
@@ -70,6 +70,31 @@
       "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
       "kind": "file-count",
       "query": "*.json"
+    },
+    "god_questions.coverage.with_testable_contract": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
+      "kind": "json-predicate-count",
+      "query": "frontier-question-*.json research_contract.success_criteria+ research_contract.falsifiers+ research_contract.watch_triggers+"
+    },
+    "release_integrity.works_referenced": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/releases",
+      "kind": "json-join-count",
+      "query": "*.json work_id"
+    },
+    "release_integrity.orphaned_releases": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/releases",
+      "kind": "json-join-count",
+      "query": "*.json work_id missing /Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works"
+    },
+    "release_integrity.works_without_releases": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/releases",
+      "kind": "json-join-count",
+      "query": "*.json work_id unreferenced /Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works"
+    },
+    "awaiting_decision.count": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/proposals/2026-08-04-decisions-awaiting-shaan.md",
+      "kind": "text-match-count",
+      "query": "^## [0-9]+\\. "
     },
     "god_questions.total": {
       "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
@@ -209,12 +234,7 @@
     "routing.completion_tokens": "derivable: same as routing.prompt_tokens, same moving-window caveat.",
     "library_snapshot.n": "derivable, not yet: version count of the whole-library snapshot in the registry.",
     "library_snapshot.releases": "derivable, not yet: release count carried inside the current snapshot version.",
-    "god_questions.coverage.with_testable_contract": "derivable, not yet: requires counting registry questions whose contract arrays are all non-empty — a predicate over JSON, not a file count.",
     "god_questions.coverage.with_local_claims": "derivable, not yet: intersection of registry question ids with the local portfolio.",
-    "release_integrity.works_referenced": "derivable, not yet: distinct work ids referenced by releases; needs a join across two directories.",
-    "release_integrity.works_without_releases": "derivable, not yet: same join, complement.",
-    "release_integrity.orphaned_releases": "derivable, not yet: same join, other direction.",
-    "awaiting_decision.count": "derivable, not yet: counts decisions in a proposals markdown file; needs a text predicate rather than a JSON one.",
     "escalations.on_remote": "un-derivable offline: asks whether each queued file exists on origin/main. Depends on network reachability, so it is an observation, not a re-derivation.",
     "escalations.delivered_ever": "derivable, not yet: file count of outbox/sent. Currently 0 and the directory may not exist, which file-count reports as 0 — indistinguishable from a real 0.",
     "escalations.oldest_queued_age_hours": "un-derivable: age relative to build time. Any re-derivation computes a different number by design.",
@@ -448,7 +468,7 @@
     "queued": 2,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 2.3,
+    "oldest_queued_age_hours": 2.5,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"

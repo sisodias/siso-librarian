@@ -112,6 +112,69 @@ function derive(d) {
         return negate ? !set.has(st) : set.has(st);
       }).length;
     }
+    // Count JSON files in a directory satisfying a predicate over their
+    // contents. Written for the God Question coverage numbers, where "has a
+    // testable contract" means several arrays are all non-empty — a condition
+    // no file count can express.
+    //
+    // The predicate is a restricted mini-language, NOT eval: `a.b.c` walks the
+    // object, `+` requires non-empty, `?` requires present. Accepting arbitrary
+    // JS here would mean the audit could be made to agree with anything by
+    // writing a clever enough declaration.
+    case 'json-predicate-count': {
+      const [glob, ...terms] = String(d.query).split(/\s+/);
+      const re = new RegExp('^' + glob.replace(/[.]/g, '\\.').replace(/\*/g, '.*') + '$');
+      return readdirSync(src).filter((f) => re.test(f)).filter((f) => {
+        let doc;
+        try { doc = JSON.parse(readFileSync(join(src, f), 'utf8')); } catch { return false; }
+        return terms.every((t) => {
+          const mode = t.slice(-1);
+          const path = t.slice(0, -1);
+          const v = path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
+          if (mode === '+') return Array.isArray(v) ? v.length > 0 : v != null && v !== '';
+          if (mode === '?') return v !== undefined;
+          return false;
+        });
+      }).length;
+    }
+    // Distinct values of a field across JSON files in one directory, optionally
+    // intersected against ids present in another. This is the cross-directory
+    // join the release-integrity numbers need — "works referenced by a release"
+    // cannot be counted by looking at either directory alone.
+    case 'json-join-count': {
+      const [glob, field, mode, otherDir] = String(d.query).split(/\s+/);
+      const re = new RegExp('^' + glob.replace(/[.]/g, '\\.').replace(/\*/g, '.*') + '$');
+      const refs = new Set();
+      for (const f of readdirSync(src).filter((x) => re.test(x))) {
+        let doc;
+        try { doc = JSON.parse(readFileSync(join(src, f), 'utf8')); } catch { continue; }
+        const v = field.split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
+        for (const item of [].concat(v || [])) if (item) refs.add(String(item));
+      }
+      if (!mode) return refs.size;
+      const other = String(otherDir).replace(/^~/, process.env.HOME);
+      if (!existsSync(other)) return null;
+      const have = new Set();
+      for (const f of readdirSync(other).filter((x) => x.endsWith('.json'))) {
+        let doc;
+        try { doc = JSON.parse(readFileSync(join(other, f), 'utf8')); } catch { continue; }
+        // Ids ONLY. Adding the filename as a fallback key doubled the set with
+        // entries that no reference could ever match, which made
+        // works_without_releases read 25 against a true 0 — a checker inventing
+        // 25 phantom works and confidently reporting every one as orphaned.
+        if (doc?.id) have.add(String(doc.id));
+      }
+      if (mode === 'intersect') return [...refs].filter((r) => have.has(r)).length;
+      if (mode === 'missing') return [...refs].filter((r) => !have.has(r)).length;
+      if (mode === 'unreferenced') return [...have].filter((h) => !refs.has(h)).length;
+      return null;
+    }
+    // Count regex matches in a text file. The decisions-awaiting count lives in
+    // a markdown proposal, and nothing else could re-derive it.
+    case 'text-match-count': {
+      const m = readFileSync(src, 'utf8').match(new RegExp(d.query, 'gm'));
+      return m ? m.length : 0;
+    }
     case 'glob-exists': {
       // Whether any entry in a directory matches — e.g. did a package ship a
       // LICENSE file, under whatever capitalisation.
