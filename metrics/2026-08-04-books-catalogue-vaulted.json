@@ -1,0 +1,34 @@
+{
+  "measured_at": "2026-08-04T11:45:45Z",
+  "question": "GQ-006",
+  "action": "back up the books catalogue, and discover what it contains",
+  "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/books-catalogue/books-20260804T114444Z.sqlite",
+  "vault_bytes": 181796864,
+  "journal_mode": "delete",
+  "quick_check": "ok",
+  "tables": {
+    "book": 79071,
+    "book_field": 711639,
+    "book_subject": 184624,
+    "book_shelf": 206269,
+    "book_class": 82405,
+    "subject_facet": 85855
+  },
+  "verified": {
+    "book": "MATCH",
+    "book_field": "MATCH",
+    "book_subject": "MATCH"
+  },
+  "finding": {
+    "headline": "The Library DOES have titles. I have been claiming it does not.",
+    "evidence": "books.sqlite.book carries gid, title, authors, language, issued, rights \u2014 keyed on the same gid as passages.sqlite.book_body. 77,534 of 77,540 book bodies join to a title and author.",
+    "sample": [
+      "1 | The Declaration of Independence... | Jefferson, Thomas, 1743-18",
+      "3 | John F. Kennedy's Inaugural Address | Kennedy, John F."
+    ],
+    "unjoined": 6,
+    "consequence": "scripts/ia-dedup-check.mjs states 'The Library has no titles on its book edges, so title matching is unavailable' and falls back to author-level matching. That is a weaker check justified by a false premise. A title-aware dedup is possible and would be strictly stronger.",
+    "not_done": "Title normalisation (subtitles, editions, leading articles) is its own problem and deserves measuring rather than guessing. Comment corrected; implementation not attempted."
+  },
+  "derivations": {}
+}

@@ -10,8 +10,17 @@
 // Author matching is deliberately conservative — it flags for review, it does
 // not reject. Two writers can share a surname, and a prolific author having one
 // work in Gutenberg does not mean IA's copy of a different work is a duplicate.
-// The Library has no titles on its book edges, so title matching is unavailable
-// and this is the strongest signal on disk.
+// CORRECTION 2026-08-04: I wrote that the Library has no titles on its book
+// edges and that author matching was therefore the strongest signal available.
+// That was wrong. ~/foundry-data/domains/books/books.sqlite holds 79,071 books
+// with title, authors, language and rights, keyed on the same `gid` as the
+// passage index — 77,534 of 77,540 book bodies join to a title.
+//
+// So a title-aware dedup IS possible and would be strictly stronger than this
+// author-level check. Not implemented here yet: doing it properly means
+// normalising titles (subtitles, editions, "The"), which is its own problem and
+// deserves measuring rather than guessing. Recorded so the next reader does not
+// inherit the false premise that made author-only look like the ceiling.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
