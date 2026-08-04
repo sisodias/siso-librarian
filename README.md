@@ -30,6 +30,9 @@ npm run observatory:serve   # serve public/ on 127.0.0.1:8765 (+ tailnet if conf
 npm run review:packet       # REVIEW-PACKET.md, every claim with quotes resolved live
 npm run audit:numbers       # timestamps and declared derivations, re-derived from source
 npm run refresh:evaluate    # ledger drift, derived from git history not asserted
+npm run mailbox:status      # what escalations are queued, and is the laptop link up
+npm run mailbox:flush       # deliver queued escalations (no-op when the link is down)
+npm run scratch -- --dirty 'npm run verify'   # run any command against a throwaway clone
 ./scripts/minimax-cache-route.sh status   # routing + live cache probe (apply needs approval)
 ```
 

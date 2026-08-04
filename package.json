@@ -8,7 +8,9 @@
     "observatory:serve": "node scripts/serve-observatory.mjs",
     "ia:probe": "node scripts/probe-ia-metadata.mjs",
     "mm:bulk": "node scripts/mm-bulk-runner.mjs",
-    "scratch": "bash scripts/scratch-test.sh"
+    "scratch": "bash scripts/scratch-test.sh",
+    "mailbox:flush": "bash scripts/mailbox-flush.sh",
+    "mailbox:status": "bash scripts/mailbox-flush.sh status"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

@@ -200,6 +200,35 @@ for (const file of metricsFiles) {
 }
 const jsonlSumsChecked = declaredChecked;
 
+// --- Check 5: documented commands must exist -------------------------------
+// On 2026-08-04 a package.json rewrite silently dropped two npm scripts that a
+// worklog claimed to have added and the README documented. Nothing noticed
+// until the command was run a loop later. Prose that names a command is a
+// claim, and this checks it the same way byte ranges are checked.
+let documentedCommands = 0;
+if (existsSync('README.md') && existsSync('package.json')) {
+  const readme = readFileSync('README.md', 'utf8');
+  const scripts = new Set(Object.keys(JSON.parse(readFileSync('package.json', 'utf8')).scripts || {}));
+  const named = new Set([...readme.matchAll(/npm run ([a-z][\w:-]*)/g)].map((m) => m[1]));
+  for (const name of named) {
+    documentedCommands += 1;
+    if (!scripts.has(name)) {
+      findings.push({ check: 'documented-command-missing', command: `npm run ${name}`,
+        note: 'README documents this command but package.json has no such script.' });
+    }
+  }
+  for (const f of walk(join(root, 'scripts'))) {
+    const rel = relative(root, f);
+    if (!/\.(mjs|sh)$/.test(rel)) continue;
+    const referenced = readme.includes(rel) || [...scripts].some((k) =>
+      JSON.parse(readFileSync('package.json', 'utf8')).scripts[k].includes(relative(root, f)));
+    if (!referenced) {
+      findings.push({ check: 'script-unreferenced', file: rel,
+        note: 'Present in scripts/ but reachable from neither package.json nor the README.' });
+    }
+  }
+}
+
 const drift = findings.filter((f) => f.check === 'worklog-timestamp');
 const counts = findings.filter((f) => f.check === 'metric-count');
 console.log(JSON.stringify({
@@ -219,6 +248,7 @@ console.log(JSON.stringify({
   derivation_sources_checked: sourcesChecked,
   metrics_files_seen: metricsFiles.length,
   metrics_files_untracked: untrackedMetrics.length,
+  documented_commands_checked: documentedCommands,
   findings,
 }, null, 2));
 
