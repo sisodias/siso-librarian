@@ -10,11 +10,11 @@
   },
   "claim": {
     "id": "claim:GQ-002.caching-multiplier.v1",
-    "position": "The largest available multiplier on compute effectiveness is prompt caching, not model selection: measured across 408 and 330 requests, CodexOpenAI returns 85.86 output tokens per 1,000 billed input tokens against Anthropic's 12.72, a 6.8x spread that tracks cache hit rate rather than capability, and MiniMax \u2014 the designated cheap lane \u2014 returns only 25.09 because it caches nothing.",
-    "confidence": 0.71,
+    "position": "Prompt caching is a large multiplier on compute effectiveness, but it is not the largest: the dominant variable is how much context a lane ships. Re-derived 2026-08-04 across 408, 1,553 and 181 requests, CodexOpenAI returns 85.86 output tokens per 1,000 billed input against Anthropic's 16.38 \u2014 a 5.2x spread (was 6.8x at lower volume). But MiniMax at 0% cache returns 25.31, BEATING Anthropic at 93% cache, which a pure cache-rate mechanism cannot explain. MiniMax ships 22,367 input tokens per request against Anthropic's 524,572. Caching is the second-order correction on a large context, not a substitute for having a small one.",
+    "confidence": 0.79,
     "status": "proposed",
     "created_at": "2026-08-04T04:50:29Z",
-    "updated_at": "2026-08-04T04:50:29Z",
+    "updated_at": "2026-08-04T14:20:45Z",
     "supersedes": []
   },
   "grounding": [
@@ -44,6 +44,34 @@
       "byte_range": {
         "start": 860,
         "end": 895
+      }
+    },
+    {
+      "quote": "\"spread_now\": \"5.2x (was 6.8x)",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq002-rederived.json",
+        "title": "GQ-002 re-derived from the gateway log, independent of its own metrics"
+      },
+      "locator": "rederived.spread_now",
+      "passage_id": "gq002:spread-rederived",
+      "byte_range": {
+        "start": 853,
+        "end": 883
+      }
+    },
+    {
+      "quote": "\"Minimax\": 22367",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq002-rederived.json",
+        "title": "GQ-002 re-derived from the gateway log, independent of its own metrics"
+      },
+      "locator": "what_actually_drives_it.avg_input_tokens_per_request.Minimax",
+      "passage_id": "gq002:context-size",
+      "byte_range": {
+        "start": 1352,
+        "end": 1368
       }
     }
   ],

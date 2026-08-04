@@ -1,0 +1,52 @@
+{
+  "measured_at": "2026-08-04T14:20:09Z",
+  "question": "GQ-002",
+  "action": "third independent re-derivation \u2014 GQ-002 caching multiplier, tested against the live gateway log",
+  "claim": "\"The largest available multiplier on compute effectiveness is prompt caching, not model selection... a 6.8x spread that tracks cache hit rate rather than capability.\"",
+  "rederived": {
+    "CodexOpenAI": {
+      "requests": 408,
+      "out_per_1k_billed": 85.86,
+      "pct_cached": 97.2,
+      "note": "EXACT match to the claim."
+    },
+    "anthropic": {
+      "requests": 1553,
+      "out_per_1k_billed": 16.38,
+      "pct_cached": 93.0,
+      "was": 12.72,
+      "note": "Risen from 12.72 as request volume grew from 330 to 1,553."
+    },
+    "Minimax": {
+      "requests": 181,
+      "out_per_1k_billed": 25.31,
+      "pct_cached": 0.0
+    }
+  },
+  "spread_now": "5.2x (was 6.8x). The direction and mechanism survive; the magnitude moved with volume.",
+  "the_complication": {
+    "observation": "MiniMax at 0% cache (25.31) BEATS anthropic at 93% cache (16.38).",
+    "consequence": "The claim says effectiveness \"tracks cache hit rate rather than capability\". If that were the whole mechanism, a 0%-cached provider could not outperform a 93%-cached one. It does."
+  },
+  "what_actually_drives_it": {
+    "avg_input_tokens_per_request": {
+      "Minimax": 22367,
+      "CodexOpenAI": 110994,
+      "anthropic": 524572
+    },
+    "avg_output_tokens": {
+      "Minimax": 566,
+      "CodexOpenAI": 268,
+      "anthropic": 600
+    },
+    "reading": "MiniMax carries 23x LESS context per request than anthropic. Effectiveness per billed token tracks CONTEXT SIZE first; caching is what mitigates a large context, not an independent multiplier. CodexOpenAI wins by having both a moderate context and the highest cache rate."
+  },
+  "verdict": "PARTIALLY CONFIRMED. The 6.8x spread was real and is now 5.2x. Caching is a large multiplier. But \"tracks cache hit rate rather than capability\" is too strong \u2014 the dominant variable is how much context each lane ships, and caching is the second-order correction on top of it.",
+  "derivations": {
+    "rederived.CodexOpenAI.out_per_1k_billed": {
+      "kind": "sqlite",
+      "source": "~/.config/bifrost/logs.db",
+      "query": "select round(sum(completion_tokens)*1000.0/(sum(prompt_tokens)-sum(cached_read_tokens)),2) from logs where provider='CodexOpenAI' and prompt_tokens>0;"
+    }
+  }
+}

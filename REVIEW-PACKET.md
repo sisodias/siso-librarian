@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T14:18:20.753Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T14:23:50.366Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -37,13 +37,13 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-002:caching-multiplier — confidence 0.71, action `proposed`
+## GQ-002:caching-multiplier — confidence 0.79, action `proposed`
 
 **Question.** What changes would make the complete provider-neutral SISO agent layer ten times more effective per unit of time, attention, and compute?
 
 **Scope.** compute dimension — output returned per billed input token on this gateway
 
-**Position.** The largest available multiplier on compute effectiveness is prompt caching, not model selection: measured across 408 and 330 requests, CodexOpenAI returns 85.86 output tokens per 1,000 billed input tokens against Anthropic's 12.72, a 6.8x spread that tracks cache hit rate rather than capability, and MiniMax — the designated cheap lane — returns only 25.09 because it caches nothing.
+**Position.** Prompt caching is a large multiplier on compute effectiveness, but it is not the largest: the dominant variable is how much context a lane ships. Re-derived 2026-08-04 across 408, 1,553 and 181 requests, CodexOpenAI returns 85.86 output tokens per 1,000 billed input against Anthropic's 16.38 — a 5.2x spread (was 6.8x at lower volume). But MiniMax at 0% cache returns 25.31, BEATING Anthropic at 93% cache, which a pure cache-rate mechanism cannot explain. MiniMax ships 22,367 input tokens per request against Anthropic's 524,572. Caching is the second-order correction on a large context, not a substitute for having a small one.
 
 **Proposed action.** Before evaluating model swaps for the 10x goal, fix caching where it is absent. The MiniMax path alone would move from 25.09 to a rate bounded by its 97% cache capability — a larger gain than any model substitution available on this gateway, and scripts/minimax-cache-route.sh already implements it reversibly.
 
@@ -51,6 +51,8 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 - `"ratio": 6.8` — metrics/2026-08-04-gq002-effectiveness-per-compute.json [1536:1548], spread.ratio
 - `"output_per_1k_billed_input": 25.09` — metrics/2026-08-04-gq002-effectiveness-per-compute.json [860:895], providers[].output_per_1k_billed_input (Minimax)
+- `"spread_now": "5.2x (was 6.8x)` — metrics/2026-08-04-gq002-rederived.json [853:883], rederived.spread_now
+- `"Minimax": 22367` — metrics/2026-08-04-gq002-rederived.json [1352:1368], what_actually_drives_it.avg_input_tokens_per_request.Minimax
 
 <sub>claims/GQ-002-caching-multiplier.claim.json · claim:GQ-002.caching-multiplier.v1</sub>
 
