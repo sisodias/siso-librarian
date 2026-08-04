@@ -36,7 +36,24 @@ One command to apply, one to undo, and it undoes itself if the health check fail
 
 ---
 
-## 2. Where should the rescue refs go?
+## 2. Where should the rescue refs go? — FALLBACK NOW VERIFIED
+
+Still yours: choosing a target remote. The commits touch CAM4 VPS and
+circuit-breaker logic, and pushing someone else's work somewhere is an authority
+question.
+
+But the alternative you were offered — "local refs plus the vault bundle is
+sufficient" — I have now MEASURED rather than assumed:
+
+  local     5 refs under refs/rescue/ in SISO_Agency/apps/oracle-streaming
+  bundle    all 5 SHAs confirmed present in the bundle history
+            (fetched into a scratch repo, cat-file -e on each)
+  verify    "The bundle records a complete history."  621 MB
+
+So there is no risk of loss to decide about. This is a preference about
+redundancy — a third copy on a remote — not a rescue.
+
+The original text follows.
 
 Five backend commits exist on no remote. They now have durable local refs under `refs/rescue/domain-batch-backend/`, and the vault bundle is proven restorable — I cloned it into a scratch repo and confirmed all five resolve with correct subjects, 79,459 objects.
 

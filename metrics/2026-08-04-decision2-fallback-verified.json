@@ -1,0 +1,32 @@
+{
+  "measured_at": "2026-08-04T17:13:39Z",
+  "question": "GQ-006",
+  "subject": "decision 2 \u2014 verifying the fallback rather than answering the question",
+  "the_decision": "\"Where should the rescue refs go? What I'd need: a target remote, OR a decision that local refs plus the vault bundle is sufficient.\"",
+  "what_stays_shaans": "Choosing a target remote. The commits touch CAM4 VPS and circuit-breaker logic and pushing someone else's work to a remote is an authority question, not a technical one. Unchanged.",
+  "what_i_could_verify": "Whether the fallback actually holds \u2014 whether local refs plus the bundle really are sufficient.",
+  "local_refs": {
+    "repo": "SISO_Workspace/SISO_Agency/apps/oracle-streaming",
+    "count": 5,
+    "refs": [
+      "rescue/domain-batch-backend/TASK-0272-a3",
+      "rescue/domain-batch-backend/TASK-0326-a1",
+      "rescue/domain-batch-backend/TASK-0390-a2",
+      "rescue/domain-batch-backend/TASK-0668-a1",
+      "rescue/domain-batch-backend/TASK-0776"
+    ]
+  },
+  "bundle_containment": {
+    "method": "fetched the bundle into a scratch repo and ran cat-file -e on each rescue SHA",
+    "result": "5 of 5 PRESENT in bundle history",
+    "bundle_verify": "The bundle records a complete history."
+  },
+  "verdict": "The fallback HOLDS. Every rescue commit exists both as a local ref and inside a verified 621 MB bundle on the vault. \"Local refs plus the vault bundle is sufficient\" is now measured, not assumed \u2014 so the decision is a preference about redundancy, not a risk of loss.",
+  "a_search_error_i_caught": {
+    "first_attempt": "find ~ -maxdepth 4 -name .git \u2192 reported NO rescue refs anywhere on the machine.",
+    "reality": "oracle-streaming is at depth 5. The refs were there the whole time.",
+    "what_i_nearly_wrote": "\"No rescue refs exist anywhere\" \u2014 which would have made a claim about preserved work with nothing behind it, in a worklog, about my own prior work.",
+    "the_tell": "A maxdepth I chose for speed became a claim about existence. Absence of a find result is not absence."
+  },
+  "derivations": {}
+}

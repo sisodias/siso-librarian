@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T17:11:52.036Z",
+  "generated_at": "2026-08-04T17:14:45.255Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 20,
     "verify_steps": 6,
     "scripts_on_disk": 22,
-    "metrics_files": 103,
-    "worklogs": 161,
+    "metrics_files": 104,
+    "worklogs": 162,
     "proposals": 18
   },
   "derivations": {
@@ -452,7 +452,7 @@
     "count": 5,
     "items": [
       "Repoint MiniMax traffic away from Bifrost — ~97% input-token saving",
-      "Where should the rescue refs go?",
+      "Where should the rescue refs go? — FALLBACK NOW VERIFIED",
       "Cloudflare ingress for the observatory",
       "Bifrost's request log — RE-MEASURED at 4.68 GB/day, and 91% of it is me",
       "Internet Archive expansion — NOT blocked on rights. Selection was, and it is now answered."
