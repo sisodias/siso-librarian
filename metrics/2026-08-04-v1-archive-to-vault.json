@@ -1,0 +1,27 @@
+{
+  "measured_at": "2026-08-04T09:16:07Z",
+  "question": "GQ-006",
+  "action": "copy to vault, verify, quarantine by rename \u2014 never delete (C1)",
+  "artifact": "passages_v1.sqlite.gz",
+  "bytes": 10203671683,
+  "sha256": "cef7fe1d141f72c1c9680f32c7281a85ce803470bc1973ed2ee207db49f63e1c",
+  "sha256_match": true,
+  "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/passages-v1-archive/passages_v1.sqlite.gz",
+  "quarantine_path": "/Users/shaansisodia/quarantine-2026-08-04/passages_v1.sqlite.gz",
+  "checks_before_move": [
+    "no open file handles (lsof)",
+    "no references in ~/SISO_Workspace, ~/.config, ~/Library/LaunchAgents",
+    "gzip header reads and contains \"SQLite format 3\"",
+    "v2 (~/passages.sqlite, 23 GB) confirmed as the live index"
+  ],
+  "root_avail_before": "19Gi",
+  "root_avail_after": "19Gi",
+  "honest_note": "Root free space did NOT change. A rename within one filesystem frees nothing \u2014 the 10.2 GB is now safely reclaimable rather than reclaimed. Deleting it is Shaan's call under C1, and reporting this as a disk win would be false.",
+  "reclaimable_gb": 9.5,
+  "derivations": {
+    "bytes": {
+      "kind": "file-bytes",
+      "source": "/Users/shaansisodia/quarantine-2026-08-04/passages_v1.sqlite.gz"
+    }
+  }
+}
