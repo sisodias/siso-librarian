@@ -1,0 +1,59 @@
+{
+  "measured_at": "2026-08-04T16:25:12Z",
+  "question": "GQ-004",
+  "subject": "testing the inversion I named but left untried",
+  "hypothesis": "If overlap tracks library strength, filtering for subjects the Library is WEAK in should raise novelty.",
+  "result": "CONFIRMED.",
+  "measured": [
+    {
+      "subject": "Science fiction",
+      "library": 3291,
+      "ia_pool": 535,
+      "new_pct": 2.5,
+      "est_new": 13
+    },
+    {
+      "subject": "Detective and mystery",
+      "library": 1013,
+      "ia_pool": 128,
+      "new_pct": 3.3,
+      "est_new": 4
+    },
+    {
+      "subject": "Historical fiction",
+      "library": 1080,
+      "ia_pool": 58,
+      "new_pct": 6.7,
+      "est_new": 4
+    },
+    {
+      "subject": "Cookery",
+      "library": 384,
+      "ia_pool": 60,
+      "new_pct": 35.0,
+      "est_new": 21
+    },
+    {
+      "subject": "Essays",
+      "library": 243,
+      "ia_pool": 77,
+      "new_pct": 33.3,
+      "est_new": 26
+    },
+    {
+      "subject": "English poetry",
+      "library": 232,
+      "ia_pool": 92,
+      "new_pct": 40.0,
+      "est_new": 37
+    }
+  ],
+  "the_inversion": "English poetry yields 40% new against science fiction's 2.5% \u2014 a 16x difference driven entirely by how much of that subject the Library already holds. The three WEAK subjects contribute 84 of the 105 estimated new books despite having pools an order of magnitude smaller.",
+  "total_estimate": {
+    "across_6_subjects": 105,
+    "note": "Sample-based: 20-40 titles per subject, so these are estimates with real sampling error, not counts."
+  },
+  "what_this_settles": "Decision 7 is now quantified. IA expansion via subject filtering yields roughly a hundred books across six subjects \u2014 not thousands, and not the ~30 my science-fiction-only sample implied either. The method works; the magnitude is modest and now measured.",
+  "method_note": "Aiming at weak subjects is counter-intuitive for a collection strategy \u2014 you would normally deepen strength. Here the goal is books the Library does not have, and strength is precisely where it already has them.",
+  "derivations": {}
+}

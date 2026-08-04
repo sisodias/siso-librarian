@@ -77,9 +77,29 @@ Which means my subject filter was aimed at the Library's TOP subjects —
 precisely where it yields least. Aiming at weak subjects inverts that, but the
 pools there are small (IA has 60 cookery texts total).
 
-The honest ceiling: nothing I measured today suggests IA expansion adds
-thousands of books. It suggests tens to low hundreds. That may still be worth
-having, but it is a different decision from the one I originally framed.
+Then I tested the inversion instead of leaving it as a remark:
+
+  subject              library   IA pool   new%   est. new
+  Science fiction        3,291       535    2.5         13
+  Detective              1,013       128    3.3          4
+  Historical fiction     1,080        58    6.7          4
+  Cookery                  384        60   35.0         21
+  Essays                   243        77   33.3         26
+  English poetry           232        92   40.0         37
+                                                      ----
+                                                       105
+
+English poetry yields 40% new against science fiction's 2.5% — a 16x difference,
+driven entirely by what this Library already holds. The three WEAK subjects
+contribute 84 of the 105 despite pools an order of magnitude smaller.
+
+So the answer to decision 7 is roughly A HUNDRED BOOKS across six subjects. Not
+thousands, and not the ~30 my science-fiction-only sample implied. These are
+sample-based estimates (20-40 titles each) with real sampling error, not counts.
+
+The method is counter-intuitive and worth stating plainly: aim at what the
+Library is WEAK in. You would normally deepen a strength, but the goal here is
+books we do not have, and strength is exactly where we already have them.
 
 That is a THIRD option for decision 7, alongside "someone supplies identifiers"
 and "sample relevance after fetch". I have not built it — the want-list contract
