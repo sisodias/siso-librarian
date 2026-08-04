@@ -33,6 +33,7 @@ npm run refresh:evaluate    # ledger drift, derived from git history not asserte
 npm run ia:dedup            # check IA want-list against authors the Library already holds
 npm run mailbox:status      # what escalations are queued, and is the laptop link up
 npm run movement:baseline   # GQ-005 naive baseline: language share by repo-creation cohort
+npm run gq008:experiment    # re-run the cache experiment (issues 4 live requests; --write to record)
 npm run mailbox:flush       # deliver queued escalations (no-op when the link is down)
 ```
 

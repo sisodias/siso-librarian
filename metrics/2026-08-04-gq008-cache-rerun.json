@@ -1,0 +1,21 @@
+{
+  "measured_at": "2026-08-04T07:24:38Z",
+  "question": "GQ-008",
+  "experiment": "identical request body and credential sent to two upstreams; only the path differs",
+  "reproduced_by": "scripts/gq008-cache-experiment.sh",
+  "note": "Fresh observation, not a re-derivation. This can contradict the stored result, which is why it is a script rather than a derivations block.",
+  "results": [
+    {
+      "path": "go-llm-proxy 127.0.0.1:8789",
+      "prompt_tokens": 1078,
+      "cached_tokens": 1024,
+      "cache_works": true
+    },
+    {
+      "path": "Bifrost 127.0.0.1:8080",
+      "prompt_tokens": 1078,
+      "cached_tokens": 0,
+      "cache_works": false
+    }
+  ]
+}

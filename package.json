@@ -12,7 +12,8 @@
     "mailbox:flush": "bash scripts/mailbox-flush.sh",
     "mailbox:status": "bash scripts/mailbox-flush.sh status",
     "ia:dedup": "node scripts/ia-dedup-check.mjs",
-    "movement:baseline": "node scripts/movement-baseline.mjs"
+    "movement:baseline": "node scripts/movement-baseline.mjs",
+    "gq008:experiment": "bash scripts/gq008-cache-experiment.sh"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

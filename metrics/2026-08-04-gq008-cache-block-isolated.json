@@ -18,5 +18,9 @@
     }
   ],
   "conclusion": "Bifrost strips or fails to forward cache_control to the MiniMax provider. The provider caches correctly when reached directly through the proxy. The earlier reading of 'MiniMax caches 0%' measured Bifrost's behaviour, not MiniMax's capability.",
-  "shim_state": "The 8081 catalog shim now preserves cache_control in request translation and surfaces cache_read_input_tokens in responses, but it routes MiniMax traffic through Bifrost, so the saving is still lost downstream."
+  "shim_state": "The 8081 catalog shim now preserves cache_control in request translation and surfaces cache_read_input_tokens in responses, but it routes MiniMax traffic through Bifrost, so the saving is still lost downstream.",
+  "source": "live experiment \u2014 not re-derivable from any log",
+  "reproduced_by": "scripts/gq008-cache-experiment.sh",
+  "reproduction_note": "Re-run 2026-08-04 on a fresh prompt: proxy 1,024 of 1,078 cached, Bifrost 0 of 1,078. Token counts differ from the original run because the prompt differs; the FINDING reproduces exactly \u2014 same body, same credential, same model, same prompt_tokens on both paths, cache reads only through the proxy. This is a fresh observation that could have contradicted the stored result, which is why it is a script rather than a derivations block.",
+  "reproduction_trap": "Bifrost rejects the bare model name with 'provider is required in model field'. That is an ERROR, not a cache miss, and recording it as 0 cached tokens would have looked identical to the defect under test. The provider prefix is case-sensitive: Minimax/MiniMax-M3 works, minimax/MiniMax-M3 does not. The script now refuses to record any arm that errored."
 }
