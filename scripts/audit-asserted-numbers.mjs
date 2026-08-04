@@ -93,6 +93,30 @@ if (existsSync(SNAPSHOT)) {
   }
 }
 
+// --- Check 3: JSONL artifact sums asserted in metrics files ----------------
+// The runner writes raw per-job usage, so totals quoted elsewhere can be summed
+// back out of the artifact instead of trusted.
+const JSONL_SUMS = [
+  {
+    artifact: 'metrics/2026-08-03-mm-bulk-runner-smoke.jsonl',
+    asserted_in: 'metrics/2026-08-03-cached-minimax-runner.json',
+    fields: { prompt_tokens: 851, completion_tokens: 662, cached_tokens: 512 },
+  },
+];
+
+let jsonlSumsChecked = 0;
+for (const s of JSONL_SUMS) {
+  if (!existsSync(s.artifact)) continue;
+  const rows = readFileSync(s.artifact, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+  for (const [field, asserted] of Object.entries(s.fields)) {
+    const derived = rows.reduce((a, r) => a + (r[field] || 0), 0);
+    jsonlSumsChecked += 1;
+    if (derived !== asserted) {
+      findings.push({ check: 'jsonl-sum', artifact: s.artifact, asserted_in: s.asserted_in, field, asserted, derived, delta: derived - asserted });
+    }
+  }
+}
+
 const drift = findings.filter((f) => f.check === 'worklog-timestamp');
 const counts = findings.filter((f) => f.check === 'metric-count');
 console.log(JSON.stringify({
@@ -101,6 +125,7 @@ console.log(JSON.stringify({
   timestamp_drift_findings: drift.length,
   metric_count_findings: counts.length,
   counts_independently_rederived: countsChecked,
+  jsonl_sums_rederived: jsonlSumsChecked,
   findings,
 }, null, 2));
 
