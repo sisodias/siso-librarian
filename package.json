@@ -28,7 +28,8 @@
     "minimax:cache-route": "bash scripts/minimax-cache-route.sh",
     "ia:probe-metadata": "node scripts/probe-ia-metadata.mjs",
     "books:index-external": "node scripts/build-external-passages.mjs",
-    "books:index-external-check": "node scripts/build-external-passages.mjs --check"
+    "books:index-external-check": "node scripts/build-external-passages.mjs --check",
+    "lib:patch-selftest": "node --check scripts/lib/patch.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

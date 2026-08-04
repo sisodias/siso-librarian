@@ -39,6 +39,19 @@ const portfolio = JSON.parse(readFileSync(join(root, 'questions/portfolio.json')
 const refresh = JSON.parse(readFileSync(join(root, 'refresh/ledger.json'), 'utf8'));
 
 const passageCounts = rowsToObject(sqlite(passagesDb, "select 'passages',count(*) from passage union all select 'books',count(*) from book_body;"));
+// The Internet Archive corpus ingested 2026-08-04: 78 books, searchable in a
+// separate index keyed by ext_id. Reported here because the page that describes
+// the Library showed ZERO mentions of the Library's own growth — the same
+// defect as the outbox, where content existed but nothing surfaced it.
+//
+// Guarded: the vault is external storage and may be unmounted. An absent volume
+// must read as UNKNOWN, never as zero — a confident 0 here would say the books
+// do not exist.
+const externalDb = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite';
+const externalCounts = existsSync(externalDb)
+  ? rowsToObject(sqlite(externalDb, "select 'books',count(distinct ext_id) from passage_ext union all select 'passages',count(*) from passage_ext union all select 'words',sum(words) from passage_ext;"))
+  : { unavailable: 'vault not mounted — counts unknown, NOT zero' };
+
 const peopleCounts = rowsToObject(sqlite(peopleDb, "select 'people',count(*) from person union all select 'content_edges',count(*) from person_content union all select 'topic_edges',count(*) from person_topic union all select 'external_ids',count(*) from external_ids union all select 'identity_claims',count(*) from identity_claim union all select 'cross_domain_people',count(*) from v_person_layers where domain_count>1;"));
 const registryCounts = {
   works: countFiles(join(registry, 'works')),
@@ -287,6 +300,16 @@ const derivations = {
   'god_questions.total': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
   'god_questions.coverage.registered': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
   'release_integrity.releases': { source: join(registry, 'releases'), kind: 'file-count', query: '*.json' },
+  // The external corpus is on USB. Declared anyway because these are small
+  // indexed counts (~150 MB file, primary-key scans) — unlike the 41.5M-row
+  // vault passage index, whose count(*) ran past 2m09s and stalled the whole
+  // gate chain on 2026-08-04. MEASURED before declaring: 4.3s cold (USB spin-up),
+  // sub-second warm. I first wrote "under a second" from expectation, then timed
+  // it — the whole point of declaring a derivation is that the number is checked,
+  // so a comment justifying it must be checked too.
+  'external_corpus.books': { source: externalDb, kind: 'sqlite', query: "select count(distinct ext_id) from passage_ext;" },
+  'external_corpus.passages': { source: externalDb, kind: 'sqlite', query: "select count(*) from passage_ext;" },
+  'external_corpus.words': { source: externalDb, kind: 'sqlite', query: "select sum(words) from passage_ext;" },
   'passages.passages': { source: passagesDb, kind: 'sqlite', query: "select count(*) from passage;" },
   'passages.books': { source: passagesDb, kind: 'sqlite', query: "select count(*) from book_body;" },
   'people_graph.people': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person;" },
@@ -444,7 +467,7 @@ const undeclared_rationale = {
 
 const snapshot = {
   generated_at: new Date().toISOString(),
-  bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer },
+  bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer, external_corpus: externalCounts },
   repo_health: repoHealth,
   derivations,
   undeclared_rationale,
@@ -499,6 +522,20 @@ ${snapshot.escalations.queued ? `<section><h2>Escalations you have not seen</h2>
         return `<li><strong>${esc(title)}</strong><br><small>${esc(f)}</small>`
           + `<details><summary>read</summary><pre>${esc(body)}</pre></details></li>`;
       }).join('') + '</ul>';
+  })()
+}</section>
+<section><h2>The Library grew today</h2>${
+  (() => {
+    const e = snapshot.bucket_counts.external_corpus || {};
+    if (e.unavailable) return `<p>External corpus: <strong>${e.unavailable}</strong></p>`;
+    return '<p>The catalogue held one source — Project Gutenberg — for its entire history. On 2026-08-04 it gained a second.</p>'
+      + '<table><tr><th>Source</th><th>Books</th><th>Searchable passages</th><th>Words</th></tr>'
+      + `<tr><td>Project Gutenberg</td><td>${(snapshot.bucket_counts.passages?.books ?? 0).toLocaleString()}</td><td>${(snapshot.bucket_counts.passages?.passages ?? 0).toLocaleString()}</td><td>—</td></tr>`
+      + `<tr><td>Internet Archive</td><td>${(e.books ?? 0).toLocaleString()}</td><td>${(e.passages ?? 0).toLocaleString()}</td><td>${(e.words ?? 0).toLocaleString()}</td></tr>`
+      + '</table>'
+      + '<p>The IA books are indexed separately, keyed by their own identifiers. They are NOT in the passage index: '
+      + 'that table keys on <code>gid INTEGER</code>, documented as the Gutenberg Text#, and 1,184,937 rows join on it. '
+      + 'Search works regardless because FTS5 stores the id column <code>UNINDEXED</code>.</p>';
   })()
 }</section>
 <section><h2>Raw snapshot</h2><pre>${JSON.stringify(snapshot,null,2).replace(/[&<>]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]))}</pre></section>

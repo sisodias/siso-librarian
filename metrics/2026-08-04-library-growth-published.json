@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-04T22:24:12Z",
+  "question": "GQ-007",
+  "subject": "the Library grew and the page that reports the Library did not say so",
+  "the_gap": "78 books, 122,553 passages, 9.8M words ingested and indexed today \u2014 and the observatory contained ZERO mentions of any of it. Same defect as the outbox: content that exists but nothing surfaces it.",
+  "now_published": {
+    "snapshot": "bucket_counts.external_corpus = {books: 78, passages: 122553, words: 9826621}",
+    "page": "a \"The Library grew today\" section with a table comparing both sources",
+    "served": "verified live over the tailnet, not just built locally",
+    "derivations_declared": [
+      "external_corpus.books",
+      "external_corpus.passages",
+      "external_corpus.words"
+    ]
+  },
+  "guarded_against_a_confident_zero": "the vault is external storage and may be unmounted. The builder reports \"vault not mounted \u2014 counts unknown, NOT zero\" rather than 0. A zero here would state that the books do not exist.",
+  "a_comment_i_had_to_correct": {
+    "wrote": "\"Measured before declaring: under a second.\"",
+    "then_timed_it": "4.3s cold (USB spin-up), sub-second warm",
+    "fix": "the comment now carries the measured value",
+    "why_it_matters": "I wrote a justification from expectation inside a change whose entire purpose is that numbers get checked. A comment justifying a derivation must be checked like the derivation."
+  },
+  "three_findings_the_gate_raised_on_my_own_change": [
+    {
+      "finding": "external_corpus.words published with no derivation",
+      "fix": "declared it"
+    },
+    {
+      "finding": "gate_selftest_cases asserted 14, derived 15",
+      "cause": "I added a case and did not update the published count \u2014 SECOND time today for this same number",
+      "fix": "re-derived"
+    },
+    {
+      "finding": "scripts/lib/patch.mjs unreferenced",
+      "cause": "nothing in the repo imports it; only my session tooling does",
+      "fix": "registered as an npm script rather than loosening the gate"
+    }
+  ],
+  "gates": {
+    "verify_exit": 0,
+    "gate_selftest": "15 passed, 0 failed",
+    "derivations": 39,
+    "independent_checks": 36,
+    "checks_skipped": 0
+  },
+  "derivations": {}
+}
