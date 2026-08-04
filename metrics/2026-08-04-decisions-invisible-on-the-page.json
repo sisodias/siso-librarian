@@ -1,0 +1,20 @@
+{
+  "measured_at": "2026-08-04T17:25:53Z",
+  "question": "GQ-009",
+  "subject": "the corrected decisions were invisible on the only channel that reaches Shaan",
+  "the_gap": {
+    "page_showed": "\"Awaiting your decision: 5\" \u2014 a bare number",
+    "page_did_not_show": "Any of the five headlines, all of which I had just spent four loops correcting",
+    "where_they_were": "Inside the raw snapshot JSON dump at the bottom of the page",
+    "test": "Split index.html at \"Raw snapshot\": \"12-95% saving\" appeared ONLY after the split point."
+  },
+  "why_it_matters": "Zero working push routes. The observatory is the only channel that reaches Shaan, and it was reporting a count of things I had corrected without showing what they now say. He would read \"5\" and learn nothing about the 4.68 GB/day, the 3.7% scope fix, or the want-list that resolved decision 7.",
+  "the_fix": "A \"Decisions waiting on you\" section listing each headline, mirroring the escalations section.",
+  "verified_both_ways": {
+    "with_5_open": "section renders with all five headlines",
+    "all_struck_through": "section absent \u2014 no empty box",
+    "restored": "section returns, count back to 5"
+  },
+  "this_is_the_second_instance": "Two loops ago I found the same defect for escalations: the page showed \"3 queued\" and none of their content. I fixed escalations and did not check the adjacent feature, which had the identical shape \u2014 a count rendered, the content buried in JSON.",
+  "derivations": {}
+}
