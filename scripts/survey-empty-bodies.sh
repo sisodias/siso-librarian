@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# For every book whose local body is under 2 KB, fetch the Gutenberg plain-text
-# source and measure the bytes BETWEEN the START/END markers.
+# For every book whose local body is under a size threshold, fetch the Gutenberg
+# plain-text source and measure the bytes BETWEEN the START/END markers.
 #
 # Written to settle a question two anecdotes could not: gid 4715 has 4 bytes of
 # upstream body and gid 9320 has 66, both against titles that should be full
@@ -15,12 +15,20 @@
 # Rate-limited deliberately. gutenberg.org is a volunteer-run archive and this
 # is 168 requests; a sleep between fetches costs minutes and costs them nothing.
 #
-#   survey-empty-bodies.sh            survey all, write metrics
-#   survey-empty-bodies.sh 20         survey the first 20 (smoke test)
+#   survey-empty-bodies.sh                 survey all under 2 KB (default)
+#   survey-empty-bodies.sh 20              survey the first 20 (smoke test)
+#   survey-empty-bodies.sh 0 8000          survey all under 8 KB
+#   survey-empty-bodies.sh 4 8000          smoke test at the wider bound
 set -uo pipefail
 
 LIMIT="${1:-0}"
-OUT="metrics/$(/bin/date -u +%Y-%m-%d)-empty-body-survey.json"
+# Upper bound on the local body size to survey. Defaults to 2 KB, the band where
+# an empty upstream file is the obvious suspicion. Raise it to cover books large
+# enough to look plausible while still being truncated — 8000 covers the
+# 2-8 KB Text band where six random draws all matched but six of 693 proves
+# nothing about a rate.
+MAX_BODY="${2:-2000}"
+OUT="metrics/$(/bin/date -u +%Y-%m-%d)-empty-body-survey-under-${MAX_BODY}.json"
 LIST=$(mktemp)
 
 sqlite3 -noheader "file:$HOME/passages.sqlite?mode=ro" \
@@ -28,7 +36,7 @@ sqlite3 -noheader "file:$HOME/passages.sqlite?mode=ro" \
    select b.gid||'|'||(b.body_end-b.body_start)||'|'||
           replace(replace(replace(substr(k.title,1,60),'|','/'),char(10),' '),char(13),' ')
    from book_body b join c.book k on k.gid=b.gid
-   where b.body_end-b.body_start < 2000 order by b.gid;" > "$LIST" 2>/dev/null
+   where b.body_end-b.body_start < $MAX_BODY order by b.gid;" > "$LIST" 2>/dev/null
 # Titles contain newlines. The smoke test hit one — a Gutenberg record whose
 # title wraps onto a second line — and it split into a phantom row with an empty
 # gid, which then corrupted the JSON. Stripping CR/LF in SQL is the fix; parsing
@@ -36,7 +44,7 @@ sqlite3 -noheader "file:$HOME/passages.sqlite?mode=ro" \
 
 total=$(wc -l < "$LIST" | tr -d ' ')
 [ "$LIMIT" -gt 0 ] 2>/dev/null && total="$LIMIT"
-echo "surveying $total books with local body < 2 KB"
+echo "surveying $total books with local body < $MAX_BODY bytes"
 
 n=0; upstream_empty=0; our_defect=0; unreachable=0
 rows=""
@@ -69,7 +77,7 @@ print(e.start() - s.end() if s and e else 'NO_MARKERS')" 2>/dev/null)
     *)
       # Upstream within 2x of local means the source really is that short and we
       # extracted it faithfully. Much larger upstream means we dropped text.
-      if [ "$body" -lt 2000 ] 2>/dev/null; then
+      if [ "$body" -lt "$MAX_BODY" ] 2>/dev/null; then
         upstream_empty=$((upstream_empty + 1)); verdict="upstream-short"
       else
         our_defect=$((our_defect + 1)); verdict="OUR-DEFECT"
