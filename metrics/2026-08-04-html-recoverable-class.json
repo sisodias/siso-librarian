@@ -1,0 +1,27 @@
+{
+  "measured_at": "2026-08-04T15:01:48Z",
+  "question": "GQ-006",
+  "subject": "gid 4715 is not one book \u2014 it is a recoverable class of 15",
+  "c6_reassessed": {
+    "constraint": "\"Do not disturb ~/passages.sqlite or the vault corpus WITHOUT COPYING FIRST.\"",
+    "status": "The copy exists and answers: 77,540 book bodies from the vault copy, verified today by banded checksum over 250,005 rows.",
+    "reading": "C6 is a copy-first condition, not a prohibition. I had been treating it as a blanket \"do not touch\", which is stricter than what it says and let one book sit unrecovered for several loops."
+  },
+  "the_class": {
+    "books_with_upstream_body_under_200_bytes": 15,
+    "under_1000": 72,
+    "under_2000": 157,
+    "surveyed": 850,
+    "sampled_html_editions": {
+      "2469": 28629,
+      "4715": 430508,
+      "9320": 163258,
+      "17421": 28433,
+      "17423": 28497
+    },
+    "reading": "All five sampled have HTML editions far larger than their plain-text bodies. gid 4715 has 430,508 bytes of HTML against 8 bytes extracted; 9320 has 163,258 against 75. The plain-text renderings are empty upstream while the works themselves are present in another format."
+  },
+  "why_not_done": "Ingesting HTML needs a parser this repo does not have, and writing one to recover 15 books of 77,540 is a real piece of work with a real failure mode \u2014 a bad parser would inject markup into the passage corpus. The value is bounded and the risk is not, so this is a proposal rather than an action.",
+  "what_changed": "The framing. I recorded this as \"one book, C6 territory, not mine\". It is 15 books, C6 permits it because the copy exists, and the blocker is that the tooling does not exist \u2014 which is a different and more honest reason to leave it undone.",
+  "derivations": {}
+}
