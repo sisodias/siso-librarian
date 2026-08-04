@@ -108,6 +108,32 @@ else
   graph_ok=0
 fi
 
+# --- structural probe: the 22.6 GB index that no integrity check can finish ---
+# pragma quick_check and integrity_check(1) BOTH fail to return on this file
+# within 300s over USB. Measured 2026-08-04: the bound limits errors REPORTED,
+# not pages SCANNED, so both still walk all 5,921,286 pages. That is a real
+# limit, not a pragma mistake.
+#
+# What IS affordable, because each descends an index instead of scanning:
+#   - the schema (0.03s)      every object still present and parseable
+#   - the three b-trees       passage, the FTS index, book_body
+#   - min/max rowid           proves descent to the first and last leaf
+#
+# This is a STRUCTURAL probe, not an integrity check. It reads 0.0442% of rows.
+# Corruption in an unread page passes silently. Stated so nobody upgrades this
+# to "the passage index was verified".
+echo
+echo "structural probe: $(basename "$VAULT")"
+sch=$(sqlite3 "file:$VAULT?mode=ro&immutable=1" "select count(*) from sqlite_master;" 2>/dev/null)
+probe_ok=1
+[ "${sch:-0}" -ge 10 ] && echo "  schema        $sch objects" || { echo "  schema        UNREADABLE"; probe_ok=0; }
+for spec in "passage:rowid" "book_body:rowid" "passage_search_docsize:id"; do
+  tb=${spec%%:*}; col=${spec##*:}
+  n=$(sqlite3 "file:$VAULT?mode=ro&immutable=1" "select count(*) from $tb where $col between 1 and 500;" 2>/dev/null)
+  [ -n "$n" ] && echo "  b-tree $tb reads ($n rows)" || { echo "  b-tree $tb UNREADABLE"; probe_ok=0; }
+done
+
 # Both artifacts always reported before either exit code is returned.
+[ "$probe_ok" -eq 1 ]   || exit 10
 [ "$passage_ok" -eq 1 ] || exit 8
 [ "$graph_ok" -eq 1 ] || exit 9

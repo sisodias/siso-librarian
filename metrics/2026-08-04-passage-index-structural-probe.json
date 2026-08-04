@@ -1,0 +1,54 @@
+{
+  "measured_at": "2026-08-04T18:43:35Z",
+  "question": "GQ-006",
+  "subject": "the 22.6 GB passage index \u2014 what can and cannot be checked",
+  "the_limit_is_real_this_time": {
+    "tried": [
+      "pragma quick_check",
+      "pragma quick_check(1)",
+      "pragma integrity_check(1)"
+    ],
+    "result": "none return within 300s over USB; killed at rc=143 with no output",
+    "why": "the bound limits errors REPORTED, not pages SCANNED \u2014 all 5,921,286 pages are still walked",
+    "contrast": "on the 1.9-5.4 GB copies quick_check(1) returned in seconds; here it is genuinely the size"
+  },
+  "what_did_work": {
+    "schema": {
+      "objects": 10,
+      "seconds": 0.026
+    },
+    "btrees_readable": [
+      "passage",
+      "passage_search_docsize",
+      "book_body"
+    ],
+    "btree_descent": {
+      "min_rowid": 1,
+      "max_rowid": 41501325,
+      "seconds": 277,
+      "note": "proves descent to the first and last leaf; slow because min/max scans, unlike ranged reads"
+    },
+    "nine_band_compare_vs_live": {
+      "bands_identical": 9,
+      "of": 9,
+      "rows": 18333,
+      "columns": [
+        "count",
+        "chars",
+        "words",
+        "preview length"
+      ],
+      "seconds": 1.2
+    }
+  },
+  "coverage_stated_not_glossed": {
+    "rows_read": 18333,
+    "rows_total": 41501325,
+    "percent": 0.0442,
+    "not_proven": "any page outside those bands was never read; corruption there passes silently"
+  },
+  "why_ranged_reads_are_fast_and_min_max_is_not": "rowid BETWEEN descends the primary key index and touches only the leaves it needs \u2014 1.2s for nine bands. min()/max() and count(*) walk the table. The fix for a slow check is usually an index-shaped query, not a smaller bound.",
+  "now_in_the_verifier": "npm run vault:verify runs the structural probe; exit 10 if schema or any b-tree fails",
+  "honest_status": "This is a STRUCTURAL PROBE, not an integrity check, and it does not make the index \"verified\". Combined with the pre-existing 250,005-row banded checksum, the vault copy has strong content evidence and no whole-file structural guarantee. That residual is permanent at this size over USB.",
+  "derivations": {}
+}
