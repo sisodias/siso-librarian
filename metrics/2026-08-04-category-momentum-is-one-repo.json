@@ -1,0 +1,53 @@
+{
+  "measured_at": "2026-08-04T13:21:46Z",
+  "question": "GQ-005",
+  "attempted": "A categories-over-time axis, joining the momentum time series to the curated taxonomy.",
+  "join_works": {
+    "repos_in_both": 55467,
+    "why_this_mattered": "awesome_sections failed as a categories axis \u2014 10,185 of 28,177 singletons, head dominated by language names. The curated taxonomy in identity.sqlite is a real taxonomy, and momentum.sqlite is a real time series. Joined, they are the categories x time axis GQ-005 needs."
+  },
+  "apparent_signal": [
+    {
+      "slug": "agent-extension-pack",
+      "repos": 585,
+      "gain": 1207,
+      "per_repo": 2.063,
+      "movers": 5
+    },
+    {
+      "slug": "llm-app-framework",
+      "repos": 425,
+      "gain": 829,
+      "per_repo": 1.951,
+      "movers": 13
+    },
+    {
+      "slug": "agent-platform",
+      "repos": 429,
+      "gain": 241,
+      "per_repo": 0.562,
+      "movers": 3
+    },
+    {
+      "slug": "awesome-list",
+      "repos": 2622,
+      "gain": 107,
+      "per_repo": 0.041,
+      "movers": 2
+    }
+  ],
+  "corpus_baseline_per_repo": 0.045,
+  "why_it_is_not_a_signal": {
+    "movers_column": "agent-extension-pack gained 1,207 stars across 585 repos \u2014 from FIVE repos.",
+    "concentration": {
+      "top_repo": "DeusData/codebase-memory-mcp",
+      "gain": 1112,
+      "share_of_category": "92.1%"
+    },
+    "without_it": "agent-extension-pack falls to ~0.16 per repo, against a 0.045 baseline \u2014 no longer a leader.",
+    "verdict": "This is a category ranking driven by ONE repository. Reporting \"agent infrastructure leads at 2.06 stars/repo\" would be true arithmetic and a false claim about categories."
+  },
+  "relationship_to_the_disputed_claim": "The disputed GQ-005 claim asserted the same ordering \u2014 agent infrastructure above baseline \u2014 from counts that matched no database. This attempt reproduces the ordering from real data and shows the ordering itself is an artifact. Getting the right answer from the wrong evidence, then finding the right evidence says something different, is worth recording.",
+  "axis_status": "Categories x time remains WITHOUT a usable baseline. Three days is too short: 29 movers in the entire corpus.",
+  "derivations": {}
+}
