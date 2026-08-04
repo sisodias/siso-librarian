@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T04:25:34Z",
+  "generated_at": "2026-08-04T04:47:11Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -66,6 +66,32 @@
         "routing",
         "cache-economics",
         "billed-input"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
+    },
+    {
+      "id": "GQ-006",
+      "text": "How should the information organ continuously gather, preserve, query, and push valuable evidence into authorized agent workflows and self-improvement loops?",
+      "status": "active",
+      "registry_work": "gls:work:2144e900-4886-461e-92f1-49571f2e9f74",
+      "note": "Registered God Question, not minted here. Registry state 'partial'.",
+      "claim_packets": [
+        "claims/GQ-006-organ-push-verb.claim.json"
+      ],
+      "current_claim": "claims/GQ-006-organ-push-verb.claim.json",
+      "selectors": [
+        "GQ-006",
+        "information-organ",
+        "push",
+        "approval"
       ],
       "refresh": {
         "strategy": "on-evidence-change",

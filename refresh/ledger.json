@@ -1,6 +1,6 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T04:33:57Z",
+  "generated_at": "2026-08-04T04:47:11Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
@@ -93,6 +93,25 @@
       ],
       "result": "fresh",
       "evidence_note": "Two-path isolation with identical body and credential; both byte ranges verified. Re-checked after commit c02d8c2 modified these claim files; grounding byte ranges re-derived and still resolve to their quoted text.",
+      "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
+    },
+    {
+      "claim_packet": "claims/GQ-006-organ-push-verb.claim.json",
+      "question_id": "GQ-006",
+      "checked_at": "2026-08-04T04:47:11Z",
+      "selectors_used": [
+        "GQ-006",
+        "information-organ",
+        "push",
+        "approval"
+      ],
+      "invalidate_on_considered": [
+        "schema change",
+        "new evidence source",
+        "approved action status change"
+      ],
+      "result": "fresh",
+      "evidence_note": "All four organ verbs measured this loop against live artifacts; both byte ranges verified.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]

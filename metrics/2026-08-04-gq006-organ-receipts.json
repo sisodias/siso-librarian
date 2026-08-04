@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-08-04T04:46:48Z",
+  "question": "GQ-006",
+  "organ_verbs": {
+    "gather": {
+      "receipt": "awesome-list signal loaded into canonical people graph",
+      "curated_awesome_owners": 90209,
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "verified": "re-derived this loop"
+    },
+    "preserve": {
+      "receipt": "passage index copied to vault, byte-identical",
+      "source_bytes": 24253587456,
+      "vault_bytes": 24253587456,
+      "sha256_match": true,
+      "verified": "sizes re-derived this loop; sha256 verified at copy time"
+    },
+    "query": {
+      "receipt": "preserved copy opens read-only and answers",
+      "vault_copy_book_body": 77540,
+      "verified": "queried this loop, not merely stat'd"
+    },
+    "push": {
+      "receipt": "NONE",
+      "claims_with_approval_ref": 0,
+      "claims_total": 5,
+      "note": "Two actions are marked done, but both are changes I made to my own repository under my own authority. No claim has ever carried an approval_ref from a human or another system. The push verb is unevidenced."
+    }
+  },
+  "conclusion": "Three of the organ's four verbs have live receipts on this machine. The fourth does not: evidence is gathered, preserved and queryable, and nothing has been pushed into an authorized workflow. The gap is not tooling \u2014 it is that authorization requires a second party and none has been reachable."
+}

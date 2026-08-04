@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:44:20.511Z",
+  "generated_at": "2026-08-04T04:47:29.100Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 5,
-      "portfolio_questions": 3,
-      "refresh_entries": 5
+      "production_claims": 6,
+      "portfolio_questions": 4,
+      "refresh_entries": 6
     }
   },
   "derivations": {
@@ -154,6 +154,15 @@
         "claims/GQ-008-routing-cache-economics.claim.json",
         "claims/GQ-008-routing-cache-economics.v2.claim.json"
       ]
+    },
+    {
+      "id": "GQ-006",
+      "text": "How should the information organ continuously gather, preserve, query, and push valuable evidence into authorized agent workflows and self-improvement loops?",
+      "status": "active",
+      "action_status": "proposed",
+      "claim_packets": [
+        "claims/GQ-006-organ-push-verb.claim.json"
+      ]
     }
   ],
   "routing": {
@@ -273,13 +282,12 @@
     "coverage": {
       "registered": 7,
       "with_testable_contract": 1,
-      "with_local_claims": 2,
+      "with_local_claims": 3,
       "unclaimed": [
         "GQ-001",
         "GQ-002",
         "GQ-004",
-        "GQ-005",
-        "GQ-006"
+        "GQ-005"
       ]
     }
   },
