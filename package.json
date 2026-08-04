@@ -7,7 +7,8 @@
     "observatory:build": "node scripts/build-observatory.mjs",
     "observatory:serve": "node scripts/serve-observatory.mjs",
     "ia:probe": "node scripts/probe-ia-metadata.mjs",
-    "mm:bulk": "node scripts/mm-bulk-runner.mjs"
+    "mm:bulk": "node scripts/mm-bulk-runner.mjs",
+    "scratch": "bash scripts/scratch-test.sh"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
