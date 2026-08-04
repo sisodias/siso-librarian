@@ -1,0 +1,83 @@
+{
+  "measured_at": "2026-08-04T22:48:02Z",
+  "question": "GQ-007",
+  "subject": "the long-s limit I said was permanent, fixed without touching the text",
+  "what_i_had_written": "\"Deliberately not fixed: normalising f->s would corrupt fuel, fund, fast\" \u2014 a reason I stated without testing it",
+  "i_tested_it": {
+    "from": 35738,
+    "four": 5569,
+    "full": 2599,
+    "verdict": "the caveat was RIGHT \u2014 blind substitution would corrupt at scale. Stating it untested was still wrong."
+  },
+  "the_rule_that_works": "convert a word only when the f-form is NOT in /usr/share/dict/words and some s-substitution IS. Multi-f words need a subset search: firft->first (second f only), himfelf->himself, fatisfaction->satisfaction. The dictionary is the authority, not my judgement about which words look archaic.",
+  "built": "scripts/add-longs-variants.mjs \u2014 a SEPARATE passage_modern FTS table; the original text is untouched",
+  "result": {
+    "passages": 122553,
+    "containing_long_s": 49710,
+    "distinct_words_converted": 9080
+  },
+  "recall_body_scoped": {
+    "such": [
+      6060,
+      11717
+    ],
+    "these": [
+      9008,
+      13742
+    ],
+    "those": [
+      5304,
+      9837
+    ],
+    "himself": [
+      1545,
+      3508
+    ],
+    "because": [
+      1709,
+      3510
+    ],
+    "must": [
+      5902,
+      7926
+    ]
+  },
+  "no_corruption": {
+    "from": [
+      34291,
+      34291
+    ],
+    "four": [
+      5407,
+      5407
+    ],
+    "full": [
+      2526,
+      2526
+    ],
+    "fuel": [
+      290,
+      290
+    ],
+    "note": "every genuine f-word is EXACTLY intact"
+  },
+  "three_bugs_of_my_own_on_the_way": [
+    {
+      "what": "E2BIG",
+      "cause": "2,000 full passage bodies exceeded the argv limit",
+      "fix": "pipe SQL on stdin"
+    },
+    {
+      "what": "malformed SQL",
+      "cause": "passage bodies contain embedded newlines; splitting sqlite output on \\n shreds one row into fragments \u2014 same defect that broke 40 titles into 154 pieces earlier today",
+      "fix": "json_group_array, so sqlite escapes its own output"
+    },
+    {
+      "what": "a phantom corruption finding",
+      "cause": "I compared unscoped FTS matches: passage_ext_search covers heading+body, passage_modern covers body only. The row I \"lost\" had LETTERS FROM THE CONTINENT as its HEADING.",
+      "fix": "column-scoped both sides \u2014 34,291 vs 34,291"
+    }
+  ],
+  "applyEdit_earned_its_keep": "it REFUSED a patch whose anchor did not match (a literal \\x1f in my heredoc was not the real separator byte) instead of silently doing nothing",
+  "derivations": {}
+}
