@@ -77,6 +77,33 @@ function currentSnapshot() {
 }
 const snapshotState = currentSnapshot();
 
+// The registry is the canonical list of God Questions; this repo's portfolio is
+// a working view over the subset the librarian has claims for. Showing only the
+// portfolio hid five registered questions — the observatory is meant to show
+// which God Question is being worked, so it must read the registry's list.
+function registryQuestions() {
+  const dir = join(registry, 'works');
+  if (!existsSync(dir)) return { total: null, questions: [] };
+  const files = sh('find', [dir, '-type', 'f', '-name', '*.json']).split('\n').filter(Boolean);
+  const qs = [];
+  for (const f of files) {
+    try {
+      const d = JSON.parse(readFileSync(f, 'utf8'));
+      const m = /^(GQ-\d+)\s*·\s*(.+)$/.exec(String(d.name || ''));
+      if (m) qs.push({ id: m[1], title: m[2], lifecycle: d.lifecycle_status || null, updated_at: d.updated_at || null });
+    } catch { /* counted separately by missing/unreadable reporting */ }
+  }
+  qs.sort((a, b) => a.id.localeCompare(b.id));
+  return { total: qs.length, questions: qs };
+}
+const registryGQ = registryQuestions();
+const portfolioIds = new Set(portfolio.questions.map(q => q.id));
+const gqCoverage = {
+  registered: registryGQ.total,
+  with_local_claims: registryGQ.questions.filter(q => portfolioIds.has(q.id)).length,
+  unclaimed: registryGQ.questions.filter(q => !portfolioIds.has(q.id)).map(q => q.id),
+};
+
 const claimLayer = {
   production_claims: sh('find', [join(root, 'claims'), '-type', 'f', '-name', '*.json']).split('\n').filter(Boolean).length,
   portfolio_questions: portfolio.questions.length,
@@ -153,6 +180,7 @@ const snapshot = {
   active_questions: portfolio.questions.map(q => ({ id: q.id, text: q.text, status: q.status, action_status: q.action_status, claim_packets: q.claim_packets })),
   routing: minimaxRouting,
   library_snapshot: snapshotState,
+  god_questions: { ...registryGQ, coverage: gqCoverage },
   missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
@@ -170,7 +198,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

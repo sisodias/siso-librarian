@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:07:23.238Z",
+  "generated_at": "2026-08-04T04:09:54.329Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -164,6 +164,65 @@
     "created_at": "2026-08-03T02:10:00+07:00",
     "immutable": true,
     "unreadable_files": []
+  },
+  "god_questions": {
+    "total": 7,
+    "questions": [
+      {
+        "id": "GQ-001",
+        "title": "The Agent Workspace",
+        "lifecycle": "active",
+        "updated_at": "2026-08-01"
+      },
+      {
+        "id": "GQ-002",
+        "title": "10× the Agent Layer",
+        "lifecycle": "active",
+        "updated_at": "2026-08-01"
+      },
+      {
+        "id": "GQ-004",
+        "title": "Best Software Primitive",
+        "lifecycle": "experimental",
+        "updated_at": "2026-08-01"
+      },
+      {
+        "id": "GQ-005",
+        "title": "Where the Field Is Moving",
+        "lifecycle": "experimental",
+        "updated_at": "2026-08-01"
+      },
+      {
+        "id": "GQ-006",
+        "title": "The Information Organ",
+        "lifecycle": "active",
+        "updated_at": "2026-08-01"
+      },
+      {
+        "id": "GQ-008",
+        "title": "Model Routing Evidence",
+        "lifecycle": "active",
+        "updated_at": "2026-08-01"
+      },
+      {
+        "id": "GQ-009",
+        "title": "The God Questions Observatory",
+        "lifecycle": "active",
+        "updated_at": "2026-08-02"
+      }
+    ],
+    "coverage": {
+      "registered": 7,
+      "with_local_claims": 1,
+      "unclaimed": [
+        "GQ-001",
+        "GQ-002",
+        "GQ-004",
+        "GQ-005",
+        "GQ-006",
+        "GQ-008"
+      ]
+    }
   },
   "missing_sources": [],
   "caveats": [

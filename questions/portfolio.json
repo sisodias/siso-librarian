@@ -50,5 +50,6 @@
       },
       "action_status": "proposed"
     }
-  ]
+  ],
+  "registry_note": "The canonical God Question list lives in the great-library registry as Works (7 registered: GQ-001, 002, 004, 005, 006, 008, 009). This portfolio is a working view over the subset the librarian holds claims for, not the authoritative list. GQ-010 was minted here without first checking the registry; it does not collide, but that was luck. Check the registry before assigning any new GQ id. GQ-003 and GQ-007 are unexplained gaps in the registry sequence."
 }
