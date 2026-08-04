@@ -24,6 +24,14 @@ Bifrost strips `cache_control`. The provider caches correctly. The 8081 shim alr
 
 **What I'd need:** approval to change the shim's MiniMax upstream from 8080 to 8789, or a decision to fix Bifrost's forwarding instead. Evidence: `metrics/2026-08-04-gq008-cache-block-isolated.json`.
 
+**Prepared, not applied.** `scripts/minimax-cache-route.sh` makes this a reviewed operation rather than a live edit:
+
+- `status` — shows current routing and probes actual cache behaviour (currently `max_cache_read: 0`)
+- `apply` — refuses if the proxy is not answering; backs up the shim; patches only the MiniMax branch so all other traffic still goes to Bifrost; syntax-checks; restarts; probes; **rolls back automatically** if the model is not MiniMax-M3 or cache reads are still zero
+- `rollback` — restores the most recent backup and re-probes
+
+One command to apply, one to undo, and it undoes itself if the health check fails. I have run `status` only.
+
 ---
 
 ## 2. Where should the rescue refs go?

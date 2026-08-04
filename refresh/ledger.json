@@ -1,6 +1,6 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T04:25:34Z",
+  "generated_at": "2026-08-04T04:33:57Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
@@ -60,7 +60,7 @@
     {
       "claim_packet": "claims/GQ-008-routing-cache-economics.claim.json",
       "question_id": "GQ-008",
-      "checked_at": "2026-08-04T04:25:34Z",
+      "checked_at": "2026-08-04T04:33:57Z",
       "selectors_used": [
         "GQ-008",
         "routing",
@@ -73,13 +73,13 @@
         "approved action status change"
       ],
       "result": "superseded",
-      "evidence_note": "Superseded by v2: v1 blamed the absence of cache_control in the routing path; isolation showed Bifrost strips it while the proxy caches correctly.",
+      "evidence_note": "Superseded by v2: v1 blamed the absence of cache_control in the routing path; isolation showed Bifrost strips it while the proxy caches correctly. Re-checked after commit c02d8c2 modified these claim files; grounding byte ranges re-derived and still resolve to their quoted text.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-008-routing-cache-economics.v2.claim.json",
       "question_id": "GQ-008",
-      "checked_at": "2026-08-04T04:25:34Z",
+      "checked_at": "2026-08-04T04:33:57Z",
       "selectors_used": [
         "GQ-008",
         "routing",
@@ -92,7 +92,7 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Two-path isolation with identical body and credential; both byte ranges verified.",
+      "evidence_note": "Two-path isolation with identical body and credential; both byte ranges verified. Re-checked after commit c02d8c2 modified these claim files; grounding byte ranges re-derived and still resolve to their quoted text.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]

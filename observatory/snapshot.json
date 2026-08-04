@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:30:38.089Z",
+  "generated_at": "2026-08-04T04:33:40.307Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -160,9 +160,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 127,
-    "prompt_tokens": 2663017,
-    "completion_tokens": 64927,
+    "requests": 129,
+    "prompt_tokens": 2666003,
+    "completion_tokens": 64959,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
