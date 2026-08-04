@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T12:04:47Z",
+  "question": "GQ-005",
+  "finding": "A real time series exists on this machine. I concluded the opposite from the wrong database.",
+  "momentum_db": {
+    "path": "~/foundry-data/domains/github/momentum.sqlite",
+    "rows": 170062,
+    "distinct_days": 3,
+    "days": {
+      "2026-07-09": 56687,
+      "2026-07-10": 56687,
+      "2026-07-11": 56688
+    },
+    "repos_present_all_3_days": 56687,
+    "repos_with_star_gain": 29,
+    "max_gain": 1112,
+    "top_movers": [
+      "DeusData/codebase-memory-mcp +1112",
+      "headroomlabs-ai/headroom +512",
+      "omnigent-ai/omnigent +230",
+      "punkpeye/awesome-mcp-servers +101"
+    ]
+  },
+  "correction": "On 2026-08-04 I rejected star velocity for GQ-005 because people_v2 has ONE distinct momentum_day and star_delta null on 406,297 of 463,230 rows. That was true of the GRAPH and false of the MACHINE \u2014 momentum.sqlite holds three consecutive days. I generalised from the database I happened to be querying to the whole system, which is the same shape as quoting the GitHub subset as the whole people graph two loops ago.",
+  "still_limited": "Three days, ending 2026-07-11 \u2014 nearly a month stale. Enough to prove deltas are computable, not enough to score a dated prediction. The cohort baseline remains the usable signal.",
+  "backed_up": {
+    "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/github-momentum/momentum-20260804T120416Z.sqlite",
+    "quick_check": "ok",
+    "repo_snapshot": "170062 MATCH"
+  },
+  "other_databases_opened": {
+    "intents.db": "intent 10269, spawn 4919",
+    "foundry_usage_ledger.db": "60369 rows",
+    "passage_summary.sqlite": "book_passages 77539",
+    "people_video_queue.sqlite": "97 rows"
+  },
+  "derivations": {}
+}
