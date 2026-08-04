@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-04T14:50:28Z",
+  "question": "GQ-006",
+  "action": "re-verify that the 13 GB quarantine is STILL safely reclaimable, hours after it was staged",
+  "why": "Root fell to 17Gi and the low projection is under a day. A reclaim decision is only a one-liner if its safety evidence is current \u2014 a backup verified this morning is a claim about this morning.",
+  "passages_v1_archive": {
+    "local_gb": 9.5,
+    "vault_gb": 9.5,
+    "sha256": "cef7fe1d141f72c1c9680f32c7281a85ce803470bc1973ed2ee207db49f63e1c",
+    "recorded_sha256": "cef7fe1d141f72c1c9680f32c7281a85ce803470bc1973ed2ee207db49f63e1c",
+    "match": true,
+    "method": "re-hashed the 9.5 GB vault copy, not the local one"
+  },
+  "pi_lens_caches": {
+    "cache_dirs_quarantined": 41,
+    "history_preserved": "133 files, tarball lists cleanly from the vault",
+    "orphan_condition_still_true": ".claude-worktrees is still absent anywhere under ~/SISO_Workspace, so the caches remain unregenerable and unusable"
+  },
+  "librarian_repo_footprint": {
+    "total": "~9 MB",
+    "git": "8.3M",
+    "worklog": "556K",
+    "metrics": "452K",
+    "note": "My own repo is not a disk factor. The cost is entirely the gateway log."
+  },
+  "verdict": "All three safety conditions re-verified. 13 GB remains provably safe to delete; the decision needs no re-investigation.",
+  "still_not_deleted": "C1. Reclaiming is Shaan's call and nothing here changes that.",
+  "derivations": {}
+}

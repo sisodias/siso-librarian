@@ -1,11 +1,11 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T14:36:22Z",
+  "generated_at": "2026-08-04T14:51:54Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
       "question_id": "GQ-009",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-009",
         "claim-layer",
@@ -17,13 +17,13 @@
         "approved action status change"
       ],
       "result": "superseded",
-      "evidence_note": "Superseded by claims/GQ-009-claim-layer-contract.v2.claim.json, which regrounds the position on evidence that exists now (IA adapter contract, IA live probe, refresh drift finding) rather than on the original standing packet alone. Retained as history; not the current answer. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Superseded by claims/GQ-009-claim-layer-contract.v2.claim.json, which regrounds the position on evidence that exists now (IA adapter contract, IA live probe, refresh drift finding) rather than on the original standing packet alone. Retained as history; not the current answer. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.v2.claim.json",
       "question_id": "GQ-009",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-009",
         "claim-layer",
@@ -36,13 +36,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Grounded in three artifacts that postdate the v1 claim, each cited by verified byte range: the IA adapter contract legal filter (1086-1120), the live probe numFound 1367676 (195-219), and the refresh drift finding (376-400). Freshness is derived by scripts/evaluate-refresh.mjs, not asserted. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Grounded in three artifacts that postdate the v1 claim, each cited by verified byte range: the IA adapter contract legal filter (1086-1120), the live probe numFound 1367676 (195-219), and the refresh drift finding (376-400). Freshness is derived by scripts/evaluate-refresh.mjs, not asserted. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-010-fame-vs-dependence.claim.json",
       "question_id": "GQ-010",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-010",
         "fame-vs-dependence",
@@ -54,13 +54,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Re-checked after commit 564be28 modified this claim file. Grounding re-verified: both byte ranges in metrics/2026-08-04-gq010-underrated-evidence.json still resolve to their quoted text. Coverage limit unchanged: dependent_repos exists on 867 edges, which bounds the claim. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Re-checked after commit 564be28 modified this claim file. Grounding re-verified: both byte ranges in metrics/2026-08-04-gq010-underrated-evidence.json still resolve to their quoted text. Coverage limit unchanged: dependent_repos exists on 867 edges, which bounds the claim. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-008-routing-cache-economics.claim.json",
       "question_id": "GQ-008",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-008",
         "routing",
@@ -73,13 +73,13 @@
         "approved action status change"
       ],
       "result": "superseded",
-      "evidence_note": "Superseded by v2: v1 blamed the absence of cache_control in the routing path; isolation showed Bifrost strips it while the proxy caches correctly. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Superseded by v2: v1 blamed the absence of cache_control in the routing path; isolation showed Bifrost strips it while the proxy caches correctly. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-008-routing-cache-economics.v2.claim.json",
       "question_id": "GQ-008",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-008",
         "routing",
@@ -92,13 +92,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Two-path isolation with identical body and credential; both byte ranges verified. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Two-path isolation with identical body and credential; both byte ranges verified. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-006-organ-push-verb.claim.json",
       "question_id": "GQ-006",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-006",
         "information-organ",
@@ -111,13 +111,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "All four organ verbs measured this loop against live artifacts; both byte ranges verified. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "All four organ verbs measured this loop against live artifacts; both byte ranges verified. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-002-caching-multiplier.claim.json",
       "question_id": "GQ-002",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-002",
         "effectiveness",
@@ -130,13 +130,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Aggregated over the full gateway log with a 100-request sample floor; a 4-request outlier was excluded and recorded. Both byte ranges verified. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Aggregated over the full gateway log with a 100-request sample floor; a 4-request outlier was excluded and recorded. Both byte ranges verified. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-004-pi-primitive.claim.json",
       "question_id": "GQ-004",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-004",
         "pi",
@@ -149,13 +149,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Package identity, licence, author and resolution path read from the installed tree this loop; both byte ranges verified. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Package identity, licence, author and resolution path read from the installed tree this loop; both byte ranges verified. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-005-category-momentum.claim.json",
       "question_id": "GQ-005",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-005",
         "momentum",
@@ -168,13 +168,13 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Aggregated over 463,221 GitHub edges carrying pushed_at, with an 800-repo category floor; both byte ranges verified. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Aggregated over 463,221 GitHub edges carrying pushed_at, with an 800-repo category floor; both byte ranges verified. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
       "claim_packet": "claims/GQ-001-enforcement-limits.claim.json",
       "question_id": "GQ-001",
-      "checked_at": "2026-08-04T14:36:22Z",
+      "checked_at": "2026-08-04T14:51:54Z",
       "selectors_used": [
         "GQ-001",
         "workspace",
@@ -187,7 +187,7 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Counted from this session's own worklogs; an initial looser grep gave 5 gate-caught and was reconciled to 3 by counting phrases separately. All three byte ranges verified. Re-checked after re-deriving all six self-referential claims from source; 30/30 grounding byte ranges resolve.",
+      "evidence_note": "Counted from this session's own worklogs; an initial looser grep gave 5 gate-caught and was reconciled to 3 by counting phrases separately. All three byte ranges verified. Re-checked after commit 6ed18ce rewrote the GQ-001 position; grounding byte ranges re-derived and resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]
