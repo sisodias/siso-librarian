@@ -1,0 +1,32 @@
+{
+  "measured_at": "2026-08-04T05:00:57Z",
+  "question": "GQ-001",
+  "scope": "the enforcement and memory layers of one agent workspace, measured over a single continuous session",
+  "session": {
+    "commits": 54,
+    "worklogs": 46,
+    "claims": 9,
+    "metrics_files": 27,
+    "proposals": 17
+  },
+  "enforcement": {
+    "automated_gates": 3,
+    "gate_chain": "verify-claim-packets -> evaluate-refresh -> audit-asserted-numbers",
+    "worklogs_recording_a_self_caught_defect": 27,
+    "share_of_worklogs_with_a_defect": 58.7,
+    "defects_caught_by_a_gate": 3,
+    "defects_caught_only_by_execution": 6,
+    "finding": "Gates and execution caught comparable numbers of defects. The gates catch drift between a recorded value and its source; they cannot catch code that does not do what its description claims, a wrong path shared by producer and checker, or a diagnosis that names the wrong layer. Those were all found by running something.",
+    "count_reconciliation": "An initial looser grep returned 5; counting each phrase separately gave 'gate caught'=2, 'evaluator flagged'=1, others 0, union=3. The higher figure matched prose discussing gates rather than gate events. 3 is the reproducible number and is used here."
+  },
+  "memory": {
+    "state_outside_context": 99,
+    "successor_entry_point": "HANDOVER-NEXT.md",
+    "finding": "Durable state is the workspace's memory; the session's context is not. A prior handover written to this agent contained two load-bearing claims that were false within twelve hours, so memory must be dated and supersedable rather than authoritative."
+  },
+  "caveats": [
+    "n=1 session, one agent, one repository.",
+    "Defect counts come from grepping my own worklogs for admission phrases; a defect I failed to notice or record is invisible to this measurement.",
+    "'Caught by execution' and 'caught by a gate' were classified by keyword, not by re-reading each worklog."
+  ]
+}

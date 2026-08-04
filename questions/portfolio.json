@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T04:57:46Z",
+  "generated_at": "2026-08-04T05:01:45Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -170,6 +170,32 @@
         "momentum",
         "categories",
         "github"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
+    },
+    {
+      "id": "GQ-001",
+      "text": "How should the complete agent workspace be designed across code layout, agent architecture, memory, enforcement, and agent-generated user interfaces?",
+      "status": "active",
+      "registry_work": "registered; registry state 'partial'",
+      "note": "Registered God Question, not minted here. Claim covers the enforcement and memory layers only, measured from this session's own record.",
+      "claim_packets": [
+        "claims/GQ-001-enforcement-limits.claim.json"
+      ],
+      "current_claim": "claims/GQ-001-enforcement-limits.claim.json",
+      "selectors": [
+        "GQ-001",
+        "workspace",
+        "enforcement",
+        "gates"
       ],
       "refresh": {
         "strategy": "on-evidence-change",

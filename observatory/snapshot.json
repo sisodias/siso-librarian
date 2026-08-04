@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:58:04.899Z",
+  "generated_at": "2026-08-04T05:02:02.444Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 9,
-      "portfolio_questions": 7,
-      "refresh_entries": 9
+      "production_claims": 10,
+      "portfolio_questions": 8,
+      "refresh_entries": 10
     }
   },
   "derivations": {
@@ -190,6 +190,15 @@
       "claim_packets": [
         "claims/GQ-005-category-momentum.claim.json"
       ]
+    },
+    {
+      "id": "GQ-001",
+      "text": "How should the complete agent workspace be designed across code layout, agent architecture, memory, enforcement, and agent-generated user interfaces?",
+      "status": "active",
+      "action_status": "proposed",
+      "claim_packets": [
+        "claims/GQ-001-enforcement-limits.claim.json"
+      ]
     }
   ],
   "routing": {
@@ -309,10 +318,8 @@
     "coverage": {
       "registered": 7,
       "with_testable_contract": 1,
-      "with_local_claims": 6,
-      "unclaimed": [
-        "GQ-001"
-      ]
+      "with_local_claims": 7,
+      "unclaimed": []
     }
   },
   "release_integrity": {

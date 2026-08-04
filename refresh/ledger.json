@@ -1,6 +1,6 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T04:58:27Z",
+  "generated_at": "2026-08-04T05:02:21Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
@@ -136,7 +136,7 @@
     {
       "claim_packet": "claims/GQ-004-pi-primitive.claim.json",
       "question_id": "GQ-004",
-      "checked_at": "2026-08-04T04:53:50Z",
+      "checked_at": "2026-08-04T05:02:21Z",
       "selectors_used": [
         "GQ-004",
         "pi",
@@ -149,7 +149,7 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Package identity, licence, author and resolution path read from the installed tree this loop; both byte ranges verified.",
+      "evidence_note": "Package identity, licence, author and resolution path read from the installed tree this loop; both byte ranges verified. Re-checked after commit 88d0f26 modified this claim file; both grounding byte ranges re-derived and still resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
@@ -169,6 +169,25 @@
       ],
       "result": "fresh",
       "evidence_note": "Aggregated over 463,221 GitHub edges carrying pushed_at, with an 800-repo category floor; both byte ranges verified.",
+      "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
+    },
+    {
+      "claim_packet": "claims/GQ-001-enforcement-limits.claim.json",
+      "question_id": "GQ-001",
+      "checked_at": "2026-08-04T05:01:45Z",
+      "selectors_used": [
+        "GQ-001",
+        "workspace",
+        "enforcement",
+        "gates"
+      ],
+      "invalidate_on_considered": [
+        "schema change",
+        "new evidence source",
+        "approved action status change"
+      ],
+      "result": "fresh",
+      "evidence_note": "Counted from this session's own worklogs; an initial looser grep gave 5 gate-caught and was reconciled to 3 by counting phrases separately. All three byte ranges verified.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]
