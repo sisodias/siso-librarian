@@ -8,8 +8,16 @@ const home = process.env.HOME;
 function sh(cmd, args, opts = {}) {
   return execFileSync(cmd, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], ...opts }).trim();
 }
+// A missing directory and an empty one both used to return 0, which is how a
+// hyphen/underscore typo hid six source inventories: the count was structurally
+// valid and semantically a lie. Missing paths are recorded so the page can say
+// so rather than render a confident zero.
+const missingSources = [];
 function countFiles(dir) {
-  if (!existsSync(dir)) return 0;
+  if (!existsSync(dir)) {
+    missingSources.push(dir.replace(home, '~'));
+    return null;
+  }
   return Number(sh('find', [dir, '-type', 'f', '-name', '*.json']).split('\n').filter(Boolean).length);
 }
 function sqlite(db, sql) {
@@ -104,7 +112,14 @@ function measureRouting() {
         : 'No MiniMax-M3 rows in the window. Routing may still be configured; it is simply unproven right now.',
     };
   } catch (error) {
-    return { minimax_8081: 'unknown', reason: `log query failed: ${error.message}`, measured: false };
+    // Distinguish failure modes. "unknown" that means the log is missing and
+    // "unknown" that means the query is malformed need different responses, and
+    // collapsing them hides a broken query behind a plausible-looking absence.
+    const msg = String(error.message || '');
+    const kind = /no such table|no such column|syntax error/i.test(msg) ? 'query_invalid'
+      : /unable to open|not a database|disk I\/O/i.test(msg) ? 'log_unreadable'
+      : 'query_failed';
+    return { minimax_8081: 'unknown', failure: kind, reason: msg.slice(0, 200), measured: false };
   }
 }
 const minimaxRouting = measureRouting();
@@ -138,6 +153,7 @@ const snapshot = {
   active_questions: portfolio.questions.map(q => ({ id: q.id, text: q.text, status: q.status, action_status: q.action_status, claim_packets: q.claim_packets })),
   routing: minimaxRouting,
   library_snapshot: snapshotState,
+  missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
     'Registry directory names are hyphenated (source-inventories); an underscore path silently counted 0 until 2026-08-04.'
@@ -147,8 +163,12 @@ mkdirSync(join(root, 'observatory'), { recursive: true });
 mkdirSync(join(root, 'public'), { recursive: true });
 writeFileSync(join(root, 'observatory/snapshot.json'), JSON.stringify(snapshot, null, 2) + '\n');
 
+// A null count means the source directory is absent — say so on the card
+// instead of rendering the string "null", which reads like a bug rather than
+// the honest signal it is.
+const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLocaleString());
 const cards = [
-  ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Source inventories', registryCounts.source_inventories], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
+  ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
   ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];

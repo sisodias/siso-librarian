@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:02:21.774Z",
+  "generated_at": "2026-08-04T04:07:23.238Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -165,6 +165,7 @@
     "immutable": true,
     "unreadable_files": []
   },
+  "missing_sources": [],
   "caveats": [
     "/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.",
     "Registry directory names are hyphenated (source-inventories); an underscore path silently counted 0 until 2026-08-04."
