@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T17:14:45.255Z",
+  "generated_at": "2026-08-04T17:17:37.302Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 20,
     "verify_steps": 6,
     "scripts_on_disk": 22,
-    "metrics_files": 104,
-    "worklogs": 162,
+    "metrics_files": 105,
+    "worklogs": 163,
     "proposals": 18
   },
   "derivations": {
@@ -453,7 +453,7 @@
     "items": [
       "Repoint MiniMax traffic away from Bifrost — ~97% input-token saving",
       "Where should the rescue refs go? — FALLBACK NOW VERIFIED",
-      "Cloudflare ingress for the observatory",
+      "Cloudflare ingress for the observatory — RE-VERIFIED, still yours",
       "Bifrost's request log — RE-MEASURED at 4.68 GB/day, and 91% of it is me",
       "Internet Archive expansion — NOT blocked on rights. Selection was, and it is now answered."
     ],
@@ -466,7 +466,7 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 11.3,
+    "oldest_queued_age_hours": 11.4,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",

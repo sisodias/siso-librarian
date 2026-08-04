@@ -94,7 +94,27 @@ The charter names an unpushed SEC-F16 security fix from June as irreplaceable si
 
 ---
 
-## 4. Cloudflare ingress for the observatory
+## 4. Cloudflare ingress for the observatory — RE-VERIFIED, still yours
+
+Re-checked 2026-08-04 rather than left asserted:
+
+  loopback  127.0.0.1:8765      200
+  tailnet   100.66.34.21:8765   200
+  cloudflared                   running (--token tunnel, pid 8611)
+  local ingress config          NONE
+
+A --token tunnel reads its routes from the dashboard; there is no local file
+that could define one. Machine side is genuinely finished and I cannot do the
+rest without dashboard credentials.
+
+Of eleven deferrals I tested today this is the only one accurate at exactly the
+scope stated — nothing to narrow.
+
+(Incidental: the tunnel token is visible in `ps` output. Normal for cloudflared,
+not something I introduced, but anything that can read the process table can
+read that credential.)
+
+The original text follows.
 
 The observatory serves on the tailnet (`100.66.34.21:8765`) and loopback, verified 200 on both, refused on LAN. It is not publicly reachable.
 

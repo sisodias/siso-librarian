@@ -1,0 +1,17 @@
+{
+  "measured_at": "2026-08-04T17:16:26Z",
+  "question": "GQ-006",
+  "subject": "decision 4 \u2014 the first deferral that survives testing intact",
+  "the_claim": "\"cloudflared here is token-managed with ingress defined in the dashboard. Everything machine-side is done.\"",
+  "verified": {
+    "loopback_127_0_0_1_8765": 200,
+    "tailnet_100_66_34_21_8765": 200,
+    "cloudflared_running": true,
+    "local_ingress_config": "none \u2014 no ~/.cloudflared/*.yml or /etc/cloudflared/*.yml",
+    "tunnel_mode": "--token, which takes ingress from the Cloudflare dashboard"
+  },
+  "verdict": "HOLDS ENTIRELY. Machine side is genuinely finished \u2014 both endpoints serve 200, the tunnel process is up, and there is no local config file that could define a route. A token-managed tunnel cannot be given ingress locally; it reads it from the dashboard, which needs credentials I do not have and should not have.",
+  "significance": "Eleven deferrals tested today. Ten were true in substance and overstated in scope. This is the FIRST that is accurate at exactly the scope stated \u2014 nothing to narrow, nothing I could have done and did not.",
+  "incidental_security_note": "The tunnel token is visible in the process listing (ps shows the full --token argument). That is normal for cloudflared and not a defect I introduced, but anything that can read the process table on this machine can read the tunnel credential. Noting it because I saw it, not because it is actionable by me.",
+  "derivations": {}
+}
