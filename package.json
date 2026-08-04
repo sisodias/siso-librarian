@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "verify": "node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs",
+    "verify": "node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs",
     "refresh:evaluate": "node scripts/evaluate-refresh.mjs",
-    "audit:numbers": "node scripts/audit-asserted-numbers.mjs"
+    "audit:numbers": "node scripts/audit-asserted-numbers.mjs",
+    "review:packet": "node scripts/build-review-packet.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

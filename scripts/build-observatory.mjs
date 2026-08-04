@@ -153,6 +153,16 @@ function blockedDecisions() {
   return { count: items.length, items, source: 'proposals/2026-08-04-decisions-awaiting-shaan.md' };
 }
 const blocked = blockedDecisions();
+
+// Independent review is the one thing this agent cannot do for itself
+// (GQ-009 watch trigger 5). Surfacing the count keeps it from being quietly
+// forgotten simply because the portfolio looks complete.
+const reviewState = (() => {
+  const f = join(root, 'REVIEW-PACKET.md');
+  if (!existsSync(f)) return 'SOURCE MISSING';
+  const n = (readFileSync(f, 'utf8').match(/^## GQ-/gm) || []).length;
+  return `${n} unreviewed`;
+})();
 const portfolioIds = new Set(portfolio.questions.map(q => q.id));
 const contractComplete = registryGQ.questions.filter(q =>
   q.success_criteria > 0 && q.falsifiers > 0 && q.watch_triggers > 0).length;
@@ -241,7 +251,7 @@ const snapshot = {
   library_snapshot: snapshotState,
   god_questions: { ...registryGQ, coverage: gqCoverage },
   release_integrity: releaseState,
-  awaiting_decision: { ...blocked, successor_handover: 'HANDOVER-NEXT.md' },
+  awaiting_decision: { ...blocked, successor_handover: 'HANDOVER-NEXT.md', review_packet: 'REVIEW-PACKET.md' },
   missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
@@ -259,7 +269,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

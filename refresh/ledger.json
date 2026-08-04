@@ -1,6 +1,6 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T05:02:21Z",
+  "generated_at": "2026-08-04T05:05:58Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
@@ -155,7 +155,7 @@
     {
       "claim_packet": "claims/GQ-005-category-momentum.claim.json",
       "question_id": "GQ-005",
-      "checked_at": "2026-08-04T04:57:46Z",
+      "checked_at": "2026-08-04T05:05:58Z",
       "selectors_used": [
         "GQ-005",
         "momentum",
@@ -168,7 +168,7 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Aggregated over 463,221 GitHub edges carrying pushed_at, with an 800-repo category floor; both byte ranges verified.",
+      "evidence_note": "Aggregated over 463,221 GitHub edges carrying pushed_at, with an 800-repo category floor; both byte ranges verified. Re-checked after commit d1c90db modified this claim file; both grounding byte ranges re-derived and still resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     },
     {
