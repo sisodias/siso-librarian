@@ -4,7 +4,7 @@
   "purpose": "Naive baseline required by GQ-005 falsifier 1. Predictions must beat this to count as identifying movement.",
   "source": "~/foundry-data/domains/people/people_v2.sqlite",
   "method": "Share of each creation-year cohort by primary language, read-only over person_content.",
-  "time_axis": "created_at (repository birth date). NOT star velocity — see rejected_signal.",
+  "time_axis": "created_at (repository birth date). NOT star velocity \u2014 see rejected_signal.",
   "rejected_signal": {
     "fields": [
       "star_delta",
@@ -233,6 +233,30 @@
       "kind": "sqlite",
       "source": "~/foundry-data/domains/people/people_v2.sqlite",
       "query": "select sum(case when json_extract(meta_json,'$.star_delta') is null then 1 else 0 end) from person_content where domain='github';"
+    }
+  },
+  "categories_axis_rejected": {
+    "attempted": "awesome_sections as a categories baseline, per GQ-005 evidence gap 2",
+    "coverage": {
+      "rows_with_section_and_created_at": 119565,
+      "distinct_sections": 28177,
+      "singleton_sections": 10185
+    },
+    "reason": "Not a taxonomy. 10,185 of 28,177 sections occur exactly once \u2014 they are free-text list headings, not categories. The dense head is dominated by language names (Python 3,445, JavaScript 2,525, Go 2,509, TypeScript 1,589) and junk buckets ('Other Lists' 3,271, 'Others' 2,231, 'Tools' 2,084, 'Repos' 1,009), so a categories baseline built here would either restate the language baseline or measure nothing.",
+    "semantic_head": {
+      "\ud83e\udde0 Agent Skills": 145,
+      "LLMs and ChatGPT": 123,
+      "LLM Models": 90,
+      "\ud83e\udd16 Agent Harness Frameworks": 88,
+      "LLM (LLM & Tool)": 83
+    },
+    "verdict": "No semantic section reaches 150 rows across six cohorts (~24/year), far below the 5,000-repo cohort floor this file already applies to languages. Categories, techniques, and projects remain without a baseline.",
+    "derivations": {
+      "coverage.distinct_sections": {
+        "kind": "sqlite",
+        "source": "~/foundry-data/domains/people/people_v2.sqlite",
+        "query": "with s as (select j.value v from person_content pc, json_each(json_extract(pc.meta_json,'$.awesome_sections')) j where pc.domain='github') select count(distinct v) from s;"
+      }
     }
   }
 }
