@@ -284,6 +284,22 @@ t=open(p).read()
 t=t.replace(\"return String(g?.source?.id || '');\", \"return '';\")
 open(p,'w').write(t)"
 
+# The patch helper must refuse a no-op. This is the defect that hit five times
+# on 2026-08-04 — an edit that silently does not apply, while the patch script
+# exits 0 AND node --check passes. Reproduced in isolation that day: 0 imports
+# landed, both signals green.
+echo -n "PROBE patch helper refuses a silent no-op — "
+(
+  W=$(mktemp -d "/tmp/gate-patch-XXXXXX")
+  printf 'export const a = 1;\n' > "$W/s.mjs"
+  out=$(PATCHLIB="$ROOT/scripts/lib/patch.mjs" TARGET="$W/s.mjs" node --input-type=module -e "
+    const { applyEdit } = await import(process.env.PATCHLIB);
+    try { applyEdit(process.env.TARGET, { find: 'a = 1', replace: 'a = 1' }); console.log('NOTHROW'); }
+    catch { console.log('THREW'); }" 2>/dev/null)
+  rm -rf "$W"
+  if [ "$out" = "THREW" ]; then echo "PASS (no-op rejected)"; else echo "FAIL — a no-op edit reported success"; fi
+)
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

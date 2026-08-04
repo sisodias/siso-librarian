@@ -1,0 +1,44 @@
+{
+  "measured_at": "2026-08-04T21:25:40Z",
+  "question": "GQ-001",
+  "subject": "the silent no-op edit \u2014 the defect behind five of today's failures",
+  "the_defect": "An edit that does not apply while the patch script exits 0 AND node --check passes. Five times today a comment satisfied a guard meant for code; the fifth was inside my own patch script, where a comment I had just added contained the string I was guarding on, so the import was silently skipped.",
+  "reproduced_in_isolation": {
+    "patch_script_exit": 0,
+    "node_check": "ok",
+    "imports_landed": 0,
+    "why_it_matters": "both signals said success. A no-op edit is indistinguishable from an applied one unless something checks the RESULT."
+  },
+  "built": "scripts/lib/patch.mjs \u2014 applyEdit, ensureImport, stripComments",
+  "the_rule": "state what must be true AFTER the edit and verify it against the file on disk, not against the string you built in memory",
+  "failure_modes_all_verified": [
+    {
+      "case": "missing anchor",
+      "result": "throws \u2014 expected 1 occurrence, found 0"
+    },
+    {
+      "case": "no-op edit (find === replace)",
+      "result": "throws \u2014 content unchanged"
+    },
+    {
+      "case": "failed post-condition",
+      "result": "throws AND restores the file"
+    },
+    {
+      "case": "ambiguous anchor (3 occurrences)",
+      "result": "throws by default; count:3 applies deliberately"
+    }
+  ],
+  "proven_on_the_real_case": "ensureImport lands the import into a file whose COMMENT already contains the module name \u2014 the exact input where my original guard skipped it. 2 imports on disk, symbol reachable as code.",
+  "a_wrong_test_i_caught": {
+    "what": "I asserted 'a' was an ambiguous anchor in 'export const a = 1;'",
+    "reality": "it occurs exactly ONCE \u2014 the helper was right and my test was wrong",
+    "lesson": "I asserted a count instead of deriving it, inside a test written to catch asserted counts"
+  },
+  "also": "removed a dead heredoc I left in the new probe; the probe still passes, which is what proves it was unused",
+  "result": {
+    "verify_exit": 0,
+    "gate_selftest": "15 passed, 0 failed"
+  },
+  "derivations": {}
+}
