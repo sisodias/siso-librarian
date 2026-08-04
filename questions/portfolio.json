@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T04:20:20Z",
+  "generated_at": "2026-08-04T04:25:34Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -57,9 +57,10 @@
       "registry_work": "gls:work:3b4c4fa6-31f2-4cfc-9542-00f32e200621",
       "note": "Registered God Question, not minted here. Registry marks it 'answered' with no falsifiers; this claim proposes a cost-dimension correction.",
       "claim_packets": [
-        "claims/GQ-008-routing-cache-economics.claim.json"
+        "claims/GQ-008-routing-cache-economics.claim.json",
+        "claims/GQ-008-routing-cache-economics.v2.claim.json"
       ],
-      "current_claim": "claims/GQ-008-routing-cache-economics.claim.json",
+      "current_claim": "claims/GQ-008-routing-cache-economics.v2.claim.json",
       "selectors": [
         "GQ-008",
         "routing",

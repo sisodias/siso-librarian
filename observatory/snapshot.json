@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:21:04.405Z",
+  "generated_at": "2026-08-04T04:26:45.550Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 4,
+      "production_claims": 5,
       "portfolio_questions": 3,
-      "refresh_entries": 4
+      "refresh_entries": 5
     }
   },
   "derivations": {
@@ -151,7 +151,8 @@
       "status": "active",
       "action_status": "proposed",
       "claim_packets": [
-        "claims/GQ-008-routing-cache-economics.claim.json"
+        "claims/GQ-008-routing-cache-economics.claim.json",
+        "claims/GQ-008-routing-cache-economics.v2.claim.json"
       ]
     }
   ],
@@ -159,9 +160,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 120,
-    "prompt_tokens": 2641786,
-    "completion_tokens": 64759,
+    "requests": 127,
+    "prompt_tokens": 2663017,
+    "completion_tokens": 64927,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
