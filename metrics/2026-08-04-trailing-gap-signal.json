@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T13:14:00Z",
+  "question": "GQ-006",
+  "subject": "a truncation signal for large books, which I said I did not have",
+  "signal": {
+    "name": "trailing gap",
+    "definition": "body_end minus the end offset of the last passage.",
+    "why_it_works": "A truncated extraction stops early, so the final passage would end far short of body_end. This needs no network and covers every book, unlike the fetch survey which covers 1.1%.",
+    "results": {
+      "books": 77539,
+      "last_passage_ends_exactly_at_body_end": 40173,
+      "gap_over_500_bytes": 1,
+      "max_gap": 752,
+      "avg_gap": 4.9
+    }
+  },
+  "sole_outlier": {
+    "gid": 23962,
+    "title": "\u897f\u904a\u8a18 (Journey to the West)",
+    "local_body": 785317,
+    "passages": 546,
+    "trailing_gap": 752,
+    "upstream_body": 785317,
+    "verdict": "FAITHFUL \u2014 upstream byte-matches local exactly. The 752-byte gap is the passage splitter leaving a CJK tail unconsumed, not lost text."
+  },
+  "false_start": {
+    "attempted": "Testing whether the last passage ends with sentence punctuation.",
+    "result": "17,069 of 77,539 (22%) \u2014 implausibly low for a truncation signal.",
+    "diagnosis": "The preview column caps at 160 characters with 41,610 passages sitting exactly at the cap. It is a snippet, not the passage text, so the punctuation test measured the truncation of the PREVIEW field rather than of the book. Checked the field before building on the 22%."
+  },
+  "coverage_now": {
+    "fetch_survey": "1,007 books (1.1%)",
+    "trailing_gap": "77,539 books (100%)",
+    "bytes_per_passage": "77,539 books (100%)"
+  },
+  "honest_limit": "The trailing gap proves the extractor consumed the body it was given. It cannot detect a body that was WRITTEN short \u2014 if extraction recorded body_end at the wrong place, the last passage would still align with it. That case needs the upstream fetch, which is why the two methods complement rather than replace each other.",
+  "derivations": {}
+}
