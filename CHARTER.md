@@ -99,7 +99,12 @@ arithmetically impossible, not merely wasteful.
    SSD only. Unpublished. A drive failure loses it.
 4. **Irreplaceable work in single copies.** Six git worktrees under
    `.claude/worktrees/domain-batch-backend` have commits on **no remote**. Three
-   repos hold unpushed work including a SEC-F16 security fix from June.
+   repos hold unpushed work. CORRECTED 2026-08-04: the "SEC-F16 security fix
+   from June" named here appears in NO commit on this machine. The actual work
+   is a prompt-injection audit and overlay safety hardening dated 2026-07-20,
+   on branches `lane/security-mini-*`, preserved in a verified git bundle at
+   `SISO-VAULT/librarian-vault/gap4-gap7-2026-08-03-2116/`. Name and month were
+   both wrong, and the single-copy risk is already discharged.
 5. **9,395 people tracked with zero content edges.**
 6. **SISO_Knowledge tier/score is 96.6% self-contradictory**, and the fix is
    blocked because no scorer exists.

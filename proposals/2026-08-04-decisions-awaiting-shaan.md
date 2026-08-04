@@ -46,7 +46,28 @@ Five backend commits exist on no remote. They now have durable local refs under 
 
 ---
 
-## 3. What was SEC-F16 actually called?
+## 3. ~~What was SEC-F16 actually called?~~ RESOLVED 2026-08-04
+
+**Answered by searching, not by asking.** "SEC-F16" appears in ZERO commits
+across all 36 git repositories on this machine — only in documents describing
+it, all tracing back to HANDOVER.md.
+
+The work is real and already safe:
+
+  bundle   .../librarian-vault/gap4-gap7-2026-08-03-2116/oracle-streaming-unremote-heads.bundle
+  verify   "The bundle records a complete history."  (621 MB)
+  branches lane/security-mini-TASK-0403-a2, lane/security-mini-repickup-20260720
+  commits  2026-07-20  prompt-injection audit, overlay safety hardening,
+                       domain-batch blocker verdicts
+
+So it is a **prompt-injection audit and safety hardening dated 2026-07-20**, not
+a "SEC-F16 fix from June". Both the name and the month were wrong. The
+single-copy concern is discharged — it is in a verified bundle on the vault.
+
+I asked you for "roughly which repo" when the answer was a grep across 36 repos
+and one bundle verify. That was answerable by me the whole time.
+
+The original text follows.
 
 The charter names an unpushed SEC-F16 security fix from June as irreplaceable single-copy work. A literal grep for `SEC-F16`, `SEC F16`, and `SEC_F16` across `SISO_Workspace`, `.openclaw`, and this repo returns only the charter's own mention.
 
