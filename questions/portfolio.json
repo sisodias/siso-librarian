@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T04:53:50Z",
+  "generated_at": "2026-08-04T04:57:46Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -144,6 +144,32 @@
         "pi",
         "primitive",
         "supply-chain"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
+    },
+    {
+      "id": "GQ-005",
+      "text": "Which categories, techniques, and projects are gaining real momentum, what mechanisms explain the change, and what does the acceleration predict next?",
+      "status": "active",
+      "registry_work": "registered; registry state 'scoped'",
+      "note": "Registered God Question, not minted here. Answered from the people graph rather than gateway logs.",
+      "claim_packets": [
+        "claims/GQ-005-category-momentum.claim.json"
+      ],
+      "current_claim": "claims/GQ-005-category-momentum.claim.json",
+      "selectors": [
+        "GQ-005",
+        "momentum",
+        "categories",
+        "github"
       ],
       "refresh": {
         "strategy": "on-evidence-change",

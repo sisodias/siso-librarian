@@ -1,0 +1,112 @@
+{
+  "measured_at": "2026-08-04T04:57:13Z",
+  "question": "GQ-005",
+  "method": "share of a category's GitHub edges whose repo was pushed in 2025-2026, against the corpus-wide baseline; 800-repo floor",
+  "corpus_baseline": {
+    "edges_with_pushed_at": 463221,
+    "recent": 207329,
+    "pct_recent": 44.8
+  },
+  "leaders": [
+    {
+      "category": "agent-memory-store",
+      "repos": 929,
+      "recent": 691,
+      "pct_recent": 74.4,
+      "momentum_vs_baseline": 1.66
+    },
+    {
+      "category": "ai-data-finance",
+      "repos": 1222,
+      "recent": 907,
+      "pct_recent": 74.2,
+      "momentum_vs_baseline": 1.66
+    },
+    {
+      "category": "typesetting-engine",
+      "repos": 1139,
+      "recent": 823,
+      "pct_recent": 72.3,
+      "momentum_vs_baseline": 1.61
+    },
+    {
+      "category": "agent-extension-pack",
+      "repos": 17538,
+      "recent": 12365,
+      "pct_recent": 70.5,
+      "momentum_vs_baseline": 1.57
+    },
+    {
+      "category": "agent-ecosystem-artifact",
+      "repos": 6061,
+      "recent": 4237,
+      "pct_recent": 69.9,
+      "momentum_vs_baseline": 1.56
+    },
+    {
+      "category": "home-automation-integration",
+      "repos": 1611,
+      "recent": 1125,
+      "pct_recent": 69.8,
+      "momentum_vs_baseline": 1.56
+    },
+    {
+      "category": "package-registry-server",
+      "repos": 3431,
+      "recent": 2365,
+      "pct_recent": 68.9,
+      "momentum_vs_baseline": 1.54
+    },
+    {
+      "category": "proxy-subscription-feed",
+      "repos": 1237,
+      "recent": 829,
+      "pct_recent": 67.0,
+      "momentum_vs_baseline": 1.5
+    }
+  ],
+  "laggards": [
+    {
+      "category": "ml-paper-impl",
+      "repos": 36201,
+      "recent": 12650,
+      "pct_recent": 34.9,
+      "momentum_vs_baseline": 0.78
+    },
+    {
+      "category": "creative-interactive-piece",
+      "repos": 12404,
+      "recent": 4232,
+      "pct_recent": 34.1,
+      "momentum_vs_baseline": 0.76
+    },
+    {
+      "category": "native-mobile-ui-component",
+      "repos": 25423,
+      "recent": 7616,
+      "pct_recent": 30.0,
+      "momentum_vs_baseline": 0.67
+    },
+    {
+      "category": "animation-engine",
+      "repos": 9697,
+      "recent": 2893,
+      "pct_recent": 29.8,
+      "momentum_vs_baseline": 0.67
+    },
+    {
+      "category": "social-movement-repo",
+      "repos": 975,
+      "recent": 269,
+      "pct_recent": 27.6,
+      "momentum_vs_baseline": 0.62
+    }
+  ],
+  "reading": "Agent infrastructure dominates the leaders: agent-memory-store 74.4%, agent-extension-pack 70.5%, agent-ecosystem-artifact 69.9% \u2014 all well above the 44.8% baseline. The counterintuitive finding is ml-paper-impl at 34.9%, below baseline: paper-implementation repos are being abandoned faster than the corpus average even as AI activity rises, which suggests attention is moving from reproducing research to building durable agent tooling.",
+  "caveats": [
+    "pushed_at measures maintenance, not adoption or quality.",
+    "Categories come from the curated gh_category taxonomy, not raw topics.",
+    "A 2025-2026 window on a 2026-08 snapshot spans ~19 months, so 'recent' is generous.",
+    "This is momentum within one corpus of 463,221 edges, not the field at large."
+  ]
+}

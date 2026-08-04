@@ -1,0 +1,75 @@
+{
+  "schema_version": "claim-packet-v1",
+  "question": {
+    "id": "GQ-005:category-momentum",
+    "text": "Which categories, techniques, and projects are gaining real momentum, what mechanisms explain the change, and what does the acceleration predict next?",
+    "scope": "maintenance momentum by curated category within the 463,221-edge GitHub corpus",
+    "parents": [
+      "GQ-005"
+    ]
+  },
+  "claim": {
+    "id": "claim:GQ-005.category-momentum.v1",
+    "position": "Agent infrastructure is where maintenance effort is concentrating: agent-memory-store (74.4%), agent-extension-pack (70.5%) and agent-ecosystem-artifact (69.9%) sit far above the 44.8% corpus baseline for repos pushed in 2025-2026, while ml-paper-impl sits below it at 34.9% \u2014 so attention appears to be moving from reproducing published research toward building durable agent tooling, rather than AI activity rising uniformly.",
+    "confidence": 0.62,
+    "status": "proposed",
+    "created_at": "2026-08-04T04:57:46Z",
+    "updated_at": "2026-08-04T04:57:46Z",
+    "supersedes": []
+  },
+  "grounding": [
+    {
+      "quote": "\"pct_recent\": 44.8",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq005-category-momentum.json",
+        "title": "Category momentum, measured from the people graph"
+      },
+      "locator": "corpus_baseline.pct_recent",
+      "passage_id": "gq005:baseline",
+      "byte_range": {
+        "start": 287,
+        "end": 305
+      }
+    },
+    {
+      "quote": "\"category\": \"agent-memory-store\"",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq005-category-momentum.json",
+        "title": "Category momentum, measured from the people graph"
+      },
+      "locator": "leaders[0].category",
+      "passage_id": "gq005:leader",
+      "byte_range": {
+        "start": 338,
+        "end": 370
+      }
+    }
+  ],
+  "action": {
+    "status": "proposed",
+    "description": "None yet. This is a directional reading of one corpus, not a basis for investment. It would become actionable if the same ordering held on a second signal \u2014 adoption or dependents rather than maintenance \u2014 which the graph can support but I have not measured.",
+    "owner": "librarian"
+  },
+  "refresh": {
+    "strategy": "on-evidence-change",
+    "selectors": [
+      "GQ-005",
+      "momentum",
+      "categories",
+      "github"
+    ],
+    "invalidate_on": [
+      "schema change",
+      "new evidence source",
+      "approved action status change"
+    ]
+  },
+  "provenance": {
+    "producer": "siso-librarian",
+    "run_id": "GQ-005-loop-2026-08-04-category-momentum",
+    "model": "claude-opus-5",
+    "generated_at": "2026-08-04T04:57:46Z"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:54:08.035Z",
+  "generated_at": "2026-08-04T04:58:04.899Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 8,
-      "portfolio_questions": 6,
-      "refresh_entries": 8
+      "production_claims": 9,
+      "portfolio_questions": 7,
+      "refresh_entries": 9
     }
   },
   "derivations": {
@@ -181,6 +181,15 @@
       "claim_packets": [
         "claims/GQ-004-pi-primitive.claim.json"
       ]
+    },
+    {
+      "id": "GQ-005",
+      "text": "Which categories, techniques, and projects are gaining real momentum, what mechanisms explain the change, and what does the acceleration predict next?",
+      "status": "active",
+      "action_status": "proposed",
+      "claim_packets": [
+        "claims/GQ-005-category-momentum.claim.json"
+      ]
     }
   ],
   "routing": {
@@ -300,10 +309,9 @@
     "coverage": {
       "registered": 7,
       "with_testable_contract": 1,
-      "with_local_claims": 5,
+      "with_local_claims": 6,
       "unclaimed": [
-        "GQ-001",
-        "GQ-005"
+        "GQ-001"
       ]
     }
   },
