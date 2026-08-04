@@ -1,0 +1,33 @@
+{
+  "measured_at": "2026-08-04T16:46:12Z",
+  "question": "GQ-004",
+  "action": "built the want-list generator \u2014 the gap I named four loops running without closing",
+  "output": {
+    "file": "sources/internet-archive/want-list-weak-subjects.json",
+    "items": 106,
+    "unique_identifiers": 106,
+    "contract_fields": "all 7 present (identifier, title, year, language, tier, rights_evidence, query)"
+  },
+  "per_subject": {
+    "English poetry": 30,
+    "Essays": 31,
+    "Cookery": 26,
+    "Detective and mystery stories": 14,
+    "Historical fiction": 5
+  },
+  "why_106_not_124": {
+    "census_counted": 124,
+    "generator_produced": 106,
+    "cause": "The census deduped candidates against the LIBRARY but not against each other. Cookery fetched 60 results containing only 56 unique titles \u2014 4 intra-pool duplicates. The generator dedupes both ways, plus cross-subject (a book can carry several subjects).",
+    "consequence": "My census overcounted by ~18. 106 is the number of distinct fetchable works."
+  },
+  "correcting_last_loop": "I wrote that only science fiction had duplicate titles, 5 of 6 pools at zero. Cookery has 4. My duplicate check compared numFound to unique titles in the SAMPLE I had fetched; for five subjects that sample was the full pool, but I read \"0 duplicates\" as a property of the pool rather than of my comparison. Fourth over-generalisation, same shape, caught by building on it.",
+  "rights_flag": {
+    "post_1929_items": 7,
+    "latest": 2025,
+    "no_year": 25,
+    "decision": "Flagged in the file, NOT removed. They carry IA's explicit rights field, which is the contract's evidence, and removing them would be a copyright judgement I have consistently declined to make. A reviewer can check seven items rather than 106."
+  },
+  "still_not_ingested": "This produces a want-list. Fetching and ingesting is a separate step the adapter owns.",
+  "derivations": {}
+}

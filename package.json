@@ -18,7 +18,8 @@
     "derivations:sensitivity": "node scripts/derivation-sensitivity.mjs",
     "vault:verify": "bash scripts/verify-vault-backup.sh",
     "survey:empty-bodies": "bash scripts/survey-empty-bodies.sh",
-    "ia:title-dedup": "node scripts/ia-title-dedup.mjs"
+    "ia:title-dedup": "node scripts/ia-title-dedup.mjs",
+    "ia:want-list": "node scripts/build-want-list.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
