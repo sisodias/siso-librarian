@@ -1,0 +1,28 @@
+{
+  "measured_at": "2026-08-04T19:11:09Z",
+  "question": "GQ-007",
+  "subject": "the want-list became books \u2014 81 identifiers finally ingested",
+  "the_gap": "build-want-list.mjs produced 81 identifiers and NO script fetched any of them. The contract said it \"takes named identifiers\"; nothing consumed them. A want-list nobody can act on is a list, not a pipeline.",
+  "built": "scripts/ia-ingest.mjs, registered as npm run ia:ingest",
+  "rights_gate": {
+    "eligible": 78,
+    "of": 81,
+    "excluded": 3,
+    "rule": "formal-designation, institutional-review, jurisdiction-scoped. \"not-a-designation\" excluded \u2014 the literal string \"Public Domain License\" is free text, not a designation."
+  },
+  "result_at_snapshot": {
+    "files": 69,
+    "words": 9333163,
+    "readable_english": "69/69 at stopword ratio >= 0.08"
+  },
+  "the_bug_the_guard_caught": {
+    "symptom": "three items returned EXACTLY 170 bytes; real sizes were 200-350 KB",
+    "my_first_label": "NO_TEXT / missing books \u2014 wrong",
+    "actual": "capturing a redirected download as a utf8 string through execFileSync truncated it; a plain retry returned the full 352,362 bytes",
+    "fix": "curl -o to a temp file with --retry 3, then rename on success",
+    "why_it_matters": "without the BAD_BODY check those three would have been written as ingested books at 170 bytes each"
+  },
+  "a_sample_that_would_have_misled_me": "head -c 400 on the Donne text is pure OCR garbage \u2014 it is the scanned cover and endpapers. The first 400 bytes of a DjVuTXT file say nothing about the book. Measured across the whole file it has thousands of common English words. Quality was measured per-file over full text, not by eyeballing a prefix.",
+  "deliberately_not_done": "Nothing was written to books.sqlite. Catalogue ingest is a schema-bearing write to a database six claims ground in, and belongs behind a reviewed migration. The text is on the vault with a manifest so that decision is made on evidence.",
+  "derivations": {}
+}
