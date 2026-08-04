@@ -1,0 +1,51 @@
+{
+  "measured_at": "2026-08-04T11:41:04Z",
+  "question": "GQ-006",
+  "survey": "every database under ~/foundry-data checked for a vault backup",
+  "databases_found": 15,
+  "backed_up_before": 1,
+  "unbacked_before": 14,
+  "prioritised_by": "which databases claims and metrics actually cite, not by size",
+  "citation_counts": {
+    "people_v2.sqlite": 17,
+    "logs.db": 12,
+    "passages.sqlite": 10,
+    "identity.sqlite": 2
+  },
+  "backed_up_this_loop": {
+    "file": "identity.sqlite",
+    "bytes": 2014519296,
+    "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/github-identity/identity-20260804T112002Z.sqlite",
+    "journal_mode": "wal",
+    "method": "sqlite3 .backup",
+    "quick_check": "ok"
+  },
+  "verified": {
+    "category": {
+      "live": 264,
+      "vault": 264
+    },
+    "repo_category_first5": {
+      "live": 874,
+      "vault": 874
+    },
+    "agent_memory_store": {
+      "live": 181,
+      "vault": 181,
+      "why": "This is the exact number that disproved the GQ-005 category-momentum claim (which asserted 929). The evidence behind an active dispute now has a backup."
+    }
+  },
+  "timeout_lesson": "A five-table count(*) sweep over the 1.88 GB vault copy timed out at 10 minutes \u2014 the same failure as the passage index. Verification on the vault must use bounded queries; whole-table counts are only affordable for the 1.09 GB graph.",
+  "false_positive_caught": "My survey initially reported people.sqlite as BACKED-UP. It is not \u2014 the glob matched people_v2* by prefix. Prefix matching produced a confidently wrong answer, which is the same wrong-key pattern recorded in CHARTER.md.",
+  "still_unbacked": [
+    "identity.PRE-MERGE (1.80 GB)",
+    "people_v2.PRE-AWESOME-PROMOTE (1.08 GB)",
+    "people_v2_gh.PRE-ENRICH (0.54 GB)",
+    "staging-raw.db (0.42 GB)",
+    "staging-recovered.db (0.42 GB)",
+    "books.sqlite (0.17 GB)",
+    "people.sqlite (0.03 GB)",
+    "and 6 smaller"
+  ],
+  "derivations": {}
+}
