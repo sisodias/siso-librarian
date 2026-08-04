@@ -72,12 +72,34 @@ for (const [label, d] of Object.entries(derivations)) {
 const insensitive = results.filter((r) => r.verdict === 'INSENSITIVE');
 const unavailable = results.filter((r) => r.verdict === 'unavailable');
 
+// Independent coverage, not declaration count. Three pairs of derivations carry
+// IDENTICAL source+kind+query and produce the same number — works_total and
+// registry.works, god_questions.total and coverage.registered, releases and
+// registry.releases. They are not wrong: each pair genuinely measures one thing
+// under two names. But each pair is ONE check, not two, so "37 derivations"
+// overstates how much independent verification exists.
+//
+// This matters for the uncovered half of the four-times defect: a derivation
+// reading a real-but-wrong source. Duplicate declarations cannot cross-check
+// each other, because they would be wrong together and agree perfectly.
+const sig = (d) => `${d.source}|${d.kind}|${d.query ?? ''}`;
+const groups = new Map();
+for (const [label, d] of Object.entries(derivations)) {
+  const k = sig(d);
+  if (!groups.has(k)) groups.set(k, []);
+  groups.get(k).push(label);
+}
+const duplicates = [...groups.values()].filter((g) => g.length > 1);
+
 console.log(JSON.stringify({
   checked_at: new Date().toISOString(),
   derivations: results.length,
   sensitive: results.filter((r) => r.verdict === 'sensitive').length,
   insensitive: insensitive.length,
   unavailable: unavailable.length,
+  independent_checks: groups.size,
+  duplicate_declarations: duplicates.flat().length - duplicates.length,
+  duplicate_groups: duplicates,
   note: 'A derivation is INSENSITIVE if pointing it at an empty or absent source does not change its answer — it is not reading what it names.',
   insensitive_detail: insensitive,
   unavailable_detail: unavailable.map((r) => r.label),
