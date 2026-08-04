@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T22:32:25Z",
+  "question": "GQ-007",
+  "subject": "reading the corpus instead of the plumbing",
+  "why": "78 books entered the Library today and I had verified schemas, counts and pages \u2014 never content. An unread book is inventory, not a library.",
+  "what_the_library_actually_acquired": {
+    "dominant_strand": "18th-century London Magazine runs (1742-1779) and Victorian domestic-economy encyclopaedias",
+    "five_serial_volumes": "~2.2M words alone \u2014 this is what the \"Essays\" tier really contained",
+    "verified_by_reading": "1742 editorial voice on the reporting of parliamentary debates, and the preface to An Encyclopaedia of Domestic Economy"
+  },
+  "defect_i_shipped_an_hour_ago": {
+    "symptom": "0 of 122,553 passages carried a heading",
+    "cause": "isHeading ran only on paragraphs that survived the >=120-char filter \u2014 and a heading is short BY DEFINITION. The two steps were in the wrong order, so the test could never see a heading.",
+    "evidence": "on one book, 39 blocks matched isHeading and all 39 were discarded before the test ran",
+    "fix": "mark headings during segmentation, before filtering",
+    "result": "0 -> 122,414 passages with headings, 12,223 distinct"
+  },
+  "then_i_measured_the_quality_rather_than_declaring_victory": {
+    "substantive": "11,026 headings covering 98,401 passages (80.4%)",
+    "noise": "1,197 headings covering 24,015 (19.6%)",
+    "worst": "\"SIR,\" and \"SIR ,\" labelling 2,996 passages \u2014 these books are full of published letters and an all-caps salutation passes every structural test",
+    "fix": "excluded salutations BY NAME, not by length \u2014 \"Book  V.\" is 8 characters and IS a heading, so a blunt length rule would have discarded real structure",
+    "after": "salutations 2,996 -> 0, heading coverage held at 122,414"
+  },
+  "a_corpus_limitation_i_am_recording_not_hiding": {
+    "what": "long-s OCR \u2014 18th-century typography renders \"such\" as \"fuch\", \"himself\" as \"himfelf\"",
+    "measured": {
+      "fuch": 5846,
+      "such": 6214,
+      "himfelf": 1964,
+      "himself": 1574
+    },
+    "books_affected": "20 of 78",
+    "consequence": "a search for \"such\" misses roughly half the matches; \"himself\" misses more than it finds",
+    "not_fixed_deliberately": "normalising f->s would corrupt genuine words (fuel, fund, fast) and is a transliteration decision about historical text, not a bug fix. Recorded so a reader knows the limit rather than trusting a silent index."
+  },
+  "derivations": {}
+}

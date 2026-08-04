@@ -78,7 +78,18 @@ function paragraphs(text) {
     offset += block.length + 2;
     if (text) out.push({ start, end: offset, text });
   }
+  // Mark headings BEFORE filtering. Measured 2026-08-04: 0 of 122,553 passages
+  // carried a heading, because isHeading only ever ran on blocks that survived
+  // the >=120-char filter — and a heading is short BY DEFINITION. The two steps
+  // were in the wrong order, so the heading test could never see a heading.
+  // On one book, 39 blocks match isHeading and all 39 were discarded first.
+  let pending = null;
+  for (const p of out) {
+    if (isHeading(p.text)) { pending = p.text; p.drop = true; }
+    else if (pending) { p.heading = pending; pending = null; }
+  }
   return out.filter((p) => {
+    if (p.drop) return false;                                    // a heading, already attached below
     if (p.text.length < 120) return false;                       // headers, page numbers
     // Ratio over NON-SPACE characters. Measured 2026-08-04: this filter was
     // rejecting 3,208 of 3,334 long blocks in b21471824 — good prose whose only
@@ -94,6 +105,12 @@ function paragraphs(text) {
 // A heading is a short ALL-CAPS or Title Case line — chapter markers. Best
 // effort only; the live index has the same caveat.
 function isHeading(s) {
+  // Salutations are not headings. Measured 2026-08-04: "SIR," and "SIR ," alone
+  // were labelling 2,996 passages — these books are full of published letters,
+  // and an all-caps salutation passes every structural test. Excluded by name
+  // rather than by length: "Book  V." is 8 characters and IS a heading, so a
+  // blunt length rule would discard real structure to remove noise.
+  if (/^(sir|madam|my lord|gentlemen|dear sir)\s*[,.]?$/i.test(s.replace(/\s+/g, ' ').trim())) return false;
   return s.length < 80 && /^[A-Z][A-Za-z .,'-]*$/.test(s) && /[A-Z]{2,}|^(chapter|book|part|letter)\b/i.test(s);
 }
 
@@ -134,7 +151,7 @@ for (const f of files) {
   const rows = [];
   const fts = [];
   ps.forEach((p, i) => {
-    if (isHeading(p.text)) heading = p.text;
+    if (p.heading) heading = p.heading;   // attached during segmentation, before filtering
     const words = (p.text.match(/[A-Za-z']+/g) || []).length;
     rows.push(`(${esc(id)},${i},${p.start},${p.end},${p.text.length},${words},${heading ? esc(heading) : 'null'},${esc(p.text.slice(0, 160))})`);
     fts.push(`(${esc(id)},${i},${heading ? esc(heading) : 'null'},${esc(p.text)})`);
