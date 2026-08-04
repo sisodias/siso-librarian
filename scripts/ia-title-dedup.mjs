@@ -39,7 +39,11 @@ export function normaliseTitle(t) {
 }
 
 const rows = execFileSync('sqlite3', [`file:${BOOKS}?mode=ro`,
-  'select gid || "" || replace(replace(title, char(10), " "), char(13), " ") from book where title is not null;'],
+  // UNION book_external. The catalogue gained a second source on 2026-08-04 and
+  // this read `book` only, so titles already ingested from the Internet Archive
+  // would report as NEW. ext_id stands where gid does; both are opaque here.
+  'select gid || "" || replace(replace(title, char(10), " "), char(13), " ") from book where title is not null'
+  + ' union all select ext_id || "" || replace(replace(title, char(10), " "), char(13), " ") from book_external where title is not null;'],
   { encoding: 'utf8', maxBuffer: 128 * 1024 * 1024 }).split('\n').filter(Boolean);
 
 const held = new Map();

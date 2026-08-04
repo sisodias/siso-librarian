@@ -36,7 +36,13 @@ if (!subjects.length) {
 const BOOKS = `${process.env.HOME}/foundry-data/domains/books/books.sqlite`;
 const held = new Set(
   execFileSync('sqlite3', [`file:${BOOKS}?mode=ro`,
-    'select replace(replace(title, char(10), " "), char(13), " ") from book where title is not null;'],
+    // UNION book_external. The catalogue gained a second source on 2026-08-04
+    // (78 Internet Archive books) and this query read `book` only — so the very
+    // next want-list would have re-offered all 78 and refetched every one of
+    // them. A dedup query that knows about one of two sources is worse than no
+    // dedup, because it reports "new" with confidence.
+    'select replace(replace(title, char(10), " "), char(13), " ") from book where title is not null'
+    + ' union all select replace(replace(title, char(10), " "), char(13), " ") from book_external where title is not null;'],
     { encoding: 'utf8', maxBuffer: 128 * 1024 * 1024 })
     .split('\n').filter(Boolean).map(normaliseTitle).filter(Boolean));
 

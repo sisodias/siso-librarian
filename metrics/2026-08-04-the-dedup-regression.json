@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-04T19:29:37Z",
+  "question": "GQ-007",
+  "subject": "the regression I created an hour ago, found and fixed",
+  "what_i_broke": "Adding book_external gave the catalogue a second source. Both dedup paths (build-want-list.mjs and ia-title-dedup.mjs) read \"from book\" only. The next want-list run would have re-offered all 78 books I had just ingested and refetched every one of them from archive.org.",
+  "why_it_would_not_have_been_noticed": "It fails by reporting \"new\" with confidence. There is no error, no exception, no empty result \u2014 just 78 duplicates presented as fresh finds, and a volunteer-run archive asked twice for the same text.",
+  "fix": "both queries UNION book_external",
+  "proof": {
+    "index_before": 74674,
+    "index_after": 74752,
+    "delta": 78,
+    "positive_case": "\"John Donne, his flight from mediaevalism\" -> ALREADY HELD, library_gid johndonnehisflig00molo",
+    "second_positive": "\"The classical tradition in poetry\" -> ALREADY HELD, classicaltraditi00murr_1",
+    "adversarial_control": "\"A Book That Does Not Exist In Any Library 99xyz\" -> not held",
+    "why_the_control_matters": "a fix that made everything match would also pass the positive cases. The negative proves the index still discriminates.",
+    "ingest_resume": "ia-ingest --dry-run now reports \"78 already on vault; 0 to fetch\""
+  },
+  "a_downstream_case_i_did_NOT_force": "The passage index keys on gid INTEGER too, and holds 77,540 book bodies. Passage-indexing the 78 new books would require exactly the synthetic-gid decision I refused an hour ago. It stays unindexed and that is stated, rather than solved by inventing ids in a namespace that means something else.",
+  "gates": {
+    "verify_exit": 0,
+    "gate_selftest": "13 passed, 0 failed"
+  },
+  "derivations": {}
+}
