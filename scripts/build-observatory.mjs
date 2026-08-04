@@ -97,6 +97,29 @@ function registryQuestions() {
   return { total: qs.length, questions: qs };
 }
 const registryGQ = registryQuestions();
+
+// Releases point at works by work_id. An orphaned release — one referencing a
+// work that does not exist — is a broken registry that every count would still
+// report as healthy, because counting files never dereferences anything.
+function releaseIntegrity() {
+  const wdir = join(registry, 'works');
+  const rdir = join(registry, 'releases');
+  if (!existsSync(wdir) || !existsSync(rdir)) return null;
+  const readAll = (dir) => sh('find', [dir, '-type', 'f', '-name', '*.json']).split('\n').filter(Boolean)
+    .map((f) => { try { return JSON.parse(readFileSync(f, 'utf8')); } catch { return null; } }).filter(Boolean);
+  const workIds = new Set(readAll(wdir).map((d) => d.id));
+  const rels = readAll(rdir);
+  const referenced = new Set(rels.map((d) => d.work_id).filter(Boolean));
+  const orphans = rels.filter((d) => d.work_id && !workIds.has(d.work_id)).length;
+  return {
+    releases: rels.length,
+    works_referenced: referenced.size,
+    works_total: workIds.size,
+    works_without_releases: workIds.size - referenced.size,
+    orphaned_releases: orphans,
+  };
+}
+const releaseState = releaseIntegrity();
 const portfolioIds = new Set(portfolio.questions.map(q => q.id));
 const gqCoverage = {
   registered: registryGQ.total,
@@ -181,6 +204,7 @@ const snapshot = {
   routing: minimaxRouting,
   library_snapshot: snapshotState,
   god_questions: { ...registryGQ, coverage: gqCoverage },
+  release_integrity: releaseState,
   missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
@@ -196,7 +220,7 @@ writeFileSync(join(root, 'observatory/snapshot.json'), JSON.stringify(snapshot, 
 // the honest signal it is.
 const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLocaleString());
 const cards = [
-  ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
+  ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
   ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];

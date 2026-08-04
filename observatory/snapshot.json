@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:09:54.329Z",
+  "generated_at": "2026-08-04T04:13:48.014Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -223,6 +223,13 @@
         "GQ-008"
       ]
     }
+  },
+  "release_integrity": {
+    "releases": 75,
+    "works_referenced": 25,
+    "works_total": 25,
+    "works_without_releases": 0,
+    "orphaned_releases": 0
   },
   "missing_sources": [],
   "caveats": [
