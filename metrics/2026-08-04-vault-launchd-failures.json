@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-04T13:37:23Z",
+  "question": "GQ-006",
+  "subject": "two of the nine untraced runtime failures, both involving the vault",
+  "agentbase": {
+    "job": "com.siso.agentbase",
+    "exit": 7,
+    "cmd": "/opt/homebrew/bin/npm run dev",
+    "wd": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/agentbase",
+    "error": "Error: EPERM: process.cwd failed with error operation not permitted, uv_cwd",
+    "diagnosis": "Node cannot read its own working directory. The path EXISTS and my shell cd's into it fine \u2014 the difference is that launchd agents do not inherit Full Disk Access, which macOS requires for /Volumes. A permissions boundary, not a missing file.",
+    "evidence": "(cd /Volumes/.../agentbase && pwd) succeeds from an interactive shell; the same directory is EPERM to the launchd process.",
+    "fixable_by": "Granting Full Disk Access to the launchd context, or moving the working directory off the external volume. Both are Shaan decisions."
+  },
+  "property_classq": {
+    "job": "com.siso.property-classq",
+    "exit": 2,
+    "error": "can't open file '/Volumes/SISO-STORAGE-VAULT 1/SISO-VAULT/property/scripts/classq_collector.py'",
+    "diagnosis": "The path contains \"SISO-STORAGE-VAULT 1\" \u2014 a macOS remount artifact. When a volume is mounted while an old mount point is still held, macOS appends a number. The job's path was frozen against that transient name.",
+    "verified": {
+      "numbered_mount_exists": false,
+      "script_exists_at_real_path": true
+    },
+    "fixable_by": "Editing one path in the plist to drop \" 1\". The script is present and intact.",
+    "why_this_matters": "Unlike the 26 deleted-path jobs, nothing is lost here. This is a stale reference to a mount that healed."
+  },
+  "pattern": "Both jobs that touch /Volumes fail, for two DIFFERENT reasons: one a permissions boundary, one a remount artifact. Nothing on the external volume is reliably reachable from launchd, which is worth knowing given the vault holds every Library backup.",
+  "untraced_remaining": 7,
+  "derivations": {}
+}

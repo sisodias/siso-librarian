@@ -17,6 +17,15 @@
 #
 # immutable=1 is required for WAL-header copies (write_version 2), which cannot
 # open read-only without creating a -shm sidecar beside them.
+#
+# DO NOT SCHEDULE THIS UNDER LAUNCHD without granting Full Disk Access first.
+# Measured 2026-08-04: com.siso.agentbase fails with
+#   Error: EPERM: process.cwd failed with error operation not permitted, uv_cwd
+# on a /Volumes working directory that an interactive shell reads without any
+# trouble. launchd agents do not inherit the Full Disk Access grant macOS
+# requires for external volumes, so a scheduled copy of this script would report
+# the vault unreadable and its exit-8/9 paths would fire — an alarm about a
+# healthy backup. Run it interactively, or grant access deliberately.
 set -uo pipefail
 
 LIVE="$HOME/passages.sqlite"
