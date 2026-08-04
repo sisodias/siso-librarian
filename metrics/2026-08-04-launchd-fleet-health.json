@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-08-04T13:28:18Z",
+  "question": "GQ-006",
+  "subject": "launchd fleet health \u2014 found while tracing one dead collector",
+  "trigger": "GQ-005 was blocked on a stale time series. Tracing why exposed a fleet-wide condition.",
+  "fleet": {
+    "total_siso_jobs": 51,
+    "exit_0": 15,
+    "failing": 36,
+    "by_code": {
+      "127 (command not found)": 11,
+      "78 (EX_CONFIG, path does not exist)": 15,
+      "126 (not executable)": 2,
+      "2": 2,
+      "1": 3,
+      "7": 2,
+      "-15 (killed)": 1
+    }
+  },
+  "causal_chain": {
+    "1": "com.siso.gh.learnings \u2014 exit 78. Its program is ~/Projects/github-learnings/venv/bin/python3 running fetch_and_analyze.py. BOTH ARE MISSING.",
+    "2": "So repos.db was never repopulated. It sits at 0 bytes, last modified 2026-07-22.",
+    "3": "com.siso.foundry-momentum reads repos.db nightly at 04:10 and fails: \"no such table: repos\". 14 consecutive failures.",
+    "4": "momentum.sqlite therefore stops at 2026-07-11, giving GQ-005 a 3-day window in which only 29 repos moved.",
+    "reading": "A missing Python script two hops upstream is why a Great Library question has no movement baseline."
+  },
+  "why_nobody_noticed": "`launchctl list` shows failing and healthy jobs identically unless the status column is read. Exit 78 in particular means launchd could not even start the program \u2014 there is no crash, no traceback, and the log file stays empty at 0 bytes, which looks like a job that simply has nothing to say.",
+  "scope_caveat": "36 failing jobs is a count, not a diagnosis. Some may be intentionally disabled, superseded, or one-shot jobs whose exit code is stale. I traced ONE chain to its root and am reporting the rest as a count with its codes \u2014 not as 36 defects.",
+  "not_fixed": "Nothing repaired. These are Shaan's operational jobs, not Library artifacts, and reconstructing a missing script would be building on a guess.",
+  "derivations": {}
+}

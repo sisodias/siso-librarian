@@ -1,0 +1,25 @@
+{
+  "measured_at": "2026-08-04T13:26:16Z",
+  "question": "GQ-005",
+  "subject": "why the momentum time series stopped on 2026-07-11",
+  "root_cause": "A daily launchd job has been failing every night for two weeks. Nothing reported it.",
+  "job": {
+    "label": "com.siso.foundry-momentum",
+    "state": "loaded, last exit status 1",
+    "schedule": "daily at 04:10",
+    "script": "~/foundry-ops/momentum_snapshot.py",
+    "log": "~/Library/Logs/foundry/momentum.log",
+    "last_run": "2026-08-04 04:10 \u2014 failed"
+  },
+  "error": "sqlite3.OperationalError: no such table: repos",
+  "diagnosis": {
+    "source": "~/Projects/github-learnings/repos.db",
+    "state": "ZERO BYTES, last modified 2026-07-22",
+    "reading": "Not a renamed table \u2014 the source database is empty. The collector that populated it is gone: the entire ~/Projects/github-learnings/ tree contains only the 0-byte repos.db and a 0-byte learnings.log. Every night since, momentum_snapshot.py has opened an empty file, failed to find its table, and exited 1.",
+    "other_copies": "None. find over the whole home directory returns exactly one repos.db, the empty one."
+  },
+  "consequence": "GQ-005's categories x time axis is blocked on this. The join works (55,467 repos) and the taxonomy is sound; three days of observations is simply too short, and no fourth day can arrive while the collector's input is empty.",
+  "silent_failure_note": "A loaded launchd job with exit status 1 looks identical to a healthy one in `launchctl list` unless you read the status column. Fourteen consecutive failures produced no alert, no escalation, and a stale dataset that I treated as merely 'stopped recording' for two loops before looking at why.",
+  "not_fixed": "The repair is upstream of the Library: something must repopulate repos.db. That is not a librarian artifact and I do not know what wrote it. Escalated rather than reconstructed.",
+  "derivations": {}
+}

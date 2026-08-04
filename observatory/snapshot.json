@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T13:23:51.359Z",
+  "generated_at": "2026-08-04T13:29:27.244Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 18,
     "verify_steps": 6,
     "scripts_on_disk": 20,
-    "metrics_files": 62,
-    "worklogs": 119,
+    "metrics_files": 64,
+    "worklogs": 120,
     "proposals": 17
   },
   "derivations": {
@@ -445,8 +445,8 @@
     "orphaned_releases": 0
   },
   "disk": {
-    "available": "17Gi",
-    "capacity": "50%"
+    "available": "18Gi",
+    "capacity": "49%"
   },
   "awaiting_decision": {
     "count": 7,
@@ -465,13 +465,14 @@
   },
   "escalations": {
     "on_remote": 2,
-    "queued": 2,
+    "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 7.5,
+    "oldest_queued_age_hours": 7.6,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
-      "2026-08-04T0640-librarian-ia-rights.md"
+      "2026-08-04T0640-librarian-ia-rights.md",
+      "2026-08-04T1327-librarian-momentum-collector-dead.md"
     ],
     "note": "Readable on the remote. The mailbox push route is down; these are not lost.",
     "channels": {
