@@ -1,0 +1,54 @@
+{
+  "measured_at": "2026-08-04T17:00:22Z",
+  "question": "GQ-004",
+  "subject": "re-verifying the 81 after the Gutenberg exclusion changed the list",
+  "why": "My fetchability sample was 6 items taken BEFORE the mirror rule removed 25. A sample of a list that has since changed is not a sample of the current list.",
+  "fetchability": {
+    "sampled": 8,
+    "with_DjVuTXT": 8,
+    "collections": [
+      "rcplondon/ukmhl",
+      "universityofglasgow/ukmhl",
+      "rcpedinburgh/ukmhl",
+      "wellcomejournals",
+      "Princeton/americana",
+      "willanlibrary"
+    ],
+    "verdict": "All institutional. Every sampled item is fetchable and none is a user upload."
+  },
+  "the_new_finding": {
+    "observation": "Every sampled identifier came from a MEDICAL heritage library \u2014 Royal College of Physicians, Glasgow, Wellcome, RCP Edinburgh.",
+    "tier_breakdown": {
+      "Essays": 30,
+      "English poetry": 29,
+      "Cookery": 21,
+      "Historical fiction": 1
+    },
+    "essays_titles": [
+      "The doctor &c",
+      "The London magazine, or, Gentleman's monthly intelligencer. 1748.",
+      "Horae subsecivae",
+      "The original [electronic resource]",
+      "The dynamics of life"
+    ],
+    "reading": "The Essays tier is medical-library SERIALS, not essays in the Library's sense. IA's subject tagging is far looser than the catalogue I derived the subjects from \u2014 \"Essays\" on IA includes 18th century medical periodicals."
+  },
+  "but_not_all_tiers": {
+    "English poetry": [
+      "Nugae metricae",
+      "Poets of Christian thought",
+      "The classical tradition in poetry",
+      "John Donne, his flight from mediaevalism"
+    ],
+    "Cookery": [
+      "Food and feeding",
+      "The young cook's guide",
+      "Soups, broths, pur\u00e9es",
+      "Practical \u0153conomy"
+    ],
+    "reading": "Poetry and cookery are ON SUBJECT. Only Essays drifted. The method works; one subject term is too loose on IA."
+  },
+  "what_this_means": "Subject names do not transfer between catalogues. I matched \"Essays\" against the Library's book_subject and assumed IA meant the same thing. For poetry and cookery it does; for essays it does not. Any future source needs this checked per subject rather than assumed for the set.",
+  "recommendation": "Drop the Essays tier (30 of 81) or re-scope it. That leaves ~51 candidates that are genuinely on-subject, institutional, and fetchable.",
+  "derivations": {}
+}
