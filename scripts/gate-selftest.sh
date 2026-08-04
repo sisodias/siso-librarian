@@ -159,6 +159,16 @@ p='observatory/snapshot.json'
 d=json.load(open(p)); d['god_questions']['total']=99
 json.dump(d,open(p,'w'),indent=2)"
 
+# A claim file that cannot be parsed. The claim-packet verifier catches this,
+# but the audit used to exit 0 and report success while silently dropping the
+# claim from its grounded-evidence set — two gates disagreeing about whether the
+# repo is healthy, which is worse than either failing alone.
+check "audit catches an unparseable claim file" \
+  "claims/GQ-010-fame-vs-dependence.claim.json" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "
+open('claims/GQ-010-fame-vs-dependence.claim.json','w').write('{ broken')"
+
 # Evidence that cannot be READ is worse than evidence that disagrees, and it
 # used to vanish from the audit entirely — an unparseable metrics file was
 # skipped with no trace, so a claim grounded in it looked fully checked.

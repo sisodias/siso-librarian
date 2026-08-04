@@ -363,7 +363,17 @@ const groundedMetrics = new Set();
 for (const cf of walk(join(root, 'claims'))) {
   if (!cf.endsWith('.json')) continue;
   let cd;
-  try { cd = JSON.parse(readFileSync(cf, 'utf8')); } catch { continue; }
+  // An unparseable CLAIM file used to vanish here. The claim-packet verifier
+  // does catch it (exit 1), so it cannot reach a push — but this audit exited 0
+  // and reported success while silently dropping that claim from
+  // groundedMetrics, which means its evidence stopped being audited and nothing
+  // said so. Two gates disagreeing about whether the repo is healthy is worse
+  // than either failing alone.
+  try { cd = JSON.parse(readFileSync(cf, 'utf8')); } catch (err) {
+    findings.push({ check: 'claim-unparseable', file: relative(root, cf),
+      note: `Could not be parsed as JSON, so its grounding and evidence were not audited: ${String(err.message).slice(0, 100)}` });
+    continue;
+  }
   const status = cd?.claim?.status;
   if (status === 'superseded' || status === 'disputed') continue;
   for (const g of cd?.grounding || []) {
@@ -512,7 +522,7 @@ console.log(JSON.stringify({
   // and nothing distinguished "checked and clean" from "never looked". These
   // two numbers make that distinction visible at a glance.
   checks_skipped: findings.filter((f) => f.check === 'declared-derivation-unresolvable'
-    || f.check === 'metrics-unparseable').length,
+    || f.check === 'metrics-unparseable' || f.check === 'claim-unparseable').length,
   snapshot_numbers_published: snapshotNumbers,
   snapshot_numbers_undeclared: snapshotUndeclared.length,
   findings,
