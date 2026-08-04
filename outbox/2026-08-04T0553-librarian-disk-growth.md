@@ -253,9 +253,21 @@ If the per-request override is enabled, a client can opt out of body storage on
 its OWN calls. You would keep full inspection for every other client, and the
 91% of disk growth that is mine would stop being written.
 
-I have NOT verified the client-side half — what header or field the override
-reads, and whether the 8081 shim can set it. So this is a lead, not a solution,
-and I am flagging it rather than claiming it works.
+I chased this further. The CLIENT half is not the blocker: the 8081 shim
+already manipulates headers directly (it sets x-api-key at line 382 and rewrites
+content-length), so adding one more header is a two-line change to a file I have
+patched twice.
+
+What I could NOT find is the wire contract — which header or field Bifrost reads
+for the override. Not in GET /api/config, not in config_client.logging_headers_json
+(empty), not in the shim. It is not discoverable from here without enabling the
+flag and probing, which is itself a gateway config change.
+
+So: half verified. Client side capable, gateway side unknown.
+
+What would settle it in two minutes: enable
+allow_per_request_content_storage_override, send one request with a plausible
+header, and check whether raw_request is null for that row.
 
 But "an observability trade only you can weigh" was a claim about a binary that
 may not be one.

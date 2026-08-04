@@ -1,0 +1,22 @@
+{
+  "measured_at": "2026-08-04T15:56:22Z",
+  "question": "GQ-006",
+  "subject": "chasing the per-request override lead to where it actually stops",
+  "what_i_could_verify": {
+    "shim_can_set_headers": true,
+    "evidence": "~/.config/bifrost/claude-model-catalog.mjs manipulates headers directly \u2014 line 382 sets x-api-key, lines 360-361 rewrite content-length. Setting one more header is a two-line change to a file I have already patched twice.",
+    "so_the_client_half_is_not_the_blocker": true
+  },
+  "where_it_stops": {
+    "unknown": "What header or field Bifrost reads for the per-request override.",
+    "searched": [
+      "GET /api/config \u2014 no mention of x-bf-, x-bifrost-, bifrost-, or header",
+      "config_client.logging_headers_json \u2014 empty array",
+      "the shim source \u2014 no existing override header"
+    ],
+    "conclusion": "The flag names exist (allow_per_request_content_storage_override, allow_per_request_raw_override) but the wire contract is not discoverable from this machine without enabling the flag and probing, which is a gateway config change and therefore Shaan's."
+  },
+  "honest_status": "The lead is HALF verified. Client side: confirmed capable. Gateway side: the flag exists and its header contract is unknown. That is a materially better state than \"unverified\" and materially worse than \"there is a third option\".",
+  "what_would_settle_it": "Enable allow_per_request_content_storage_override, send one request with a plausible header, and check whether raw_request is null for that row. Two minutes, one config change, not mine.",
+  "derivations": {}
+}
