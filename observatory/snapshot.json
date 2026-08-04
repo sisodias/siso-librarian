@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T13:29:27.244Z",
+  "generated_at": "2026-08-04T13:32:18.881Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 18,
     "verify_steps": 6,
     "scripts_on_disk": 20,
-    "metrics_files": 64,
-    "worklogs": 120,
+    "metrics_files": 65,
+    "worklogs": 121,
     "proposals": 17
   },
   "derivations": {
@@ -464,7 +464,7 @@
     "review_packet": "REVIEW-PACKET.md"
   },
   "escalations": {
-    "on_remote": 2,
+    "on_remote": 3,
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",

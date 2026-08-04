@@ -61,6 +61,25 @@ Exit 78 is the quiet one: launchd cannot start the program at all, so there is
 no crash, no traceback, and the log stays 0 bytes — indistinguishable from a job
 with nothing to report.
 
-I am reporting 36 as a COUNT, not 36 defects. Some may be intentionally
+I have since traced the two largest groups, so it is no longer just a count:
+
+  exit 127   11 jobs   11 of 11 point at a script that does not exist
+  exit 78    15 jobs   14 of 15 point at a program that does not exist
+
+25 of those 26 failures are ONE defect: files deleted while the launchd jobs
+referencing them stayed loaded. Not 26 independent problems.
+
+The mechanism differs slightly. Exit 78 means launchd could not start the
+program. Exit 127 means launchd started /bin/bash fine and bash then could not
+find the script — one layer deeper, same root cause. Verified directly:
+`bash /tmp/definitely-not-here.sh` returns exactly 127.
+
+One exit-78 job DOES have its program present and still fails; I have not found
+why. And 10 jobs with other codes (126, 2, 1, 7, -15) are untraced.
+
+So the honest split is: 25 explained, 11 not.
+
+Nothing repaired or unloaded — deleting a launchd job is destructive and these
+are your operational jobs. Some may be intentionally
 disabled, superseded, or carrying a stale code from a one-shot run. I traced one
 chain to its root and did not trace the other 35.

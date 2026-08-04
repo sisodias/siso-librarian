@@ -1,0 +1,33 @@
+{
+  "measured_at": "2026-08-04T13:31:12Z",
+  "question": "GQ-006",
+  "subject": "turning \"36 failing jobs\" from a count into a diagnosis",
+  "why": "Last loop I reported 36 failing jobs and said plainly it was a count, not 36 defects, because I had traced exactly one. So I traced the two largest groups.",
+  "exit_127": {
+    "jobs": 11,
+    "target_script_missing": 11,
+    "present": 0,
+    "mechanism": "launchd starts /bin/bash successfully; bash then cannot find the script it was told to run. Verified directly: `bash /tmp/definitely-not-here.sh` returns exactly 127.",
+    "note": "The interpreter existing is why this is not exit 78. The failure is one layer deeper than launchd."
+  },
+  "exit_78": {
+    "jobs": 15,
+    "program_missing": 14,
+    "present": 1,
+    "mechanism": "EX_CONFIG \u2014 launchd cannot start the program at all. No crash, no traceback, log stays 0 bytes."
+  },
+  "combined": {
+    "jobs_examined": 26,
+    "sharing_one_cause": 25,
+    "cause": "The program or script the job points at has been deleted.",
+    "reading": "25 of 26 failures in the two largest groups are the same defect: files removed without the launchd jobs that reference them being unloaded. This is not 26 independent problems."
+  },
+  "still_untraced": {
+    "jobs": 10,
+    "codes": "126 (x2), 2 (x2), 1 (x3), 7 (x2), -15 (x1)",
+    "note": "Not examined. Reported as a residual rather than folded into the diagnosis."
+  },
+  "one_exception": "A single exit-78 job whose program does exist. Not diagnosed \u2014 it fails for a different reason and I have not found it.",
+  "not_fixed": "Nothing repaired or unloaded. Deleting a launchd job is destructive and these are operational, not Library artifacts.",
+  "derivations": {}
+}
