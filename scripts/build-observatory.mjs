@@ -31,7 +31,7 @@ const portfolio = JSON.parse(readFileSync(join(root, 'questions/portfolio.json')
 const refresh = JSON.parse(readFileSync(join(root, 'refresh/ledger.json'), 'utf8'));
 
 const passageCounts = rowsToObject(sqlite(passagesDb, "select 'passages',count(*) from passage union all select 'books',count(*) from book_body;"));
-const peopleCounts = rowsToObject(sqlite(peopleDb, "select 'people',count(*) from person union all select 'content_edges',count(*) from person_content union all select 'topic_edges',count(*) from person_topic union all select 'external_ids',count(*) from external_ids;"));
+const peopleCounts = rowsToObject(sqlite(peopleDb, "select 'people',count(*) from person union all select 'content_edges',count(*) from person_content union all select 'topic_edges',count(*) from person_topic union all select 'external_ids',count(*) from external_ids union all select 'identity_claims',count(*) from identity_claim union all select 'cross_domain_people',count(*) from v_person_layers where domain_count>1;"));
 const registryCounts = {
   works: countFiles(join(registry, 'works')),
   releases: countFiles(join(registry, 'releases')),
@@ -88,6 +88,8 @@ const derivations = {
   'people_graph.content_edges': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person_content;" },
   'people_graph.topic_edges': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person_topic;" },
   'people_graph.external_ids': { source: peopleDb, kind: 'sqlite', query: "select count(*) from external_ids;" },
+  'people_graph.identity_claims': { source: peopleDb, kind: 'sqlite', query: "select count(*) from identity_claim;" },
+  'people_graph.cross_domain_people': { source: peopleDb, kind: 'sqlite', query: "select count(*) from v_person_layers where domain_count>1;" },
   'registry.works': { source: join(registry, 'works'), kind: 'file-count', query: "*.json" },
   'registry.releases': { source: join(registry, 'releases'), kind: 'file-count', query: "*.json" },
   'registry.source_inventories': { source: join(registry, 'source-inventories'), kind: 'file-count', query: "*.json" },
@@ -118,7 +120,7 @@ writeFileSync(join(root, 'observatory/snapshot.json'), JSON.stringify(snapshot, 
 
 const cards = [
   ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Source inventories', registryCounts.source_inventories], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
-  ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()],
+  ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
   ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>

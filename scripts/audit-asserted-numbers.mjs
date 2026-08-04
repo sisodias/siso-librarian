@@ -74,9 +74,26 @@ function deriveCount(d) {
   return null;
 }
 
+// A derivation whose source does not exist is the dangerous case, because
+// file-count returns 0 for a missing directory and 0 looks like a real answer.
+// That is exactly how a hyphen/underscore typo hid six source inventories: the
+// builder and the declaration shared the wrong path, so re-derivation agreed
+// with itself. Existence is checked separately from value.
+let sourcesChecked = 0;
+function checkSourceExists(label, d, file) {
+  const src = String(d.source || '').replace(/^~/, process.env.HOME);
+  if (!src) return;
+  sourcesChecked += 1;
+  if (!existsSync(src)) {
+    findings.push({ check: 'derivation-source-missing', file, label, source: d.source, kind: d.kind,
+      note: 'Source path does not exist. A file-count over a missing directory silently yields 0.' });
+  }
+}
+
 if (existsSync(SNAPSHOT)) {
   const snap = JSON.parse(readFileSync(SNAPSHOT, 'utf8'));
   for (const [label, d] of Object.entries(snap.derivations || {})) {
+    checkSourceExists(label, d, SNAPSHOT);
     const [group, key] = label.split('.');
     const asserted = snap?.bucket_counts?.[group]?.[key];
     if (typeof asserted !== 'number') continue;
@@ -142,6 +159,7 @@ for (const file of metricsFiles) {
   try { doc = JSON.parse(readFileSync(file, 'utf8')); } catch { continue; }
   if (!doc || typeof doc !== 'object' || !doc.derivations) continue;
   for (const [dotted, d] of Object.entries(doc.derivations)) {
+    checkSourceExists(dotted, d, file);
     const asserted = resolvePath(doc, dotted);
     if (typeof asserted !== 'number') continue;
     let derived = null;
@@ -169,6 +187,7 @@ console.log(JSON.stringify({
   counts_independently_rederived: countsChecked,
   declared_derivations_rederived: declaredChecked,
   declared_derivations_unavailable: declaredUnavailable,
+  derivation_sources_checked: sourcesChecked,
   findings,
 }, null, 2));
 

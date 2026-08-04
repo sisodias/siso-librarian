@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T03:50:55.518Z",
+  "generated_at": "2026-08-04T03:54:02.655Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -18,7 +18,9 @@
       "people": 280722,
       "content_edges": 564579,
       "topic_edges": 2555047,
-      "external_ids": 845004
+      "external_ids": 845004,
+      "identity_claims": 6,
+      "cross_domain_people": 5
     },
     "claim_layer": {
       "production_claims": 3,
@@ -56,6 +58,16 @@
       "source": "/Users/shaansisodia/foundry-data/domains/people/people_v2.sqlite",
       "kind": "sqlite",
       "query": "select count(*) from external_ids;"
+    },
+    "people_graph.identity_claims": {
+      "source": "/Users/shaansisodia/foundry-data/domains/people/people_v2.sqlite",
+      "kind": "sqlite",
+      "query": "select count(*) from identity_claim;"
+    },
+    "people_graph.cross_domain_people": {
+      "source": "/Users/shaansisodia/foundry-data/domains/people/people_v2.sqlite",
+      "kind": "sqlite",
+      "query": "select count(*) from v_person_layers where domain_count>1;"
     },
     "registry.works": {
       "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
