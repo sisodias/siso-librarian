@@ -1,0 +1,34 @@
+{
+  "measured_at": "2026-08-04T12:09:03Z",
+  "question": "GQ-006",
+  "thread": "the one-row discrepancy I said was worth pulling",
+  "discrepancy": {
+    "passage_summary_rows": 77539,
+    "book_body_rows": 77540,
+    "difference": 1,
+    "resolved": "gid 4715 has a body but zero passages, so the summary correctly omits it. Reverse check: 0 summary rows lack a book body."
+  },
+  "extraction_gap": {
+    "gid": 4715,
+    "title": "An African Millionaire: Episodes in the Life of the Illustrious Colonel Clay",
+    "author": "Allen, Grant, 1848-1899",
+    "body_bytes": 8,
+    "passages": 0,
+    "text_url": "https://www.gutenberg.org/ebooks/4715.txt.utf-8",
+    "rights": "public_domain_us",
+    "reading": "A real book with a valid Gutenberg URL and public-domain rights whose body extraction produced 8 bytes and no passages. Not a summary defect \u2014 an extraction failure, isolated to one book.",
+    "scope": "1 of 77,540 books has zero passages; 2 have bodies under 100 bytes. 99.999% of the corpus extracted.",
+    "recoverable": "Yes \u2014 the source text is public and still addressable. Not attempted: re-running extraction writes to the passage index, which is Shaan's corpus, not a librarian chore."
+  },
+  "consistency_confirmation": {
+    "summary_sum_passage_count": 41501325,
+    "passage_index_count": 41501325,
+    "note": "The rollup total independently equals the passage index row count, which is a stronger check than row parity."
+  },
+  "backed_up": {
+    "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/passage-summary/passage_summary-20260804T120846Z.sqlite",
+    "quick_check": "ok",
+    "verified": "77539 rows / 41,501,325 passages MATCH"
+  },
+  "derivations": {}
+}
