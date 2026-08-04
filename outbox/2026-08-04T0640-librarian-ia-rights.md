@@ -43,9 +43,22 @@ Applying those subjects to the explicit-rights IA pool:
                                -----
                                1,264
 
-Sample titles: "Vulcan's Workshop", "Wanderer of Infinity", "Planet of Dreams".
-Genre fiction, not newspapers. The subject filter turns an unusable 270k pool
-into a targeted 1.3k one, with no rights judgement and no human-supplied list.
+RETRACTED, one hour later. I then built the title dedup and ran it.
+
+  40 titles sampled from that science-fiction pool
+  39 ALREADY IN THE LIBRARY  —  97.5% overlap
+
+Including the three I quoted as evidence the filter worked: "Vulcan's Workshop"
+is gid 29321, "Wanderer of Infinity" is 29408, "Planet of Dreams" is 30045. I
+had the dedup half-written and did not run it against my own examples.
+
+The matching gids cluster at 29,000-30,000, so both corpora appear to come from
+the same Gutenberg science-fiction ingest. The IA pool largely MIRRORS what is
+already here.
+
+So the honest number is roughly 30 new books, not 1,264. The 99.5% reduction
+from 270k was real; the assumption that what survived was NEW was never tested,
+and it was wrong.
 
 That is a THIRD option for decision 7, alongside "someone supplies identifiers"
 and "sample relevance after fetch". I have not built it — the want-list contract

@@ -1,0 +1,49 @@
+{
+  "measured_at": "2026-08-04T16:14:24Z",
+  "question": "GQ-004",
+  "subject": "title-aware dedup, built \u2014 and it invalidates the proposal I sent an hour ago",
+  "built": {
+    "script": "scripts/ia-title-dedup.mjs",
+    "library_titles_indexed": 74674,
+    "normalisation": [
+      "lowercase",
+      "cut at em/en-dash (edition suffixes like \"\u2014 Complete\")",
+      "strip apostrophes",
+      "strip leading article",
+      "collapse whitespace"
+    ],
+    "validated": [
+      "\"Adventures of Pinocchio\" matches \"The Adventures of Pinocchio\" (article)",
+      "\"The Notebooks of Leonardo Da Vinci\" matches \"... \u2014 Complete\" (dash suffix)"
+    ]
+  },
+  "the_finding": {
+    "sample": "40 titles from the IA explicit-rights science-fiction pool",
+    "already_held": 39,
+    "overlap": "97.5%",
+    "examples": [
+      {
+        "ia": "Homesick",
+        "library_gid": 29599
+      },
+      {
+        "ia": "History Repeats",
+        "library_gid": 23884
+      },
+      {
+        "ia": "Hail to the Chief",
+        "library_gid": 26109
+      },
+      {
+        "ia": "Blind Spot",
+        "library_gid": 4920,
+        "library_title": "The Blind Spot"
+      }
+    ],
+    "reading": "The Library already holds 39 of 40. The matching gids cluster around 29,000-30,000, which suggests both corpora came from the same Gutenberg science-fiction ingest. The IA \"science fiction\" pool largely MIRRORS what is already here."
+  },
+  "what_this_invalidates": "The proposal I escalated an hour ago said the subject filter yields \"1,264 candidates\". At a 97.5% overlap rate that is roughly 30 new books, not 1,264. The reduction from 270k was real; the assumption that what survived was NEW was never tested.",
+  "the_error": "I validated the filter on three sample titles \u2014 Vulcan's Workshop, Wanderer of Infinity, Planet of Dreams \u2014 and reported them as evidence the filter worked. All three are ALREADY IN THE LIBRARY, at gids 29321, 29408 and 30045. I had the dedup tool half-written at the time and did not run it against my own examples.",
+  "a_measurement_error_i_caught": "My first overlap run reported \"154 checked\" from 40 titles \u2014 shell word splitting had broken multi-word titles into separate arguments, so it was measuring fragments. The 16.9% it produced was meaningless. Re-ran passing titles as a proper argument list.",
+  "derivations": {}
+}
