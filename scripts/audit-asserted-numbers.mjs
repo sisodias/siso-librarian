@@ -109,7 +109,11 @@ function derive(d) {
       const set = new Set(wanted.map((s) => s.replace(/^!/, '')));
       return readdirSync(src).filter((f) => f.endsWith('.json')).filter((f) => {
         let st;
-        try { st = JSON.parse(readFileSync(join(src, f), 'utf8'))?.claim?.status; } catch { return false; }
+        // `return false` would silently exclude a corrupt claim from the count,
+        // shrinking claims_live without any finding. Throw so derive() reports
+        // the derivation as unavailable instead of confidently wrong.
+        try { st = JSON.parse(readFileSync(join(src, f), 'utf8'))?.claim?.status; }
+        catch (err) { throw new Error(`unparseable claim ${f}: ${err.message}`); }
         return negate ? !set.has(st) : set.has(st);
       }).length;
     }
@@ -127,7 +131,8 @@ function derive(d) {
       const re = new RegExp('^' + glob.replace(/[.]/g, '\\.').replace(/\*/g, '.*') + '$');
       return readdirSync(src).filter((f) => re.test(f)).filter((f) => {
         let doc;
-        try { doc = JSON.parse(readFileSync(join(src, f), 'utf8')); } catch { return false; }
+        try { doc = JSON.parse(readFileSync(join(src, f), 'utf8')); }
+        catch (err) { throw new Error(`unparseable predicate source ${f}: ${err.message}`); }
         return terms.every((t) => {
           const mode = t.slice(-1);
           const path = t.slice(0, -1);
@@ -146,9 +151,16 @@ function derive(d) {
       const [glob, field, mode, otherDir] = String(d.query).split(/\s+/);
       const re = new RegExp('^' + glob.replace(/[.]/g, '\\.').replace(/\*/g, '.*') + '$');
       const refs = new Set();
+      // A corrupt file here used to be skipped silently, so the join measured a
+      // SMALLER registry and agreed with itself — no mismatch, no finding,
+      // checks_skipped 0. Meanwhile file-count still counts the corrupt file, so
+      // two derivations over the same directory disagree invisibly.
+      // Throwing makes derive() return null, which the caller already reports as
+      // an unavailable derivation rather than a silent pass.
       for (const f of readdirSync(src).filter((x) => re.test(x))) {
         let doc;
-        try { doc = JSON.parse(readFileSync(join(src, f), 'utf8')); } catch { continue; }
+        try { doc = JSON.parse(readFileSync(join(src, f), 'utf8')); }
+        catch (err) { throw new Error(`unparseable source file ${f}: ${err.message}`); }
         const v = field.split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
         for (const item of [].concat(v || [])) if (item) refs.add(String(item));
       }
@@ -158,7 +170,8 @@ function derive(d) {
       const have = new Set();
       for (const f of readdirSync(other).filter((x) => x.endsWith('.json'))) {
         let doc;
-        try { doc = JSON.parse(readFileSync(join(other, f), 'utf8')); } catch { continue; }
+        try { doc = JSON.parse(readFileSync(join(other, f), 'utf8')); }
+        catch (err) { throw new Error(`unparseable join target ${f}: ${err.message}`); }
         // Ids ONLY. Adding the filename as a fallback key doubled the set with
         // entries that no reference could ever match, which made
         // works_without_releases read 25 against a true 0 — a checker inventing

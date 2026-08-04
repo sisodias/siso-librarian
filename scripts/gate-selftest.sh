@@ -159,6 +159,27 @@ p='observatory/snapshot.json'
 d=json.load(open(p)); d['god_questions']['total']=99
 json.dump(d,open(p,'w'),indent=2)"
 
+# A corrupt file in a directory a derivation reads. This one was genuinely
+# invisible: the join skipped the bad file, measured a smaller registry, and
+# agreed with itself — no mismatch, no finding, checks_skipped 0 — while
+# file-count over the same directory still counted it.
+#
+# NOT run through check(). That helper backs up and restores by path, and this
+# case's target is the REAL registry outside the scratch copy — a failure
+# mid-case would leave a corrupt registry file on disk. Done inline with an
+# explicit restore instead, so the repair is unconditional.
+echo -n "PROBE corrupt file inside a derivation source — "
+(
+  T=$(ls "$HOME/SISO_Workspace/great-library-of-siso/registry/releases"/*.json | head -1)
+  cp "$T" /tmp/selftest-rel-backup.json
+  printf '{ corrupt' > "$T"
+  node scripts/audit-asserted-numbers.mjs --strict >/dev/null 2>&1
+  st=$?
+  cp /tmp/selftest-rel-backup.json "$T"     # restore first, always
+  rm -f /tmp/selftest-rel-backup.json
+  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — corrupt source passed silently"; fi
+)
+
 # A claim file that cannot be parsed. The claim-packet verifier catches this,
 # but the audit used to exit 0 and report success while silently dropping the
 # claim from its grounded-evidence set — two gates disagreeing about whether the
