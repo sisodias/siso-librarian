@@ -25,5 +25,7 @@
   },
   "bifrost_arm": "0 cached on every run without exception. Not variance; a flat zero.",
   "verdict": "CONFIRMED. The gateway defect is real and reproducible on demand. The specific magnitude quoted in the claim should be read as one observation rather than a constant \u2014 cache reads vary with entry age while the zero does not.",
-  "derivations": {}
+  "derivations": {},
+  "reproduced_by": "scripts/gq008-cache-experiment.sh",
+  "reproducer_note": "Re-run with: bash scripts/gq008-cache-experiment.sh \u2014 two calls per path, the second reports cache reads. This is NOT a derivation: it issues fresh requests and could contradict the stored result. Declared here because on 2026-08-04 I hand-rolled a different probe to re-check this finding, got 0 on both arms, and nearly reported a regression; the reproducer returned proxy 128 / bifrost 0 and the direction held."
 }

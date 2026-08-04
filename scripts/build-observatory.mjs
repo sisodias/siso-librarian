@@ -276,8 +276,14 @@ const derivations = {
     query: `*.json work_id missing ${join(registry, 'works')}` },
   'release_integrity.works_without_releases': { source: join(registry, 'releases'), kind: 'json-join-count',
     query: `*.json work_id unreferenced ${join(registry, 'works')}` },
+  // Must exclude struck-through and RESOLVED headings, exactly as
+  // blockedDecisions() does. Measured 2026-08-04: this counted ALL 8 numbered
+  // headings while the page reported the 6 that are actually open — two correct
+  // implementations of two DIFFERENT questions, disagreeing under one label.
+  // The audit caught it only because both were declared; a checker keyed
+  // differently from the thing it checks is the defect class of the day.
   'awaiting_decision.count': { source: join(root, 'proposals/2026-08-04-decisions-awaiting-shaan.md'),
-    kind: 'text-match-count', query: '^## [0-9]+\\. ' },
+    kind: 'text-match-count', query: '^## [0-9]+\\. (?!~~)(?!.*\\bRESOLVED\\b).+$' },
   'god_questions.total': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
   'god_questions.coverage.registered': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
   'release_integrity.releases': { source: join(registry, 'releases'), kind: 'file-count', query: '*.json' },
@@ -303,7 +309,18 @@ const derivations = {
   'repo_health.metrics_files': { source: join(root, 'metrics'), kind: 'file-count', query: '*.json' },
   'repo_health.worklogs': { source: join(root, 'worklog'), kind: 'file-count', query: '*.md' },
   'repo_health.proposals': { source: join(root, 'proposals'), kind: 'file-count', query: '*.md' },
-  'routing.requests': { source: join(home, '.config/bifrost/logs.db'), kind: 'sqlite', query: "select count(*) from logs where provider='Minimax' and model='MiniMax-M3' and timestamp >= datetime('now','-24 hours');" },
+  // NOT declared as a derivation. Measured 2026-08-04: this used a SLIDING
+  // window, datetime('now','-24 hours'), so the audit re-ran it seconds after
+  // the snapshot and legitimately got a different answer — 125, then 122, then
+  // 120 across three runs. Requests arrive, old ones leave the window, and the
+  // 3-day retention deletes rows underneath it.
+  //
+  // An equality check against a monotonically-moving value cannot ever pass; it
+  // reports a defect on every run and trains me to ignore the gate. A number
+  // that legitimately changes between measurement and check does not belong in
+  // a derivation at all — it belongs on the page as a reading with a timestamp,
+  // which is what it is.
+
 };
 
 // Facts about the repo itself. These kept appearing as hand-typed numbers in
@@ -413,6 +430,7 @@ escalations.channels.herdr.status = peerUp ? 'up' : 'down';
 const undeclared_rationale = {
   'bucket_counts.claim_layer.claims_unreadable': 'un-derivable: counts files that failed to parse. Re-deriving it would re-run the same parse and agree with itself by construction.',
   'repo_health.verify_steps': 'derivable, not yet: counts && segments in one npm script. Needs a kind that splits a named script, not json-scripts-count, which counts scripts.',
+  'routing.requests': 'derivable, deliberately not declared: the query is a SLIDING 24-hour window, so the audit re-runs it seconds after the build and legitimately gets a different answer — measured 125, then 122, then 120 across three runs on 2026-08-04, with the 3-day retention deleting rows underneath it. An equality check against a monotonically-moving value fails on every run and trains the reader to ignore the gate.',
   'routing.prompt_tokens': 'derivable: sum over the Bifrost log in a trailing window. Not declared because the window is relative to build time, so the value legitimately moves between builds.',
   'routing.completion_tokens': 'derivable: same as routing.prompt_tokens, same moving-window caveat.',
   'library_snapshot.n': 'derivable, not yet: version count of the whole-library snapshot in the registry.',

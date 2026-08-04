@@ -23,9 +23,10 @@
   },
   "what_is_countable": {
     "automated_gates": 5,
-    "gate_selftest_cases": 12,
+    "gate_selftest_cases": 14,
     "defects_the_selftest_found_on_first_run": 1,
-    "pushes_blocked_by_verify": 0
+    "pushes_blocked_by_verify": 0,
+    "gate_selftest_cases_note": "was 12; re-derived 2026-08-04 after two cases were added \u2014 one proving the source-coverage gate fires, one proving a prose mention does not count as a script reference. The audit caught this because the number was DECLARED; an undeclared count would have aged silently."
   },
   "the_zero_is_a_finding": "verify has never blocked a push \u2014 not because it never fails, but because every push in this repo runs it first and stops voluntarily. The gate is a pre-commit habit, not an enforcement boundary. Nothing prevents a push that skips it.",
   "the_selftest_finding": "When the gate self-test was first run it found the refresh evaluator swallowing all git errors and returning an empty commit list \u2014 reporting ten entries fresh from zero information. That is one defect found BY A GATE-CHECKER rather than by a gate, which is a third category the original claim did not have.",

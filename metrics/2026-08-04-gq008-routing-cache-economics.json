@@ -40,5 +40,7 @@
       "pct_input_cached": 0.0,
       "avg_billed_input_per_request": 309
     }
-  ]
+  ],
+  "reproduced_by": "scripts/gq008-cache-experiment.sh",
+  "reproducer_note": "Re-run with: bash scripts/gq008-cache-experiment.sh. See the note on gq008-rerun-variance.json \u2014 use this script rather than a fresh probe; prompt size and call spacing change the cache result."
 }

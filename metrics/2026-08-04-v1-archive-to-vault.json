@@ -21,7 +21,8 @@
   "derivations": {
     "bytes": {
       "kind": "file-bytes",
-      "source": "/Users/shaansisodia/quarantine-2026-08-04/passages_v1.sqlite.gz"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/quarantine-from-root-2026-08-04/passages_v1.sqlite.gz",
+      "source_note": "repointed 2026-08-04: the root copy was MOVED to the vault after both sides were verified md5-identical. Same bytes, new location."
     }
   }
 }

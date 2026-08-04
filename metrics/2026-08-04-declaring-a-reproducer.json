@@ -1,0 +1,45 @@
+{
+  "measured_at": "2026-08-04T20:53:19Z",
+  "question": "GQ-009",
+  "subject": "declaring a reproducer surfaced four defects the gate could not previously see",
+  "the_move": "The GQ-008 cache reproducer existed and was never declared on the two metrics files it reproduces. That is exactly what let me hand-roll a different probe last turn and nearly report a false regression. Declared it.",
+  "what_declaring_it_exposed": [
+    {
+      "finding": "awaiting_decision.count asserted 6, derived 8",
+      "cause": "the derivation counted ALL numbered headings; the page counts only UNSTRUCK ones. Two correct implementations of two different questions under one label.",
+      "also": "I had inserted decision 8 before decision 7 in the file",
+      "fix": "the derivation now excludes struck-through and RESOLVED headings, matching blockedDecisions()"
+    },
+    {
+      "finding": "derivation-source-missing on the v1 archive",
+      "cause": "I MOVED that 10.2 GB file to the vault today and left the derivation pointing at the old root path",
+      "fix": "repointed; same bytes, new location"
+    },
+    {
+      "finding": "gate_selftest_cases asserted 12, derived 14",
+      "cause": "I added two self-test cases today and did not update the number I had declared",
+      "note": "caught only BECAUSE it was declared \u2014 an undeclared count ages silently"
+    },
+    {
+      "finding": "routing.requests 125 -> 122 -> 120 across three runs",
+      "cause": "the query is a SLIDING window, datetime('now','-24 hours'), plus 3-day retention deleting rows underneath it",
+      "fix": "removed from derivations with a written rationale \u2014 an equality check against a monotonically-moving value fails every run and trains the reader to ignore the gate"
+    }
+  ],
+  "a_number_i_did_not_publish": {
+    "tempting": "99 of 121 metrics files have neither a derivation nor a reproducer",
+    "why_i_checked_further": "the audit only re-checks what live claims ground in",
+    "the_real_number": "3 of 14 load-bearing metrics files",
+    "and_now": "2 of those 3 were the GQ-008 files, now covered by the declared reproducer",
+    "lesson": "99 would have been alarmism \u2014 a true count of the wrong population"
+  },
+  "five_wrong_keys_in_one_session": "grounding ids are under source.id not id; my glob output read as empty when it was filtering correctly; derivations key was right and my reading of the output was wrong. Each cost a round trip. The fix is not care, it is reading the structure first.",
+  "result": {
+    "verify_exit": 0,
+    "gate_selftest": "14 passed, 0 failed",
+    "derivations_rederived": 32,
+    "checks_skipped": 0,
+    "remaining_findings": "3, all severity info: pre-existing worklog drift and two correct reproducer notes"
+  },
+  "derivations": {}
+}
