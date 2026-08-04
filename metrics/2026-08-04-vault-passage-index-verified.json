@@ -1,0 +1,43 @@
+{
+  "measured_at": "2026-08-04T10:39:36Z",
+  "question": "GQ-006",
+  "subject": "vaulted passage index \u2014 first audit-verifiable check since it was copied",
+  "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/passage-index/passages.sqlite",
+  "structural": {
+    "passage_rows": {
+      "live": 41501325,
+      "vault": 41501325,
+      "match": true
+    },
+    "book_body_rows": {
+      "live": 77540,
+      "vault": 77540,
+      "match": true
+    }
+  },
+  "content_spot_checks": [
+    {
+      "rowid": 1,
+      "match": true,
+      "sample": "10000|0|467|The Magna Carta Contents..."
+    },
+    {
+      "rowid": 1000000,
+      "match": true,
+      "sample": "11800|76996|377|R626880. Improved blue ribbon..."
+    },
+    {
+      "rowid": 41501325,
+      "match": true,
+      "sample": "9|31|423|I am loathe to close. We are not enemies"
+    }
+  ],
+  "root_cause_correction": {
+    "wrong": "I said mode=ro fails on the vault because the external volume refuses WAL/shm sidecars.",
+    "right": "Too broad. The vaulted passage index opens fine with mode=ro. The discriminator is the SQLite header write_version: passages.sqlite is 1 (rollback journal) and opens either way; the bifrost snapshot is 2 (WAL) and needs immutable=1 because a read-only open still wants to create a -shm file.",
+    "how_found": "Read bytes 18-19 of both file headers instead of theorising about the filesystem."
+  },
+  "not_done": "Full-table checksum. A sum(chars),sum(words) scan over 41.5M rows across USB timed out at 10 minutes. Three fixed-rowid spot checks at first, middle and last are what was actually verified \u2014 that is weaker than a checksum and is reported as such, not rounded up to 'verified identical'.",
+  "derivation_declined": "No derivation is declared for the vault row count. `select count(*) from passage` over 41.5M rows on USB takes 2m+ per call, and the audit runs on every verify and a dozen times inside the gate self-test \u2014 declaring it made the chain unusable. Measured here once, with the timing recorded, rather than re-run on every gate invocation. A gate slow enough to skip is a gate that gets skipped.",
+  "timing_note": "count(*) on the vaulted index: >2 minutes. Same query on the live SSD index: sub-second."
+}

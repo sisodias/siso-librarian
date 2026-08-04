@@ -91,12 +91,22 @@ function derive(d) {
   }
   switch (d.kind) {
     case 'sqlite': {
-      // `mode=ro` alone fails with "unable to open database file (14)" on the
-      // vault, because SQLite still wants to create WAL/shm sidecars next to the
-      // file and the external volume refuses. Verified 2026-08-04: the same
-      // query returns 2,261 with immutable=1 and errors without it — so EVERY
-      // archived database on the vault was unverifiable, and reported as
-      // "unavailable" rather than as a gap in coverage.
+      // `mode=ro` fails with "unable to open database file (14)" on SOME vault
+      // databases. My first explanation — "the external volume refuses sidecars"
+      // — was too broad and wrong: the vaulted passage index opens fine either
+      // way. The real discriminator is the SQLite header:
+      //
+      //   passages.sqlite            write_version 1  -> mode=ro works
+      //   logs-<stamp>.db            write_version 2  -> mode=ro fails
+      //
+      // Version 2 means WAL, so a read-only open still wants to create a -shm
+      // file beside it, which the copy's directory does not permit. immutable=1
+      // tells SQLite the file cannot change and no shared-memory index is
+      // needed.
+      //
+      // Correct for archives specifically — snapshots nothing writes to. NOT
+      // applied to live databases, where it would let the audit read a stale
+      // page and agree with a number that has already moved.
       //
       // immutable=1 is correct for archives specifically: they are snapshots
       // nothing writes to. It is NOT applied to live databases, where it would
