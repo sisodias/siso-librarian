@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T05:09:12.774Z",
+  "generated_at": "2026-08-04T05:23:08.906Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -25,7 +25,10 @@
     "claim_layer": {
       "production_claims": 10,
       "portfolio_questions": 8,
-      "refresh_entries": 10
+      "refresh_entries": 10,
+      "claims_live": 8,
+      "claims_superseded": 2,
+      "claims_unreadable": 0
     }
   },
   "derivations": {
@@ -205,9 +208,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 142,
-    "prompt_tokens": 2661157,
-    "completion_tokens": 64144,
+    "requests": 143,
+    "prompt_tokens": 2690494,
+    "completion_tokens": 65184,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
