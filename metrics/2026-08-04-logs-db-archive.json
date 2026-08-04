@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-04T05:38:47Z",
+  "thread": "logs-db-archive",
+  "action": "Consistent snapshot of the live Bifrost request log to the vault. Nothing deleted, nothing on the source touched.",
+  "method": "sqlite3 .backup against a read-only handle \u2014 not cp, because the database is in WAL mode and a plain copy can capture a torn state.",
+  "archive": {
+    "path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/logs-20260804T053544Z.db",
+    "bytes": 3664830464
+  },
+  "verification": {
+    "file_type": "SQLite 3.x database",
+    "rows_source": 1674,
+    "rows_archive": 1674,
+    "rows_match": true,
+    "claim_aggregates_reproduce": {
+      "CodexOpenAI_cached_read_tokens": 44010496,
+      "Minimax_cached_read_tokens": 0
+    },
+    "note": "Opened with immutable=1. A plain read-only open failed with SQLITE_CANTOPEN because SQLite wanted to create -wal/-shm sidecars next to the archive; the data was never the problem."
+  },
+  "why_this_matters": "Decision 6 (log retention) can now be taken without risking the evidence base for the GQ-008 and GQ-002 claims. The reversible half \u2014 archive first \u2014 is done; the irreversible half \u2014 delete rows \u2014 remains a decision I am not making.",
+  "disk_effect": "None yet. This adds 3.4GB to the vault (3.8Ti free) and reclaims nothing from the root disk, by design.",
+  "derivations": {
+    "archive.bytes": {
+      "kind": "file-bytes",
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/logs-20260804T053544Z.db"
+    }
+  }
+}
