@@ -357,6 +357,18 @@ const escalations = {
     ? Math.round((Date.now() - new Date(oldestQueuedISO)) / 36e5 * 10) / 10
     : null,
   files: queuedMsgs,
+  // The page said "3 queued" and carried none of their content, so reading it
+  // told Shaan a number and not what the number was about. With zero working
+  // push routes the observatory is the ONLY channel that reaches him, and a
+  // count is the least useful thing to put on it — the disk escalation is
+  // time-critical and its headline was invisible here.
+  headlines: queuedMsgs.map((f) => {
+    let first = '';
+    try {
+      first = readFileSync(join(outboxDir, f), 'utf8').split('\n')[0].replace(/^#\s*/, '').trim();
+    } catch { first = '(unreadable)'; }
+    return { file: f, title: first.slice(0, 120) };
+  }),
   note: 'Readable on the remote. The mailbox push route is down; these are not lost.',
   // Counting channels honestly. The charter names three routes to Shaan, and I
   // reported "2 of 3 monitored" as though the third were merely unwatched. It is
@@ -445,6 +457,7 @@ const html = `<!doctype html>
 body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;margin:0;background:#0b1020;color:#eef2ff;-webkit-text-size-adjust:100%}main{max-width:1100px;margin:0 auto;padding:24px 16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:12px}@media(max-width:520px){.grid{grid-template-columns:1fr}.n{font-size:24px}main{padding:20px 14px}}html,body{overflow-x:hidden}.card{background:#151b31;border:1px solid #29324f;border-radius:14px;padding:16px;min-width:0}.n{font-size:26px;font-weight:800;overflow-wrap:anywhere;line-height:1.15}.k{color:#aab4d4;font-size:13px;text-transform:uppercase;letter-spacing:.06em}section{margin-top:34px}pre{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;background:#11172a;padding:16px;border-radius:12px;border:1px solid #29324f;max-width:100%;font-size:12px}h1{overflow-wrap:anywhere;font-size:clamp(22px,6vw,34px)}.q{background:#10182f;border-left:4px solid #7dd3fc;padding:16px;border-radius:10px;overflow-wrap:anywhere}a{color:#7dd3fc}</style></head><body><main>
 <h1>SISO Great Library Observatory</h1><p>Generated ${snapshot.generated_at}. The index is the asset; the corpus is a cache. Questions before corpora.</p>
 <div class="grid">${cards.map(([k,v])=>`<div class="card"><div class="k">${k}</div><div class="n">${v}</div></div>`).join('')}</div>
+${snapshot.escalations.queued ? `<section><h2>Escalations you have not seen</h2><p>Zero working push routes — the mailbox and herdr both need a peer that is offline. These are queued in <code>outbox/</code> and pushed to the git remote, so they are readable but nothing alerted you.</p><ul>${snapshot.escalations.headlines.map(h=>`<li><b>${h.title.replace(/[&<>]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]))}</b><br><code>outbox/${h.file}</code></li>`).join('')}</ul></section>` : ''}
 <section><h2>Active God Questions</h2>${snapshot.active_questions.map(q=>`<div class="q"><h3>${q.id}: ${q.status}</h3><p>${q.text}</p><p>Action: <b>${q.action_status}</b> · Claims: ${q.claim_packets.join(', ')}</p></div>`).join('')}</section>
 <section><h2>Caveats</h2><ul>${snapshot.caveats.map(c=>`<li>${c}</li>`).join('')}</ul></section>
 <section><h2>Raw snapshot</h2><pre>${JSON.stringify(snapshot,null,2).replace(/[&<>]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]))}</pre></section>

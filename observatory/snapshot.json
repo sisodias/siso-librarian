@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T13:58:43.125Z",
+  "generated_at": "2026-08-04T14:06:22.890Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -37,7 +37,7 @@
     "verify_steps": 6,
     "scripts_on_disk": 20,
     "metrics_files": 72,
-    "worklogs": 128,
+    "worklogs": 129,
     "proposals": 17
   },
   "derivations": {
@@ -468,11 +468,25 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 8.1,
+    "oldest_queued_age_hours": 8.2,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",
       "2026-08-04T1327-librarian-momentum-collector-dead.md"
+    ],
+    "headlines": [
+      {
+        "file": "2026-08-04T0553-librarian-disk-growth.md",
+        "title": "Librarian -> main: ~2 days of disk left, and 91% of it is me (decision 6)"
+      },
+      {
+        "file": "2026-08-04T0640-librarian-ia-rights.md",
+        "title": "Librarian -> main: IA expansion blocked on a rights call (decision 7)"
+      },
+      {
+        "file": "2026-08-04T1327-librarian-momentum-collector-dead.md",
+        "title": "Librarian -> main: a daily job has failed 14 nights running"
+      }
     ],
     "note": "Readable on the remote. The mailbox push route is down; these are not lost.",
     "channels": {
