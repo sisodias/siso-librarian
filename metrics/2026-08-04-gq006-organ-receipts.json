@@ -27,5 +27,14 @@
       "note": "Two actions are marked done, but both are changes I made to my own repository under my own authority. No claim has ever carried an approval_ref from a human or another system. The push verb is unevidenced."
     }
   },
-  "conclusion": "Three of the organ's four verbs have live receipts on this machine. The fourth does not: evidence is gathered, preserved and queryable, and nothing has been pushed into an authorized workflow. The gap is not tooling \u2014 it is that authorization requires a second party and none has been reachable."
+  "conclusion": "Three of the organ's four verbs have live receipts on this machine. The fourth does not: evidence is gathered, preserved and queryable, and nothing has been pushed into an authorized workflow. The gap is not tooling \u2014 it is that authorization requires a second party and none has been reachable.",
+  "source": "~/foundry-data/domains/people/people_v2.sqlite",
+  "derivations": {
+    "organ_verbs.gather.curated_awesome_owners": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(*) from person_topic where scheme='curated' and topic='awesome-cited';"
+    }
+  },
+  "derivation_note": "The gather count lives in person_topic (scheme='curated', topic='awesome-cited'), NOT in person_content.meta_json. Re-deriving it from person_content gives 76,106 distinct persons or 119,604 edges \u2014 neither is this number, and both look plausible. Recorded because a checker measuring the wrong table disagrees confidently, which is indistinguishable from a real contradiction until you find the original query."
 }

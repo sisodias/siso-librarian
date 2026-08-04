@@ -28,5 +28,20 @@
     "n=1 session, one agent, one repository.",
     "Defect counts come from grepping my own worklogs for admission phrases; a defect I failed to notice or record is invisible to this measurement.",
     "'Caught by execution' and 'caught by a gate' were classified by keyword, not by re-reading each worklog."
-  ]
+  ],
+  "source": "this repository, anchored at commit d1c90dbd (HEAD at measured_at)",
+  "anchor_commit": "d1c90dbd",
+  "derivation_note": "These are point-in-time counts of a growing session: 54 commits then, 88 now. A live derivation would report a permanent false mismatch, so each query is anchored to the commit that was HEAD at measured_at. Anchored, commits (54) and worklogs (46) re-derive exactly. metrics_files re-derives to 26, not the asserted 27 \u2014 one metrics file was on disk but untracked when the snapshot was taken, so the filesystem count included it and git does not. The asserted number was true of the disk and is not reproducible from history; recorded rather than quietly corrected.",
+  "derivations": {
+    "session.commits": {
+      "kind": "git-rev-count",
+      "source": ".",
+      "query": "d1c90dbd"
+    },
+    "session.worklogs": {
+      "kind": "git-ls-count",
+      "source": ".",
+      "query": "d1c90dbd worklog/ .md"
+    }
+  }
 }

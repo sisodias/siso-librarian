@@ -95,6 +95,19 @@ function derive(d) {
     }
     case 'jsonl-count':
       return readFileSync(src, 'utf8').split('\n').filter(Boolean).length;
+    // Point-in-time repo counts. A session's commit and worklog totals grow, so
+    // a live count reports a permanent false mismatch against any snapshot; the
+    // query carries the commit that was HEAD when the number was taken.
+    case 'git-rev-count':
+      return Number(execFileSync('git', ['rev-list', '--count', String(d.query)],
+        { cwd: root, encoding: 'utf8' }).trim());
+    case 'git-ls-count': {
+      const [ref, dir, ext] = String(d.query).split(/\s+/);
+      const out = execFileSync('git', ['ls-tree', '-r', '--name-only', ref, dir],
+        { cwd: root, encoding: 'utf8' }).trim();
+      if (!out) return 0;
+      return out.split('\n').filter((f) => !ext || f.endsWith(ext)).length;
+    }
     default:
       return null;
   }
@@ -209,8 +222,34 @@ for (const file of metricsFiles) {
   // flagging those would train me to ignore this finding.
   if (!doc.derivations) {
     if (groundedMetrics.has(file)) {
-      findings.push({ check: 'metrics-underived', file,
-        note: 'A live claim grounds in this file, but it declares no derivations, so none of its numbers are re-derivable. Add a derivations block naming the source and query.' });
+      // "Reproducible" and "derivable" are different states, and collapsing
+      // them was making this gate lie in both directions. A DERIVATION re-reads
+      // a source that already holds the answer; an EXPERIMENT issues fresh
+      // requests and can contradict the stored result. GQ-008's cache finding
+      // can only ever be the second — no query reproduces it, because the
+      // evidence is what two gateways do when asked, not what a log recorded.
+      //
+      // Before this, such a file was reported identically to one whose author
+      // simply never wrote the block, which meant the only ways to clear it
+      // were to leave it flagged forever or to invent a derivation kind that
+      // quietly re-read the stored result and turned the gate green while
+      // checking nothing.
+      //
+      // A `reproduced_by` script is accepted as evidence ONLY if it exists on
+      // disk. An unrunnable pointer is worth less than an honest gap, because
+      // it reads as covered.
+      const script = typeof doc.reproduced_by === 'string' ? doc.reproduced_by : null;
+      if (script && existsSync(join(root, script))) {
+        findings.push({ check: 'metrics-reproducible-not-derivable', file, reproduced_by: script,
+          severity: 'info',
+          note: 'No derivations block, and correctly so: this records a live experiment. Re-run the named script to reproduce; a query cannot.' });
+      } else if (script) {
+        findings.push({ check: 'metrics-reproducer-missing', file, reproduced_by: script,
+          note: 'Names a reproducer that does not exist on disk. A pointer to a missing script reads as covered while checking nothing.' });
+      } else {
+        findings.push({ check: 'metrics-underived', file,
+          note: 'A live claim grounds in this file, but it declares no derivations and names no reproducer, so none of its numbers can be checked. Add a derivations block, or a reproduced_by script if only a live experiment can produce them.' });
+      }
     }
     continue;
   }
