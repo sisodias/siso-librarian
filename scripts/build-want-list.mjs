@@ -51,7 +51,7 @@ async function fetchSubject(subject) {
   const docs = [];
   for (let page = 1; page <= 10; page += 1) {
     const url = 'https://archive.org/advancedsearch.php?q=' + encodeURIComponent(q)
-      + `&rows=200&page=${page}&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=year&fl%5B%5D=language&output=json`;
+      + `&rows=200&page=${page}&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=year&fl%5B%5D=language&fl%5B%5D=rights&output=json`;
     let batch = [];
     try {
       const raw = execFileSync('curl', ['-sSL', '--max-time', '60', url], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
@@ -74,6 +74,7 @@ for (const subject of subjects) {
   let added = 0;
   for (const d of docs) {
     const title = Array.isArray(d.title) ? d.title[0] : d.title;
+    const rightsString = String(Array.isArray(d.rights) ? d.rights[0] : (d.rights || '')).slice(0, 120);
     if (!title || !d.identifier) continue;
     const key = normaliseTitle(title);
     // Two dedup passes: against the Library, and against items already added
@@ -87,7 +88,13 @@ for (const subject of subjects) {
       year: Number(Array.isArray(d.year) ? d.year[0] : d.year) || null,
       language: 'eng',
       tier: `weak-subject:${subject}`,
-      rights_evidence: `advancedsearch ${RIGHTS}`,
+      // The rights STRING, not merely that the field existed. Measured
+      // 2026-08-04: a value beginning "Copyright review:" is an institutional
+      // determination (Princeton/HathiTrust); a bare "Public Domain License" on
+      // a 2025 upload is free text an uploader typed. The contract treated both
+      // as "IA says public domain". They are not the same evidence.
+      rights_evidence: rightsString ? `advancedsearch ${RIGHTS}; item rights: ${rightsString}` : `advancedsearch ${RIGHTS}`,
+      rights_provenance: /^copyright review/i.test(rightsString || '') ? 'institutional-review' : 'unreviewed-or-user-supplied',
       query: q,
     });
   }

@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T16:48:46Z",
+  "question": "GQ-004",
+  "subject": "the rights field has two provenances and my contract treats them as one",
+  "trigger": "Verifying the 106 want-list identifiers were actually fetchable before anyone acts on them.",
+  "fetchability": {
+    "sampled": 6,
+    "with_DjVuTXT": 6,
+    "note": "All six sampled carry a DjVuTXT sidecar, so the quality gate passes. The list is fetchable."
+  },
+  "the_finding": {
+    "user_upload": {
+      "identifier": "dilip-simeon-closing-the-circle-...-2025",
+      "date": "2025-10-23",
+      "rights": "Public Domain License",
+      "creator": "Uploaded for the author by Harsh Kapoor, SACW.NET",
+      "uploader": "aiindex@gmail.com",
+      "reading": "A 2025 book uploaded by a third party FOR the author, with a user-supplied rights tag. Nobody at IA reviewed this."
+    },
+    "institutional_scan": {
+      "identifiers": [
+        "poetsofchristian00batt",
+        "metaphysicallyri00unse"
+      ],
+      "rights": "Copyright review: Public domain according to HathiTrust rights database",
+      "sponsor": "Princeton Theological Seminary Library",
+      "collection": [
+        "Princeton",
+        "americana"
+      ],
+      "reading": "An institutional copyright review, recorded with its source. A materially stronger claim."
+    }
+  },
+  "why_this_matters": "My adapter contract says rights evidence is \"IA metadata rights:'public domain'\" and treats every value of that field alike. It is not one thing: some values are a documented HathiTrust copyright review by a university library, others are free text an uploader typed. The contract cannot tell them apart, and neither could my want-list.",
+  "what_this_does_not_change": "I still do not make copyright determinations. But \"IA says public domain\" was never one claim, and reporting it as one obscured that six of my seven flagged items have strong provenance and one has almost none.",
+  "proposed_contract_change": "rights_evidence should record the rights STRING, not just that the field existed. A value beginning \"Copyright review:\" is institutional; a bare \"Public Domain License\" on a 2025 upload is not. That is a mechanical distinction requiring no legal judgement.",
+  "derivations": {}
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "want-list-v1",
-  "generated_at": "2026-08-04T16:44:49.479Z",
+  "generated_at": "2026-08-04T16:49:34.484Z",
   "supersedes": "sources/internet-archive/want-list.json",
   "rationale": "Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.",
   "query_totals": [
@@ -37,255 +37,23 @@
   },
   "items": [
     {
+      "identifier": "b24976581",
+      "title": "Nugae metricae",
+      "year": 1839,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
       "identifier": "poetsofchristian00batt",
       "title": "Poets of Christian thought; evaluations from Dante to T.S. Eliot",
       "year": 1947,
       "language": "eng",
       "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "johndonnehisflig00molo",
-      "title": "John Donne, his flight from mediaevalism",
-      "year": 1944,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976933_0002",
-      "title": "The shorter poems of Robert Bridges",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976945",
-      "title": "John Keats : a critical essay",
-      "year": 1895,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30528793_0001",
-      "title": "Catalogus bibliothecae Harleianae in locos communes distributus cum indice auctorum",
-      "year": 1743,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975448",
-      "title": "Glaucus and Silla ; with other lyrical and pastoral poems",
-      "year": 1819,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28982642",
-      "title": "The village : a poem. In two books",
-      "year": 1783,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "metaphysicallyri00unse",
-      "title": "Metaphysical lyrics & poems of the seventeenth century : Donne to Butler",
-      "year": 1959,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976659",
-      "title": "The design of love",
-      "year": 1893,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976672",
-      "title": "The seasons",
-      "year": 1794,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "doctrinepoetryau00hupp_0",
-      "title": "Doctrine and poetry : Augustine's influence on old English poetry",
-      "year": 1959,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "imagesofeternity00benz",
-      "title": "Images of eternity; studies in the poetry of religious vision from Wordsworth to T. S. Eliot",
-      "year": 1962,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33403223",
-      "title": "Time in English verse rhythm : an empirical study of typical verses by the graphic method",
-      "year": 1908,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3041247x",
-      "title": "The poems of Mark Akenside, M.D",
-      "year": 1772,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976921",
-      "title": "The growth of love",
-      "year": 1889,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "ermelineaballad26791gut",
-      "title": "Ermeline a ballad",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975783",
-      "title": "The age of clay",
-      "year": 1883,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24974602",
-      "title": "The poetical works, with the life of the author",
-      "year": 1796,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28271348",
-      "title": "Vaccinia : or the triumph of beauty",
-      "year": 1806,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28146347",
-      "title": "The Lord of the Isles : a poem",
-      "year": 1815,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29340111",
-      "title": "Bibliotheca Anglo-poetica; or, a descriptive catalogue of a rare and rich collection of early English poetry: in the possession of Longman, Hurst, Rees, Orme and Brown",
-      "year": 1815,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b2497464x",
-      "title": "Ode to an ugly girl; and other poems",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975667",
-      "title": "Brief recollections, chiefly of Italy",
-      "year": 1835,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24974432",
-      "title": "Passing thoughts in sonnet stanzas : with other poems, original and translated",
-      "year": 1854,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975023",
-      "title": "Nature and art : or reminiscences of the International Exhibition, opened in London on May the first, 1862 : a poem, with occasional verses, and elegiac stanzas",
-      "year": 1868,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976908",
-      "title": "Eros & Psyche. A poem in twelve measures",
-      "year": 1885,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3032760x",
-      "title": "The history of the Royal Society of London, for the Improving of Natural Knowledge",
-      "year": 1667,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28405626",
-      "title": "Infancy : or, the management of children: a didactic poem",
-      "year": 1803,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -294,16 +62,278 @@
       "year": 1957,
       "language": "eng",
       "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b24976581",
-      "title": "Nugae metricae",
-      "year": 1839,
+      "identifier": "johndonnehisflig00molo",
+      "title": "John Donne, his flight from mediaevalism",
+      "year": 1944,
       "language": "eng",
       "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24976933_0002",
+      "title": "The shorter poems of Robert Bridges",
+      "year": 1890,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24976945",
+      "title": "John Keats : a critical essay",
+      "year": 1895,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30528793_0001",
+      "title": "Catalogus bibliothecae Harleianae in locos communes distributus cum indice auctorum",
+      "year": 1743,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24975448",
+      "title": "Glaucus and Silla ; with other lyrical and pastoral poems",
+      "year": 1819,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28982642",
+      "title": "The village : a poem. In two books",
+      "year": 1783,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "metaphysicallyri00unse",
+      "title": "Metaphysical lyrics & poems of the seventeenth century : Donne to Butler",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24976659",
+      "title": "The design of love",
+      "year": 1893,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24976672",
+      "title": "The seasons",
+      "year": 1794,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "doctrinepoetryau00hupp_0",
+      "title": "Doctrine and poetry : Augustine's influence on old English poetry",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "imagesofeternity00benz",
+      "title": "Images of eternity; studies in the poetry of religious vision from Wordsworth to T. S. Eliot",
+      "year": 1962,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b33403223",
+      "title": "Time in English verse rhythm : an empirical study of typical verses by the graphic method",
+      "year": 1908,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28271348",
+      "title": "Vaccinia : or the triumph of beauty",
+      "year": 1806,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24974602",
+      "title": "The poetical works, with the life of the author",
+      "year": 1796,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b3041247x",
+      "title": "The poems of Mark Akenside, M.D",
+      "year": 1772,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24976921",
+      "title": "The growth of love",
+      "year": 1889,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "ermelineaballad26791gut",
+      "title": "Ermeline a ballad",
+      "year": null,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24975783",
+      "title": "The age of clay",
+      "year": 1883,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24975667",
+      "title": "Brief recollections, chiefly of Italy",
+      "year": 1835,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28146347",
+      "title": "The Lord of the Isles : a poem",
+      "year": 1815,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b29340111",
+      "title": "Bibliotheca Anglo-poetica; or, a descriptive catalogue of a rare and rich collection of early English poetry: in the possession of Longman, Hurst, Rees, Orme and Brown",
+      "year": 1815,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b2497464x",
+      "title": "Ode to an ugly girl; and other poems",
+      "year": 1890,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24974432",
+      "title": "Passing thoughts in sonnet stanzas : with other poems, original and translated",
+      "year": 1854,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24975023",
+      "title": "Nature and art : or reminiscences of the International Exhibition, opened in London on May the first, 1862 : a poem, with occasional verses, and elegiac stanzas",
+      "year": 1868,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24976908",
+      "title": "Eros & Psyche. A poem in twelve measures",
+      "year": 1885,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b3032760x",
+      "title": "The history of the Royal Society of London, for the Improving of Natural Knowledge",
+      "year": 1667,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28405626",
+      "title": "Infancy : or, the management of children: a didactic poem",
+      "year": 1803,
+      "language": "eng",
+      "tier": "weak-subject:English poetry",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -312,16 +342,8 @@
       "year": 1834,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "willan-72743",
-      "title": "An essay on the surgical treatment of h\u00e6morrhoidal tumours",
-      "year": 1854,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -330,25 +352,8 @@
       "year": 1748,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21302820",
-      "title": "The original [electronic resource]",
-      "year": 1875,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24756854",
-      "title": "The dynamics of life",
-      "year": 1894,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -357,25 +362,28 @@
       "year": 1889,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id13404300",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1749.",
-      "year": 1749,
+      "identifier": "b21302820",
+      "title": "The original [electronic resource]",
+      "year": 1875,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id13404350",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1779.",
-      "year": 1779,
+      "identifier": "b24756854",
+      "title": "The dynamics of life",
+      "year": 1894,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -384,25 +392,18 @@
       "year": 1805,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b32887164",
-      "title": "Essays, literary, moral & philosophical",
-      "year": 1798,
+      "identifier": "s1id13404300",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1749.",
+      "year": 1749,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21941476",
-      "title": "Nature in disease, illustrated in various discourses and essays : To which are added miscellaneous writings, chiefly on medical subjects",
-      "year": 1854,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -411,7 +412,8 @@
       "year": 1870,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -420,151 +422,8 @@
       "year": 1892,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "willan-72742",
-      "title": "Clinical lecture on the mode of formation of secondary abscesses, and some other consequences of a vitiated condition of the blood : delivered at King's College Hospital",
-      "year": 1853,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28269597",
-      "title": "A dissertation on infanticide, in its relation to physiology and jurisprudence",
-      "year": 1821,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21700850",
-      "title": "A collection of the published writings of William Withey Gull ... : memoir and addresses",
-      "year": 1896,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "alltheyearroundc01464gut",
-      "title": "All the Year Round: Contributions",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "ost-english-completemontaign00montuoft",
-      "title": "The Complete Works of Montaigne",
-      "year": 1842,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404320",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1770.",
-      "year": 1770,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21727909",
-      "title": "Essays and addresses",
-      "year": 1896,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "dilip-simeon-closing-the-circle-essays-in-contemporary-history-politics-2025",
-      "title": "Closing The Circle Essays In Contemporary History & Politics by Dilip Simeon (2025)",
-      "year": 2025,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24756477",
-      "title": "Medicine, old and new : an introductory address delivered on the occasion of the opening of the winter session 1899-1900 at St. George's Hospital Medical School on Oct. 2nd, 1899",
-      "year": 1899,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22039508",
-      "title": "Essays, literary, political and oeconomical",
-      "year": 1803,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21700849",
-      "title": "A collection of the published writings of William Withey Gull ... : medical papers",
-      "year": 1894,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24756660",
-      "title": "Essays on conservative medicine and kindred topics",
-      "year": 1874,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404340",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1777.",
-      "year": 1777,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id11854970",
-      "title": "The London magazine, and monthly chronologer. 1742.",
-      "year": 1742,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404310",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1754.",
-      "year": 1754,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "willan-72739",
-      "title": "On the deposition of fibrin on the lining membrane of veins",
-      "year": 1852,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -573,7 +432,208 @@
       "year": 1772,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "willan-72742",
+      "title": "Clinical lecture on the mode of formation of secondary abscesses, and some other consequences of a vitiated condition of the blood : delivered at King's College Hospital",
+      "year": 1853,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "willan-72743",
+      "title": "An essay on the surgical treatment of hæmorrhoidal tumours",
+      "year": 1854,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "s1id13404350",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1779.",
+      "year": 1779,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28269597",
+      "title": "A dissertation on infanticide, in its relation to physiology and jurisprudence",
+      "year": 1821,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21700850",
+      "title": "A collection of the published writings of William Withey Gull ... : memoir and addresses",
+      "year": 1896,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "alltheyearroundc01464gut",
+      "title": "All the Year Round: Contributions",
+      "year": null,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "ost-english-completemontaign00montuoft",
+      "title": "The Complete Works of Montaigne",
+      "year": 1842,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b32887164",
+      "title": "Essays, literary, moral & philosophical",
+      "year": 1798,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "s1id13404320",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1770.",
+      "year": 1770,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21941476",
+      "title": "Nature in disease, illustrated in various discourses and essays : To which are added miscellaneous writings, chiefly on medical subjects",
+      "year": 1854,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21727909",
+      "title": "Essays and addresses",
+      "year": 1896,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "dilip-simeon-closing-the-circle-essays-in-contemporary-history-politics-2025",
+      "title": "Closing The Circle Essays In Contemporary History & Politics by Dilip Simeon (2025)",
+      "year": 2025,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain License",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24756477",
+      "title": "Medicine, old and new : an introductory address delivered on the occasion of the opening of the winter session 1899-1900 at St. George's Hospital Medical School on Oct. 2nd, 1899",
+      "year": 1899,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b22039508",
+      "title": "Essays, literary, political and oeconomical",
+      "year": 1803,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21700849",
+      "title": "A collection of the published writings of William Withey Gull ... : medical papers",
+      "year": 1894,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24756660",
+      "title": "Essays on conservative medicine and kindred topics",
+      "year": 1874,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "s1id13404340",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1777.",
+      "year": 1777,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "s1id11854970",
+      "title": "The London magazine, and monthly chronologer. 1742.",
+      "year": 1742,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "s1id13404310",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1754.",
+      "year": 1754,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "willan-72739",
+      "title": "On the deposition of fibrin on the lining membrane of veins",
+      "year": 1852,
+      "language": "eng",
+      "tier": "weak-subject:Essays",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -582,7 +642,8 @@
       "year": 1747,
       "language": "eng",
       "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -591,7 +652,8 @@
       "year": 1880,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -600,16 +662,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28407313",
-      "title": "Practical \u0153conomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
-      "year": 1801,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -618,16 +672,28 @@
       "year": 1836,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
       "identifier": "b21504830",
-      "title": "Soups, broths, pur\u00e9es : with directions how to prepare them easily and economically",
+      "title": "Soups, broths, purées : with directions how to prepare them easily and economically",
       "year": 1894,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28407313",
+      "title": "Practical œconomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
+      "year": 1801,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -636,16 +702,18 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
       "identifier": "b2150491x",
-      "title": "Cyclop\u00e6dia of foods, condiments and beverages : the greatest delicacies and common necessaries",
+      "title": "Cyclopædia of foods, condiments and beverages : the greatest delicacies and common necessaries",
       "year": 1890,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -654,7 +722,8 @@
       "year": 1895,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -663,7 +732,8 @@
       "year": 1885,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -672,16 +742,8 @@
       "year": 1887,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "theartofconfecti30121gut",
-      "title": "The Art of Confectionary Shewing the Various Methods of Preserving All Sorts of Fruits, Dry and Liquid; viz. Oranges, Lemons, Citrons, Golden Pippins, Wardens, Apricots Green, Almonds, Goosberries, Ch",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -690,7 +752,18 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "theartofconfecti30121gut",
+      "title": "The Art of Confectionary Shewing the Various Methods of Preserving All Sorts of Fruits, Dry and Liquid; viz. Oranges, Lemons, Citrons, Golden Pippins, Wardens, Apricots Green, Almonds, Goosberries, Ch",
+      "year": null,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -699,7 +772,8 @@
       "year": 1847,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -708,7 +782,8 @@
       "year": 1826,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -717,7 +792,8 @@
       "year": 1892,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -726,25 +802,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21517824",
-      "title": "Health in the house : 25 lectures in elementary physiology in its application to the daily wants of man and animals, delivered to the wives and children of working-men in Leeds and Saltaire",
-      "year": 1876,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21526886",
-      "title": "The breakfast book : a cookery-book for the morning meal, or, breakfast-table; comprising bills of fare, pasties, and dishes adapted for all occasions",
-      "year": 1865,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -753,61 +812,28 @@
       "year": 1872,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471642",
-      "title": "The pantropheon or, history of food, and its preparation, from the earliest ages of the world [electronic resource]",
-      "year": 1853,
+      "identifier": "b21517824",
+      "title": "Health in the house : 25 lectures in elementary physiology in its application to the daily wants of man and animals, delivered to the wives and children of working-men in Leeds and Saltaire",
+      "year": 1876,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471848_0001",
-      "title": "The Book of the household [electronic resource] : or, Family dictionary of everything connected with housekeeping and domestic medicine : with the treatment of children, management of the sick room, t",
-      "year": 1862,
+      "identifier": "b21526886",
+      "title": "The breakfast book : a cookery-book for the morning meal, or, breakfast-table; comprising bills of fare, pasties, and dishes adapted for all occasions",
+      "year": 1865,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21450936",
-      "title": "Penny vegetarian cookery [electronic resource] : the science and the art of selecting and preparing a pure, healthful, and sufficient diet",
-      "year": 1891,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21958336",
-      "title": "Our Viands. Whence they come and how they are cooked with a bundle of old recipes from cookery books of the last century",
-      "year": 1893,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21901648",
-      "title": "Foods for the fat : a treatise on corpulency, with dietary for its cure",
-      "year": 1889,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21471708",
-      "title": "An encyclopaedia of domestic economy comprising such subjects as are most immediately connected with housekeeping [electronic resource] : as, the construction of domestic edifices ... duties of servan",
-      "year": 1844,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -816,7 +842,68 @@
       "year": 1884,
       "language": "eng",
       "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21471708",
+      "title": "An encyclopaedia of domestic economy comprising such subjects as are most immediately connected with housekeeping [electronic resource] : as, the construction of domestic edifices ... duties of servan",
+      "year": 1844,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21471642",
+      "title": "The pantropheon or, history of food, and its preparation, from the earliest ages of the world [electronic resource]",
+      "year": 1853,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21471848_0001",
+      "title": "The Book of the household [electronic resource] : or, Family dictionary of everything connected with housekeeping and domestic medicine : with the treatment of children, management of the sick room, t",
+      "year": 1862,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21450936",
+      "title": "Penny vegetarian cookery [electronic resource] : the science and the art of selecting and preparing a pure, healthful, and sufficient diet",
+      "year": 1891,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21901648",
+      "title": "Foods for the fat : a treatise on corpulency, with dietary for its cure",
+      "year": 1889,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21958336",
+      "title": "Our Viands. Whence they come and how they are cooked with a bundle of old recipes from cookery books of the last century",
+      "year": 1893,
+      "language": "eng",
+      "tier": "weak-subject:Cookery",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -825,16 +912,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "smugglersreef28849gut",
-      "title": "Smugglers' Reef",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -843,7 +922,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -852,7 +932,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -861,7 +942,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -870,16 +952,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "thecaptainofthep00294gut",
-      "title": "The Captain of the Polestar",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -888,7 +962,28 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "thecaptainofthep00294gut",
+      "title": "The Captain of the Polestar",
+      "year": null,
+      "language": "eng",
+      "tier": "weak-subject:Detective and mystery stories",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "smugglersreef28849gut",
+      "title": "Smugglers' Reef",
+      "year": null,
+      "language": "eng",
+      "tier": "weak-subject:Detective and mystery stories",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -897,7 +992,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -906,7 +1002,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -915,7 +1012,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -924,7 +1022,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -933,7 +1032,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -942,7 +1042,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -951,16 +1052,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "themartyroftheca24680gut",
-      "title": "The Martyr of the Catacombs A Tale of Ancient Rome",
-      "year": null,
-      "language": "eng",
-      "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -969,7 +1062,18 @@
       "year": 1925,
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is now in public domain.",
+      "rights_provenance": "unreviewed-or-user-supplied",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "themartyroftheca24680gut",
+      "title": "The Martyr of the Catacombs A Tale of Ancient Rome",
+      "year": null,
+      "language": "eng",
+      "tier": "weak-subject:Historical fiction",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -978,7 +1082,8 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -987,51 +1092,9 @@
       "year": null,
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
+      "rights_provenance": "unreviewed-or-user-supplied",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     }
-  ],
-  "rights_caveat": {
-    "items_dated_post_1929": 7,
-    "latest_year": 2025,
-    "identifiers": [
-      {
-        "identifier": "poetsofchristian00batt",
-        "year": 1947,
-        "title": "Poets of Christian thought; evaluations from Dante to T.S. Eliot"
-      },
-      {
-        "identifier": "johndonnehisflig00molo",
-        "year": 1944,
-        "title": "John Donne, his flight from mediaevalism"
-      },
-      {
-        "identifier": "metaphysicallyri00unse",
-        "year": 1959,
-        "title": "Metaphysical lyrics & poems of the seventeenth century : Donne to Butl"
-      },
-      {
-        "identifier": "doctrinepoetryau00hupp_0",
-        "year": 1959,
-        "title": "Doctrine and poetry : Augustine's influence on old English poetry"
-      },
-      {
-        "identifier": "imagesofeternity00benz",
-        "year": 1962,
-        "title": "Images of eternity; studies in the poetry of religious vision from Wor"
-      },
-      {
-        "identifier": "classicaltraditi00murr_1",
-        "year": 1957,
-        "title": "The classical tradition in poetry"
-      },
-      {
-        "identifier": "dilip-simeon-closing-the-circle-essays-in-contemporary-history-politics-2025",
-        "year": 2025,
-        "title": "Closing The Circle Essays In Contemporary History & Politics by Dilip "
-      }
-    ],
-    "note": "These carry IA's explicit rights:\"public domain\" field, which is the contract's rights evidence \u2014 but a 1947 or 1959 imprint is where that field most deserves scrutiny. NOT removed: the contract uses IA's determination and I do not make copyright calls (see the standing deferral). Flagged so a reviewer can check these seven specifically rather than the whole list.",
-    "years_absent": 25
-  }
+  ]
 }

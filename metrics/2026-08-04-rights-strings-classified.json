@@ -1,0 +1,21 @@
+{
+  "measured_at": "2026-08-04T16:50:09Z",
+  "question": "GQ-004",
+  "subject": "what the rights field actually says across all 106 want-list items",
+  "breakdown": {
+    "Creative Commons, Public Domain Mark": 72,
+    "Public domain in the USA.": 25,
+    "Copyright review: Public domain according to HathiTrust rights database": 6,
+    "Public Domain": 1,
+    "Public Domain License": 1,
+    "This work is now in public domain.": 1
+  },
+  "a_false_alarm_i_caught": {
+    "my_first_reading": "\"72 of 106 carry a Creative Commons licence, not a public-domain claim \u2014 my filter has been matching CC-licensed works.\"",
+    "the_full_string": "\"This work is available under the Creative Commons, Public Domain Mark\"",
+    "correction": "The Public Domain Mark is a CC DESIGNATION FOR WORKS ALREADY IN THE PUBLIC DOMAIN, not a restrictive licence. Truncating the string at 44 characters cut off the words that changed its meaning. I read \"Creative Commons\" and inferred a licence before reading to the end of the sentence."
+  },
+  "the_real_distribution": "105 of 106 are genuine public-domain designations of varying strength: 6 with an institutional copyright review, 72 with a CC Public Domain Mark, 25 asserting US public domain, 2 bare assertions. One \u2014 the 2025 user upload \u2014 says \"Public Domain License\", which is not a real designation and is the single weakest item in the list.",
+  "value_of_the_provenance_field": "It works, but my binary label is too coarse. \"unreviewed-or-user-supplied\" lumps a CC Public Domain Mark together with free text an uploader typed. The STRING is now recorded, which is the part that matters; the classification needs more than two buckets.",
+  "derivations": {}
+}
