@@ -1,0 +1,50 @@
+{
+  "measured_at": "2026-08-04T21:58:23Z",
+  "question": "GQ-007",
+  "subject": "the 78 books are searchable \u2014 and three wrong diagnoses on the way",
+  "the_objection_that_did_not_apply": {
+    "i_had_written": "the 78 books stay unindexed because indexing needs the synthetic-gid decision I refused",
+    "what_i_checked": "CREATE VIRTUAL TABLE passage_search USING fts5(gid UNINDEXED, ...)",
+    "so": "UNINDEXED means FTS5 stores the column as an opaque passthrough \u2014 never compared, joined or ordered on. A TEXT id works exactly as well.",
+    "conclusion": "\"cannot join on gid\" was never the same as \"cannot be searched\". I generalised a real constraint past its scope."
+  },
+  "built": "scripts/build-external-passages.mjs \u2014 separate index, live schema mirrored with ext_id TEXT where gid INTEGER sits",
+  "result": {
+    "books": 78,
+    "passages": 122553,
+    "words": 9826621,
+    "index_mb": 150.3,
+    "corpus_coverage": "9.83M of 11.54M words = 85%"
+  },
+  "search_verified": {
+    "positive": "\"metaphysical AND poets\" returns real snippets from Images of Eternity, joined to catalogue titles",
+    "second": "\"vegetarian\" returns Penny Vegetarian Cookery",
+    "adversarial": "\"zxqwvblorptik\" returns 0 \u2014 the index discriminates rather than matching everything"
+  },
+  "three_wrong_diagnoses_in_order": [
+    {
+      "n": 1,
+      "theory": "multi-column OCR shreds paragraphs; hyphen-rejoin will fix it",
+      "evidence": "a Python test on b21471824 showed 3,679 -> 283,492 words, 77x",
+      "outcome": "applied to the script, corpus moved 1.66M -> 1.85M. The book itself barely improved.",
+      "error": "I inferred a corpus-wide cause from ONE file and reported the isolated number as if it were the fix"
+    },
+    {
+      "n": 2,
+      "theory": "my Python mirror and the JS segmenter are different algorithms",
+      "outcome": "aligned them; output IDENTICAL, 26,542 passages both ways",
+      "error": "second guess, also wrong \u2014 and the patch landing (bytes changed) proved nothing about the diagnosis"
+    },
+    {
+      "n": 3,
+      "theory": "measure which filter actually cuts, instead of guessing",
+      "finding": "the alpha-ratio filter rejected 3,208 of 3,334 long blocks",
+      "cause": "this OCR puts DOUBLE SPACES between every word, dragging letters/total to 0.65-0.68 against a 0.7 threshold. Whitespace is not evidence of scan noise.",
+      "fix": "compute the ratio over non-space characters",
+      "outcome": "1.85M -> 9.83M words, 26,542 -> 122,553 passages"
+    }
+  ],
+  "the_lesson": "Two guesses cost two rebuilds. The third attempt measured which filter was cutting and found it in one step. A patch that lands is not a diagnosis that holds \u2014 applyEdit proved my edits applied while the theory behind them was wrong twice.",
+  "first_real_use_of_lib_patch": "all three edits went through applyEdit with post-conditions, the helper I built two turns ago and had never used",
+  "derivations": {}
+}
