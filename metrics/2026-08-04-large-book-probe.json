@@ -1,0 +1,63 @@
+{
+  "measured_at": "2026-08-04T13:17:59Z",
+  "question": "GQ-006",
+  "subject": "sampling the size bands where the local signals are blind",
+  "why": "The trailing-gap test proves the extractor consumed the body it was GIVEN. If body_end was recorded wrong at extraction time, the last passage aligns with that wrong value and the gap is zero. Only an upstream fetch catches that \u2014 and every fetch so far was of books under 8 KB.",
+  "stratified_sample": {
+    "band_50k_150k": [
+      {
+        "gid": 60392,
+        "local": 51335,
+        "upstream": 51335
+      },
+      {
+        "gid": 49021,
+        "local": 50707,
+        "upstream": 50707
+      },
+      {
+        "gid": 54712,
+        "local": 67416,
+        "upstream": 67416
+      },
+      {
+        "gid": 56930,
+        "local": 132083,
+        "upstream": 132083
+      }
+    ],
+    "band_over_400k": [
+      {
+        "gid": 44822,
+        "local": 1136066,
+        "upstream": 1136066
+      },
+      {
+        "gid": 65266,
+        "local": 666125,
+        "upstream": 666125
+      },
+      {
+        "gid": 46857,
+        "local": 781252,
+        "upstream": 781252
+      },
+      {
+        "gid": 46754,
+        "local": 1146343,
+        "upstream": 1146343
+      }
+    ],
+    "matches": "8 of 8, byte-exact",
+    "largest_tested": 1146343
+  },
+  "coverage": {
+    "under_8kb": "850 of 850 (complete)",
+    "50k_150k": "4 sampled",
+    "over_400k": "4 sampled",
+    "plus_outlier": "gid 23962 at 785,317 fetched separately, also exact"
+  },
+  "query_error_caught": "My first attempt used ORDER BY inside both branches of a UNION ALL and returned NOTHING. Silent-looking, but not silent: rerunning without 2>/dev/null showed 'ORDER BY clause should come after UNION ALL not before'. An empty result and a syntax error look identical when stderr is discarded \u2014 I discarded it, then went back for it rather than assuming the sample was genuinely empty.",
+  "honest_limit": "8 books across two bands is a probe, not a survey. What it establishes is that the extractor is byte-faithful at 1.1 MB as well as at 100 bytes \u2014 the failure mode I could not rule out locally now has evidence against it at the sizes where it would matter most.",
+  "derivations": {}
+}
