@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:47:29.100Z",
+  "generated_at": "2026-08-04T04:50:47.343Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,9 +23,9 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 6,
-      "portfolio_questions": 4,
-      "refresh_entries": 6
+      "production_claims": 7,
+      "portfolio_questions": 5,
+      "refresh_entries": 7
     }
   },
   "derivations": {
@@ -163,6 +163,15 @@
       "claim_packets": [
         "claims/GQ-006-organ-push-verb.claim.json"
       ]
+    },
+    {
+      "id": "GQ-002",
+      "text": "What changes would make the complete provider-neutral SISO agent layer ten times more effective per unit of time, attention, and compute?",
+      "status": "active",
+      "action_status": "proposed",
+      "claim_packets": [
+        "claims/GQ-002-caching-multiplier.claim.json"
+      ]
     }
   ],
   "routing": {
@@ -282,10 +291,9 @@
     "coverage": {
       "registered": 7,
       "with_testable_contract": 1,
-      "with_local_claims": 3,
+      "with_local_claims": 4,
       "unclaimed": [
         "GQ-001",
-        "GQ-002",
         "GQ-004",
         "GQ-005"
       ]

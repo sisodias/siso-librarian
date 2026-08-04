@@ -1,6 +1,6 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T04:47:11Z",
+  "generated_at": "2026-08-04T04:50:29Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
@@ -112,6 +112,25 @@
       ],
       "result": "fresh",
       "evidence_note": "All four organ verbs measured this loop against live artifacts; both byte ranges verified.",
+      "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
+    },
+    {
+      "claim_packet": "claims/GQ-002-caching-multiplier.claim.json",
+      "question_id": "GQ-002",
+      "checked_at": "2026-08-04T04:50:29Z",
+      "selectors_used": [
+        "GQ-002",
+        "effectiveness",
+        "caching",
+        "compute"
+      ],
+      "invalidate_on_considered": [
+        "schema change",
+        "new evidence source",
+        "approved action status change"
+      ],
+      "result": "fresh",
+      "evidence_note": "Aggregated over the full gateway log with a 100-request sample floor; a 4-request outlier was excluded and recorded. Both byte ranges verified.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]

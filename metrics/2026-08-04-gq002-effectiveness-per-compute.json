@@ -1,0 +1,66 @@
+{
+  "measured_at": "2026-08-04T04:49:45Z",
+  "question": "GQ-002",
+  "metric": "output tokens returned per 1,000 billed input tokens \u2014 a direct read on effectiveness per unit of compute",
+  "providers": [
+    {
+      "provider": "CodexProxy",
+      "requests": 4,
+      "raw_input": 1235,
+      "cached": 0,
+      "billed_input": 1235,
+      "output": 118,
+      "output_per_1k_billed_input": 95.55,
+      "pct_input_cached": 0.0
+    },
+    {
+      "provider": "CodexOpenAI",
+      "requests": 408,
+      "raw_input": 45285517,
+      "cached": 44010496,
+      "billed_input": 1275021,
+      "output": 109467,
+      "output_per_1k_billed_input": 85.86,
+      "pct_input_cached": 97.2
+    },
+    {
+      "provider": "Minimax",
+      "requests": 166,
+      "raw_input": 3752594,
+      "cached": 0,
+      "billed_input": 3752594,
+      "output": 94154,
+      "output_per_1k_billed_input": 25.09,
+      "pct_input_cached": 0.0
+    },
+    {
+      "provider": "anthropic",
+      "requests": 331,
+      "raw_input": 198982957,
+      "cached": 182142838,
+      "billed_input": 16840119,
+      "output": 214261,
+      "output_per_1k_billed_input": 12.72,
+      "pct_input_cached": 91.5
+    }
+  ],
+  "spread": {
+    "sample_floor_requests": 100,
+    "excluded_low_sample": [
+      {
+        "provider": "CodexProxy",
+        "requests": 4,
+        "output_per_1k_billed_input": 95.55
+      }
+    ],
+    "best": "CodexOpenAI",
+    "best_value": 85.86,
+    "best_requests": 408,
+    "anthropic_value": 12.72,
+    "anthropic_requests": 331,
+    "ratio": 6.8
+  },
+  "interpretation": "The spread tracks caching, not model capability. CodexOpenAI caches 97.2% of its input and returns 85.86 output tokens per 1k billed; MiniMax caches 0% and returns 25.09 despite being the designated cheap lane. Turning caching on where it is off is a larger multiplier than any model swap available here.",
+  "caveat": "Output tokens are a proxy for useful work, not a measure of it. A model emitting more tokens is not thereby more effective; this bounds the cost side of the 10x question, not the quality side.",
+  "sample_note": "CodexProxy showed the highest ratio at 95.55 but on only 4 requests, so a 100-request floor was applied before comparing. Reporting a 4-request outlier as the headline would have been the kind of plausible-looking number this repo exists to catch."
+}

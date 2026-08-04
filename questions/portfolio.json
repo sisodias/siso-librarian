@@ -1,6 +1,6 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-04T04:47:11Z",
+  "generated_at": "2026-08-04T04:50:29Z",
   "scope": "GQ-009 claim-layer control surface; GQ-010 fame versus dependence",
   "questions": [
     {
@@ -92,6 +92,32 @@
         "information-organ",
         "push",
         "approval"
+      ],
+      "refresh": {
+        "strategy": "on-evidence-change",
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
+      },
+      "action_status": "proposed"
+    },
+    {
+      "id": "GQ-002",
+      "text": "What changes would make the complete provider-neutral SISO agent layer ten times more effective per unit of time, attention, and compute?",
+      "status": "active",
+      "registry_work": "registered; registry state 'answered' with no falsifiers",
+      "note": "Registered God Question, not minted here. This claim addresses only the compute dimension.",
+      "claim_packets": [
+        "claims/GQ-002-caching-multiplier.claim.json"
+      ],
+      "current_claim": "claims/GQ-002-caching-multiplier.claim.json",
+      "selectors": [
+        "GQ-002",
+        "effectiveness",
+        "caching",
+        "compute"
       ],
       "refresh": {
         "strategy": "on-evidence-change",

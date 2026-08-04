@@ -1,0 +1,75 @@
+{
+  "schema_version": "claim-packet-v1",
+  "question": {
+    "id": "GQ-002:caching-multiplier",
+    "text": "What changes would make the complete provider-neutral SISO agent layer ten times more effective per unit of time, attention, and compute?",
+    "scope": "compute dimension \u2014 output returned per billed input token on this gateway",
+    "parents": [
+      "GQ-002"
+    ]
+  },
+  "claim": {
+    "id": "claim:GQ-002.caching-multiplier.v1",
+    "position": "The largest available multiplier on compute effectiveness is prompt caching, not model selection: measured across 408 and 330 requests, CodexOpenAI returns 85.86 output tokens per 1,000 billed input tokens against Anthropic's 12.72, a 6.8x spread that tracks cache hit rate rather than capability, and MiniMax \u2014 the designated cheap lane \u2014 returns only 25.09 because it caches nothing.",
+    "confidence": 0.71,
+    "status": "proposed",
+    "created_at": "2026-08-04T04:50:29Z",
+    "updated_at": "2026-08-04T04:50:29Z",
+    "supersedes": []
+  },
+  "grounding": [
+    {
+      "quote": "\"ratio\": 6.8",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq002-effectiveness-per-compute.json",
+        "title": "Effectiveness per unit compute, measured"
+      },
+      "locator": "spread.ratio",
+      "passage_id": "gq002:spread",
+      "byte_range": {
+        "start": 1536,
+        "end": 1548
+      }
+    },
+    {
+      "quote": "\"output_per_1k_billed_input\": 25.09",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq002-effectiveness-per-compute.json",
+        "title": "Effectiveness per unit compute, measured"
+      },
+      "locator": "providers[].output_per_1k_billed_input (Minimax)",
+      "passage_id": "gq002:minimax-rate",
+      "byte_range": {
+        "start": 860,
+        "end": 895
+      }
+    }
+  ],
+  "action": {
+    "status": "proposed",
+    "description": "Before evaluating model swaps for the 10x goal, fix caching where it is absent. The MiniMax path alone would move from 25.09 to a rate bounded by its 97% cache capability \u2014 a larger gain than any model substitution available on this gateway, and scripts/minimax-cache-route.sh already implements it reversibly.",
+    "owner": "librarian"
+  },
+  "refresh": {
+    "strategy": "on-evidence-change",
+    "selectors": [
+      "GQ-002",
+      "effectiveness",
+      "caching",
+      "compute"
+    ],
+    "invalidate_on": [
+      "schema change",
+      "new evidence source",
+      "approved action status change"
+    ]
+  },
+  "provenance": {
+    "producer": "siso-librarian",
+    "run_id": "GQ-002-loop-2026-08-04-caching-multiplier",
+    "model": "claude-opus-5",
+    "generated_at": "2026-08-04T04:50:29Z"
+  }
+}
