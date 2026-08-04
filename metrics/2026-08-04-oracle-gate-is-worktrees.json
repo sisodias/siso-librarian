@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-04T18:27:07Z",
+  "subject": "oracle-gate: 8.5 GB is 13 git worktrees, and 5.2 GB more was hiding inside the repo",
+  "what_it_is": {
+    "kind": "git worktrees of SISO_Agency/apps/oracle-streaming, created 2026-07-20",
+    "count": 13,
+    "each_gb": 0.667,
+    "oracle_gate_total_gb": 8.5,
+    "tell": ".git is a 103-byte gitdir pointer, not a directory; identical 667 MB sizes across unrelated task IDs"
+  },
+  "second_finding": {
+    "what": "6 more worktrees at a LITERAL \"$HOME\" path INSIDE the source repo",
+    "path": "SISO_Agency/apps/oracle-streaming/$HOME/oracle-gate/",
+    "size_gb": 5.2,
+    "cause": "a script quoted $HOME so it never expanded \u2014 git created the directory literally",
+    "why_it_matters": "I was auditing ~/oracle-gate and would never have found this; it is 5.2 GB nobody is counting"
+  },
+  "redundancy_proven": {
+    "shared_commit": "764be5a757aa32b87ff698dbc4f368f5529ef634",
+    "outlier": "62bdced87 (TASK-0764)",
+    "both_present_in_source_repo": true,
+    "method": "git cat-file -t in the source repo \u2014 not inferred from equal sizes"
+  },
+  "what_was_actually_unique": {
+    "worktrees_with_uncommitted_changes": 6,
+    "review_batch": {
+      "untracked": 141,
+      "modified": 346,
+      "deleted": 152
+    },
+    "TASK-0254": {
+      "untracked": 5,
+      "note": "new publish-recipe modules WITH TESTS"
+    },
+    "TASK-0710": {
+      "untracked": 4,
+      "note": "StreamKeyExpiryWatcher + tests, preflight-credentials"
+    },
+    "preserved_to": "librarian-vault/oracle-gate-uncommitted-20260804/",
+    "total_mb": 7.9,
+    "verified": "TASK-0710 tarball extracted and diffed file-by-file vs originals \u2014 4/4 IDENTICAL",
+    "fraction_of_the_bulk": "0.06% of 13.7 GB"
+  },
+  "why_i_did_not_reclaim": "review-batch alone holds 572 uncommitted changes including 141 untracked files. A size-based sweep would have destroyed real unpushed work with tests. It is another repo I do not own, so removal is Shaan's call \u2014 but the irreplaceable part is now safe either way.",
+  "reclaimable_gb": 13.7,
+  "derivations": {}
+}

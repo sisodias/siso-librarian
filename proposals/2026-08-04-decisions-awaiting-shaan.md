@@ -250,6 +250,52 @@ Root disk went 27Gi → 21Gi free tonight. At the current rate that is roughly t
 
 ---
 
+## 8. oracle-gate is 13 git worktrees — 13.7 GB reclaimable, and the unique work is already saved
+
+I had carried "oracle-gate 8.5 GB still on root" for many loops without once
+opening it. It is **13 git worktrees** of `SISO_Agency/apps/oracle-streaming`
+from 2026-07-20 — each 667 MB, twelve of them at the same commit
+`764be5a75`, all detached. The tell was a 103-byte `.git` *file* (a gitdir
+pointer) and identical sizes across unrelated task IDs.
+
+**A second 5.2 GB nobody is counting.** `git worktree list` shows six more
+worktrees at a **literal `$HOME`** path *inside the source repo*:
+
+    SISO_Agency/apps/oracle-streaming/$HOME/oracle-gate/TASK-0253 ...
+
+A script quoted `$HOME` so it never expanded, and git created the directory
+literally. I was auditing `~/oracle-gate` and would never have found this.
+
+**Redundancy is proven, not inferred from equal sizes:** both `764be5a75` and
+`62bdced87` are present in the source repo (`git cat-file -t`). The checked-out
+content genuinely exists elsewhere.
+
+**What was NOT redundant, and what a size-based sweep would have destroyed.**
+Six worktrees have uncommitted changes — `review-batch` alone has **572**,
+including 141 untracked files. TASK-0254 has new publish-recipe modules **with
+tests**; TASK-0710 has `StreamKeyExpiryWatcher` plus tests and a
+preflight-credentials script. All untracked: they exist nowhere else.
+
+All of it is preserved at
+`librarian-vault/oracle-gate-uncommitted-20260804/` — patches for tracked
+edits, tarballs for untracked files, **7.9 MB total**. Verified by extracting
+TASK-0710's tarball and diffing file-by-file against the originals: 4 of 4
+identical. **The irreplaceable content is 0.06% of the 13.7 GB it sits in.**
+
+**Your call, because this is a repo I do not own.** The safe removal is git's
+own, which consults the registry rather than deleting blind:
+
+    cd ~/SISO_Workspace/SISO_Agency/apps/oracle-streaming
+    git worktree list                     # confirm the 19 entries
+    git worktree remove ~/oracle-gate/TASK-0790     # clean ones first
+    git worktree remove --force ~/oracle-gate/review-batch   # has changes
+    git worktree prune
+
+Reclaims ~13.7 GB. I have not run any of it. Evidence:
+`metrics/2026-08-04-oracle-gate-is-worktrees.json`
+
+---
+
 ## 7. Internet Archive expansion — NOT blocked on rights. Selection was, and it is now answered.
 
 The headline below is wrong in scope. **270,049 IA texts carry an explicit
