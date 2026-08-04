@@ -119,6 +119,21 @@ still zero new matches. Realistic maximum is ~419. Do not chase it.
   a truncated `scp` exited 0, a passage run reported success with zero rows, and a
   publish logged ALL DONE after every upload failed with `release not found`.
   Verify the artifact, not the status.
+- **A disagreement is a hypothesis about the checker first.** When a number you
+  re-derive contradicts a recorded one, the most likely cause is that you queried
+  the wrong key — not that the record is wrong. This happened **six times in one
+  session**, always producing a confident wrong number rather than an error:
+  `source_inventories` vs `source-inventories` (reported 0 of 6);
+  `person_content` vs `person_topic` (76,106 against a true 90,209 — nearly
+  disputed a correct claim); a hardcoded `bucket_counts[g][k]` (audited nothing);
+  a `bucket_counts.` prefix vs a bare key (42 undeclared against a true 24);
+  work `id` vs filename (invented 25 orphaned works); hyphens-to-slashes on
+  directory names (right answer, unreliable method).
+  Before recording a contradiction, find where the original number came from and
+  run *that*. Every one of these was caught by going looking or by output looking
+  too clean — never by a gate, because they live in ad-hoc analysis rather than in
+  committed declarations. `npm run derivations:sensitivity` covers the committed
+  half; nothing covers the half you type into a shell.
 - **Transactional writes on internal SSD; bulk sequential artifacts on the vault.**
   SQLite over USB 2.0 caused a real disk I/O error at 500 books.
 - **Check machine health before heavy work** — `df -h /`, load average. This is a

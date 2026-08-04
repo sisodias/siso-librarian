@@ -42,6 +42,25 @@ Re-derivation caught nothing important. Every real defect tonight was found by *
 
 Verify checks that recorded values match sources. It cannot tell whether code does what its description claims. Run it against a copy.
 
+**Correction, later the same session.** Re-derivation did start catching things once metrics declared how to re-derive them — a disputed claim, a silently-skipped count, a phantom set of orphaned works. But it introduced its own failure, and it is the one to watch for:
+
+> **When your re-derivation disagrees with a record, suspect your query before you suspect the record.**
+
+Six times in one session I keyed a check differently from the thing it checked, and every single time it produced a *confident wrong number* rather than an error:
+
+```
+source_inventories vs source-inventories   reported 0 when 6 existed
+person_content     vs person_topic         76,106 against a true 90,209
+bucket_counts[g][k] hardcoded              audited nothing, reported success
+bucket_counts. prefix vs bare key          42 undeclared against a true 24
+work id            vs filename             invented 25 orphaned works
+hyphens-to-slashes on directory names      right answer, unreliable method
+```
+
+The `person_topic` one nearly made me dispute a claim that was correct. I caught it only by hunting for where the original 90,209 came from instead of trusting my disagreement.
+
+None of these were caught by a gate. They live in ad-hoc analysis — the queries you type into a shell while investigating — and the gates only cover committed declarations. `npm run gates:selftest` and `npm run derivations:sensitivity` cover the committed half. Nothing covers the other half but the habit of finding the original query and running *that*.
+
 ## Where I would go next
 
 1. **Retry the mailbox.** Five decisions is a queue, and a queue that only grows is its own failure.
