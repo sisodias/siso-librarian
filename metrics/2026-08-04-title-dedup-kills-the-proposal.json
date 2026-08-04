@@ -45,5 +45,6 @@
   "what_this_invalidates": "The proposal I escalated an hour ago said the subject filter yields \"1,264 candidates\". At a 97.5% overlap rate that is roughly 30 new books, not 1,264. The reduction from 270k was real; the assumption that what survived was NEW was never tested.",
   "the_error": "I validated the filter on three sample titles \u2014 Vulcan's Workshop, Wanderer of Infinity, Planet of Dreams \u2014 and reported them as evidence the filter worked. All three are ALREADY IN THE LIBRARY, at gids 29321, 29408 and 30045. I had the dedup tool half-written at the time and did not run it against my own examples.",
   "a_measurement_error_i_caught": "My first overlap run reported \"154 checked\" from 40 titles \u2014 shell word splitting had broken multi-word titles into separate arguments, so it was measuring fragments. The 16.9% it produced was meaningless. Re-ran passing titles as a proper argument list.",
-  "derivations": {}
+  "derivations": {},
+  "superseded_note": "library_titles_indexed 74674 was correct on 2026-08-04 when the catalogue held one source. The dedup index now UNIONs book_external and reports 74752 (+78 Internet Archive books). The 74674 measurement is not wrong; it is scoped to a catalogue that has since gained a source. See metrics/2026-08-04-the-dedup-regression.json."
 }

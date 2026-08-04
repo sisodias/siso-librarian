@@ -241,6 +241,20 @@ d=json.load(open(p))
 d['derivations']['fake.insensitive']={'kind':'file-count','source':'scripts','query':'*.nonexistent-ext'}
 json.dump(d,open(p,'w'),indent=2)"
 
+# A query reading one source while a sibling source exists. Found twice on
+# 2026-08-04 by accident, and the FIRST version of this gate missed it — a
+# comment mentioning book_external satisfied a whole-file substring check while
+# the SQL below still read `from book` alone. Both the bug and the gate's own
+# blind spot are covered here.
+check "source-coverage catches a query blind to a second source" \
+  "scripts/ia-title-dedup.mjs" \
+  "node scripts/audit-source-coverage.mjs --strict" \
+  "
+p='scripts/ia-title-dedup.mjs'
+t=open(p).read()
+i=t.find(' union all select ext_id'); j=t.find(chr(39)+',', i)
+open(p,'w').write(t[:i]+';'+t[j+1:])"
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

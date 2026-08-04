@@ -1,0 +1,26 @@
+{
+  "measured_at": "2026-08-04T19:43:11Z",
+  "subject": "a gate for the defect I keep finding by accident",
+  "the_pattern": "Twice on 2026-08-04 a checker read a NARROWER source than the thing it checked, and both times I found it by luck. bucket_counts[group][key] audited nothing while reporting success; the dedup paths read \"from book\" after the catalogue gained a second source. Same shape as the wrong-key class: the query SUCCEEDS, so nothing that only watches for errors can see it.",
+  "built": "scripts/audit-source-coverage.mjs, wired into npm run verify --strict",
+  "the_rule": "when a table has a declared sibling covering the same concept from another source, a query naming one must name the other or carry an explicit waiver",
+  "my_first_version_failed_its_own_test": {
+    "what_happened": "reintroduced the real bug on a scratch copy; the gate reported 0 findings, exit 0",
+    "cause": "it used text.includes(secondary) across the WHOLE FILE, so the comment \"// UNION book_external ...\" satisfied it while the SQL below still read `from book` alone",
+    "the_irony": "a comment ABOUT the fix convinced the gate the fix was present",
+    "fix": "strip comments, test only code"
+  },
+  "then_it_cried_wolf_about_itself": {
+    "what_happened": "verify exit 6 on a clean tree",
+    "cause": "`reads` tested raw text while `secondary` tested stripped code \u2014 so prose in gate-selftest.sh reading \"still read `from book` alone\" registered as a real query",
+    "fix": "strip once, test everything against the stripped result",
+    "why_it_matters": "a gate that cries wolf about its own documentation gets muted, and a muted gate is a deleted gate"
+  },
+  "proven_both_directions": {
+    "fires_on_the_bug": "reverted ia-title-dedup.mjs to book-only on a scratch copy -> exit 6, names the file and the missing table",
+    "clean_on_real_tree": "0 findings across 24 scripts",
+    "in_the_self_test": "case added; 14 passed, 0 failed",
+    "cannot_silently_rot": "asserts the sibling tables exist in the live catalogue \u2014 if the rule names a table that is gone it reports THAT rather than reporting health"
+  },
+  "derivations": {}
+}
