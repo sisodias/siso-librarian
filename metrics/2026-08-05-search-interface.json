@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-04T23:02:47Z",
+  "question": "GQ-007",
+  "subject": "the search interface \u2014 the reason the indexes exist",
+  "the_gap": "I built a 122,553-passage index, then a modern-spelling index that doubles recall, and NOTHING read either. Both were reachable only by someone who knew the vault path and wrote their own SQL. Third instance of this defect today: outbox messages, corpus counts, now the indexes themselves.",
+  "built": "scripts/search-library.mjs \u2014 npm run library:search",
+  "three_bugs_found_by_running_it": [
+    {
+      "what": "snippet() inside json_group_array threw \"unable to use function snippet in the requested context\"",
+      "cause": "FTS5 auxiliary functions only work in the query that owns the MATCH",
+      "fix": "compute the snippet in a subquery, aggregate outside"
+    },
+    {
+      "what": "every result came from the printed index; the modern one never appeared",
+      "cause": "concatenating printed-then-modern fills the whole page from the first index",
+      "fix": "interleave \u2014 necessary but NOT sufficient"
+    },
+    {
+      "what": "still all printed after interleaving",
+      "cause": "both indexes match the SAME rows first, so dedup drops the modern duplicates before any modern-only hit is reached",
+      "fix": "ask the modern index only for passages the printed index CANNOT find, excluded in SQL",
+      "why_it_matters": "1,963 passages containing \"himfelf\" are findable only through the modern index. Without this the recall gain exists in the table and never reaches a reader."
+    }
+  ],
+  "verified": {
+    "positive": "\"parliament AND debate\" surfaces a 1742 London Magazine debate",
+    "long_s_recovery": "\"himself\" now returns Miscellanies passages whose printed text reads \"himfelf\"",
+    "adversarial": "\"zxqwvblorptik\" -> no matches, AND names which indexes were searched so \"not found\" cannot be read as \"not searched\""
+  },
+  "searchable_now": {
+    "books": 78,
+    "passages": 122553,
+    "words": 9826621,
+    "with_headings": 122414,
+    "long_s_passages": 49710
+  },
+  "derivations": {}
+}

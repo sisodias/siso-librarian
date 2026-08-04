@@ -31,7 +31,9 @@
     "books:index-external-check": "node scripts/build-external-passages.mjs --check",
     "lib:patch-selftest": "node --check scripts/lib/patch.mjs",
     "books:longs-variants": "node scripts/add-longs-variants.mjs",
-    "books:longs-check": "node scripts/add-longs-variants.mjs --check"
+    "books:longs-check": "node scripts/add-longs-variants.mjs --check",
+    "library:search": "node scripts/search-library.mjs",
+    "library:stats": "node scripts/search-library.mjs --stats"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
