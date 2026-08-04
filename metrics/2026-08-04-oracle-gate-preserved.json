@@ -1,0 +1,44 @@
+{
+  "measured_at": "2026-08-04T09:46:13Z",
+  "question": "GQ-006",
+  "action": "preserve uncommitted work before proposing anything \u2014 nothing moved, nothing deleted (C1)",
+  "target": "~/oracle-gate (8.5 GB, 14 task worktrees, last touched 2026-07-20)",
+  "worktrees": 14,
+  "worktrees_with_uncommitted_work": 6,
+  "detail": {
+    "TASK-0254": {
+      "dirty": 8,
+      "untracked": 5
+    },
+    "TASK-0323": {
+      "dirty": 2,
+      "untracked": 0
+    },
+    "TASK-0363": {
+      "dirty": 2,
+      "untracked": 0
+    },
+    "TASK-0710": {
+      "dirty": 7,
+      "untracked": 4
+    },
+    "TASK-0764": {
+      "dirty": 2,
+      "untracked": 0,
+      "head": "62bdced87 \u2014 differs from the shared 764be5a75"
+    },
+    "review-batch": {
+      "dirty": 572,
+      "untracked": 74
+    }
+  },
+  "untracked_finding": "git diff does NOT capture untracked files. A diff-only backup would have silently lost 83 of them, 74 in review-batch alone. Bundled separately as tarballs; review-batch expands to 171 files because untracked entries include directories.",
+  "verified_at_capture": [
+    "every tarball lists without error",
+    "TASK-0254 and TASK-0764 diffs reverse-apply cleanly against their working trees"
+  ],
+  "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/oracle-gate-diffs",
+  "disposition": "NOT moved and NOT deleted. oracle-gate is the largest remaining movable artifact on root, but it holds live uncommitted work on a detached HEAD. Moving it is Shaan's call; preserving it first is mine.",
+  "root_avail": "18Gi",
+  "derivations": {}
+}
