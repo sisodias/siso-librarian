@@ -11,9 +11,7 @@
     "rule": "formal-designation, institutional-review, jurisdiction-scoped. \"not-a-designation\" excluded \u2014 the literal string \"Public Domain License\" is free text, not a designation."
   },
   "result_at_snapshot": {
-    "files": 69,
-    "words": 9333163,
-    "readable_english": "69/69 at stopword ratio >= 0.08"
+    "note": "superseded \u2014 see final_result"
   },
   "the_bug_the_guard_caught": {
     "symptom": "three items returned EXACTLY 170 bytes; real sizes were 200-350 KB",
@@ -24,5 +22,33 @@
   },
   "a_sample_that_would_have_misled_me": "head -c 400 on the Donne text is pure OCR garbage \u2014 it is the scanned cover and endpapers. The first 400 bytes of a DjVuTXT file say nothing about the book. Measured across the whole file it has thousands of common English words. Quality was measured per-file over full text, not by eyeballing a prefix.",
   "deliberately_not_done": "Nothing was written to books.sqlite. Catalogue ingest is a schema-bearing write to a database six claims ground in, and belongs behind a reviewed migration. The text is on the vault with a manifest so that decision is made on evidence.",
-  "derivations": {}
+  "derivations": {},
+  "final_result": {
+    "identifiers_eligible": 78,
+    "fetched": 78,
+    "complete": true,
+    "files": 78,
+    "words": 11542686,
+    "megabytes": 77,
+    "readable_english": "78/78 at stopword ratio >= 0.08",
+    "by_subject": {
+      "English poetry": 29,
+      "Essays": 28,
+      "Cookery": 21
+    },
+    "smallest_book": "b28271348 (2,298 words)"
+  },
+  "every_failure_was_transient": {
+    "non_ok_identifiers": [
+      "b2147171x",
+      "b24976933_0002",
+      "johndonnehisflig00molo",
+      "poetsofchristian00batt"
+    ],
+    "all_recovered_on_retry": true,
+    "the_pattern": "each returned exactly 170 bytes against declared sizes of 200KB-807KB",
+    "clinching_evidence": "b2147171x declared 807,585 bytes, returned 170, and came back at 788 KB on retry",
+    "so": "zero books were actually unavailable; the failure was entirely mine",
+    "resume_logic": "82 attempts produced 78 distinct files \u2014 nothing was refetched"
+  }
 }
