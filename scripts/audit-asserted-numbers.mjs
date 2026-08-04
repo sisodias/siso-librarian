@@ -8,10 +8,19 @@
 // Prose is where unchecked claims accumulate, because nothing validates it.
 //
 // Read-only. Reports; never rewrites.
-import { readFileSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { join, relative } from 'node:path';
 
 const root = process.cwd();
+
+function walk(dir) {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).flatMap((name) => {
+    const p = join(dir, name);
+    return statSync(p).isDirectory() ? walk(p) : [p];
+  });
+}
 const findings = [];
 
 function git(args) {
@@ -151,7 +160,21 @@ function deriveValue(d) {
 
 let declaredChecked = 0;
 let declaredUnavailable = 0;
-const metricsFiles = git(['ls-files', 'metrics/']).split('\n').filter((p) => p.endsWith('.json'));
+// Enumerate from disk, not from git. Using `git ls-files` made untracked
+// metrics files invisible to this audit — a brand-new file's numbers went
+// unchecked until someone committed it, and "the audit passed" quietly meant
+// less than it appeared. Untracked files are now audited AND reported, so the
+// gap is visible instead of silent.
+const trackedMetrics = new Set(git(['ls-files', 'metrics/']).split('\n').filter(Boolean));
+const metricsFiles = walk(join(root, 'metrics'))
+  .map((f) => relative(root, f))
+  .filter((p) => p.endsWith('.json'))
+  .sort();
+const untrackedMetrics = metricsFiles.filter((p) => !trackedMetrics.has(p));
+for (const p of untrackedMetrics) {
+  findings.push({ check: 'metrics-untracked', file: p,
+    note: 'Present on disk but not tracked by git. Audited here, but it would vanish from a fresh clone.' });
+}
 
 for (const file of metricsFiles) {
   if (!existsSync(file)) continue;
@@ -194,6 +217,8 @@ console.log(JSON.stringify({
   declared_derivations_rederived: declaredChecked,
   declared_derivations_unavailable: declaredUnavailable,
   derivation_sources_checked: sourcesChecked,
+  metrics_files_seen: metricsFiles.length,
+  metrics_files_untracked: untrackedMetrics.length,
   findings,
 }, null, 2));
 
