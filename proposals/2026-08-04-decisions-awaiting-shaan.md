@@ -30,7 +30,9 @@ Bifrost strips `cache_control`. The provider caches correctly. The 8081 shim alr
 - `apply` — refuses if the proxy is not answering; backs up the shim; patches only the MiniMax branch so all other traffic still goes to Bifrost; syntax-checks; restarts; probes; **rolls back automatically** if the model is not MiniMax-M3 or cache reads are still zero
 - `rollback` — restores the most recent backup and re-probes
 
-One command to apply, one to undo, and it undoes itself if the health check fails. I have run `status` only.
+One command to apply, one to undo, and it undoes itself if the health check fails. I have run `status` only — live routing is unchanged.
+
+**Three rounds of testing found three defects**, each only visible by executing it: a missing auth swap (proxy returned 401), an undefined `PROXY_KEY` identifier, and `launchctl setenv` being blocked outright by System Integrity Protection. The key now travels via the daemon plist's `EnvironmentVariables`, the same mechanism `CLAUDE_MODEL_CATALOG_MINIMAX_CAP` already uses. Patch, auth, caching (2,944 vs 0 tokens) and the restart on the real daemon are all verified; only the plist backup/restore lines remain unexecuted, because writing to `/Library/LaunchDaemons` is itself a machine-configuration change.
 
 ---
 

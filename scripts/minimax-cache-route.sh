@@ -99,16 +99,27 @@ PY
     [ $? -eq 0 ] || fail "patch failed"
     node --check "$SHIM" || { cp -p "$BAK" "$SHIM"; fail "syntax check failed — restored backup"; }
 
-    # The shim runs under launchd, so exporting here would not reach it.
-    /usr/bin/sudo -n /bin/launchctl setenv MINIMAX_PROXY_KEY "$KEY" 2>/dev/null \
-      || echo "WARNING: could not set launchd env; apply will fail health check and roll back"
+    # launchctl setenv is blocked by System Integrity Protection on this
+    # machine (verified: "Operation not permitted while SIP is engaged"), so the
+    # key is delivered through the daemon's own plist EnvironmentVariables --
+    # the same mechanism CLAUDE_MODEL_CATALOG_MINIMAX_CAP already uses.
+    PLIST=/Library/LaunchDaemons/com.siso.model-catalog.plist
+    PBAK="$BAK.plist"
+    /usr/bin/sudo -n /bin/cp -p "$PLIST" "$PBAK" || fail "cannot back up plist (needs sudo)"
+    /usr/bin/sudo -n /usr/libexec/PlistBuddy \
+      -c "Add :EnvironmentVariables:MINIMAX_PROXY_KEY string $KEY" "$PLIST" 2>/dev/null \
+      || /usr/bin/sudo -n /usr/libexec/PlistBuddy \
+         -c "Set :EnvironmentVariables:MINIMAX_PROXY_KEY $KEY" "$PLIST" \
+      || { cp -p "$BAK" "$SHIM"; fail "could not write key into plist"; }
     restart_shim || { cp -p "$BAK" "$SHIM"; restart_shim; fail "shim did not come back — restored backup"; }
     RESULT=$(probe); echo "probe after apply: $RESULT"
     CACHED=$(echo "$RESULT" | /usr/bin/python3 -c "import json,sys; print(json.load(sys.stdin)['max_cache_read'])")
     MODEL=$(echo "$RESULT" | /usr/bin/python3 -c "import json,sys; print(json.load(sys.stdin)['model'])")
     if [ "$MODEL" != "MiniMax-M3" ] || [ "${CACHED:-0}" -eq 0 ]; then
       echo "health check FAILED (model=$MODEL cached=$CACHED) — rolling back"
-      cp -p "$BAK" "$SHIM"; /usr/bin/sudo -n /bin/launchctl unsetenv MINIMAX_PROXY_KEY 2>/dev/null; restart_shim; probe; exit 1
+      cp -p "$BAK" "$SHIM"
+      [ -f "$PBAK" ] && /usr/bin/sudo -n /bin/cp -p "$PBAK" "$PLIST"
+      restart_shim; probe; exit 1
     fi
     echo "OK: routing applied, ${CACHED} tokens read from cache"
     ;;
@@ -117,7 +128,10 @@ PY
     BAK=$(ls -t "$SHIM".bak-route-* 2>/dev/null | head -1)
     [ -n "$BAK" ] || fail "no route backup found"
     cp -p "$BAK" "$SHIM"; echo "restored: $BAK"
-    /usr/bin/sudo -n /bin/launchctl unsetenv MINIMAX_PROXY_KEY 2>/dev/null || true
+    if [ -f "$BAK.plist" ]; then
+      /usr/bin/sudo -n /bin/cp -p "$BAK.plist" /Library/LaunchDaemons/com.siso.model-catalog.plist \
+        && echo "restored plist: $BAK.plist"
+    fi
     node --check "$SHIM" || fail "restored file fails syntax check"
     restart_shim && echo "probe: $(probe)"
     ;;
