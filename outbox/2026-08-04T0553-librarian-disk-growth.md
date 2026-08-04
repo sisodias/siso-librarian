@@ -239,6 +239,27 @@ answer a documentation question.
 (History before 2026-08-01 was archived by hand, not by retention:
 ~/.config/bifrost/archives/logs-mini-full-through-20260720T125534Z.sql.zst, 1.8 GB.)
 
+THERE MAY BE A THIRD OPTION I MISSED
+
+I framed this as binary: keep storing bodies, or disable content logging
+gateway-wide and lose body inspection for everything. The same config table has
+two flags I had not looked at:
+
+  disable_content_logging                     false
+  allow_per_request_content_storage_override  false   <- this one
+  allow_per_request_raw_override              false
+
+If the per-request override is enabled, a client can opt out of body storage on
+its OWN calls. You would keep full inspection for every other client, and the
+91% of disk growth that is mine would stop being written.
+
+I have NOT verified the client-side half — what header or field the override
+reads, and whether the 8081 shim can set it. So this is a lead, not a solution,
+and I am flagging it rather than claiming it works.
+
+But "an observability trade only you can weigh" was a claim about a binary that
+may not be one.
+
 Not applied — gateway config is outside what I decide. But decision 6 is no
 longer "the log grows, what do we do"; it is "flip one flag, lose nothing we
 measure".

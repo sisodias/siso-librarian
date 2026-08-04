@@ -1,0 +1,19 @@
+{
+  "measured_at": "2026-08-04T15:50:51Z",
+  "question": "GQ-006",
+  "subject": "the eighth deferral \u2014 \"disable_content_logging is an observability trade only Shaan can weigh\"",
+  "how_i_framed_it": "A binary: leave bodies stored and keep losing ~2.92 MB per request, or disable content logging gateway-wide and lose the ability to inspect ANY request body, including for debugging the traffic that is filling the disk.",
+  "what_i_found": {
+    "flags_present": {
+      "disable_content_logging": false,
+      "allow_per_request_content_storage_override": false,
+      "allow_per_request_raw_override": false
+    },
+    "all_three_are_real_columns_in": "config_client",
+    "reading": "Bifrost exposes PER-REQUEST override flags, both currently off. If enabled, a client can opt out of body storage on its own requests \u2014 which is not the binary I described."
+  },
+  "the_third_option": "Enable allow_per_request_content_storage_override, then have THIS AGENT opt out on its own calls. Shaan keeps full body inspection for every other client; the 91% of disk growth that is mine stops being written. The trade I presented as unavoidable may not be a trade at all.",
+  "what_i_have_not_verified": "Whether the shim can set whatever header or field the override reads, and what that field is called. The flags exist; the client-side mechanism is untested. This is a lead, not a solution, and I am recording it as such rather than adding it to the escalation as fact.",
+  "correction": "\"Only Shaan can weigh this\" was true of the gateway-wide flag and skipped a middle option sitting in the same config table. Eighth deferral, eighth narrowing.",
+  "derivations": {}
+}
