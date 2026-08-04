@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.cwd();
@@ -282,6 +282,36 @@ const repoHealth = {
   proposals: sh('find', [join(root, 'proposals'), '-type', 'f', '-name', '*.md']).split('\n').filter(Boolean).length,
 };
 
+// Escalations I could not deliver. The mailbox is my only push channel to
+// Shaan and it had a single point of failure nobody was watching: outbox/sent/
+// was EMPTY on 2026-08-04 — not one message had ever been delivered — while I
+// repeatedly reported items as "queued" as though queued meant sent. "link
+// down" is an explanation, not an outcome, and reading it as one let two
+// escalations sit undelivered for hours.
+//
+// Age is emitted, not just count, because a queue that is merely non-empty
+// looks the same on day one as on day five. The repo is the channel that
+// actually works, so the queue belongs where the repo is read.
+const outboxDir = join(root, 'outbox');
+const queuedMsgs = existsSync(outboxDir)
+  ? readdirSync(outboxDir).filter((f) => f.endsWith('.md')).sort()
+  : [];
+const oldestQueuedISO = queuedMsgs.length
+  ? sh('git', ['log', '--diff-filter=A', '--format=%aI', '-1', '--', `outbox/${queuedMsgs[0]}`]).trim()
+  : '';
+const escalations = {
+  queued: queuedMsgs.length,
+  delivered_ever: existsSync(join(outboxDir, 'sent'))
+    ? readdirSync(join(outboxDir, 'sent')).filter((f) => f.endsWith('.md')).length
+    : 0,
+  oldest_queued_at: oldestQueuedISO || null,
+  oldest_queued_age_hours: oldestQueuedISO
+    ? Math.round((Date.now() - new Date(oldestQueuedISO)) / 36e5 * 10) / 10
+    : null,
+  files: queuedMsgs,
+  note: 'Undelivered. The laptop peer is unreachable; these are readable in outbox/ regardless.',
+};
+
 const snapshot = {
   generated_at: new Date().toISOString(),
   bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer },
@@ -294,6 +324,7 @@ const snapshot = {
   release_integrity: releaseState,
   disk: disk,
   awaiting_decision: { ...blocked, successor_handover: 'HANDOVER-NEXT.md', review_packet: 'REVIEW-PACKET.md' },
+  escalations,
   missing_sources: missingSources,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
@@ -311,7 +342,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations undelivered', escalations.queued === 0 ? '0' : `${escalations.queued}${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

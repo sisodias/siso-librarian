@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T06:46:16.468Z",
+  "generated_at": "2026-08-04T06:54:38.827Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,7 +36,7 @@
     "verify_steps": 5,
     "scripts_on_disk": 12,
     "metrics_files": 36,
-    "worklogs": 69,
+    "worklogs": 70,
     "proposals": 17
   },
   "derivations": {
@@ -378,6 +378,17 @@
     "source": "proposals/2026-08-04-decisions-awaiting-shaan.md",
     "successor_handover": "HANDOVER-NEXT.md",
     "review_packet": "REVIEW-PACKET.md"
+  },
+  "escalations": {
+    "queued": 2,
+    "delivered_ever": 0,
+    "oldest_queued_at": "2026-08-04T06:55:07+01:00",
+    "oldest_queued_age_hours": 1,
+    "files": [
+      "2026-08-04T0553-librarian-disk-growth.md",
+      "2026-08-04T0640-librarian-ia-rights.md"
+    ],
+    "note": "Undelivered. The laptop peer is unreachable; these are readable in outbox/ regardless."
   },
   "missing_sources": [],
   "caveats": [

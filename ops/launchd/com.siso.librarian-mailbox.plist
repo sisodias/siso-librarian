@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.siso.librarian-mailbox</string>
+
+  <!-- Drains outbox/ to the laptop mailbox whenever the tailnet peer is up.
+       Installed 2026-08-04 after finding outbox/sent/ completely empty: the
+       flush script existed and worked, but nothing ever invoked it, so
+       delivery only happened when the agent remembered to run it by hand.
+       A queue with no automatic drain is a queue that silently never drains. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/shaansisodia/SISO_Library_Agent/scripts/mailbox-flush.sh</string>
+  </array>
+
+  <!-- Every 10 minutes. The script is a cheap no-op when the link is down
+       (one ssh with an 8s ConnectTimeout), so polling costs almost nothing
+       and the laptop has flapped on a scale of minutes. -->
+  <key>StartInterval</key>
+  <integer>600</integer>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/shaansisodia/SISO_Library_Agent</string>
+
+  <!-- SIP blocks launchctl setenv, so PATH is set here rather than inherited. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/shaansisodia/SISO_Library_Agent/logs/mailbox-flush.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/shaansisodia/SISO_Library_Agent/logs/mailbox-flush.log</string>
+</dict>
+</plist>

@@ -33,6 +33,26 @@ npm run refresh:evaluate    # ledger drift, derived from git history not asserte
 npm run ia:dedup            # check IA want-list against authors the Library already holds
 npm run mailbox:status      # what escalations are queued, and is the laptop link up
 npm run mailbox:flush       # deliver queued escalations (no-op when the link is down)
+```
+
+Delivery is automatic. `ops/launchd/com.siso.librarian-mailbox.plist` runs the
+flush every 10 minutes; install it with:
+
+```bash
+cp ops/launchd/com.siso.librarian-mailbox.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.siso.librarian-mailbox.plist
+```
+
+Before that agent existed, `mailbox:flush` was only ever run by hand — and
+`outbox/sent/` was empty, meaning not one escalation had ever been delivered
+while the agent reported items as "queued" as though queued meant sent. The
+observatory now shows `Escalations undelivered` with the age of the oldest, so
+a queue that stops draining is visible rather than quiet.
+
+The copy in `ops/launchd/` is the record; `~/Library/LaunchAgents/` is what
+actually runs. If you edit one, copy it to the other.
+
+```bash
 npm run scratch -- --dirty 'npm run verify'   # run any command against a throwaway clone
 ./scripts/minimax-cache-route.sh status   # routing + live cache probe (apply needs approval)
 ```
