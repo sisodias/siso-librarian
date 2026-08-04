@@ -83,6 +83,30 @@ or caps body size; trimming old rows does nothing.
 So the options are yours, and now safely reversible: the log is on the vault, so
 truncating the live copy loses nothing.
 
+ONE CORRUPT DATABASE FOUND (not urgent, not Library data)
+
+While surveying what has no backup I opened every database under foundry-data.
+One is genuinely corrupt:
+
+  ~/foundry-data/usage-cache/staging-raw.db   0.42 GB
+  valid SQLite header, but quick_check: "database disk image is malformed (11)"
+
+Its sibling staging-recovered.db shows someone already ran .recover. That
+recovery is only partial — quick_check says ok, but every real table is EMPTY
+and all 7,583 salvaged rows sit in lost_and_found with anonymous c0..c57
+columns. A green quick_check on a database with no rows in its tables is worth
+nothing.
+
+Both live in usage-cache/ and their tables (logs, mcp_tool_logs, async_jobs) are
+Bifrost gateway staging, not Library data. No claim cites either. I have NOT
+attempted a repair: C1 forbids destructive action and a cache is not worth a
+risky one. Flagging it because a corrupt file is worth knowing about, not
+because it needs doing.
+
+Also worth knowing: four other databases looked unreadable and are fine. They
+are WAL (write_version 2) and open normally with immutable=1 — the same trap
+that made every vault database unverifiable until this morning.
+
 THE FIX IS ONE BOOLEAN
 
 I said "any real fix disables body persistence" and then checked whether Bifrost

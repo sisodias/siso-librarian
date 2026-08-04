@@ -1,0 +1,37 @@
+{
+  "measured_at": "2026-08-04T11:50:08Z",
+  "question": "GQ-006",
+  "action": "open every remaining unbacked database instead of ranking them by guesswork",
+  "motivation": "Last loop I called books.sqlite low-value because no claim cited it, then found it was the bibliographic catalogue. The ranking was backwards: nothing cited it because I had not looked inside. So I looked inside all twelve.",
+  "error_14_group": {
+    "files": [
+      "people_v2.books-only.sqlite",
+      "people_v2_gh.PRE-ENRICH-20260803-174831.sqlite",
+      "foundry_usage_ledger.db",
+      "intents.db"
+    ],
+    "diagnosis": "All healthy. write_version 2 (WAL); they open fine with immutable=1 and hold 12, 12, 2 and 8 tables.",
+    "note": "Same failure mode as the vault databases. A survey without immutable=1 would have reported four healthy files as unreadable."
+  },
+  "error_11_finding": {
+    "file": "~/foundry-data/usage-cache/staging-raw.db",
+    "size_gb": 0.42,
+    "diagnosis": "GENUINELY CORRUPT. Valid SQLite header, write_version 2, but quick_check cannot run: \"database disk image is malformed (11)\". immutable=1 does not help \u2014 this is not the WAL case.",
+    "sibling": {
+      "file": "staging-recovered.db",
+      "quick_check": "ok",
+      "size_gb": 0.42,
+      "tables": {
+        "migrations": 34,
+        "logs": 0,
+        "mcp_tool_logs": 0,
+        "async_jobs": 0,
+        "lost_and_found": 7583
+      },
+      "reading": "Someone already ran a .recover on it. The recovery is only partial: every real table is EMPTY and all 7,583 salvaged rows sit in lost_and_found with anonymous c0..c57 columns across 13 root pages. quick_check ok on a database whose tables are empty is exactly the kind of green signal that means nothing."
+    },
+    "assessment": "Located in usage-cache/, and its tables (logs, mcp_tool_logs, async_jobs) are Bifrost gateway staging \u2014 not Library data. No claim cites it. Recording the corruption rather than attempting a second recovery on a cache.",
+    "not_done": "No repair attempted. C1 forbids destructive action and a cache is not worth a risky one."
+  },
+  "derivations": {}
+}
