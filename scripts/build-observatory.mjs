@@ -533,6 +533,9 @@ ${snapshot.escalations.queued ? `<section><h2>Escalations you have not seen</h2>
       + `<tr><td>Project Gutenberg</td><td>${(snapshot.bucket_counts.passages?.books ?? 0).toLocaleString()}</td><td>${(snapshot.bucket_counts.passages?.passages ?? 0).toLocaleString()}</td><td>—</td></tr>`
       + `<tr><td>Internet Archive</td><td>${(e.books ?? 0).toLocaleString()}</td><td>${(e.passages ?? 0).toLocaleString()}</td><td>${(e.words ?? 0).toLocaleString()}</td></tr>`
       + '</table>'
+      + '<p><strong><a href="/library.html">Browse and search all 78 books &rarr;</a></strong> '
+      + 'Titles and 11,260 chapter headings, searchable in the browser. Full text across all 9.8M words is '
+      + '<code>npm run library:search</code> on the mini.</p>'
       + '<p>The IA books are indexed separately, keyed by their own identifiers. They are NOT in the passage index: '
       + 'that table keys on <code>gid INTEGER</code>, documented as the Gutenberg Text#, and 1,184,937 rows join on it. '
       + 'Search works regardless because FTS5 stores the id column <code>UNINDEXED</code>.</p>';

@@ -1,0 +1,44 @@
+{
+  "measured_at": "2026-08-04T23:53:59Z",
+  "question": "GQ-007",
+  "subject": "the library page, and a data-loss bug my own retention work caused",
+  "the_page": {
+    "built": "public/library.html \u2014 78 books, 11,260 chapter headings, 470 KB, client-side search",
+    "why_client_side": "public/ is served by a static file server under launchd; there is no backend, and adding one means a process, a port and a failure mode",
+    "what_is_shipped": "titles and headings \u2014 the table of contents. NOT the 9.8M words of body text.",
+    "served": "200 over the tailnet, verified by fetching it",
+    "linked": "from the observatory, verified live \u2014 an unlinked page is the same defect one level up",
+    "search_verified": {
+      "cookery": 12,
+      "poetry": 13,
+      "parliament": 7,
+      "vegetarian": 2,
+      "zxqwvblorptik": 0
+    }
+  },
+  "the_bug_i_found_by_running_the_gates": {
+    "symptom": "declared-derivation findings jumped 0 -> 5",
+    "not_from_the_page": "from MY OWN retention work an hour earlier",
+    "cause": "enforce-log-retention.sh refreshes the slice from LIVE before deleting. On its second run the 136 rows were ALREADY deleted, so the refresh rebuilt the slice without them. A projection of a shrinking source is not an archive.",
+    "damage": "four derivations changed answers \u2014 45,285,517 -> 45,264,719, 109,467 -> 108,841, 408 -> 393, 85.86 -> 86.78",
+    "recovery": "a full 5.75 GB backup from 2026-08-04T09:19Z still held every row; all four values restored EXACTLY",
+    "the_lesson": "my safety mechanism destroyed the thing it was protecting, and only an unrelated backup saved it"
+  },
+  "the_fix": {
+    "what": "the slice ACCUMULATES instead of replacing \u2014 keep every row it has, add what live has that it lacks",
+    "guard": "refuses and restores if the row count would shrink",
+    "proven": "artificially cut the slice to 100 rows; the script recovered it to 3,586 and refused nothing it should not have",
+    "now": "3,620 rows, a superset of both live (3,465) and the backup (2,261)"
+  },
+  "also_undeclared": {
+    "free_pages": "read 1,153,812 then 1,145,138 then 1,141,436 across three runs minutes apart \u2014 a sliding value cannot satisfy an equality check, same as routing.requests"
+  },
+  "gates": {
+    "verify_exit": 0,
+    "derivations": 31,
+    "unavailable": 0,
+    "skipped": 0,
+    "findings": "3, all severity info"
+  },
+  "derivations": {}
+}

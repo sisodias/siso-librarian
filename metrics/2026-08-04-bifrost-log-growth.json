@@ -20,16 +20,14 @@
     "2026-08-03": 0.72,
     "2026-08-04": 3.61
   },
-  "free_pages": 0,
+  "free_pages": 1141436,
   "correction": "My escalation to Shaan said the log grows '~1GB/day'. Measured: 3.61 GB on 2026-08-04 alone with the day incomplete, against 0.72 GB the previous day. Growth tracks fleet activity and is accelerating, not linear \u2014 the figure I sent him understates it by roughly 4x.",
   "vacuum_would_not_help": "freelist_count is 0, so no space is reclaimable by VACUUM. The pages are live request bodies, not deleted rows. My first theory \u2014 5.2 GB of unvacuumed free space \u2014 was wrong and I checked it before recording it.",
   "root_disk_available_at_measure": "19Gi",
-  "derivations": {
-    "free_pages": {
-      "kind": "sqlite",
-      "source": "~/.config/bifrost/logs.db",
-      "query": "select freelist_count from pragma_freelist_count;"
-    }
-  },
-  "live_counter_note": "rows and file_bytes are NOT declared as derivations. Both moved while this file was being written \u2014 2,232 -> 2,237 rows and +10 MB within a minute \u2014 because the gateway is serving traffic. A derivation over a live counter disagrees by construction, and declaring one would make the audit fail on every run for a reason that is not a defect. They are observations with a timestamp."
+  "derivations": {},
+  "live_counter_note": "rows and file_bytes are NOT declared as derivations. Both moved while this file was being written \u2014 2,232 -> 2,237 rows and +10 MB within a minute \u2014 because the gateway is serving traffic. A derivation over a live counter disagrees by construction, and declaring one would make the audit fail on every run for a reason that is not a defect. They are observations with a timestamp.",
+  "free_pages_note": "was 0 when measured 2026-08-04; now 1,141,436 after enforce-log-retention.sh nulled the body columns on 2,999 rows. The pages are free INSIDE the file \u2014 SQLite reuses them for new rows, so the log stops growing even though it does not shrink. VACUUM would return them to the filesystem but needs ~2x the file size free.",
+  "undeclared_rationale": {
+    "free_pages": "derivable, deliberately NOT declared: freelist_count moves every time the live gateway writes. Measured 2026-08-05 it read 1,153,812 then 1,145,138 then 1,141,436 across three runs minutes apart. An equality check against a value that changes between the write and the audit fails on every run and trains the reader to ignore the gate \u2014 the same reason routing.requests was undeclared."
+  }
 }

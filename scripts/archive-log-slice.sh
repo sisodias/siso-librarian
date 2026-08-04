@@ -65,8 +65,32 @@ if [ "${1:-}" = "--verify" ]; then
   exit 0
 fi
 
-# Rebuild from scratch each time: the slice is a projection, not an accumulator,
-# and appending would double-count rows still present in both.
+# ACCUMULATE, do not replace. Measured 2026-08-05: rebuilding the slice purely
+# from live DESTROYED the very rows it exists to preserve — enforce-log-retention
+# refreshed it after 136 rows had already been evicted, and four declared
+# derivations changed answers (45,285,517 -> 45,264,719). The rows were only
+# recoverable because a full 5.75 GB backup from 09:19 still held them.
+#
+# A projection of a shrinking source is not an archive. The slice must be a
+# SUPERSET: keep every row it already has, add whatever live has that it lacks.
+if [ -f "$SLICE" ]; then
+  cp "$SLICE" "$SLICE.prev"
+  sqlite3 "$SLICE" "
+    attach database 'file:$LIVE?mode=ro' as live;
+    insert into logs select id, timestamp, provider, virtual_key_name, model,
+        prompt_tokens, completion_tokens, total_tokens, cached_read_tokens, status
+      from live.logs where id not in (select id from logs);
+    detach live;" 2>&1
+  before=$(sqlite3 "file:$SLICE.prev?mode=ro" "select count(*) from logs;" 2>/dev/null)
+  after=$(sqlite3 "file:$SLICE?mode=ro" "select count(*) from logs;" 2>/dev/null)
+  if [ "${after:-0}" -lt "${before:-0}" ]; then
+    echo "REFUSING: slice shrank ${before} -> ${after}; restoring" >&2
+    mv "$SLICE.prev" "$SLICE"; exit 9
+  fi
+  rm -f "$SLICE.prev"
+  echo "slice: ${before} -> ${after} rows (superset maintained)"
+  exit 0
+fi
 rm -f "$SLICE"
 sqlite3 "$SLICE" "
 attach database 'file:$LIVE?mode=ro' as live;
