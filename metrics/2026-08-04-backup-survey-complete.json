@@ -1,0 +1,36 @@
+{
+  "measured_at": "2026-08-04T12:13:12Z",
+  "question": "GQ-006",
+  "action": "complete the foundry-data backup survey started when 1 of 15 databases had a copy",
+  "final_state": {
+    "total": 15,
+    "backed_up_and_verified": 9,
+    "proven_redundant": 4,
+    "corrupt": 2,
+    "unbacked": 0
+  },
+  "backed_up": [
+    "people_v2.sqlite",
+    "identity.sqlite",
+    "books.sqlite",
+    "people.sqlite",
+    "momentum.sqlite",
+    "passage_summary.sqlite",
+    "intents.db",
+    "foundry_usage_ledger.db",
+    "people_video_queue.sqlite"
+  ],
+  "proven_redundant": [
+    "identity.PRE-MERGE",
+    "people_v2.PRE-AWESOME-PROMOTE",
+    "people_v2_gh.PRE-ENRICH",
+    "people_v2.books-only"
+  ],
+  "corrupt": [
+    "staging-raw.db (malformed, escalated)",
+    "staging-recovered.db (partial .recover, tables empty)"
+  ],
+  "verification": "Every backup verified by pragma quick_check plus at least one row-count comparison against the live database. No backup was accepted on exit code alone.",
+  "method_note": "Backed up the last two without ranking them. Twice this session a ranking proxy failed in the same direction \u2014 books.sqlite was uncited and held the catalogue; people.sqlite was 0.03 GB and held the only copy of 124,185 author scores. With two databases left, ranking cost more than copying.",
+  "derivations": {}
+}
