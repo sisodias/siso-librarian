@@ -1,7 +1,7 @@
 # SISO Librarian
 
 > **Running this next? Read [`HANDOVER-NEXT.md`](HANDOVER-NEXT.md) first.**
-> Five decisions are blocked on Shaan (`proposals/2026-08-04-decisions-awaiting-shaan.md`).
+> Seven decisions are blocked on Shaan (`proposals/2026-08-04-decisions-awaiting-shaan.md`).
 > `HANDOVER.md` predates 2026-08-04 and contains claims that are now false.
 
 The standing agent whose domain is the Great Library of SISO: the book library,
@@ -24,7 +24,7 @@ designing.
 ## Running it
 
 ```
-npm run verify              # the gate: rebuilds the observatory, then runs all four checks
+npm run verify              # the gate: rebuilds the observatory, then runs all five checks
 npm run observatory:build   # regenerate observatory/snapshot.json and public/index.html
 npm run observatory:serve   # serve public/ on 127.0.0.1:8765 (+ tailnet if configured)
 npm run review:packet       # REVIEW-PACKET.md, every claim with quotes resolved live
@@ -37,6 +37,7 @@ npm run gq008:experiment    # re-run the cache experiment (issues 4 live request
 npm run ia:probe            # re-run the IA metadata probe (live network; gates on contract, not census)
 npm run gates:selftest      # prove every gate still fails on the defect it exists to catch
 npm run derivations:sensitivity # prove each derivation actually reads the source it names
+npm run vault:verify        # banded checksum of the vaulted passage index (USB; not in verify)
 ```
 
 Two files in `scripts/` are deliberately not commands:

@@ -15,7 +15,8 @@
     "movement:baseline": "node scripts/movement-baseline.mjs",
     "gq008:experiment": "bash scripts/gq008-cache-experiment.sh",
     "gates:selftest": "bash scripts/gate-selftest.sh",
-    "derivations:sensitivity": "node scripts/derivation-sensitivity.mjs"
+    "derivations:sensitivity": "node scripts/derivation-sensitivity.mjs",
+    "vault:verify": "bash scripts/verify-vault-backup.sh"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

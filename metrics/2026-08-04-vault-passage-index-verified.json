@@ -39,5 +39,45 @@
   },
   "not_done": "Full-table checksum. A sum(chars),sum(words) scan over 41.5M rows across USB timed out at 10 minutes. Three fixed-rowid spot checks at first, middle and last are what was actually verified \u2014 that is weaker than a checksum and is reported as such, not rounded up to 'verified identical'.",
   "derivation_declined": "No derivation is declared for the vault row count. `select count(*) from passage` over 41.5M rows on USB takes 2m+ per call, and the audit runs on every verify and a dozen times inside the gate self-test \u2014 declaring it made the chain unusable. Measured here once, with the timing recorded, rather than re-run on every gate invocation. A gate slow enough to skip is a gate that gets skipped.",
-  "timing_note": "count(*) on the vaulted index: >2 minutes. Same query on the live SSD index: sub-second."
+  "timing_note": "count(*) on the vaulted index: >2 minutes. Same query on the live SSD index: sub-second.",
+  "banded_checksum": {
+    "method": "Aggregate count/sum(chars)/sum(words)/sum(len(preview)) over five 50k-row rowid bands, run identically against the live index and the vault copy. rowid ranges use the primary key index, so each band returns in seconds \u2014 unlike the full-table scan, which timed out at ten minutes.",
+    "bands": [
+      {
+        "range": "1..50001",
+        "rows": 50001,
+        "live": "50001|30729422|5256317|7678557",
+        "match": true
+      },
+      {
+        "range": "10000000..10050000",
+        "rows": 50001,
+        "live": "50001|35625951|5949092|7656632",
+        "match": true
+      },
+      {
+        "range": "20000000..20050000",
+        "rows": 50001,
+        "live": "50001|29428121|4640818|7191033",
+        "match": true
+      },
+      {
+        "range": "30000000..30050000",
+        "rows": 50001,
+        "live": "50001|32280156|5369596|7625691",
+        "match": true
+      },
+      {
+        "range": "41450000..41500000",
+        "rows": 50001,
+        "live": "50001|31435354|5456691|7726539",
+        "match": true
+      }
+    ],
+    "rows_compared": 250005,
+    "bands_matching": "5 of 5",
+    "coverage_pct": 0.6,
+    "honest_limit": "0.6% of the table, not a full checksum. Five bands spanning first to last rowid with four independent aggregates each is materially stronger than the three single-row spot checks it replaces, and materially weaker than checksumming 41.5M rows. Corruption confined to an unsampled band would still pass."
+  },
+  "content_spot_checks_superseded_by": "banded_checksum"
 }
