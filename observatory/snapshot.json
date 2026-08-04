@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T07:03:05.801Z",
+  "generated_at": "2026-08-04T07:07:54.641Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -32,11 +32,11 @@
     }
   },
   "repo_health": {
-    "npm_scripts": 12,
+    "npm_scripts": 13,
     "verify_steps": 5,
-    "scripts_on_disk": 12,
-    "metrics_files": 36,
-    "worklogs": 72,
+    "scripts_on_disk": 13,
+    "metrics_files": 37,
+    "worklogs": 73,
     "proposals": 17
   },
   "derivations": {
@@ -303,7 +303,7 @@
         "success_criteria": 4,
         "falsifiers": 4,
         "watch_triggers": 3,
-        "evidence_gaps": 2,
+        "evidence_gaps": 3,
         "answer_shape": "A ranked movement map with observed deltas, causal hypotheses, confidence, leading indicators, and dated predictions that can later be scored."
       },
       {
@@ -383,7 +383,7 @@
     "queued": 2,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 1.1,
+    "oldest_queued_age_hours": 1.2,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"

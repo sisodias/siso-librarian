@@ -1,0 +1,238 @@
+{
+  "measured_at": "2026-08-04T07:05:52.371Z",
+  "question": "GQ-005",
+  "purpose": "Naive baseline required by GQ-005 falsifier 1. Predictions must beat this to count as identifying movement.",
+  "source": "~/foundry-data/domains/people/people_v2.sqlite",
+  "method": "Share of each creation-year cohort by primary language, read-only over person_content.",
+  "time_axis": "created_at (repository birth date). NOT star velocity — see rejected_signal.",
+  "rejected_signal": {
+    "fields": [
+      "star_delta",
+      "star_velocity",
+      "momentum_day"
+    ],
+    "reason": "One distinct momentum_day (2026-07-11) and star_delta null on 406,297 of 463,230 rows. A single observation day cannot yield a delta.",
+    "star_delta_null": 406297,
+    "star_delta_zero": 56904,
+    "star_delta_positive": 28,
+    "distinct_momentum_days": 1
+  },
+  "baseline_rule": "next cohort share = last complete cohort share",
+  "baseline_from_cohort": "2025",
+  "cohorts": [
+    {
+      "cohort": "2021",
+      "repos": 33278,
+      "partial": false,
+      "below_floor": false,
+      "unlabelled_pct": 9.85,
+      "share_pct": {
+        "C": 3.68,
+        "C#": 3.7,
+        "C++": 5.48,
+        "Go": 5.09,
+        "HTML": 2.46,
+        "Java": 3.25,
+        "JavaScript": 7.91,
+        "Jupyter Notebook": 3.2,
+        "Python": 21.13,
+        "Rust": 3.94,
+        "Shell": 2.66,
+        "TypeScript": 9.62,
+        "Kotlin": 1.96,
+        "Swift": 1.33
+      }
+    },
+    {
+      "cohort": "2022",
+      "repos": 29933,
+      "partial": false,
+      "below_floor": false,
+      "unlabelled_pct": 10.72,
+      "share_pct": {
+        "C": 3.34,
+        "C#": 3.39,
+        "C++": 5.39,
+        "Go": 5.14,
+        "HTML": 2.26,
+        "Java": 2.91,
+        "JavaScript": 6.38,
+        "Jupyter Notebook": 3.19,
+        "Python": 21.59,
+        "Rust": 5.05,
+        "Shell": 2.41,
+        "TypeScript": 10.85,
+        "Kotlin": 2.07,
+        "Swift": 1.27
+      }
+    },
+    {
+      "cohort": "2023",
+      "repos": 31455,
+      "partial": false,
+      "below_floor": false,
+      "unlabelled_pct": 10.31,
+      "share_pct": {
+        "C": 2.91,
+        "C#": 2.85,
+        "C++": 4.61,
+        "Go": 4.02,
+        "HTML": 1.97,
+        "Java": 2.32,
+        "JavaScript": 5.65,
+        "Jupyter Notebook": 3.94,
+        "Python": 28.3,
+        "Rust": 4.54,
+        "Shell": 2.25,
+        "TypeScript": 11.4,
+        "Kotlin": 1.89,
+        "Swift": 1.3
+      }
+    },
+    {
+      "cohort": "2024",
+      "repos": 25516,
+      "partial": false,
+      "below_floor": false,
+      "unlabelled_pct": 9.94,
+      "share_pct": {
+        "C": 2.55,
+        "C#": 2.28,
+        "C++": 4.4,
+        "Go": 3.85,
+        "HTML": 1.89,
+        "Java": 2.06,
+        "JavaScript": 5.2,
+        "Jupyter Notebook": 3.73,
+        "Python": 30.89,
+        "Rust": 4.6,
+        "Shell": 2.17,
+        "TypeScript": 12.36,
+        "Kotlin": 1.72,
+        "Swift": 1.25
+      }
+    },
+    {
+      "cohort": "2025",
+      "repos": 23790,
+      "partial": false,
+      "below_floor": false,
+      "unlabelled_pct": 8.69,
+      "share_pct": {
+        "C": 2.33,
+        "C#": 1.58,
+        "C++": 3.46,
+        "Go": 4.49,
+        "HTML": 2.15,
+        "Java": 1.59,
+        "JavaScript": 6.42,
+        "Jupyter Notebook": 2.25,
+        "Python": 32.57,
+        "Rust": 4.59,
+        "Shell": 2.46,
+        "TypeScript": 16.09,
+        "Kotlin": 1.81,
+        "Swift": 1.56
+      }
+    },
+    {
+      "cohort": "2026",
+      "repos": 13866,
+      "partial": true,
+      "below_floor": false,
+      "unlabelled_pct": 10.01,
+      "share_pct": {
+        "C": 1.8,
+        "C#": 1.41,
+        "C++": 2.4,
+        "Go": 4.72,
+        "HTML": 3.07,
+        "Java": 1,
+        "JavaScript": 7.07,
+        "Jupyter Notebook": 0.47,
+        "Python": 29.22,
+        "Rust": 6.18,
+        "Shell": 3.61,
+        "TypeScript": 19.98,
+        "Kotlin": 1.34,
+        "Swift": 2.62
+      }
+    }
+  ],
+  "baseline": {
+    "C": {
+      "naive_next_share_pct": 2.33,
+      "last_observed_delta_pp": -0.22
+    },
+    "C#": {
+      "naive_next_share_pct": 1.58,
+      "last_observed_delta_pp": -0.7
+    },
+    "C++": {
+      "naive_next_share_pct": 3.46,
+      "last_observed_delta_pp": -0.94
+    },
+    "Go": {
+      "naive_next_share_pct": 4.49,
+      "last_observed_delta_pp": 0.64
+    },
+    "HTML": {
+      "naive_next_share_pct": 2.15,
+      "last_observed_delta_pp": 0.26
+    },
+    "Java": {
+      "naive_next_share_pct": 1.59,
+      "last_observed_delta_pp": -0.47
+    },
+    "JavaScript": {
+      "naive_next_share_pct": 6.42,
+      "last_observed_delta_pp": 1.22
+    },
+    "Jupyter Notebook": {
+      "naive_next_share_pct": 2.25,
+      "last_observed_delta_pp": -1.48
+    },
+    "Python": {
+      "naive_next_share_pct": 32.57,
+      "last_observed_delta_pp": 1.68
+    },
+    "Rust": {
+      "naive_next_share_pct": 4.59,
+      "last_observed_delta_pp": -0.01
+    },
+    "Shell": {
+      "naive_next_share_pct": 2.46,
+      "last_observed_delta_pp": 0.29
+    },
+    "TypeScript": {
+      "naive_next_share_pct": 16.09,
+      "last_observed_delta_pp": 3.73
+    },
+    "Kotlin": {
+      "naive_next_share_pct": 1.81,
+      "last_observed_delta_pp": 0.09
+    },
+    "Swift": {
+      "naive_next_share_pct": 1.56,
+      "last_observed_delta_pp": 0.31
+    }
+  },
+  "caveats": [
+    "2026 is a partial cohort (year incomplete) and is excluded from the baseline.",
+    "Cohorts below 5000 repos are flagged and excluded from the baseline.",
+    "Language is a proxy for technology direction, not for capability or quality.",
+    "This is one corpus of curated repositories, not the whole field."
+  ],
+  "derivations": {
+    "rejected_signal.distinct_momentum_days": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(distinct json_extract(meta_json,'$.momentum_day')) from person_content where domain='github' and json_extract(meta_json,'$.momentum_day') is not null;"
+    },
+    "rejected_signal.star_delta_null": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select sum(case when json_extract(meta_json,'$.star_delta') is null then 1 else 0 end) from person_content where domain='github';"
+    }
+  }
+}
