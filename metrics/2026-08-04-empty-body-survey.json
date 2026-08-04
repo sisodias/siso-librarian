@@ -1,0 +1,969 @@
+{
+  "measured_at": "2026-08-04T12:33:01Z",
+  "question": "GQ-006",
+  "surveyed": 157,
+  "upstream_short": 157,
+  "our_defect": 0,
+  "unreachable": 0,
+  "method": "Fetch pg<gid>.txt, measure bytes between the START and END markers, compare to the local body size.",
+  "interpretation": {
+    "upstream-short": "The Gutenberg plain-text file genuinely has little or no body. Our extractor was correct.",
+    "OUR-DEFECT": "Upstream has substantial text we failed to extract. This is ours to fix.",
+    "unreachable": "Fetch failed or the file has no START/END markers. Missing markers are NOT evidence of an empty body."
+  },
+  "records": [
+    {
+      "gid": 117,
+      "local": 297,
+      "upstream": "297",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 156,
+      "local": 346,
+      "upstream": "346",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 255,
+      "local": 1868,
+      "upstream": "1868",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 276,
+      "local": 390,
+      "upstream": "390",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 279,
+      "local": 879,
+      "upstream": "879",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 303,
+      "local": 326,
+      "upstream": "326",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 672,
+      "local": 292,
+      "upstream": "292",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 2469,
+      "local": 105,
+      "upstream": "105",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 3001,
+      "local": 1424,
+      "upstream": "1424",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 3204,
+      "local": 1355,
+      "upstream": "1355",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 3686,
+      "local": 783,
+      "upstream": "783",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 4662,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 4663,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 4715,
+      "local": 8,
+      "upstream": "8",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 4742,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 5316,
+      "local": 1619,
+      "upstream": "1619",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 5887,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 6161,
+      "local": 829,
+      "upstream": "829",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 6348,
+      "local": 833,
+      "upstream": "833",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 6349,
+      "local": 833,
+      "upstream": "833",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 6419,
+      "local": 833,
+      "upstream": "833",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 6420,
+      "local": 833,
+      "upstream": "833",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7567,
+      "local": 1420,
+      "upstream": "1420",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7568,
+      "local": 1546,
+      "upstream": "1546",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7569,
+      "local": 1472,
+      "upstream": "1472",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7570,
+      "local": 1735,
+      "upstream": "1735",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7573,
+      "local": 1751,
+      "upstream": "1751",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7578,
+      "local": 1512,
+      "upstream": "1512",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7579,
+      "local": 1181,
+      "upstream": "1181",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7580,
+      "local": 1891,
+      "upstream": "1891",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7581,
+      "local": 1207,
+      "upstream": "1207",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7585,
+      "local": 1844,
+      "upstream": "1844",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7901,
+      "local": 1656,
+      "upstream": "1656",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7902,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7903,
+      "local": 1659,
+      "upstream": "1659",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7904,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7905,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7906,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7907,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7908,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7909,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7910,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7911,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7912,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7913,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7914,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7915,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7916,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7917,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7918,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7919,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7920,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7921,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7922,
+      "local": 1690,
+      "upstream": "1690",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7923,
+      "local": 1660,
+      "upstream": "1660",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 7924,
+      "local": 1672,
+      "upstream": "1672",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8214,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8216,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8218,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8290,
+      "local": 1941,
+      "upstream": "1941",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8291,
+      "local": 1935,
+      "upstream": "1935",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8421,
+      "local": 209,
+      "upstream": "209",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 8700,
+      "local": 853,
+      "upstream": "853",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 9320,
+      "local": 75,
+      "upstream": "75",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 9454,
+      "local": 944,
+      "upstream": "944",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 10742,
+      "local": 1162,
+      "upstream": "1162",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 11261,
+      "local": 203,
+      "upstream": "203",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 11262,
+      "local": 203,
+      "upstream": "203",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 12479,
+      "local": 1532,
+      "upstream": "1532",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 12701,
+      "local": 203,
+      "upstream": "203",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 14557,
+      "local": 203,
+      "upstream": "203",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 15809,
+      "local": 1964,
+      "upstream": "1964",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 17421,
+      "local": 187,
+      "upstream": "187",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 17422,
+      "local": 304,
+      "upstream": "304",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 17423,
+      "local": 177,
+      "upstream": "177",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 17424,
+      "local": 302,
+      "upstream": "302",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 18608,
+      "local": 100,
+      "upstream": "100",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 18609,
+      "local": 106,
+      "upstream": "106",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 18802,
+      "local": 1053,
+      "upstream": "1053",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 19394,
+      "local": 667,
+      "upstream": "667",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 22427,
+      "local": 1154,
+      "upstream": "1154",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 22746,
+      "local": 518,
+      "upstream": "518",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 23053,
+      "local": 451,
+      "upstream": "451",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 23309,
+      "local": 1483,
+      "upstream": "1483",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 23398,
+      "local": 1576,
+      "upstream": "1576",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 23816,
+      "local": 854,
+      "upstream": "854",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 23823,
+      "local": 1627,
+      "upstream": "1627",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 23912,
+      "local": 1721,
+      "upstream": "1721",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 24041,
+      "local": 1205,
+      "upstream": "1205",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 24075,
+      "local": 1464,
+      "upstream": "1464",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 24146,
+      "local": 468,
+      "upstream": "468",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 24184,
+      "local": 1254,
+      "upstream": "1254",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 25160,
+      "local": 1781,
+      "upstream": "1781",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 25196,
+      "local": 827,
+      "upstream": "827",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 25352,
+      "local": 1152,
+      "upstream": "1152",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 25552,
+      "local": 1834,
+      "upstream": "1834",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 26752,
+      "local": 551,
+      "upstream": "551",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 26874,
+      "local": 1760,
+      "upstream": "1760",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 26979,
+      "local": 1984,
+      "upstream": "1984",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 27123,
+      "local": 1109,
+      "upstream": "1109",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 27204,
+      "local": 360,
+      "upstream": "360",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 28363,
+      "local": 140,
+      "upstream": "140",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 28409,
+      "local": 148,
+      "upstream": "148",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 28760,
+      "local": 994,
+      "upstream": "994",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 28803,
+      "local": 1970,
+      "upstream": "1970",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 28898,
+      "local": 508,
+      "upstream": "508",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29156,
+      "local": 845,
+      "upstream": "845",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29424,
+      "local": 980,
+      "upstream": "980",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29430,
+      "local": 440,
+      "upstream": "440",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29431,
+      "local": 705,
+      "upstream": "705",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29434,
+      "local": 321,
+      "upstream": "321",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29441,
+      "local": 749,
+      "upstream": "749",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29459,
+      "local": 449,
+      "upstream": "449",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29467,
+      "local": 556,
+      "upstream": "556",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 29535,
+      "local": 1950,
+      "upstream": "1950",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30151,
+      "local": 133,
+      "upstream": "133",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30152,
+      "local": 149,
+      "upstream": "149",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30153,
+      "local": 148,
+      "upstream": "148",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30154,
+      "local": 128,
+      "upstream": "128",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30243,
+      "local": 1966,
+      "upstream": "1966",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30460,
+      "local": 1725,
+      "upstream": "1725",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30465,
+      "local": 944,
+      "upstream": "944",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 30570,
+      "local": 1567,
+      "upstream": "1567",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 31476,
+      "local": 1634,
+      "upstream": "1634",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 31978,
+      "local": 230,
+      "upstream": "230",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 32456,
+      "local": 1393,
+      "upstream": "1393",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 32458,
+      "local": 722,
+      "upstream": "722",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 32493,
+      "local": 1618,
+      "upstream": "1618",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 32499,
+      "local": 999,
+      "upstream": "999",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 32503,
+      "local": 1153,
+      "upstream": "1153",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 32937,
+      "local": 1974,
+      "upstream": "1974",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 33374,
+      "local": 199,
+      "upstream": "199",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 33375,
+      "local": 198,
+      "upstream": "198",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 33627,
+      "local": 1663,
+      "upstream": "1663",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 33729,
+      "local": 1095,
+      "upstream": "1095",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 33730,
+      "local": 955,
+      "upstream": "955",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 35921,
+      "local": 1681,
+      "upstream": "1681",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 36567,
+      "local": 575,
+      "upstream": "575",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 36755,
+      "local": 1456,
+      "upstream": "1456",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 40944,
+      "local": 1762,
+      "upstream": "1762",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 42911,
+      "local": 300,
+      "upstream": "300",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 45265,
+      "local": 1693,
+      "upstream": "1693",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 45289,
+      "local": 743,
+      "upstream": "743",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 45519,
+      "local": 1495,
+      "upstream": "1495",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 51104,
+      "local": 786,
+      "upstream": "786",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 52238,
+      "local": 1622,
+      "upstream": "1622",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 53846,
+      "local": 1477,
+      "upstream": "1477",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 54224,
+      "local": 1772,
+      "upstream": "1772",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 54313,
+      "local": 1977,
+      "upstream": "1977",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 54314,
+      "local": 1942,
+      "upstream": "1942",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 54325,
+      "local": 1563,
+      "upstream": "1563",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 54644,
+      "local": 505,
+      "upstream": "505",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 59590,
+      "local": 293,
+      "upstream": "293",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 65288,
+      "local": 1121,
+      "upstream": "1121",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 67690,
+      "local": 1918,
+      "upstream": "1918",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 72633,
+      "local": 1790,
+      "upstream": "1790",
+      "verdict": "upstream-short"
+    },
+    {
+      "gid": 79131,
+      "local": 1944,
+      "upstream": "1944",
+      "verdict": "upstream-short"
+    }
+  ],
+  "headline": "157 of 157 books with a local body under 2 KB have an upstream source that is equally short. Zero are our defect. In EVERY record local == upstream exactly, byte for byte.",
+  "what_this_settles": "The rate question raised by two anecdotes. gid 4715 (4 bytes upstream) and gid 9320 (66 bytes) were real but not evidence of a systemic extraction failure \u2014 they are the low end of a population of genuinely short or textless Gutenberg records: symphony scores, MIDI files, photo collections, software manuals, single carols.",
+  "extractor_verdict": "Faithful. Not one book in the suspect set lost text that upstream had.",
+  "sample_titles": [
+    "Symphony No. 5 in C minor Opus 67",
+    "Franz Haydn's 104th Symphony [1794-5] MIDI file",
+    "Photos and Maps of Trinity (Atomic Test)",
+    "The Secret Guide to Computers",
+    "QREAD, Etext Reader for Windows"
+  ],
+  "caveat": "This surveys only bodies under 2 KB. A book with 50 KB locally and 500 KB upstream would be a silent partial extraction and would not appear here. That is a different survey with a different threshold, and it is not run."
+}

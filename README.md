@@ -38,6 +38,7 @@ npm run ia:probe            # re-run the IA metadata probe (live network; gates 
 npm run gates:selftest      # prove every gate still fails on the defect it exists to catch
 npm run derivations:sensitivity # prove each derivation actually reads the source it names
 npm run vault:verify        # banded checksum of the vaulted passage index (USB; not in verify)
+npm run survey:empty-bodies # fetch every <2KB book upstream; is a short body ours or theirs?
 ```
 
 Two files in `scripts/` are deliberately not commands:
