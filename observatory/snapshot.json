@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T17:17:37.302Z",
+  "generated_at": "2026-08-04T17:20:50.959Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 20,
     "verify_steps": 6,
     "scripts_on_disk": 22,
-    "metrics_files": 105,
-    "worklogs": 163,
+    "metrics_files": 106,
+    "worklogs": 164,
     "proposals": 18
   },
   "derivations": {
@@ -320,9 +320,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 151,
-    "prompt_tokens": 2699118,
-    "completion_tokens": 65499,
+    "requests": 157,
+    "prompt_tokens": 2705586,
+    "completion_tokens": 65590,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
@@ -451,7 +451,7 @@
   "awaiting_decision": {
     "count": 5,
     "items": [
-      "Repoint MiniMax traffic away from Bifrost — ~97% input-token saving",
+      "Repoint MiniMax traffic away from Bifrost — 12-95% saving, not \"~97%\"",
       "Where should the rescue refs go? — FALLBACK NOW VERIFIED",
       "Cloudflare ingress for the observatory — RE-VERIFIED, still yours",
       "Bifrost's request log — RE-MEASURED at 4.68 GB/day, and 91% of it is me",

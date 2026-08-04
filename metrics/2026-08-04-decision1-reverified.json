@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-04T17:19:30Z",
+  "question": "GQ-008",
+  "subject": "decision 1 re-verified \u2014 the headline number is a best case, not a rate",
+  "the_claim": "\"Repoint MiniMax traffic away from Bifrost \u2014 ~97% input-token saving\"",
+  "reruns_today": [
+    {
+      "cached": 128,
+      "of": 1078,
+      "pct": 11.9,
+      "note": "cold or expiring entry"
+    },
+    {
+      "cached": 896,
+      "of": 1078,
+      "pct": 83.1
+    },
+    {
+      "cached": 1024,
+      "of": 1078,
+      "pct": 95.0
+    }
+  ],
+  "original": {
+    "cached": 2944,
+    "of": 3033,
+    "pct": 97.1
+  },
+  "what_holds": "The DIRECTION, on every run without exception: proxy caches a non-zero amount, Bifrost returns exactly 0.",
+  "what_does_not": "\"~97%\" as a saving rate. Measured across four runs the proxy delivers 11.9% to 97.1% depending on cache entry age. 97% is the best case, reached on a warm cache, not the expected value.",
+  "honest_headline": "12-95% input-token saving on repeated prompts, depending on cache warmth. Zero through Bifrost, always.",
+  "scope_correction_already_made": "The decision also said repointing \"changes gateway topology for every agent on this machine\". Corrected earlier today: the patch is gated on effectiveModel === MiniMax-M3, so it touches 73 of 1,986 requests \u2014 3.7%. That correction had not been carried into the decision file.",
+  "still_shaans": "Applying it edits ~/.config/bifrost/claude-model-catalog.mjs, which every Claude Code session on this machine loads. A bad edit breaks all of them. The script takes a timestamped backup and has a rollback subcommand, but the decision to run it is not mine.",
+  "derivations": {}
+}

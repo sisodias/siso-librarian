@@ -9,7 +9,29 @@ Ordered by value, highest first.
 
 ---
 
-## 1. Repoint MiniMax traffic away from Bifrost — ~97% input-token saving
+## 1. Repoint MiniMax traffic away from Bifrost — 12-95% saving, not "~97%"
+
+RE-VERIFIED 2026-08-04 by re-running the experiment four times:
+
+  cached 128 of 1,078    11.9%   cold entry
+  cached 896 of 1,078    83.1%
+  cached 1,024 of 1,078  95.0%
+  cached 2,944 of 3,033  97.1%   the original run
+
+The DIRECTION holds on every run without exception — proxy caches a non-zero
+amount, Bifrost returns exactly 0. But "~97%" was the best case on a warm cache,
+not the expected saving. Honest headline: 12-95% depending on cache warmth.
+
+Also carrying forward a correction made elsewhere today: this said repointing
+"changes gateway topology for every agent on this machine". It does not — the
+patch is gated on effectiveModel === 'MiniMax-M3' and touches 73 of 1,986
+requests, 3.7%. The real risk is that it edits a shim file EVERY Claude Code
+session loads, which the script mitigates with a timestamped backup and a
+rollback subcommand.
+
+Still yours to run.
+
+The original text follows.
 
 **Measured:** identical request, identical credential, only the path differs.
 
