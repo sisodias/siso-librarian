@@ -53,7 +53,12 @@ if [ "${1:-}" = "--verify" ]; then
       match=$((match+1)); echo "  MATCH  $a"
     else
       echo "  DIFFER live=$a slice=$b"
-      echo "         (expected once rows age out of the live log — the SLICE is authoritative)"
+      echo "         EXPECTED after eviction — the SLICE is authoritative here."
+      echo "         Measured 2026-08-05: enforce-log-retention.sh deleted 136 rows"
+      echo "         past the window; live answers changed, slice answers did not,"
+      echo "         and all 32 declared derivations still re-derive because they"
+      echo "         point at the slice. A DIFFER on this line is the archive doing"
+      echo "         its job, not a fault."
     fi
   done
   echo "derivation answers matching: $match/$total"

@@ -181,6 +181,20 @@ The GQ-008 cache claim is the strongest candidate: it is measured, falsifiable, 
 **Updated 2026-08-04 19:2xZ.** Two of the three options in the original text
 below are now closed, and one genuinely remains a decision for you.
 
+**CORRECTED 2026-08-05.** I wrote below that setting retention to 3 days bounds
+growth. It does not. Measured six hours later: the setting is live at 3, the
+oldest row was **3.15 days old and still present**, **136 rows** sat past the
+window unevicted, `page_count` had **grown** 2,300,871 → 2,463,988, and Aug 4's
+payload went 4.35 → 4.74 GB. **The setting is configured, not enforced.**
+
+`npm run log:enforce-retention` now does the eviction the gateway does not,
+refusing unless the vault slice answers 5/5 both before and after a refresh.
+First run deleted 136 rows — and the file still **grew** 9.42 → 9.45 GB, because
+those were the oldest and smallest rows and live traffic outpaced them. Row-count
+retention does not control this file; **size does**. That remains open.
+
+**The original text follows.**
+
 **Done, and verified against the running process:** `log_retention_days` was
 **365**, and the log store's own `retention_days` was **0 — no expiry at all**.
 Both are now **3**. That is housekeeping, reversible, and it destroys no

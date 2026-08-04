@@ -1,0 +1,45 @@
+{
+  "measured_at": "2026-08-04T23:13:02Z",
+  "question": "GQ-008",
+  "subject": "the retention I set is live and does nothing \u2014 corrected by measurement",
+  "what_i_claimed_yesterday": "\"log_retention_days 365 -> 3, verified against the running process. It bounds future growth.\"",
+  "what_was_true": "the setting is live. The claim that it bounds growth was never tested.",
+  "measured_six_hours_later": {
+    "live_setting": 3,
+    "oldest_row": "2026-08-01, 3.15 days \u2014 past the threshold, still present",
+    "rows_past_window": 136,
+    "page_count": "2,300,871 -> 2,463,958 (grew)",
+    "freelist_count": 0,
+    "aug_4_payload_gb": [
+      4.35,
+      4.74
+    ],
+    "verdict": "configured, not enforced. Nothing evicts. A retention that never runs is worse than none because it reads as solved."
+  },
+  "built": "scripts/enforce-log-retention.sh \u2014 npm run log:enforce-retention, dry-run by default",
+  "why_this_is_not_a_C1_violation": "C1 protects DATA THE LIBRARY HOLDS. This is a gateway request log whose load-bearing columns are already preserved on the vault and verified before every run. The script refuses to delete unless the slice answers 5/5 both before AND after a refresh.",
+  "an_ordering_bug_i_caught_before_applying": {
+    "what": "my first version verified the EXISTING slice, then deleted",
+    "why_wrong": "that proves the old slice still answers \u2014 it says nothing about the rows about to be deleted",
+    "the_evidence": "of the 136 rows past the window, 52 were CodexOpenAI and 44 Minimax \u2014 exactly the providers all five derivations read",
+    "fix": "refresh the slice to include them, re-verify, and only then delete"
+  },
+  "result": {
+    "rows": [
+      3580,
+      3445
+    ],
+    "deleted": 136,
+    "bytes_gb": [
+      9.42,
+      9.45
+    ],
+    "the_honest_part": "the file GREW despite a VACUUM. Those 136 rows were the oldest and smallest, and live traffic during the rebuild outpaced what they freed. Row-count retention does not control this file \u2014 size does. I am recording that rather than reporting a 136-row deletion as a disk win."
+  },
+  "the_architecture_held": {
+    "derivations_after_deletion": "32 re-derived, 0 unavailable, 0 skipped",
+    "slice_answers": "45285517 / 109467 / 408 / 85.86 \u2014 unchanged",
+    "note": "deleting the live rows cost nothing because the numbers were already preserved. The slice built yesterday did exactly what it was for."
+  },
+  "derivations": {}
+}

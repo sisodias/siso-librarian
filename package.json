@@ -33,7 +33,8 @@
     "books:longs-variants": "node scripts/add-longs-variants.mjs",
     "books:longs-check": "node scripts/add-longs-variants.mjs --check",
     "library:search": "node scripts/search-library.mjs",
-    "library:stats": "node scripts/search-library.mjs --stats"
+    "library:stats": "node scripts/search-library.mjs --stats",
+    "log:enforce-retention": "bash scripts/enforce-log-retention.sh"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
