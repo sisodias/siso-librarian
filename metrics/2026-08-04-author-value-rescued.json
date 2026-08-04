@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-08-04T12:00:20Z",
+  "question": "GQ-006",
+  "finding": "people.sqlite (0.03 GB) holds 124,185 scored authors that were NOT migrated to v2. Unique, unbacked, and dismissed twice for being small.",
+  "author_value": {
+    "rows_v1": 124185,
+    "owners_with_score_in_v2": 8,
+    "v2_has_author_value_table": false,
+    "columns": "owner, score, tier, s_volume, s_peak, s_breadth, s_adoption, s_density, s_freshness, s_license, repo_count, cat_count, top_repo, total_stars, dependents_max, latest_push",
+    "reading": "The v2 graph carries author_value inside person_content.meta_json for exactly 8 owners. The v1 table has 124,185. The scoring was effectively not migrated, so this is the only copy."
+  },
+  "backed_up": {
+    "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/people-v1-author-value/people-v1-20260804T120004Z.sqlite",
+    "bytes": 28528640,
+    "quick_check": "ok",
+    "verified": {
+      "author_value": "124185 MATCH",
+      "person": "471 MATCH",
+      "person_content": "432 MATCH"
+    }
+  },
+  "also_proven_redundant": {
+    "file": "people_v2.books-only.sqlite",
+    "gb": 0.08,
+    "persons_absent_from_live": 0,
+    "edges_absent_from_live": 0,
+    "reading": "A filtered view of the live graph, not unique data. Fourth snapshot proven contained."
+  },
+  "lesson": "I ranked people.sqlite last twice \u2014 once for having no citations, once for being 0.03 GB. Both proxies failed. books.sqlite was uncited and turned out to be the catalogue; people.sqlite is tiny and holds the only copy of 124,185 author scores. Size and citation count are not evidence about content.",
+  "derivations": {}
+}
