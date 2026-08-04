@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-04",
+  "thread": "gap4-single-copy-work",
+  "before": {
+    "no_remote_heads": 5,
+    "durable_rescue_refs": 0,
+    "bundle_restore_proven_independently": false,
+    "note": "Detached worktree HEADs are collectable by git gc or worktree prune. Prior worklog explicitly flagged that `git bundle verify` proves object completeness in the SOURCE repo, not cross-repo restorability."
+  },
+  "after": {
+    "no_remote_heads": 5,
+    "durable_rescue_refs": 5,
+    "bundle_restore_proven_independently": true,
+    "restored_objects_in_pack": 79459
+  },
+  "rescue_refs": [
+    { "ref": "refs/rescue/domain-batch-backend/TASK-0272-a3", "sha": "21280f247e2ae41ba395cccaed6e106882bca9b7", "subject": "TASK-0272: consolidate adapter routing registry" },
+    { "ref": "refs/rescue/domain-batch-backend/TASK-0326-a1", "sha": "43fc45bc9d9e8aa03b4d880dffe8e0d9296f10c2", "subject": "TASK-0326: add whole-pipe offline integration proof" },
+    { "ref": "refs/rescue/domain-batch-backend/TASK-0390-a2", "sha": "ee08a17b2675f1de53c19c91d22b34bbf3dc21af", "subject": "TASK-0390: complete CAM4 VPS embed-own readback" },
+    { "ref": "refs/rescue/domain-batch-backend/TASK-0668-a1", "sha": "48fc3be5a95359ce0ff15ae90ccfcddb16ffb0a2", "subject": "TASK-0668: shed readback load at resource ceilings" },
+    { "ref": "refs/rescue/domain-batch-backend/TASK-0776", "sha": "1fbe5e39d9050eb3dab745f97a1c3573bfdf443b", "subject": "TASK-0776: fail close uncertain CB offline proof" }
+  ],
+  "restore_test": {
+    "bundle": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/gap4-gap7-2026-08-03-2116/oracle-streaming-unremote-heads.bundle",
+    "method": "git clone --bare <bundle> into a scratch dir, then resolve each commit in the RESTORED repo",
+    "clone_succeeded": true,
+    "commits_resolved_in_restored_repo": 5,
+    "commits_missing": 0,
+    "file_tree_readable": true,
+    "objects_in_pack": 79459
+  },
+  "constraints_observed": [
+    "additive only: git update-ref creates refs, mutates no existing branch",
+    "no deletes, no force-push, no history rewrite",
+    "no push to any remote in this loop",
+    "source worktrees untouched"
+  ]
+}
