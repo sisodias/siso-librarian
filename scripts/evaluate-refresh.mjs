@@ -60,7 +60,7 @@ for (const entry of ledger.entries || []) {
   // make the gate cry wolf until someone refreshes the grounding, which is
   // exactly the pressure that gets gates disabled. What must never pass
   // silently is an entry claiming "fresh" while its triggers have fired.
-  const acknowledged = entry.result === 'stale' || entry.result === 'blocked';
+  const acknowledged = ['stale', 'blocked', 'superseded'].includes(entry.result);
   const agrees = derived === entry.result || (acknowledged && derived === 'fresh');
 
   findings.push({

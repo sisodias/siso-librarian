@@ -1,15 +1,42 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T00:55:00Z",
+  "generated_at": "2026-08-04T01:10:00Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
       "question_id": "GQ-009",
       "checked_at": "2026-08-04T00:55:00Z",
-      "selectors_used": ["GQ-009", "claim-layer", "evidence-selection"],
-      "invalidate_on_considered": ["schema change", "new evidence source", "approved action status change"],
-      "result": "stale",
-      "evidence_note": "Mechanically evaluated by scripts/evaluate-refresh.mjs rather than asserted. All three declared triggers fired since the previous check at 2026-08-03T00:00:00Z: schema change (5 commits touching schemas/ and the verifier, incl. a8cdca2, 3aa3db1, 5a7b07b), new evidence source (2 commits adding and revising the Internet Archive adapter contract), and approved action status change (1 commit, 0330b8f). The claim's position — that the Library needs a claim packet contract binding question to evidence, confidence, refresh and action — is not contradicted; what is stale is its grounding, which predates the source-adapter layer entirely.",
+      "selectors_used": [
+        "GQ-009",
+        "claim-layer",
+        "evidence-selection"
+      ],
+      "invalidate_on_considered": [
+        "schema change",
+        "new evidence source",
+        "approved action status change"
+      ],
+      "result": "superseded",
+      "evidence_note": "Superseded by claims/GQ-009-claim-layer-contract.v2.claim.json, which regrounds the position on evidence that exists now (IA adapter contract, IA live probe, refresh drift finding) rather than on the original standing packet alone. Retained as history; not the current answer.",
+      "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
+    },
+    {
+      "claim_packet": "claims/GQ-009-claim-layer-contract.v2.claim.json",
+      "question_id": "GQ-009",
+      "checked_at": "2026-08-04T01:10:00Z",
+      "selectors_used": [
+        "GQ-009",
+        "claim-layer",
+        "evidence-selection",
+        "refresh-derivation"
+      ],
+      "invalidate_on_considered": [
+        "schema change",
+        "new evidence source",
+        "approved action status change"
+      ],
+      "result": "fresh",
+      "evidence_note": "Grounded in three artifacts that postdate the v1 claim, each cited by verified byte range: the IA adapter contract legal filter (1086-1120), the live probe numFound 1367676 (195-219), and the refresh drift finding (376-400). Freshness is derived by scripts/evaluate-refresh.mjs, not asserted.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]

@@ -134,7 +134,7 @@ if (existsSync(ledgerPath)) {
     if (!entry.claim_packet || typeof entry.claim_packet !== 'string') fail(base, 'missing claim_packet');
     if (!entry.question_id || typeof entry.question_id !== 'string') fail(base, 'missing question_id');
     if (!dateTime.test(entry.checked_at || '')) fail(base, 'checked_at must be RFC3339 UTC date-time');
-    if (!['fresh', 'stale', 'blocked'].includes(entry.result)) fail(base, 'result must be fresh, stale, or blocked');
+    if (!['fresh', 'stale', 'blocked', 'superseded'].includes(entry.result)) fail(base, 'result must be fresh, stale, blocked, or superseded');
     if (!Array.isArray(entry.selectors_used) || entry.selectors_used.length < 1) fail(base, 'expected selectors_used');
     if (!Array.isArray(entry.invalidate_on_considered)) fail(base, 'expected invalidate_on_considered array');
     if (entry.claim_packet) {
@@ -150,6 +150,29 @@ if (existsSync(ledgerPath)) {
 for (const file of claimFiles) {
   const rel = relative(root, file);
   if (!refreshCoveredClaims.has(rel)) fail(rel, 'claim packet has no refresh ledger entry');
+}
+
+// Grounding must dereference. A byte range that no longer resolves to its quote
+// is silent rot: the claim still validates structurally while its evidence has
+// moved or changed underneath it. Only checked for in-repo sources — external
+// ids (standing packets, upstream corpora) are not resolvable from here.
+let groundingChecked = 0;
+let groundingBroken = 0;
+for (const file of claimFiles) {
+  const rel = relative(root, file);
+  const doc = JSON.parse(readFileSync(file, 'utf8'));
+  for (const [gi, g] of (doc.grounding || []).entries()) {
+    const srcId = g.source?.id || '';
+    const srcPath = join(root, srcId);
+    if (!srcId.includes('/') || !existsSync(srcPath)) continue;
+    groundingChecked += 1;
+    const { start, end } = g.byte_range || {};
+    const actual = readFileSync(srcPath).subarray(start, end).toString('utf8');
+    if (actual !== g.quote) {
+      groundingBroken += 1;
+      fail(`${rel}.grounding[${gi}]`, `byte_range [${start}:${end}] in ${srcId} no longer matches the quote`);
+    }
+  }
 }
 
 const sourceContracts = walk(join(root, 'sources')).filter((path) => path.endsWith('adapter-contract.json')).sort();
@@ -184,6 +207,7 @@ for (const result of results) {
 console.log(`question portfolio: ${existsSync(portfolioPath) ? 'ok' : 'missing'} (${listedClaims.size} listed claim packet(s))`);
 console.log(`refresh ledger: ${existsSync(ledgerPath) ? 'ok' : 'missing'} (${refreshCoveredClaims.size} covered claim packet(s))`);
 console.log(`source adapter contracts: ${sourceContracts.length}`);
+console.log(`grounding byte ranges: ${groundingChecked} checked, ${groundingBroken} broken`);
 
 const unexpected = results.filter((r) => !r.passed).length;
 if (unexpected > 0 || validationErrors.length > 0) {

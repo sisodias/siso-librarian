@@ -1,19 +1,31 @@
 {
   "schema_version": "question-portfolio-v1",
-  "generated_at": "2026-08-03T00:00:00Z",
+  "generated_at": "2026-08-04T01:10:00Z",
   "scope": "GQ-009 claim-layer control surface",
   "questions": [
     {
       "id": "GQ-009",
       "text": "How should the Great Library make questions visible, composable, continuously updated, and connected to evidence and approved action, without becoming the corpus warehouse or execution runtime?",
       "status": "active",
-      "claim_packets": ["claims/GQ-009-claim-layer-contract.claim.json"],
-      "selectors": ["GQ-009", "claim-layer", "evidence-selection"],
+      "claim_packets": [
+        "claims/GQ-009-claim-layer-contract.claim.json",
+        "claims/GQ-009-claim-layer-contract.v2.claim.json"
+      ],
+      "selectors": [
+        "GQ-009",
+        "claim-layer",
+        "evidence-selection"
+      ],
       "refresh": {
         "strategy": "question-loop",
-        "invalidate_on": ["schema change", "new evidence source", "approved action status change"]
+        "invalidate_on": [
+          "schema change",
+          "new evidence source",
+          "approved action status change"
+        ]
       },
-      "action_status": "done"
+      "action_status": "done",
+      "current_claim": "claims/GQ-009-claim-layer-contract.v2.claim.json"
     }
   ]
 }

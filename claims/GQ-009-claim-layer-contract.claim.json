@@ -4,15 +4,17 @@
     "id": "GQ-009:claim-layer",
     "text": "How should the Library expose answer-shaped claims without becoming the corpus warehouse or execution runtime?",
     "scope": "registry-facing claim handoff contract",
-    "parents": ["GQ-009"]
+    "parents": [
+      "GQ-009"
+    ]
   },
   "claim": {
     "id": "claim:GQ-009.claim-layer.contract",
     "position": "The Library needs a small claim packet contract that binds a question to selected quotes, confidence, refresh rules, and an approved action pointer.",
     "confidence": 0.72,
-    "status": "accepted",
+    "status": "superseded",
     "created_at": "2026-08-03T00:00:00Z",
-    "updated_at": "2026-08-03T00:00:00Z",
+    "updated_at": "2026-08-04T01:10:00Z",
     "supersedes": []
   },
   "grounding": [
@@ -25,7 +27,10 @@
       },
       "locator": "constraint-that-shapes-everything",
       "passage_id": "packet:GQ-009:constraint",
-      "byte_range": { "start": 0, "end": 74 }
+      "byte_range": {
+        "start": 0,
+        "end": 74
+      }
     }
   ],
   "action": {
@@ -36,8 +41,16 @@
   },
   "refresh": {
     "strategy": "question-loop",
-    "selectors": ["GQ-009", "claim-layer", "evidence-selection"],
-    "invalidate_on": ["schema change", "new evidence source", "approved action status change"]
+    "selectors": [
+      "GQ-009",
+      "claim-layer",
+      "evidence-selection"
+    ],
+    "invalidate_on": [
+      "schema change",
+      "new evidence source",
+      "approved action status change"
+    ]
   },
   "provenance": {
     "producer": "siso-librarian",
