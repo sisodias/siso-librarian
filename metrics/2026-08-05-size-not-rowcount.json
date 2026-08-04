@@ -1,0 +1,57 @@
+{
+  "measured_at": "2026-08-04T23:27:20Z",
+  "question": "GQ-008",
+  "subject": "size, not row count, was the thing to control",
+  "what_i_said_last_turn": "\"Row-count retention does not control this file \u2014 size does. That remains open.\"",
+  "the_column": {
+    "raw_request_gb": 3.85,
+    "of_total_gb": 5.4,
+    "what_it_is": "a verbatim copy of my own prompt on every request",
+    "derivations_reading_it": 0,
+    "how_i_checked": "inspected every derivations block in metrics/ and the observatory snapshot \u2014 NOT a grep of whole files, which returns 20 hits because the column names appear in prose describing the growth"
+  },
+  "result": {
+    "rows_pruned": 2999,
+    "freelist_pages": [
+      0,
+      1153812
+    ],
+    "reusable_gb": 4.4,
+    "of_pages": 2490397,
+    "file_gb": [
+      9.5,
+      9.5
+    ],
+    "derivations_after": "32 rederived, 0 unavailable, 0 skipped",
+    "token_columns_intact": {
+      "rows": 3465,
+      "prompt_tokens": 1290186717,
+      "completion_tokens": 1676999
+    },
+    "honest_reading": "the file did NOT shrink and I am not claiming it did. 46% of its pages are now free for reuse, so new rows land in reclaimed space instead of extending the file. That is the bounded win available without a rebuild."
+  },
+  "three_things_the_dry_run_on_a_COPY_caught": [
+    {
+      "what": "VACUUM failed with \"database or disk is full\"",
+      "cause": "VACUUM rebuilds alongside the original, needing ~2x the file size; 9.5 GB against 19 GB free with a live writer",
+      "consequence_avoided": "on the real database that would have failed mid-rebuild",
+      "fix": "guard the vacuum on free space and state plainly what is skipped"
+    },
+    {
+      "what": "the copy itself consumed 9.5 GB, taking free space 28Gi -> 19Gi",
+      "lesson": "my own safety measure was the thing that made the operation unsafe"
+    },
+    {
+      "what": "a derivation answer read 45264719 against the expected 45285517",
+      "cause": "my earlier eviction deleted 136 rows including CodexOpenAI ones \u2014 the slice preserves the pre-deletion total",
+      "verdict": "not a defect. This is exactly what the slice exists for."
+    }
+  ],
+  "a_guard_that_would_have_blocked_itself_forever": {
+    "what": "the pre-delete check compared slice against LIVE and refused at 1/5",
+    "why_wrong": "after the first successful eviction, live and slice ALWAYS differ \u2014 that is the point of an archive",
+    "fix": "probe the slice directly: does it ANSWER, not does it agree with a source that has moved on",
+    "and": "an empty answer counts as failure, since two blanks compare equal"
+  },
+  "derivations": {}
+}
