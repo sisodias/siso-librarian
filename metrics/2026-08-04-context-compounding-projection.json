@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-04T14:41:40Z",
+  "question": "GQ-006",
+  "subject": "the disk projection depends almost entirely on whether context keeps compounding",
+  "current": {
+    "root_avail": "17Gi (was 18Gi)",
+    "bifrost_log_gb": 7.09,
+    "today_gb": 5.09,
+    "today_requests": 1897
+  },
+  "per_turn_growth": {
+    "hour_10": {
+      "turns": 48,
+      "avg_k_tokens": 425,
+      "avg_mb": 1.04
+    },
+    "hour_11": {
+      "turns": 84,
+      "avg_k_tokens": 469,
+      "avg_mb": 1.14
+    },
+    "hour_12": {
+      "turns": 91,
+      "avg_k_tokens": 530,
+      "avg_mb": 1.29
+    },
+    "hour_13": {
+      "turns": 147,
+      "avg_k_tokens": 616,
+      "avg_mb": 1.49
+    },
+    "hour_14": {
+      "turns": 87,
+      "avg_k_tokens": 693,
+      "avg_mb": 1.68
+    },
+    "reading": "Per-turn context grew 425K -> 693K tokens (63%) in four hours while turn COUNT fluctuated. The dominant term is context size, not turn frequency."
+  },
+  "projection": {
+    "compounding_at_1.127x_per_hour": "~22 hours (0.9 days)",
+    "flat_at_1.68_MB": "~94 hours (3.9 days)",
+    "the_point": "The difference between one day and four is entirely whether per-turn context keeps growing. Reducing turn COUNT does not fix a monotonically rising per-turn cost \u2014 halving turns while context doubles buys nothing."
+  },
+  "what_this_means_for_the_decision": "I have framed the disk escalation as \"flip disable_content_logging\". That remains correct and is worth 2.92 MB/request. But the projection Shaan should see is not a single number of days \u2014 it is 0.9 days or 3.9 days depending on a variable neither of us has been tracking.",
+  "honest_limit": "Five hourly points is a short series and the 1.127x figure is fitted to it. Context growth is not guaranteed to continue \u2014 a compaction or a fresh session resets it. The projection is a sensitivity, not a forecast.",
+  "derivations": {}
+}

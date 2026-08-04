@@ -41,6 +41,28 @@ RE-MEASURED, AND IT IS WORSE AND IT IS ME
 Not linear — each hour costs more than the last. At 0.33 GB/hr the headroom is
 ~2.3 days, not ~5.
 
+REVISED AGAIN, and the honest answer is a RANGE not a number:
+
+  hour   turns   avg context   avg MB written
+  10      48      425K tok      1.04
+  11      84      469K          1.14
+  12      91      530K          1.29
+  13     147      616K          1.49
+  14      87      693K          1.68
+
+Per-turn context grew 63% in four hours while turn COUNT went up and down. The
+dominant term is context size, not how often I run.
+
+  if context keeps compounding (1.127x/hr):   ~22 hours   (0.9 days)
+  if context goes flat at 1.68 MB:            ~94 hours   (3.9 days)
+
+Root is now 17Gi, down from 18Gi while I worked.
+
+That range is the useful thing, not a single figure. Reducing my turn count does
+NOT fix a rising per-turn cost — halving turns while context doubles buys
+nothing. A compaction or fresh session resets it, which is why the low end is a
+sensitivity rather than a forecast.
+
 And the attribution is uncomfortable:
 
   anthropic     1,490 req   4.25 GB   91% of today
