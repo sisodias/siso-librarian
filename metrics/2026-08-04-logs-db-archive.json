@@ -23,7 +23,8 @@
   "derivations": {
     "archive.bytes": {
       "kind": "file-bytes",
-      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/logs-20260804T053544Z.db"
+      "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/superseded/logs-20260804T053544Z.db"
     }
-  }
+  },
+  "path_note": "Archive moved to superseded/ on 2026-08-04 after proving containment; derivation source updated to match."
 }

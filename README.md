@@ -37,6 +37,19 @@ npm run gq008:experiment    # re-run the cache experiment (issues 4 live request
 npm run ia:probe            # re-run the IA metadata probe (live network; gates on contract, not census)
 npm run gates:selftest      # prove every gate still fails on the defect it exists to catch
 npm run derivations:sensitivity # prove each derivation actually reads the source it names
+```
+
+Two files in `scripts/` are deliberately not commands:
+
+- `scripts/lib/snapshot-paths.mjs` — the single implementation of derivation-label
+  resolution, imported by the audit. It exists because that lookup was hand-rolled
+  at three call sites and got the prefix wrong at two of them.
+- `scripts/probe-ia-metadata.mjs` — the original one-off IA probe, superseded by
+  `npm run ia:probe`. Kept because the metrics file it produced is grounded by a
+  live claim, and deleting the producer of cited evidence would be worse than an
+  unreferenced file.
+
+```bash
 npm run mailbox:flush       # deliver queued escalations (no-op when the link is down)
 ```
 

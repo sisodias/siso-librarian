@@ -41,7 +41,15 @@ for (const path of worklogs) {
   const [, date, hh, mm] = m;
   const claimed = new Date(`${date}T${hh}:${mm}:00Z`);
   const added = git(['log', '--diff-filter=A', '--format=%aI', '-1', '--', path]);
-  if (!added) continue;
+  // Verified inert on 2026-08-04: all 97 timestamped worklogs have an
+  // add-commit. But a file with none would be dropped from the timestamp check
+  // silently — the one way a fabricated timestamp could escape the gate that
+  // exists specifically to catch fabricated timestamps.
+  if (!added) {
+    findings.push({ check: 'worklog-no-add-commit', path,
+      note: 'Claims a timestamp in its filename but git has no add-commit for it, so the claim could not be checked against anything.' });
+    continue;
+  }
   const actual = new Date(added);
   const driftMin = Math.round((actual - claimed) / 60000);
   if (Math.abs(driftMin) > TOLERANCE_MIN) {
@@ -82,8 +90,21 @@ function derive(d) {
     return d.kind === 'file-count' ? 0 : null;
   }
   switch (d.kind) {
-    case 'sqlite':
-      return Number(execFileSync('sqlite3', [`file:${src}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
+    case 'sqlite': {
+      // `mode=ro` alone fails with "unable to open database file (14)" on the
+      // vault, because SQLite still wants to create WAL/shm sidecars next to the
+      // file and the external volume refuses. Verified 2026-08-04: the same
+      // query returns 2,261 with immutable=1 and errors without it — so EVERY
+      // archived database on the vault was unverifiable, and reported as
+      // "unavailable" rather than as a gap in coverage.
+      //
+      // immutable=1 is correct for archives specifically: they are snapshots
+      // nothing writes to. It is NOT applied to live databases, where it would
+      // let the audit read a stale page and agree with a number that has moved.
+      const archived = src.startsWith('/Volumes/');
+      const uri = archived ? `file:${src}?mode=ro&immutable=1` : `file:${src}?mode=ro`;
+      return Number(execFileSync('sqlite3', [uri, d.query], { encoding: 'utf8' }).trim());
+    }
     case 'file-count': {
       const out = execFileSync('find', [src, '-type', 'f', '-name', d.query], { encoding: 'utf8' }).trim();
       return out ? out.split('\n').length : 0;
@@ -239,6 +260,11 @@ function checkSourceExists(label, d, file) {
   const src = String(d.source || '').replace(/^~/, process.env.HOME);
   if (!src) return;
   sourcesChecked += 1;
+  // For file-exists, a missing path IS the measurement — GQ-004 asserts that the
+  // package its documentation names is NOT installed. Flagging that as a missing
+  // source reports the finding itself as a defect, which would train me to
+  // ignore this check.
+  if (d.kind === 'file-exists') return;
   if (!existsSync(src)) {
     findings.push({ check: 'derivation-source-missing', file, label, source: d.source, kind: d.kind,
       note: 'Source path does not exist. A file-count over a missing directory silently yields 0.' });
@@ -374,7 +400,16 @@ for (const p of untrackedMetrics) {
 // would double-count a known problem.
 const groundedMetrics = new Set();
 for (const cf of walk(join(root, 'claims'))) {
-  if (!cf.endsWith('.json')) continue;
+  // A file in claims/ that is not .json is skipped from the grounded-evidence
+  // set silently. Verified 2026-08-04: dropping a claim in as `.json.bak`
+  // produced no finding at all — and `.json.bak` is exactly what my own backup
+  // habit creates before an edit. A claim saved under the wrong extension stops
+  // protecting its evidence and nothing says so.
+  if (!cf.endsWith('.json')) {
+    findings.push({ check: 'claims-dir-non-json', file: relative(root, cf),
+      note: 'Present in claims/ but not a .json file, so it is excluded from the grounded-evidence set. If this is a claim, its evidence is unaudited; if it is a stray backup, it should not live here.' });
+    continue;
+  }
   let cd;
   // An unparseable CLAIM file used to vanish here. The claim-packet verifier
   // does catch it (exit 1), so it cannot reach a push — but this audit exited 0
