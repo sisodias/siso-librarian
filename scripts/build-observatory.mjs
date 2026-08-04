@@ -467,6 +467,22 @@ ${(snapshot.awaiting_decision.items || []).length ? `<section><h2>Decisions wait
 ${snapshot.escalations.queued ? `<section><h2>Escalations you have not seen</h2><p>Zero working push routes — the mailbox and herdr both need a peer that is offline. These are queued in <code>outbox/</code> and pushed to the git remote, so they are readable but nothing alerted you.</p><ul>${snapshot.escalations.headlines.map(h=>`<li><b>${h.title.replace(/[&<>]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]))}</b><br><code>outbox/${h.file}</code></li>`).join('')}</ul></section>` : ''}
 <section><h2>Active God Questions</h2>${snapshot.active_questions.map(q=>`<div class="q"><h3>${q.id}: ${q.status}</h3><p>${q.text}</p><p>Action: <b>${q.action_status}</b> · Claims: ${q.claim_packets.join(', ')}</p></div>`).join('')}</section>
 <section><h2>Caveats</h2><ul>${snapshot.caveats.map(c=>`<li>${c}</li>`).join('')}</ul></section>
+<section><h2>Queued messages you have not received</h2>${
+  (() => {
+    const dir = join(root, 'outbox');
+    if (!existsSync(dir)) return '<p>outbox missing</p>';
+    const files = readdirSync(dir).filter(f => f.endsWith('.md')).sort();
+    if (!files.length) return '<p>Nothing queued.</p>';
+    return '<p>These were written for you and never delivered — there is no push route to any of your devices. '
+      + 'They are readable here in full.</p><ul>' + files.map(f => {
+        const body = readFileSync(join(dir, f), 'utf8');
+        const esc = s => s.replace(/[&<>]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]));
+        const title = (body.match(/^#\s+(.+)$/m) || [null, f])[1];
+        return `<li><strong>${esc(title)}</strong><br><small>${esc(f)}</small>`
+          + `<details><summary>read</summary><pre>${esc(body)}</pre></details></li>`;
+      }).join('') + '</ul>';
+  })()
+}</section>
 <section><h2>Raw snapshot</h2><pre>${JSON.stringify(snapshot,null,2).replace(/[&<>]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]))}</pre></section>
 </main></body></html>`;
 writeFileSync(join(root, 'public/index.html'), html);

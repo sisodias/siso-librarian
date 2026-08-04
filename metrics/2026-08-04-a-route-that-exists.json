@@ -1,0 +1,39 @@
+{
+  "measured_at": "2026-08-04T18:54:22Z",
+  "question": "GQ-009",
+  "subject": "a delivery route that exists, after a day of \"zero push routes\"",
+  "the_claim_i_was_carrying": "\"Zero working push routes \u2014 all 6 tailnet peers offline.\" Half right, and the wrong half mattered.",
+  "what_was_actually_true": {
+    "peers_reachable": 0,
+    "peer_detail": "shaans-macbook-pro-1 reports \"active ... tx 531336 rx 0\" \u2014 transmitting, nothing returning. Ping timed out twice. Genuinely unreachable.",
+    "but": "tailscale serve was already running five tailnet-only proxies, and a Funnel was already live on 8444. I never ran `tailscale serve status`."
+  },
+  "a_wrong_conclusion_i_nearly_published": {
+    "thought": "the public funnel on 8444 is a dead route \u2014 curl to localhost:8444 returned 000",
+    "actual": "8444 is TLS-terminated at Tailscale's edge; it proxies to 127.0.0.1:8085, which IS listening and returns 200",
+    "lesson": "000 from localhost against a proxied HTTPS port measures my curl, not the service."
+  },
+  "what_i_built": {
+    "what": "the observatory served over the tailnet at https://shaans-mac-mini.tail100d11.ts.net:8845/",
+    "binding": "127.0.0.1 only; tailscale serve proxies to it",
+    "durability": "launchd com.siso.librarian-observatory, RunAtLoad + KeepAlive, plutil OK, launchctl list shows exit status 0",
+    "verified_end_to_end": {
+      "local_http": 200,
+      "tailnet_https": 200,
+      "freshness": "page md5 CHANGED after npm run observatory:build \u2014 it serves live files, not a snapshot",
+      "content": "decision 8 (oracle-gate) confirmed visible to a browser"
+    }
+  },
+  "outbox_now_readable": {
+    "messages": 3,
+    "was": "three .md files in outbox/ with no route, counted but unreadable",
+    "now": "rendered in full on the served page inside <details> blocks",
+    "why": "a count Shaan cannot read is the exact defect the list-rendered-as-count gate exists to catch"
+  },
+  "deliberately_not_done": "I did NOT put this on the public Funnel. The page carries 39 absolute home paths and a section headed \"Escalations you have not seen\". Tailnet is Shaan's private network; the funnel is the open internet. That is his call, not mine.",
+  "gates": {
+    "verify_exit": 0,
+    "gate_selftest": "13 passed, 0 failed"
+  },
+  "derivations": {}
+}
