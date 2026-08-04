@@ -147,6 +147,18 @@ for e in d['entries']:
     e['checked_at']='2020-01-01T00:00:00Z'; e['result']='fresh'
 json.dump(d,open(p,'w'),indent=2)"
 
+# A snapshot number that disagrees with its source. This is the check that was
+# added because 24 of 47 published numbers declared nothing at all — so it must
+# itself be proven to fire, or the coverage fix becomes another quiet checker.
+check "audit catches a snapshot number contradicting its source" \
+  "observatory/snapshot.json" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "
+import json
+p='observatory/snapshot.json'
+d=json.load(open(p)); d['god_questions']['total']=99
+json.dump(d,open(p,'w'),indent=2)"
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

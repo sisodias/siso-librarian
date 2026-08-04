@@ -154,6 +154,45 @@ function checkSourceExists(label, d, file) {
   }
 }
 
+// Coverage, not just correctness. Every check above verifies that a DECLARED
+// number matches its source; none asked how many published numbers declare
+// nothing at all. That is the gap behind three consecutive loops of the same
+// defect — "7 claims awaiting review" hid a re-derivable half, "2 escalations
+// undelivered" were on the remote, "3 channels" were two sharing one peer.
+// Each figure was defensible and none was measuring what its name implied,
+// because nothing required them to name a source.
+//
+// This reports the ratio rather than failing on it: several snapshot numbers
+// are genuinely un-derivable in principle (a live ssh probe result, a count of
+// unreadable files) and demanding a derivation for those would push me to
+// invent one that re-reads the stored value — the exact failure the
+// reproducible/derivable split exists to prevent.
+let snapshotNumbers = 0;
+let snapshotUndeclared = [];
+if (existsSync(SNAPSHOT)) {
+  const snap = JSON.parse(readFileSync(SNAPSHOT, 'utf8'));
+  const declared = new Set(Object.keys(snap.derivations || {}));
+  const walkNums = (o, p = '') => {
+    if (o && typeof o === 'object' && !Array.isArray(o)) {
+      for (const [k, v] of Object.entries(o)) walkNums(v, p ? `${p}.${k}` : k);
+    } else if (typeof o === 'number' && Number.isFinite(o)) {
+      if (p.startsWith('derivations')) return;
+      snapshotNumbers += 1;
+      // Derivation keys are `group.key`; snapshot paths carry a bucket_counts
+      // prefix. Matching the raw path reported 42 undeclared when the true
+      // figure is 24 — a checker measuring the wrong key disagrees confidently.
+      const key = p.startsWith('bucket_counts.') ? p.slice('bucket_counts.'.length) : p;
+      if (!declared.has(key)) snapshotUndeclared.push(p);
+    }
+  };
+  walkNums(snap);
+  if (snapshotUndeclared.length) {
+    findings.push({ check: 'snapshot-undeclared-numbers', severity: 'info',
+      count: snapshotUndeclared.length, of: snapshotNumbers, paths: snapshotUndeclared,
+      note: 'Published on the observatory with no declared derivation. Not necessarily wrong — some are un-derivable in principle — but nothing re-derives them, so a wrong one would stay wrong silently.' });
+  }
+}
+
 if (existsSync(SNAPSHOT)) {
   const snap = JSON.parse(readFileSync(SNAPSHOT, 'utf8'));
   for (const [label, d] of Object.entries(snap.derivations || {})) {
@@ -355,6 +394,8 @@ console.log(JSON.stringify({
   metrics_files_seen: metricsFiles.length,
   metrics_files_untracked: untrackedMetrics.length,
   documented_commands_checked: documentedCommands,
+  snapshot_numbers_published: snapshotNumbers,
+  snapshot_numbers_undeclared: snapshotUndeclared.length,
   findings,
 }, null, 2));
 

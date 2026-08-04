@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T07:58:13.287Z",
+  "generated_at": "2026-08-04T08:05:37.193Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,10 +36,30 @@
     "verify_steps": 5,
     "scripts_on_disk": 16,
     "metrics_files": 38,
-    "worklogs": 82,
+    "worklogs": 83,
     "proposals": 17
   },
   "derivations": {
+    "repo_health.scripts_on_disk": {
+      "source": "/Users/shaansisodia/SISO_Library_Agent/scripts",
+      "kind": "file-count",
+      "query": "*"
+    },
+    "god_questions.total": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
+      "kind": "file-count",
+      "query": "frontier-question-*.json"
+    },
+    "god_questions.coverage.registered": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/works",
+      "kind": "file-count",
+      "query": "frontier-question-*.json"
+    },
+    "release_integrity.releases": {
+      "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/releases",
+      "kind": "file-count",
+      "query": "*.json"
+    },
     "passages.passages": {
       "source": "/Users/shaansisodia/passages.sqlite",
       "kind": "sqlite",
@@ -384,7 +404,7 @@
     "queued": 2,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 2,
+    "oldest_queued_age_hours": 2.2,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"

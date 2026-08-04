@@ -244,6 +244,17 @@ function measureRouting() {
 const minimaxRouting = measureRouting();
 
 const derivations = {
+  // Added 2026-08-04 after a coverage check found 24 of 47 published numbers
+  // declaring no derivation at all. Every check until then verified that
+  // DECLARED numbers matched their source; none asked how many declared
+  // nothing. These are the ones with a real source — the rest are genuinely
+  // un-derivable (a live ssh probe, a count of files that failed to parse) and
+  // are left undeclared rather than given a derivation that re-reads the
+  // stored value.
+  'repo_health.scripts_on_disk': { source: join(root, 'scripts'), kind: 'file-count', query: '*' },
+  'god_questions.total': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
+  'god_questions.coverage.registered': { source: join(registry, 'works'), kind: 'file-count', query: 'frontier-question-*.json' },
+  'release_integrity.releases': { source: join(registry, 'releases'), kind: 'file-count', query: '*.json' },
   'passages.passages': { source: passagesDb, kind: 'sqlite', query: "select count(*) from passage;" },
   'passages.books': { source: passagesDb, kind: 'sqlite', query: "select count(*) from book_body;" },
   'people_graph.people': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person;" },
