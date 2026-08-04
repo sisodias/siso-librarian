@@ -101,14 +101,29 @@ defect one layer deeper — the interpreter exists, the thing it loads does not:
 That is the same 127-vs-78 relationship I had already worked out, and I still
 classified by the shallow test. The corrected count is 29 deleted paths.
 
-THE TWO EASY ONES
+THE TWO EASY ONES — one of which is not as easy as I said
 
-property-classq and property-auctions both point at "/Volumes/SISO-STORAGE-VAULT 1"
+property-classq and property-auctions both FAIL on "/Volumes/SISO-STORAGE-VAULT 1"
 — with a space and a 1. A macOS remount artifact from a volume that mounted
 while an old mount point was held. The numbered mount is gone; the real paths
-exist. Both are fixed by deleting two characters from a plist.
+exist.
 
-Two jobs share it, so it is a pattern, not a typo.
+I first wrote "both are fixed by deleting two characters from a plist". That is
+true of ONE of them. I then opened the files:
+
+  property-classq    the bad path IS in the plist ProgramArguments.
+                     One plist edit. As described.
+
+  property-auctions  the plist contains NO reference to VAULT 1 at all. It runs
+                       ssh ... localhost /bin/bash \
+                         ~/.local/share/siso/property-auctions/nightly_auctions.sh
+                     and the stale path is a DEFAULT inside that script:
+                       ${PROPERTY_BASE:-/Volumes/SISO-STORAGE-VAULT 1/...}
+                     which means it may be fixable by setting PROPERTY_BASE,
+                     without editing anything.
+
+Identical error string in both logs; different cause, different fix. I
+generalised from one job to two without opening the second file.
 
 The 26 are one sweep: restore the file or unload the job.
 

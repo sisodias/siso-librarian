@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-04T15:08:03Z",
+  "question": "GQ-006",
+  "subject": "auditing my own deferrals \u2014 I told Shaan a fix was simpler than it is",
+  "why": "Two constraints today turned out looser than my citation of them (C6, and a plist I called malformed that plutil accepts). I surveyed my worklogs: 25 deferrals \u2014 \"not mine\" x9, \"blocked on\" x7, \"is his\" x4. Rather than catch these one at a time I tested the two I had described most concretely.",
+  "what_i_told_shaan": "\"property-classq and property-auctions both point at SISO-STORAGE-VAULT 1. Both are fixed by deleting two characters from a plist.\"",
+  "what_is_true": {
+    "com.siso.property-classq": {
+      "bad_path_in": "the plist ProgramArguments",
+      "args_containing_VAULT_1": 1,
+      "verdict": "CORRECT as described. One plist edit."
+    },
+    "com.siso.property-auctions": {
+      "args_containing_VAULT_1": 0,
+      "actual_shape": "ssh -i ~/.ssh/id_ed25519 ... localhost /bin/bash ~/.local/share/siso/property-auctions/nightly_auctions.sh",
+      "bad_path_in": "the SCRIPT, not the plist",
+      "exact_location": "${PROPERTY_BASE:-/Volumes/SISO-STORAGE-VAULT 1/SISO-VAULT/property}",
+      "verdict": "WRONG as described. The plist contains no VAULT 1 reference at all. The stale path is a DEFAULT inside the script, which means it is overridable by setting PROPERTY_BASE \u2014 possibly without editing anything."
+    }
+  },
+  "correction": "I generalised from one job to two because both showed the same error string in their logs. The error was identical; the cause and the fix are not. \"Both are one plist edit\" was a claim about a file I had not opened.",
+  "pattern": "Third instance today of a claim that sounded careful and was not checked: C6 as a prohibition, a plist called malformed that plutil accepts, and now two jobs described as one fix. Each time the error was in the direction of making the situation sound simpler or more constrained than it is.",
+  "derivations": {}
+}
