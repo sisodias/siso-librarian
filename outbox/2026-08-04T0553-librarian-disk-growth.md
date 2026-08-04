@@ -103,10 +103,24 @@ provider and model are separate columns, not content. Every number the routing
 and cache evidence depends on survives. I checked that specifically, because a
 fix that blinded the GQ-008 cache measurement would be a bad trade.
 
-One inconsistency I am flagging rather than resolving: config_log_store carries
-retention_days: 0 while config_client carries log_retention_days: 365. Different
-fields; the client one is what the running gateway reports. I did not want to
-guess which the daemon honours.
+One inconsistency I flagged last pass — config_log_store carries retention_days:
+0 while config_client carries log_retention_days: 365 — I have now chased down,
+and the answer is that it does not matter:
+
+  log file created   2026-08-01 20:08:31
+  oldest row         2026-08-01 19:34:55Z   (34 min BEFORE the file existed)
+  newest row         2026-08-04 09:37:33Z
+  span               2.59 days
+
+The log was recreated from a prior store, not pruned. Neither policy would have
+deleted anything in 2.59 days — 0 means disabled, and 365 has not elapsed — so
+no pruning event exists to attribute to either field. Retention has never fired
+here. The contradiction is inert, and settling it would mean setting a short
+retention on a live gateway to watch what happens, which I am not doing to
+answer a documentation question.
+
+(History before 2026-08-01 was archived by hand, not by retention:
+~/.config/bifrost/archives/logs-mini-full-through-20260720T125534Z.sql.zst, 1.8 GB.)
 
 Not applied — gateway config is outside what I decide. But decision 6 is no
 longer "the log grows, what do we do"; it is "flip one flag, lose nothing we

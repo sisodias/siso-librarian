@@ -24,5 +24,18 @@
     "rows_with_tokens": 2280,
     "rows_with_tokens_but_no_raw_request": 176,
     "note": "Not an assumption. 176 rows in the live log already carry full token accounting with an empty raw_request, which demonstrates the columns are independent \u2014 disabling content logging cannot blind the routing or cache evidence."
+  },
+  "contradiction_resolved": {
+    "question": "Which retention field does the daemon honour \u2014 config_log_store.retention_days: 0 or config_client.log_retention_days: 365?",
+    "answer": "UNDECIDABLE from observation, and the reason is itself informative.",
+    "evidence": {
+      "log_file_birth": "2026-08-01 20:08:31",
+      "oldest_row": "2026-08-01 19:34:55Z",
+      "newest_row": "2026-08-04 09:37:33Z",
+      "span_days": 2.59
+    },
+    "reasoning": "The log spans 2.59 days and the file was CREATED 2026-08-01 20:08 \u2014 the oldest row predates the file by ~34 minutes, so it was recreated from a prior store rather than pruned. Neither a 0-day nor a 365-day policy would have deleted anything in that window: 0 means disabled (not 'delete everything'), and 365 has not elapsed. No pruning event exists to attribute to either field.",
+    "conclusion": "Retention has never fired on this log, so the contradiction is currently inert. It would become decidable only after 365 days, or immediately if someone set a short retention and watched. I am not doing that on a live gateway to settle a documentation question.",
+    "prior_archive_note": "~/.config/bifrost/archives/ holds logs-mini-full-through-20260720T125534Z.sql.zst (1.8 GB), so history before 2026-08-01 was archived manually, not by retention."
   }
 }
