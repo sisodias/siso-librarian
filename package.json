@@ -20,7 +20,8 @@
     "survey:empty-bodies": "bash scripts/survey-empty-bodies.sh",
     "ia:title-dedup": "node scripts/ia-title-dedup.mjs",
     "ia:want-list": "node scripts/build-want-list.mjs",
-    "ia:ingest": "node scripts/ia-ingest.mjs"
+    "ia:ingest": "node scripts/ia-ingest.mjs",
+    "books:migrate-external": "node scripts/migrate-book-external.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

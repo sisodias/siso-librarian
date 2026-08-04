@@ -1,0 +1,43 @@
+{
+  "measured_at": "2026-08-04T19:20:08Z",
+  "question": "GQ-007",
+  "subject": "the catalogue now spans two sources \u2014 78 IA books, zero existing rows touched",
+  "why_not_an_insert_into_book": {
+    "the_ddl_says": "gid INTEGER PRIMARY KEY -- Gutenberg Text#, the stable id",
+    "ia_identifiers_that_are_integers": "0 of 78",
+    "examples": [
+      "b2147171x",
+      "poetsofchristian00batt",
+      "classicaltraditi00murr_1"
+    ],
+    "gid_means_what_it_says": "matches the Gutenberg URL in 77,820 of 79,071 rows",
+    "rows_joining_on_gid": 1184937,
+    "existing_rights_values": "one string, public_domain_us, across all 79,071 rows",
+    "conclusion": "minting synthetic integers would put two id namespaces in one primary key a million rows depend on. That is a schema change, not an ingest."
+  },
+  "what_was_built": {
+    "script": "scripts/migrate-book-external.mjs",
+    "approach": "sidecar table book_external keyed by the source-native id",
+    "additive_only": "creates one table and inserts; never ALTERs or DELETEs"
+  },
+  "safety_proven_not_asserted": {
+    "tested_on_scratch_first": "all five existing tables unchanged, quick_check ok",
+    "stale_backup_guard": "probed by deleting one row from a scratch catalogue \u2014 refused with exit 75, \"book live=79070 vault=79071\"",
+    "backup_verified_current": "all 5 tables matched the vault copy before the write",
+    "post_write_check": "the script re-counts every existing table AFTER writing and reports if any moved"
+  },
+  "result": {
+    "book": 79071,
+    "book_external": 78,
+    "words": 11542686,
+    "existing_tables_changed": 0,
+    "quick_check": "ok",
+    "text_path_dereferences": "johndonnehisflig00molo -> 570,497 bytes on disk",
+    "sources_now": {
+      "project_gutenberg": 79071,
+      "internet_archive": 78
+    }
+  },
+  "first_time": "Every one of the 79,071 existing rows came from project_gutenberg. This is the first non-Gutenberg source the catalogue has ever held.",
+  "derivations": {}
+}
