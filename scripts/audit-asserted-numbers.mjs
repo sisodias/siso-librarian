@@ -64,30 +64,40 @@ for (const path of worklogs) {
 let countsChecked = 0;
 const SNAPSHOT = 'observatory/snapshot.json';
 
-function deriveCount(d) {
-  // Kept in sync with deriveValue below. They drifted once: json-scripts-count
-  // was added to one and not the other, so a falsified count was caught but
-  // reported as "unavailable" instead of naming the true value.
-  if (d.kind === 'json-scripts-count') {
-    if (!existsSync(d.source)) return null;
-    return Object.keys(JSON.parse(readFileSync(d.source, 'utf8'))[d.query] || {}).length;
+// One resolver for every caller. There were two — deriveCount for the snapshot
+// loop and deriveValue for declared metrics — and they drifted: json-scripts-count
+// lived in one, file-bytes and the jsonl kinds in the other. A label declared
+// against the wrong caller resolved to "unavailable" while the gate reported
+// success. Adding a kind here now reaches every path by construction.
+function derive(d) {
+  const src = String(d.source || '').replace(/^~/, process.env.HOME);
+  if (!src) return null;
+  if (!existsSync(src)) return d.kind === 'file-count' ? 0 : null;
+  switch (d.kind) {
+    case 'sqlite':
+      return Number(execFileSync('sqlite3', [`file:${src}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
+    case 'file-count': {
+      const out = execFileSync('find', [src, '-type', 'f', '-name', d.query], { encoding: 'utf8' }).trim();
+      return out ? out.split('\n').length : 0;
+    }
+    case 'file-bytes':
+      return statSync(src).size;
+    case 'json-length': {
+      const doc = JSON.parse(readFileSync(src, 'utf8'));
+      const key = String(d.query).replace('[]', '');
+      return Array.isArray(doc?.[key]) ? doc[key].length : null;
+    }
+    case 'json-scripts-count':
+      return Object.keys(JSON.parse(readFileSync(src, 'utf8'))[d.query] || {}).length;
+    case 'jsonl-sum': {
+      const rows = readFileSync(src, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+      return rows.reduce((a, r) => a + (r[d.query] || 0), 0);
+    }
+    case 'jsonl-count':
+      return readFileSync(src, 'utf8').split('\n').filter(Boolean).length;
+    default:
+      return null;
   }
-  if (d.kind === 'sqlite') {
-    if (!existsSync(d.source)) return null;
-    return Number(execFileSync('sqlite3', [`file:${d.source}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
-  }
-  if (d.kind === 'file-count') {
-    if (!existsSync(d.source)) return 0;
-    const out = execFileSync('find', [d.source, '-type', 'f', '-name', d.query], { encoding: 'utf8' }).trim();
-    return out ? out.split('\n').length : 0;
-  }
-  if (d.kind === 'json-length') {
-    if (!existsSync(d.source)) return null;
-    const doc = JSON.parse(readFileSync(d.source, 'utf8'));
-    const key = d.query.replace('[]', '');
-    return Array.isArray(doc?.[key]) ? doc[key].length : null;
-  }
-  return null;
 }
 
 // A derivation whose source does not exist is the dangerous case, because
@@ -118,7 +128,7 @@ if (existsSync(SNAPSHOT)) {
     const asserted = snap?.bucket_counts?.[group]?.[key] ?? snap?.[group]?.[key];
     if (typeof asserted !== 'number') continue;
     let derived = null;
-    try { derived = deriveCount(d); } catch { derived = null; }
+    try { derived = derive(d); } catch { derived = null; }
     if (derived === null) {
       findings.push({ check: 'metric-count', file: SNAPSHOT, label, asserted, derived: 'unavailable', status: 'unverifiable' });
       continue;
@@ -144,33 +154,6 @@ if (existsSync(SNAPSHOT)) {
 // The dotted path is resolved against the file's own contents.
 function resolvePath(doc, dotted) {
   return dotted.split('.').reduce((o, k) => (o == null ? undefined : o[k]), doc);
-}
-
-function deriveValue(d) {
-  if (d.kind === 'sqlite') {
-    const src = d.source.replace(/^~/, process.env.HOME);
-    if (!existsSync(src)) return null;
-    return Number(execFileSync('sqlite3', [`file:${src}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
-  }
-  if (d.kind === 'jsonl-sum') {
-    if (!existsSync(d.source)) return null;
-    const rows = readFileSync(d.source, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
-    return rows.reduce((a, r) => a + (r[d.query] || 0), 0);
-  }
-  if (d.kind === 'jsonl-count') {
-    if (!existsSync(d.source)) return null;
-    return readFileSync(d.source, 'utf8').split('\n').filter(Boolean).length;
-  }
-  if (d.kind === 'json-scripts-count') {
-    if (!existsSync(d.source)) return null;
-    return Object.keys(JSON.parse(readFileSync(d.source, 'utf8'))[d.query] || {}).length;
-  }
-  if (d.kind === 'file-bytes') {
-    const src = d.source.replace(/^~/, process.env.HOME);
-    if (!existsSync(src)) return null;
-    return statSync(src).size;
-  }
-  return deriveCount(d); // file-count / json-length reuse
 }
 
 let declaredChecked = 0;
@@ -201,7 +184,7 @@ for (const file of metricsFiles) {
     const asserted = resolvePath(doc, dotted);
     if (typeof asserted !== 'number') continue;
     let derived = null;
-    try { derived = deriveValue(d); } catch { derived = null; }
+    try { derived = derive(d); } catch { derived = null; }
     if (derived === null) {
       declaredUnavailable += 1;
       findings.push({ check: 'declared-derivation', file, path: dotted, asserted, derived: 'unavailable', status: 'source_missing' });
