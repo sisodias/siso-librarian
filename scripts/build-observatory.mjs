@@ -90,7 +90,25 @@ function registryQuestions() {
     try {
       const d = JSON.parse(readFileSync(f, 'utf8'));
       const m = /^(GQ-\d+)\s*·\s*(.+)$/.exec(String(d.name || ''));
-      if (m) qs.push({ id: m[1], title: m[2], lifecycle: d.lifecycle_status || null, updated_at: d.updated_at || null });
+      if (!m) continue;
+      // GQ-009 success criterion 1: a cold reader must find each question's
+      // state, decision target, evidence gaps, falsifiers, watch triggers and
+      // answer line. Listing id+title alone fails that test, and the registry
+      // already carries every field — it was simply never surfaced.
+      const rc = d.research_contract || {};
+      qs.push({
+        id: m[1],
+        title: m[2],
+        lifecycle: d.lifecycle_status || null,
+        updated_at: d.updated_at || null,
+        state: rc.state || null,
+        decision_to_change: rc.decision_to_change || null,
+        success_criteria: (rc.success_criteria || []).length,
+        falsifiers: (rc.falsifiers || []).length,
+        watch_triggers: (rc.watch_triggers || []).length,
+        evidence_gaps: (rc.evidence_gaps || []).length,
+        answer_shape: rc.answer_shape ? String(rc.answer_shape).slice(0, 160) : null,
+      });
     } catch { /* counted separately by missing/unreadable reporting */ }
   }
   qs.sort((a, b) => a.id.localeCompare(b.id));
@@ -121,8 +139,11 @@ function releaseIntegrity() {
 }
 const releaseState = releaseIntegrity();
 const portfolioIds = new Set(portfolio.questions.map(q => q.id));
+const contractComplete = registryGQ.questions.filter(q =>
+  q.success_criteria > 0 && q.falsifiers > 0 && q.watch_triggers > 0).length;
 const gqCoverage = {
   registered: registryGQ.total,
+  with_testable_contract: contractComplete,
   with_local_claims: registryGQ.questions.filter(q => portfolioIds.has(q.id)).length,
   unclaimed: registryGQ.questions.filter(q => !portfolioIds.has(q.id)).map(q => q.id),
 };
@@ -222,7 +243,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>

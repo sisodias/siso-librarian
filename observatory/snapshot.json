@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T04:13:48.014Z",
+  "generated_at": "2026-08-04T04:17:04.188Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -172,47 +172,97 @@
         "id": "GQ-001",
         "title": "The Agent Workspace",
         "lifecycle": "active",
-        "updated_at": "2026-08-01"
+        "updated_at": "2026-08-01",
+        "state": "partial",
+        "decision_to_change": null,
+        "success_criteria": 0,
+        "falsifiers": 0,
+        "watch_triggers": 0,
+        "evidence_gaps": 0,
+        "answer_shape": "Evidence-graded principles, reference architectures, rejected patterns, and tests that distinguish universal findings from SISO preferences."
       },
       {
         "id": "GQ-002",
         "title": "10× the Agent Layer",
         "lifecycle": "active",
-        "updated_at": "2026-08-01"
+        "updated_at": "2026-08-01",
+        "state": "answered",
+        "decision_to_change": null,
+        "success_criteria": 0,
+        "falsifiers": 0,
+        "watch_triggers": 0,
+        "evidence_gaps": 0,
+        "answer_shape": "A ranked leverage map whose recommendations each carry measurements, external analogues, an experiment, and a falsifiable success threshold."
       },
       {
         "id": "GQ-004",
         "title": "Best Software Primitive",
         "lifecycle": "experimental",
-        "updated_at": "2026-08-01"
+        "updated_at": "2026-08-01",
+        "state": "scoped",
+        "decision_to_change": null,
+        "success_criteria": 0,
+        "falsifiers": 0,
+        "watch_triggers": 0,
+        "evidence_gaps": 0,
+        "answer_shape": "A context-specific ranked shortlist with interface fit, evidence grade, rights gate, adoption cost, and explicit reasons not to choose each candidate."
       },
       {
         "id": "GQ-005",
         "title": "Where the Field Is Moving",
         "lifecycle": "experimental",
-        "updated_at": "2026-08-01"
+        "updated_at": "2026-08-01",
+        "state": "scoped",
+        "decision_to_change": null,
+        "success_criteria": 0,
+        "falsifiers": 0,
+        "watch_triggers": 0,
+        "evidence_gaps": 0,
+        "answer_shape": "A ranked movement map with observed deltas, causal hypotheses, confidence, leading indicators, and dated predictions that can later be scored."
       },
       {
         "id": "GQ-006",
         "title": "The Information Organ",
         "lifecycle": "active",
-        "updated_at": "2026-08-01"
+        "updated_at": "2026-08-01",
+        "state": "partial",
+        "decision_to_change": null,
+        "success_criteria": 0,
+        "falsifiers": 0,
+        "watch_triggers": 0,
+        "evidence_gaps": 0,
+        "answer_shape": "A verified operating architecture with explicit ownership, freshness contracts, query primitives, feedback loops, failure modes, and observed end-to-end receipt"
       },
       {
         "id": "GQ-008",
         "title": "Model Routing Evidence",
         "lifecycle": "active",
-        "updated_at": "2026-08-01"
+        "updated_at": "2026-08-01",
+        "state": "answered",
+        "decision_to_change": null,
+        "success_criteria": 0,
+        "falsifiers": 0,
+        "watch_triggers": 0,
+        "evidence_gaps": 0,
+        "answer_shape": "A versioned scenario-by-model routing matrix plus a machine-readable table, evidence grade per cell, and explicit re-evaluation triggers."
       },
       {
         "id": "GQ-009",
         "title": "The God Questions Observatory",
         "lifecycle": "active",
-        "updated_at": "2026-08-02"
+        "updated_at": "2026-08-02",
+        "state": "researching",
+        "decision_to_change": "Which registry fields, Library projections, evidence interfaces, and action-return contracts should become the standard infrastructure for every SISO God Question?",
+        "success_criteria": 4,
+        "falsifiers": 4,
+        "watch_triggers": 5,
+        "evidence_gaps": 6,
+        "answer_shape": "A versioned God Questions operating architecture with a generated Observatory, machine-readable question-program contract, evidence and action-return interfaces"
       }
     ],
     "coverage": {
       "registered": 7,
+      "with_testable_contract": 1,
       "with_local_claims": 1,
       "unclaimed": [
         "GQ-001",
