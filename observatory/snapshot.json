@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T06:36:46.379Z",
+  "generated_at": "2026-08-04T06:41:26.332Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -35,8 +35,8 @@
     "npm_scripts": 11,
     "verify_steps": 5,
     "scripts_on_disk": 12,
-    "metrics_files": 34,
-    "worklogs": 67,
+    "metrics_files": 35,
+    "worklogs": 68,
     "proposals": 17
   },
   "derivations": {
@@ -365,14 +365,15 @@
     "capacity": "47%"
   },
   "awaiting_decision": {
-    "count": 6,
+    "count": 7,
     "items": [
       "Repoint MiniMax traffic away from Bifrost — ~97% input-token saving",
       "Where should the rescue refs go?",
       "What was SEC-F16 actually called?",
       "Cloudflare ingress for the observatory",
       "Six registered God Questions have no testable contract",
-      "Bifrost's request log is growing ~1GB/day"
+      "Bifrost's request log is growing ~1GB/day",
+      "Internet Archive expansion is blocked on a rights judgement, not on tooling"
     ],
     "source": "proposals/2026-08-04-decisions-awaiting-shaan.md",
     "successor_handover": "HANDOVER-NEXT.md",

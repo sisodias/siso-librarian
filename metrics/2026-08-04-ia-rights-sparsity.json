@@ -1,0 +1,32 @@
+{
+  "measured_at": "2026-08-04T06:39:21Z",
+  "thread": "ia-author-targeting",
+  "approach": "Query IA by authors the Library already validates as tier-1, instead of by IA subject tags. tier_queries.sql applies its subject patterns to Gutenberg's LoC-derived subjects, which are curated; IA's are user-supplied folksonomy, which is why the same patterns returned family letters.",
+  "library_tier1_authors_sampled": [
+    "Mark Twain",
+    "William Dean Howells",
+    "Robert Louis Stevenson"
+  ],
+  "results_with_contract_filters": {
+    "Mark Twain": 1,
+    "William Dean Howells": 0,
+    "Robert Louis Stevenson": 0
+  },
+  "why": {
+    "mark_twain_texts_on_ia": 2015,
+    "with_language_eng": 1469,
+    "with_rights_public_domain": 1,
+    "finding": "IA's rights field is populated on a narrow and unrepresentative slice. 1 of 2,015 Twain texts carries rights:\"public domain\" \u2014 not because the others are in copyright, but because the field is rarely set. The contract makes that field mandatory, so it excludes almost the entire relevant corpus."
+  },
+  "but_the_filter_is_protective": {
+    "sampled": 40,
+    "possible_copyright_status_absent": 38,
+    "collections_present": {
+      "internetarchivebooks": 35,
+      "printdisabled": 16,
+      "inlibrary": 13
+    },
+    "note": "printdisabled and inlibrary are the controlled-digital-lending collections the contract excludes explicitly after Hachette v. IA. Loosening the rights filter to reach volume would pull borrow-only material into scope. The filter is not merely conservative \u2014 it is the thing keeping ingestion legal."
+  },
+  "conclusion": "Gap 2 is not blocked on query craft. It is blocked on a genuine tension: IA's rights metadata is too sparse to find the tier-1 corpus, and the alternative signals available (collection membership, absent copyright status) are exactly the ones that indicate borrow-only material. Resolving it means either accepting a tiny high-confidence corpus, or a rights determination I am not qualified to make."
+}

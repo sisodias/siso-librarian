@@ -104,3 +104,21 @@ Root disk went 27Gi → 21Gi free tonight. At the current rate that is roughly t
 
 **Evidence:** `metrics/2026-08-04-logs-db-growth.json`
 
+---
+
+## 7. Internet Archive expansion is blocked on a rights judgement, not on tooling
+
+The adapter machinery works — contract, want-list, probe, author-dedup against 35,312 Library authors, all passing. The blocker is IA's metadata.
+
+**Mark Twain has 2,015 texts on IA. Exactly 1 carries `rights:"public domain"`.**
+
+Not because the others are in copyright — because the field is rarely populated. Sampling 40 of them: 38 have no `possible-copyright-status` at all.
+
+The contract makes that field mandatory, so it excludes essentially the whole tier-1 corpus. But loosening it is not safe either: the same sample shows `printdisabled` (16) and `inlibrary` (13) — the **controlled-digital-lending collections the contract excludes after Hachette v. IA**. The signals available as substitutes are precisely the ones indicating borrow-only material.
+
+**Why I stopped:** this is a copyright determination. Deciding that a 1900 Twain edition is public domain despite absent metadata is almost certainly correct and is still not a call I should make unilaterally on your behalf.
+
+**Options, cheapest first:** accept a small high-confidence corpus (dozens, not thousands); use publication-year plus author death-date as a rights heuristic with a documented rule; or source tier-1 material from HathiTrust/Google Books where rights metadata is denser.
+
+**Evidence:** `metrics/2026-08-04-ia-rights-sparsity.json`
+
