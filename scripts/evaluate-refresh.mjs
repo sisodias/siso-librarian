@@ -18,7 +18,12 @@ const ledgerPath = 'refresh/ledger.json';
 // Unmapped triggers are reported as unevaluatable rather than silently passing —
 // a trigger nobody can check is worse than no trigger, because it looks covered.
 const TRIGGER_PATHS = {
-  'schema change': ['schemas/', 'scripts/verify-claim-packets.mjs'],
+  // schemas/ only. Including the verifier meant that hardening a GATE marked
+  // every claim stale — 10 at once on 2026-08-04 — even though no schema and no
+  // evidence had moved. A checker getting stricter is not a reason to doubt the
+  // things it checks, and a trigger that fires on maintenance trains you to
+  // dismiss it.
+  'schema change': ['schemas/'],
   'new evidence source': ['sources/'],
   'approved action status change': ['claims/'],
 };
