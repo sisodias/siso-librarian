@@ -328,6 +328,38 @@ if (existsSync(SNAPSHOT)) {
       note: 'Rationale for a path that is no longer undeclared. Stale explanations vouch for numbers nobody is checking.' });
   }
   if (snapshotUndeclared.length) {
+  // A list rendered as a COUNT is a class of defect, not an instance. Twice this
+  // session the page showed "N queued" or "N awaiting" while the content lived
+  // only in the raw JSON dump at the bottom — first for escalations, then for
+  // decisions, built by the same function, one table row apart. With zero
+  // working push routes the observatory is the only channel that reaches Shaan,
+  // so a count he cannot act on is worse than nothing.
+  //
+  // Compares against the page ABOVE "Raw snapshot", since everything appears
+  // below it by definition. HTML-escapes the needle: the first version of this
+  // check reported the escalation headlines as hidden because "->" renders as
+  // "-&gt;".
+  const pagePath = 'public/index.html';
+  if (existsSync(pagePath)) {
+    const page = readFileSync(pagePath, 'utf8');
+    const readable = page.slice(0, page.indexOf('Raw snapshot') >>> 0 || page.length);
+    const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+    const lists = {
+      'awaiting_decision.items': snap.awaiting_decision?.items,
+      'escalations.headlines': (snap.escalations?.headlines || []).map((h) => h.title),
+      'god_questions.questions': (snap.god_questions?.questions || []).map((q) => q.title),
+      'active_questions': (snap.active_questions || []).map((q) => q.text),
+    };
+    for (const [label, list] of Object.entries(lists)) {
+      if (!Array.isArray(list) || !list.length) continue;
+      const first = esc(String(list[0])).slice(0, 24);
+      if (first && !readable.includes(first)) {
+        findings.push({ check: 'list-rendered-as-count', field: label, items: list.length,
+          note: 'This list is published on the observatory as a count only — its contents appear nowhere above the raw JSON dump. With no working push channel, a count Shaan cannot act on is the defect.' });
+      }
+    }
+  }
+
     findings.push({ check: 'snapshot-undeclared-numbers', severity: 'info',
       count: snapshotUndeclared.length, of: snapshotNumbers,
       explained: snapshotUndeclared.length - unexplained.length,

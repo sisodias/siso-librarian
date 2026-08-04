@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-04T17:33:15Z",
+  "question": "GQ-009",
+  "subject": "fixing the class instead of the third instance",
+  "the_class": "A list of things Shaan must read, published on the observatory as a count only.",
+  "enumeration": {
+    "method": "Walk every list-valued field in the snapshot; check whether its first element appears in the page ABOVE the raw JSON dump.",
+    "results": {
+      "awaiting_decision.items": "rendered (fixed last loop)",
+      "escalations.headlines": "rendered (fixed two loops ago)",
+      "active_questions": "rendered",
+      "god_questions.questions": "HIDDEN \u2014 7 questions published as \"God Questions (registry): 7\""
+    }
+  },
+  "a_false_negative_in_my_own_detector": {
+    "symptom": "escalations.headlines reported HIDDEN despite being fixed two loops ago",
+    "cause": "The headline contains \"->\" which renders as \"-&gt;\". I compared raw text against HTML.",
+    "fix": "HTML-escape the needle before searching. Without this the check would have cried wolf on a field that was fine."
+  },
+  "fixed": "Added a God Questions section listing each question with its state, criteria, falsifiers, triggers and gaps.",
+  "the_permanent_check": {
+    "name": "list-rendered-as-count",
+    "covers": 4,
+    "proven": "Removing the God Questions section produces exactly 1 finding naming that field; restoring clears it.",
+    "selftest_case": 13
+  },
+  "why_a_check_and_not_a_third_fix": "I fixed escalations, then decisions, and each time wrote that I had fixed an instance. Enumerating the class took one script and found a third. The check now fails the build if a fourth appears.",
+  "derivations": {}
+}

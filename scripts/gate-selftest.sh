@@ -180,6 +180,20 @@ echo -n "PROBE corrupt file inside a derivation source — "
   if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — corrupt source passed silently"; fi
 )
 
+# A list published as a bare count. Twice this session the page showed "N queued"
+# or "N awaiting" while the content lived only in the raw JSON dump — same
+# function, adjacent table rows. With zero working push routes, a count Shaan
+# cannot act on is the whole defect.
+check "audit catches a list rendered as a count" \
+  "public/index.html" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "
+import re
+p='public/index.html'
+h=open(p).read()
+h=re.sub(r'<section><h2>God Questions \(registry\)</h2>.*?</section>','',h,flags=re.S)
+open(p,'w').write(h)"
+
 # A claim file that cannot be parsed. The claim-packet verifier catches this,
 # but the audit used to exit 0 and report success while silently dropping the
 # claim from its grounded-evidence set — two gates disagreeing about whether the
