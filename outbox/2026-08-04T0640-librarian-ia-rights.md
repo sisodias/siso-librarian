@@ -114,9 +114,25 @@ query. Its 40-title sample had OVERSTATED it by 3x — 2.5% sampled against 0.9%
 actual. So small samples were noisy in BOTH directions, not systematically
 pessimistic as I said last loop.
 
-One more thing worth knowing: 535 search results collapsed to 462 unique titles.
-IA's reported pool size is not the number of distinct works — there are 73
-duplicates inside IA itself.
+One more thing, stated more carefully than I first wrote it: 535 science-fiction
+results collapsed to 462 unique titles. I initially generalised that to "IA's
+numFound always overstates distinct works". I then checked the other five pools:
+
+  Science fiction        535 -> 462   13.6% duplicates
+  Detective              128 -> 128    0%
+  English poetry          92 ->  92    0%
+  Essays                  77 ->  77    0%
+  Cookery                 60 ->  60    0%
+  Historical fiction      58 ->  58    0%
+
+FIVE OF SIX have no duplicates at all. The science-fiction pool has 69 titles
+appearing 2-3 times — "Sjambak", "Solar Stiff", "Raiders Invisible" — which
+looks like repeated scans of the same pulp magazines, not an IA search
+behaviour.
+
+So: numFound can overstate distinct works in heavily re-scanned collections. It
+is not a general property, and none of the other counts in this message need
+adjusting.
 
 The samples had understated every weak subject — Detective went 4 to 14, Essays
 26 to 37. Small samples on small pools were noisy in the pessimistic direction,

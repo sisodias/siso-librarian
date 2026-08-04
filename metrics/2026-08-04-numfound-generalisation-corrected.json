@@ -1,0 +1,70 @@
+{
+  "measured_at": "2026-08-04T16:40:25Z",
+  "question": "GQ-004",
+  "subject": "how far the numFound-overstates-works finding actually generalises",
+  "the_claim_i_made": "\"IA's reported pool size is not the number of distinct works, so every earlier figure in this thread using numFound as a work count was inflated.\"",
+  "measured": [
+    {
+      "subject": "Science fiction",
+      "numFound": 535,
+      "unique": 462,
+      "dup_pct": 13.6
+    },
+    {
+      "subject": "Detective and mystery stories",
+      "numFound": 128,
+      "unique": 128,
+      "dup_pct": 0.0
+    },
+    {
+      "subject": "English poetry",
+      "numFound": 92,
+      "unique": 92,
+      "dup_pct": 0.0
+    },
+    {
+      "subject": "Essays",
+      "numFound": 77,
+      "unique": 77,
+      "dup_pct": 0.0
+    },
+    {
+      "subject": "Cookery",
+      "numFound": 60,
+      "unique": 60,
+      "dup_pct": 0.0
+    },
+    {
+      "subject": "Historical fiction",
+      "numFound": 58,
+      "unique": 58,
+      "dup_pct": 0.0
+    }
+  ],
+  "correction": "WRONG AS STATED. Five of six pools have ZERO duplicate titles. Only science fiction has any, at 13.6%. \"Every earlier figure was inflated\" generalised from one pool to all of them \u2014 the same error I made with the 97.5% overlap two loops ago, and again with the \"pessimistic bias\" one loop ago.",
+  "what_the_duplicates_actually_are": {
+    "distinct_titles_appearing_more_than_once": 69,
+    "examples": [
+      {
+        "title": "Prologue to an Analogue",
+        "copies": 3
+      },
+      {
+        "title": "Sjambak",
+        "copies": 3
+      },
+      {
+        "title": "Raiders Invisible",
+        "copies": 3
+      },
+      {
+        "title": "Solar Stiff",
+        "copies": 3
+      }
+    ],
+    "reading": "Same work scanned multiple times, not a pagination artifact. Specific to a heavily re-scanned pulp-magazine corpus."
+  },
+  "the_honest_version": "numFound can overstate distinct works where a pool contains repeated scans of the same item. Measured here: 13.6% in science fiction, 0% in five other subjects. It is a property of particular collections, not of IA search.",
+  "third_time": "This is the third loop running where I generalised from a single measurement: overlap from science fiction, sampling bias from four subjects, duplication from one pool. In each case the next measurement contradicted it. The pattern is not that I measure badly \u2014 it is that I state the conclusion at the scope I wish I had measured rather than the scope I did.",
+  "derivations": {}
+}

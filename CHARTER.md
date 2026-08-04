@@ -66,8 +66,11 @@ You are the judgement layer. Push bulk down.
 
 - `Agent` tool with `model: haiku` → routes to MiniMax M3. Use for grep, classify,
   verify, count, mine, audit — anything bounded and mechanical.
-- `MINI_ENGINE=pi ~/bin/mini-pi -p "<prompt>"` → the lean lane, ~71 input tokens
-  per call versus ~41,000 through the full harness. Fast bounded bulk only; it is
+- `MINI_ENGINE=pi ~/bin/mini-pi -p "<prompt>"` → the lean lane. Its comments
+  claim ~71 input tokens per call versus ~40K through the full harness
+  (~300-500x). **Those figures are mini-pi's own, not measured here** — traced
+  2026-08-04: no ~71-token lane exists in the gateway log, and the claim that
+  restated them as measurement was corrected. Treat as the author's estimate. Fast bounded bulk only; it is
   stateless and will be killed on sustained reasoning.
 - Keep for yourself: what to do next, whether evidence is good, whether a change
   is worth making.
@@ -134,6 +137,17 @@ still zero new matches. Realistic maximum is ~419. Do not chase it.
   too clean — never by a gate, because they live in ad-hoc analysis rather than in
   committed declarations. `npm run derivations:sensitivity` covers the committed
   half; nothing covers the half you type into a shell.
+- **State the conclusion at the scope you measured, not the scope you want.**
+  Three loops running on 2026-08-04 I generalised from one measurement and the
+  next contradicted it: 97.5% title overlap from science fiction alone (other
+  subjects ran 65-97%); "small samples are pessimistically biased" from four
+  subjects (the fifth was overstated 3x); "numFound always overstates distinct
+  works" from one pool (five of six had zero duplicates). None was a measurement
+  error — each number was correct for what it measured. The failure is writing
+  "IA pools" when you measured one pool, and it is invisible to re-derivation
+  because the arithmetic checks out. Before generalising, ask: how many
+  independent cases support this, and what would the second one have to look
+  like to break it?
 - **Transactional writes on internal SSD; bulk sequential artifacts on the vault.**
   SQLite over USB 2.0 caused a real disk I/O error at 500 books.
 - **Your own loop is a disk cost, and it compounds.** Measured 2026-08-04: this
