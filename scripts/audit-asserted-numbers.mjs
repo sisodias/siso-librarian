@@ -183,6 +183,12 @@ console.log(JSON.stringify({
   audited_at: new Date().toISOString(),
   worklogs_with_timestamps: worklogs.filter((p) => /-\d{4}-/.test(p)).length,
   timestamp_drift_findings: drift.length,
+  // Split by sign. A single count hid a second defect behind a first for hours:
+  // positive drift means a fabricated timestamp (claimed earlier than the
+  // commit), negative means local time written into a UTC-labelled name. They
+  // have different causes and different fixes, so they are reported separately.
+  timestamp_drift_fabricated: drift.filter((f) => f.drift_minutes > 0).length,
+  timestamp_drift_local_time_as_utc: drift.filter((f) => f.drift_minutes < 0).length,
   metric_count_findings: counts.length,
   counts_independently_rederived: countsChecked,
   declared_derivations_rederived: declaredChecked,
