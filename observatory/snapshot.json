@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T07:40:57.822Z",
+  "generated_at": "2026-08-04T07:48:12.937Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -32,11 +32,11 @@
     }
   },
   "repo_health": {
-    "npm_scripts": 14,
+    "npm_scripts": 15,
     "verify_steps": 5,
-    "scripts_on_disk": 15,
+    "scripts_on_disk": 16,
     "metrics_files": 38,
-    "worklogs": 79,
+    "worklogs": 80,
     "proposals": 17
   },
   "derivations": {
@@ -383,7 +383,7 @@
     "queued": 2,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 1.8,
+    "oldest_queued_age_hours": 1.9,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"

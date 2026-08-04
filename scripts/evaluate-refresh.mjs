@@ -28,6 +28,26 @@ const TRIGGER_PATHS = {
   'approved action status change': ['claims/'],
 };
 
+// This gate derives staleness ENTIRELY from git. If git cannot answer, it has
+// measured nothing — and the catch below used to turn that into an empty commit
+// list, which is indistinguishable from "no triggers fired". Running the gate
+// outside a repository therefore reported all 10 entries fresh and exited 0:
+// maximum confidence from zero information.
+//
+// Found by the gate self-test on 2026-08-04, which ran it in a scratch copy
+// with no .git. The harness caused that particular case, but the swallow is
+// real — a corrupted index or a gate invoked from the wrong cwd would produce
+// the same silent all-clear on the live repo.
+function assertGitUsable() {
+  try {
+    execFileSync('git', ['rev-parse', '--git-dir'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch {
+    console.error('evaluate-refresh: not a git repository — this gate derives staleness from git history,');
+    console.error('so it cannot evaluate anything here. Refusing to report "fresh" from no evidence.');
+    process.exit(3);
+  }
+}
+
 function gitCommitsSince(since, paths) {
   try {
     // HEAD is excluded deliberately. The commit that introduces or refreshes a
@@ -38,10 +58,23 @@ function gitCommitsSince(since, paths) {
       cwd: root, encoding: 'utf8',
     }).trim();
     return out ? out.split('\n') : [];
-  } catch {
-    return [];
+  } catch (err) {
+    // A single legitimate case reaches here: a repository with one commit, where
+    // HEAD~1 does not resolve. That genuinely means no prior commits could have
+    // fired a trigger, so an empty list is the correct answer.
+    //
+    // Anything else — a bad path, a corrupted index, an unreadable object — is a
+    // FAILURE TO MEASURE, and returning [] would launder it into "nothing fired".
+    // That is how this gate came to report ten entries fresh while knowing
+    // nothing at all.
+    const msg = String(err?.stderr || err?.message || '');
+    if (/unknown revision|ambiguous argument|bad revision/i.test(msg)) return [];
+    console.error(`evaluate-refresh: git failed while evaluating ${paths.join(', ')}: ${msg.trim().split('\n')[0]}`);
+    process.exit(3);
   }
 }
+
+assertGitUsable();
 
 if (!existsSync(ledgerPath)) {
   console.error('no refresh ledger found');
