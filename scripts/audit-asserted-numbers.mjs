@@ -174,11 +174,46 @@ for (const p of untrackedMetrics) {
     note: 'Present on disk but not tracked by git. Audited here, but it would vanish from a fresh clone.' });
 }
 
+// Which metrics files carry evidentiary weight — i.e. a live claim grounds in
+// them. Superseded and disputed claims are excluded: a disputed claim's
+// evidence is already flagged by the dispute itself, and re-reporting it here
+// would double-count a known problem.
+const groundedMetrics = new Set();
+for (const cf of walk(join(root, 'claims'))) {
+  if (!cf.endsWith('.json')) continue;
+  let cd;
+  try { cd = JSON.parse(readFileSync(cf, 'utf8')); } catch { continue; }
+  const status = cd?.claim?.status;
+  if (status === 'superseded' || status === 'disputed') continue;
+  for (const g of cd?.grounding || []) {
+    const id = g?.source?.id;
+    if (typeof id === 'string' && id.startsWith('metrics/')) groundedMetrics.add(id);
+  }
+}
+
 for (const file of metricsFiles) {
   if (!existsSync(file)) continue;
   let doc;
   try { doc = JSON.parse(readFileSync(file, 'utf8')); } catch { continue; }
-  if (!doc || typeof doc !== 'object' || !doc.derivations) continue;
+  if (!doc || typeof doc !== 'object') continue;
+  // A metrics file with no derivations was SKIPPED SILENTLY, which meant
+  // omitting the block bought exemption from this audit. On 2026-08-04 every
+  // one of the seven live claims rested on a metrics file in exactly that
+  // state, and one of them (GQ-005 category momentum) turned out to assert
+  // per-category counts matching no database on this machine. The gate was
+  // structurally unable to notice, because unchecked files reported nothing
+  // rather than reporting that they were unchecked.
+  //
+  // Only files a claim actually grounds in are reported: an intermediate or
+  // exploratory metrics file carries no weight until something cites it, and
+  // flagging those would train me to ignore this finding.
+  if (!doc.derivations) {
+    if (groundedMetrics.has(file)) {
+      findings.push({ check: 'metrics-underived', file,
+        note: 'A live claim grounds in this file, but it declares no derivations, so none of its numbers are re-derivable. Add a derivations block naming the source and query.' });
+    }
+    continue;
+  }
   for (const [dotted, d] of Object.entries(doc.derivations)) {
     checkSourceExists(dotted, d, file);
     const asserted = resolvePath(doc, dotted);

@@ -62,5 +62,24 @@
   },
   "interpretation": "The spread tracks caching, not model capability. CodexOpenAI caches 97.2% of its input and returns 85.86 output tokens per 1k billed; MiniMax caches 0% and returns 25.09 despite being the designated cheap lane. Turning caching on where it is off is a larger multiplier than any model swap available here.",
   "caveat": "Output tokens are a proxy for useful work, not a measure of it. A model emitting more tokens is not thereby more effective; this bounds the cost side of the 10x question, not the quality side.",
-  "sample_note": "CodexProxy showed the highest ratio at 95.55 but on only 4 requests, so a 100-request floor was applied before comparing. Reporting a 4-request outlier as the headline would have been the kind of plausible-looking number this repo exists to catch."
+  "sample_note": "CodexProxy showed the highest ratio at 95.55 but on only 4 requests, so a 100-request floor was applied before comparing. Reporting a 4-request outlier as the headline would have been the kind of plausible-looking number this repo exists to catch.",
+  "source": "~/.config/bifrost/logs.db",
+  "requests_definition": "'requests' counts log rows carrying token accounting (prompt_tokens > 0), not all rows. Verified 2026-08-04: CodexOpenAI has 867 rows at or before the measurement time, of which 459 carry no tokens and 408 do \u2014 the asserted figure. Minimax 207/64/143, CodexProxy 54/50/4, all matching. The field name alone implied total requests, which would have made every per-request average wrong by ~2x.",
+  "derivations": {
+    "providers.1.raw_input": {
+      "kind": "sqlite",
+      "source": "~/.config/bifrost/logs.db",
+      "query": "select sum(prompt_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';"
+    },
+    "providers.1.output": {
+      "kind": "sqlite",
+      "source": "~/.config/bifrost/logs.db",
+      "query": "select sum(completion_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';"
+    },
+    "providers.1.requests": {
+      "kind": "sqlite",
+      "source": "~/.config/bifrost/logs.db",
+      "query": "select count(*) from logs where provider='CodexOpenAI' and prompt_tokens>0 and timestamp <= '2026-08-04 04:19:50';"
+    }
+  }
 }

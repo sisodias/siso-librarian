@@ -64,5 +64,18 @@
       "stars": 21649
     }
   ],
-  "method": "read-only queries against the canonical people graph; no writes"
+  "method": "read-only queries against the canonical people graph; no writes",
+  "source": "~/foundry-data/domains/people/people_v2.sqlite",
+  "derivations": {
+    "signal_coverage.edges_with_dependent_repos": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(*) from person_content where domain='github' and json_extract(meta_json,'$.dependent_repos') is not null;"
+    },
+    "signal_coverage.edges_with_rated_value": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(*) from person_content where domain='github' and json_extract(meta_json,'$.value') is not null;"
+    }
+  }
 }
