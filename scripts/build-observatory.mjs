@@ -35,7 +35,9 @@ const peopleCounts = rowsToObject(sqlite(peopleDb, "select 'people',count(*) fro
 const registryCounts = {
   works: countFiles(join(registry, 'works')),
   releases: countFiles(join(registry, 'releases')),
-  source_inventories: countFiles(join(registry, 'source_inventories')),
+  source_inventories: countFiles(join(registry, 'source-inventories')),
+  assemblies: countFiles(join(registry, 'assemblies')),
+  snapshots: countFiles(join(registry, 'snapshots')),
   events: countFiles(join(registry, 'events')),
   decisions: countFiles(join(registry, 'decisions')),
 };
@@ -88,7 +90,9 @@ const derivations = {
   'people_graph.external_ids': { source: peopleDb, kind: 'sqlite', query: "select count(*) from external_ids;" },
   'registry.works': { source: join(registry, 'works'), kind: 'file-count', query: "*.json" },
   'registry.releases': { source: join(registry, 'releases'), kind: 'file-count', query: "*.json" },
-  'registry.source_inventories': { source: join(registry, 'source_inventories'), kind: 'file-count', query: "*.json" },
+  'registry.source_inventories': { source: join(registry, 'source-inventories'), kind: 'file-count', query: "*.json" },
+  'registry.assemblies': { source: join(registry, 'assemblies'), kind: 'file-count', query: "*.json" },
+  'registry.snapshots': { source: join(registry, 'snapshots'), kind: 'file-count', query: "*.json" },
   'registry.events': { source: join(registry, 'events'), kind: 'file-count', query: "*.json" },
   'registry.decisions': { source: join(registry, 'decisions'), kind: 'file-count', query: "*.json" },
   'claim_layer.production_claims': { source: join(root, 'claims'), kind: 'file-count', query: "*.json" },
@@ -105,7 +109,7 @@ const snapshot = {
   routing: minimaxRouting,
   caveats: [
     '/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.',
-    'Registry source inventory count uses registry/source_inventories path; if schema path changes, update builder.'
+    'Registry directory names are hyphenated (source-inventories); an underscore path silently counted 0 until 2026-08-04.'
   ]
 };
 mkdirSync(join(root, 'observatory'), { recursive: true });
@@ -113,7 +117,7 @@ mkdirSync(join(root, 'public'), { recursive: true });
 writeFileSync(join(root, 'observatory/snapshot.json'), JSON.stringify(snapshot, null, 2) + '\n');
 
 const cards = [
-  ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
+  ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Source inventories', registryCounts.source_inventories], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()],
   ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
