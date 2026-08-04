@@ -11,6 +11,7 @@
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, relative } from 'node:path';
+import { resolveLabel, labelForPath } from './lib/snapshot-paths.mjs';
 
 const root = process.cwd();
 
@@ -258,8 +259,7 @@ if (existsSync(SNAPSHOT)) {
       // Derivation keys are `group.key`; snapshot paths carry a bucket_counts
       // prefix. Matching the raw path reported 42 undeclared when the true
       // figure is 24 — a checker measuring the wrong key disagrees confidently.
-      const key = p.startsWith('bucket_counts.') ? p.slice('bucket_counts.'.length) : p;
-      if (!declared.has(key)) snapshotUndeclared.push(p);
+      if (!declared.has(labelForPath(p))) snapshotUndeclared.push(p);
     }
   };
   walkNums(snap);
@@ -293,12 +293,10 @@ if (existsSync(SNAPSHOT)) {
   const snap = JSON.parse(readFileSync(SNAPSHOT, 'utf8'));
   for (const [label, d] of Object.entries(snap.derivations || {})) {
     checkSourceExists(label, d, SNAPSHOT);
-    const [group, key] = label.split('.');
-    // Resolve the label against bucket_counts first (where most live), then
-    // against the snapshot root. Hardcoding bucket_counts meant a declared
-    // derivation outside it resolved to undefined and was SKIPPED SILENTLY —
-    // repo_health.* was declared, audited nothing, and reported success.
-    const asserted = snap?.bucket_counts?.[group]?.[key] ?? snap?.[group]?.[key];
+    // Resolution lives in lib/snapshot-paths.mjs. It was hand-rolled at three
+    // call sites and got the prefix wrong at two of them — each wrong copy
+    // agreeing with itself rather than erroring.
+    const asserted = resolveLabel(snap, label);
     if (typeof asserted !== 'number') continue;
     let derived = null;
     try { derived = derive(d); } catch { derived = null; }

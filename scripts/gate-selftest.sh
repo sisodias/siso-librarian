@@ -159,6 +159,20 @@ p='observatory/snapshot.json'
 d=json.load(open(p)); d['god_questions']['total']=99
 json.dump(d,open(p,'w'),indent=2)"
 
+# The shared path resolver must not silently stop resolving. If resolveLabel
+# returned undefined for everything, every declared derivation would be skipped
+# and the audit would report success having checked nothing — the exact shape of
+# the three silent skips already found this session.
+check "audit notices when label resolution stops working" \
+  "scripts/lib/snapshot-paths.mjs" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "
+p='scripts/lib/snapshot-paths.mjs'
+t=open(p).read()
+t=t.replace('const bare = walk(snap, label);','const bare = undefined;')
+t=t.replace('const prefixed = walk(snap, \`\${BUCKET}.\${label}\`);','const prefixed = undefined;')
+open(p,'w').write(t)"
+
 # A derivation that does not read the source it names. This is the defect that
 # appeared four times in one session — a checker keyed differently from the
 # thing it checks — and it always agreed rather than erroring, so only a
