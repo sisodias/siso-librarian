@@ -148,6 +148,15 @@ ssh -o ConnectTimeout=12 -o BatchMode=yes -o StrictHostKeyChecking=no shaansisod
 
 ### 2. Herdr — when attention is needed now
 
+> **Not an independent route.** Herdr is reached by `ssh 100.118.29.68` — the
+> same peer as the mailbox — so when that machine is off, both channels are
+> down together. Verified 2026-08-04: the peer showed `tx 93756 rx 0` for the
+> whole session and neither route delivered anything. Escalating "via herdr
+> instead" is not a fallback; if the mailbox is down, herdr is down.
+>
+> The only route that worked was the git remote, and it is **pull** — it
+> requires Shaan to look. There is currently no working push channel.
+
 Use Herdr only when the main session should be interrupted now. Pane ids renumber, so re-resolve first and never cache them.
 
 ```bash

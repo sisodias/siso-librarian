@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T07:53:02.281Z",
+  "generated_at": "2026-08-04T07:58:13.287Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,7 +36,7 @@
     "verify_steps": 5,
     "scripts_on_disk": 16,
     "metrics_files": 38,
-    "worklogs": 81,
+    "worklogs": 82,
     "proposals": 17
   },
   "derivations": {
@@ -389,7 +389,27 @@
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md"
     ],
-    "note": "Undelivered. The laptop peer is unreachable; these are readable in outbox/ regardless."
+    "note": "Readable on the remote. The mailbox push route is down; these are not lost.",
+    "channels": {
+      "git_remote": {
+        "transport": "pull",
+        "status": "working",
+        "note": "Requires Shaan to look; nothing alerts him."
+      },
+      "mailbox": {
+        "transport": "push",
+        "status": "down",
+        "via": "ssh 100.118.29.68",
+        "note": "Only route that reaches him without being asked."
+      },
+      "herdr": {
+        "transport": "push",
+        "status": "down",
+        "via": "ssh 100.118.29.68",
+        "note": "NOT independent — same peer as the mailbox."
+      }
+    },
+    "independent_push_routes_up": 0
   },
   "missing_sources": [],
   "caveats": [

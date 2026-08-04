@@ -325,8 +325,35 @@ const escalations = {
     ? Math.round((Date.now() - new Date(oldestQueuedISO)) / 36e5 * 10) / 10
     : null,
   files: queuedMsgs,
-  note: 'Undelivered. The laptop peer is unreachable; these are readable in outbox/ regardless.',
+  note: 'Readable on the remote. The mailbox push route is down; these are not lost.',
+  // Counting channels honestly. The charter names three routes to Shaan, and I
+  // reported "2 of 3 monitored" as though the third were merely unwatched. It is
+  // not independent: herdr is reached by `ssh 100.118.29.68` — THE SAME PEER as
+  // the mailbox — so both die together, and they have. The charter itself calls
+  // the worklog "durable record, not transport".
+  //
+  // So there is exactly ONE working route (the git remote, which requires Shaan
+  // to look) and ONE push route (the mailbox, currently dead). Reporting 2 of 3
+  // implied redundancy that does not exist.
+  channels: {
+    git_remote: { transport: 'pull', status: 'working', note: 'Requires Shaan to look; nothing alerts him.' },
+    mailbox: { transport: 'push', status: 'down', via: 'ssh 100.118.29.68', note: 'Only route that reaches him without being asked.' },
+    herdr: { transport: 'push', status: 'down', via: 'ssh 100.118.29.68', note: 'NOT independent — same peer as the mailbox.' },
+  },
 };
+
+// Measured, not asserted. Both push routes traverse the same ssh peer, so one
+// probe answers for both — but the count must come from the probe, or this
+// becomes a hardcoded banner of exactly the kind I replaced on the routing row.
+const peerUp = (() => {
+  try {
+    return sh('ssh', ['-o', 'ConnectTimeout=8', '-o', 'BatchMode=yes',
+      '-o', 'StrictHostKeyChecking=no', 'shaansisodia@100.118.29.68', 'echo up']).includes('up');
+  } catch { return false; }
+})();
+escalations.independent_push_routes_up = peerUp ? 2 : 0;
+escalations.channels.mailbox.status = peerUp ? 'up' : 'down';
+escalations.channels.herdr.status = peerUp ? 'up' : 'down';
 
 const snapshot = {
   generated_at: new Date().toISOString(),
@@ -358,7 +385,7 @@ const show = (v) => (v === null || v === undefined ? 'SOURCE MISSING' : v.toLoca
 const cards = [
   ['Works', show(registryCounts.works)], ['Releases', show(registryCounts.releases)], ['Orphaned releases', releaseState ? releaseState.orphaned_releases : 'unknown'], ['Source inventories', show(registryCounts.source_inventories)], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
-  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations queued', escalations.queued === 0 ? '0' : `${escalations.queued} · ${escalations.on_remote} readable on remote${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
+  ['God Questions (registry)', registryGQ.total ?? 'SOURCE MISSING'], ['With local claims', `${gqCoverage.with_local_claims} of ${registryGQ.total}`], ['Testable contracts', `${contractComplete} of ${registryGQ.total}`], ['Awaiting your decision', blocked.count === null ? 'SOURCE MISSING' : blocked.count], ['Claims awaiting review', reviewState], ['Escalations queued', escalations.queued === 0 ? '0' : `${escalations.queued} · ${escalations.on_remote} readable on remote${escalations.oldest_queued_age_hours != null ? ` · oldest ${escalations.oldest_queued_age_hours}h` : ''}`], ['Push routes up', `${escalations.independent_push_routes_up} of 2 · mailbox and herdr share one peer`], ['Root disk free', disk.available], ['Claims (live)', claimsLive], ['Claims (superseded)', claimsSuperseded], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISO Great Library Observatory</title><style>
