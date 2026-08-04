@@ -176,7 +176,44 @@ The GQ-008 cache claim is the strongest candidate: it is measured, falsifiable, 
 
 ---
 
-## 6. Bifrost's request log — RE-MEASURED at 4.68 GB/day, and 91% of it is me
+## 6. Bifrost's request log — retention APPLIED; only the content-logging policy is still yours
+
+**Updated 2026-08-04 19:2xZ.** Two of the three options in the original text
+below are now closed, and one genuinely remains a decision for you.
+
+**Done, and verified against the running process:** `log_retention_days` was
+**365**, and the log store's own `retention_days` was **0 — no expiry at all**.
+Both are now **3**. That is housekeeping, reversible, and it destroys no
+provenance: the corpus spans 2.95 days, so nothing is evicted today.
+
+Two mistakes worth recording, because both would have been reported as fixes:
+
+- I first wrote the setting straight into `config.db`. The running gateway kept
+  reporting 365 — the config is read at startup, and `/api/config` is the
+  authority. A database write is not an applied setting.
+- I first set it to **7 days** and nearly stopped there. Sizing the steady state
+  killed it: 7 x 4.35 GB/day = **30.4 GB against 28 GB free**. My own fix still
+  filled the disk. 3 days converges to ~13 GB.
+
+**The header question is answered, and the answer is no.** I recorded the
+gateway-side override contract as "unknown" for several loops. It is not
+unknown — `allow_per_request_content_storage_override = 0` and
+`allow_per_request_raw_override = 0`. The gateway forbids per-request overrides
+outright, so the header I wrote and tested could never have worked.
+
+**What is still yours:** `disable_content_logging` is **0**, so full request
+bodies are still stored — `raw_request` alone is **3,681 MB of 8,986 MB**, and
+it is a verbatim copy of my own prompt on every tick. Turning it off would cut
+the dominant term at a stroke, but it is an observability policy, not
+housekeeping: it decides whether you can inspect what your agents actually sent.
+Retention now bounds the cost either way, so this is no longer urgent.
+
+Config backed up before any change:
+`librarian-vault/bifrost-config/config-20260804T181804Z.db` (`.backup`,
+`quick_check(1)` ok). Evidence: `metrics/2026-08-04-loop-disk-cost-bounded.json`.
+
+### The original text follows, unedited.
+
 
 The headline below said ~1GB/day. Measured 2026-08-04 across the full log:
 **4.68 GB today**, hourly rate rising (0.10 -> 0.33 GB), root down to 16Gi.

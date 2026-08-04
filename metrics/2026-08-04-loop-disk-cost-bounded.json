@@ -1,0 +1,72 @@
+{
+  "measured_at": "2026-08-04T18:19:51Z",
+  "question": "GQ-008",
+  "subject": "the disk cost of my own loop, found and bounded",
+  "reclaimed_now": {
+    "free_before_gi": 16,
+    "free_after_gi": 28,
+    "reclaimed_gb": 13,
+    "method": "MOVE to vault, nothing deleted (C1)",
+    "items": [
+      {
+        "what": "passages_v1.sqlite.gz",
+        "bytes": 10203671683,
+        "proof": "md5 ffca3a1aee14615705a6138cf0c59623 derived on BOTH sides before the move and again after"
+      },
+      {
+        "what": "pi-lens-caches",
+        "files": 315,
+        "bytes": 3407840644,
+        "proof": "file-count and total-bytes identical on both sides before release",
+        "note": "vault pi-lens-history/ held only a 512K non-cache tarball \u2014 NOT a copy. Nearly moved these against no backup."
+      }
+    ]
+  },
+  "the_growth_source": {
+    "file": "~/.config/bifrost/logs.db",
+    "size_bytes": 9433612288,
+    "rows": 3193,
+    "mb_per_row": 2.9,
+    "where_the_bytes_are": {
+      "raw_request_mb": 3681,
+      "content_summary_mb": 755,
+      "params_mb": 272,
+      "tools_mb": 271,
+      "raw_response_mb": 141
+    },
+    "daily_gb": {
+      "2026-08-01": 0.0,
+      "2026-08-02": 0.01,
+      "2026-08-03": 0.66,
+      "2026-08-04": 4.35
+    },
+    "attribution": "2271 of 3193 rows are today. The gateway stores my full prompt verbatim on every cron tick."
+  },
+  "fix_applied": {
+    "setting": "log_retention_days",
+    "from": 365,
+    "to": 3,
+    "also": "log store config retention_days was 0 (no expiry at all) -> 3",
+    "verified": "re-read from the RUNNING process via GET /api/config, not from the exit code"
+  },
+  "two_things_i_nearly_got_wrong": [
+    {
+      "error": "wrote retention straight into config.db and it changed nothing",
+      "caught_by": "the running process still reported 365 while the DB said 7",
+      "lesson": "config.db is read at startup; /api/config is the authority. A DB write is not an applied setting."
+    },
+    {
+      "error": "set retention to 7 days and would have called it fixed",
+      "caught_by": "sizing the steady state \u2014 7 days x 4.35 GB/day = 30.4 GB against 28 GB free",
+      "lesson": "my own fix still filled the disk. 3 days converges to ~13 GB."
+    }
+  ],
+  "not_claimed": "This reclaims NOTHING from the existing 9.43 GB today. The corpus spans 2.95 days, so a 3-day window evicts almost nothing yet. It bounds future growth; it does not shrink the file now.",
+  "answers_an_open_question": {
+    "was": "disable_content_logging not applied, gateway-side override header contract unknown",
+    "now": "allow_per_request_content_storage_override = 0 and allow_per_request_raw_override = 0. The per-request header could never have worked \u2014 the gateway forbids per-request overrides outright. The contract is not unknown; it is disabled.",
+    "left_undone": "disable_content_logging is still 0. That is an observability policy, Shaan's call, not housekeeping."
+  },
+  "config_backed_up": "librarian-vault/bifrost-config/config-20260804T181804Z.db (.backup, quick_check(1) ok)",
+  "derivations": {}
+}
