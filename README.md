@@ -21,6 +21,21 @@ connected to evidence without becoming a corpus warehouse or an execution
 runtime. This agent is that question being answered by doing rather than
 designing.
 
+## Running it
+
+```
+npm run verify              # the gate: rebuilds the observatory, then runs all four checks
+npm run observatory:build   # regenerate observatory/snapshot.json and public/index.html
+npm run observatory:serve   # serve public/ on 127.0.0.1:8765 (+ tailnet if configured)
+npm run review:packet       # REVIEW-PACKET.md, every claim with quotes resolved live
+npm run audit:numbers       # timestamps and declared derivations, re-derived from source
+npm run refresh:evaluate    # ledger drift, derived from git history not asserted
+./scripts/minimax-cache-route.sh status   # routing + live cache probe (apply needs approval)
+```
+
+`npm run verify` must exit 0 before any push. It rebuilds the observatory first, so
+a stale page cannot survive a passing gate.
+
 ## What it may not do
 
 Never delete. Never push to a public registry without the verification gate

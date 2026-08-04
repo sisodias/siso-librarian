@@ -1,9 +1,13 @@
 {
   "scripts": {
-    "verify": "node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs",
+    "verify": "node scripts/build-observatory.mjs && node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs",
     "refresh:evaluate": "node scripts/evaluate-refresh.mjs",
     "audit:numbers": "node scripts/audit-asserted-numbers.mjs",
-    "review:packet": "node scripts/build-review-packet.mjs"
+    "review:packet": "node scripts/build-review-packet.mjs",
+    "observatory:build": "node scripts/build-observatory.mjs",
+    "observatory:serve": "node scripts/serve-observatory.mjs",
+    "ia:probe": "node scripts/probe-ia-metadata.mjs",
+    "mm:bulk": "node scripts/mm-bulk-runner.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
