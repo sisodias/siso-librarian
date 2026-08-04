@@ -1,0 +1,43 @@
+{
+  "date": "2026-08-03",
+  "thread": "passage-index-vault-backup",
+  "status": "complete_verified",
+  "source": "/Users/shaansisodia/passages.sqlite",
+  "destination": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/passage-index/passages.sqlite",
+  "before": {
+    "verified_vault_copies": 0,
+    "source_bytes": 24253587456,
+    "passages": 41501325,
+    "books": 77540,
+    "root_available": "24Gi",
+    "vault_available": "3.8Ti",
+    "vault_used": "745Gi"
+  },
+  "after": {
+    "verified_vault_copies": 1,
+    "source_bytes": 24253587456,
+    "destination_bytes": 24253587456,
+    "bytes_equal": true,
+    "root_available": "23Gi",
+    "vault_available": "3.8Ti",
+    "vault_used": "768Gi"
+  },
+  "checksums": {
+    "algorithm": "sha256",
+    "source": "5cddf0c2d59be8d68f686f1518d5524b34f0aa0c9d4136d546b68502a950ad7a",
+    "destination": "5cddf0c2d59be8d68f686f1518d5524b34f0aa0c9d4136d546b68502a950ad7a",
+    "match": true
+  },
+  "transfer": {
+    "method": "rsync -ah --partial --inplace",
+    "elapsed": "11m22s",
+    "average_throughput": "33.88MB/s"
+  },
+  "artifact_verification": {
+    "note": "Exit code alone is not proof. Verified the copy by opening it read-only and querying it.",
+    "vault_copy_book_body_count": 77540,
+    "vault_copy_sample_passage_row": "gid=10000 seq=0 start=845 end=1312 chars=467",
+    "source_mutated": false,
+    "source_deleted": false
+  }
+}
