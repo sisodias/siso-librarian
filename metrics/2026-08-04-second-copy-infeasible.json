@@ -1,0 +1,27 @@
+{
+  "measured_at": "2026-08-04T12:17:32Z",
+  "question": "GQ-006",
+  "question_asked": "Is a second independent copy of the vault achievable from this machine?",
+  "answer": "No. Every candidate is either the same physical device or unreachable.",
+  "candidates_tested": [
+    {
+      "target": "/Volumes/.timemachine/* snapshots",
+      "free": "3.8Ti",
+      "verdict": "SAME DEVICE. Backed by /dev/disk5s2 \u2014 identical to the vault. The matching 3.8Ti free figure was the tell; df alone would have made these look like independent storage."
+    },
+    {
+      "target": "/Volumes/SISO-STORAGE-VAULT.ssd-copy-20260803",
+      "free": "35 GB",
+      "verdict": "THE INTERNAL DRIVE. /dev/disk3s5 is Macintosh HD - Data, the same disk root runs on. Copying here protects against nothing and consumes the 18Gi I have been trying to preserve."
+    },
+    {
+      "target": "tailnet peers",
+      "verdict": "ALL OFFLINE. Six peers, every one offline \u2014 same dead link as the mailbox."
+    }
+  ],
+  "size_required": "45 GB (librarian-vault total)",
+  "root_free": "18Gi",
+  "conclusion": "The single-volume risk is real and NOT fixable from here. It needs hardware Shaan controls: a second external disk, or a reachable remote with 45 GB. Recording the measurement rather than inventing a copy that would live on the drive it is meant to protect against.",
+  "what_would_be_worse": "Copying the vault to /Volumes/SISO-STORAGE-VAULT.ssd-copy-20260803 would LOOK like redundancy in any directory listing while being a second copy on the failing-together device \u2014 and it would consume 45 GB of an 18Gi budget, which it cannot even fit.",
+  "derivations": {}
+}

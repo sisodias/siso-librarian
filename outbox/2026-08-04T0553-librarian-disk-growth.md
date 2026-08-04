@@ -83,6 +83,35 @@ or caps body size; trimming old rows does nothing.
 So the options are yours, and now safely reversible: the log is on the vault, so
 truncating the live copy loses nothing.
 
+THE VAULT IS A SINGLE POINT OF FAILURE (needs hardware, not effort)
+
+Every database on this machine now has a verified vault copy — 9 backed up, 4
+proven redundant, 2 corrupt and flagged. All nine copies are on ONE external
+volume. One dropped drive and they go together.
+
+I checked whether a second independent copy is achievable from here. It is not:
+
+  /Volumes/.timemachine/* snapshots   SAME DEVICE — /dev/disk5s2, identical to
+                                      the vault. Both report 3.8Ti free, which
+                                      is the tell; df alone makes them look
+                                      like separate storage.
+
+  SISO-STORAGE-VAULT.ssd-copy-*       THE INTERNAL DRIVE — /dev/disk3s5 is
+                                      Macintosh HD - Data, the disk root runs
+                                      on. Copying there protects against
+                                      nothing and eats the 18Gi I have been
+                                      preserving.
+
+  tailnet peers                       ALL SIX OFFLINE.
+
+45 GB is what a second copy needs. There is nowhere on this machine to put it
+that would survive the failure it is meant to protect against.
+
+This needs hardware you control — a second external disk, or a reachable remote
+with 45 GB free. I am not creating a copy that lives on the drive it is
+supposed to insure against; that would read as redundancy in any directory
+listing while being none.
+
 ONE CORRUPT DATABASE FOUND (not urgent, not Library data)
 
 While surveying what has no backup I opened every database under foundry-data.
