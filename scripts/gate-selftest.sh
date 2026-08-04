@@ -159,6 +159,15 @@ p='observatory/snapshot.json'
 d=json.load(open(p)); d['god_questions']['total']=99
 json.dump(d,open(p,'w'),indent=2)"
 
+# Evidence that cannot be READ is worse than evidence that disagrees, and it
+# used to vanish from the audit entirely — an unparseable metrics file was
+# skipped with no trace, so a claim grounded in it looked fully checked.
+check "audit catches unparseable evidence a claim grounds in" \
+  "metrics/2026-08-04-gq010-underrated-evidence.json" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "
+open('metrics/2026-08-04-gq010-underrated-evidence.json','w').write('{ broken json')"
+
 # The shared path resolver must not silently stop resolving. If resolveLabel
 # returned undefined for everything, every declared derivation would be skipped
 # and the audit would report success having checked nothing — the exact shape of

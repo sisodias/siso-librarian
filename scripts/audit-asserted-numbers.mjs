@@ -297,7 +297,17 @@ if (existsSync(SNAPSHOT)) {
     // call sites and got the prefix wrong at two of them — each wrong copy
     // agreeing with itself rather than erroring.
     const asserted = resolveLabel(snap, label);
-    if (typeof asserted !== 'number') continue;
+    // A DECLARED derivation whose label does not resolve is the worst case in
+    // this file: someone wrote down how to check a number, and the check
+    // silently does nothing. That is how repo_health.scripts_on_disk sat at 17
+    // against a real 18 for an unknown length of time — skipped, never
+    // compared, and invisible because a skip left no trace.
+    if (typeof asserted !== 'number') {
+      findings.push({ check: 'declared-derivation-unresolvable', file: SNAPSHOT, label,
+        resolved_to: asserted === undefined ? 'undefined' : typeof asserted,
+        note: 'Declared in derivations but its label resolves to no number in the snapshot, so nothing was checked.' });
+      continue;
+    }
     let derived = null;
     try { derived = derive(d); } catch { derived = null; }
     if (derived === null) {
@@ -365,7 +375,16 @@ for (const cf of walk(join(root, 'claims'))) {
 for (const file of metricsFiles) {
   if (!existsSync(file)) continue;
   let doc;
-  try { doc = JSON.parse(readFileSync(file, 'utf8')); } catch { continue; }
+  // An unparseable metrics file used to vanish from this audit entirely. If a
+  // live claim grounds in it, that is a claim whose evidence cannot even be
+  // read — strictly worse than evidence that disagrees, and it was reported as
+  // nothing at all.
+  try { doc = JSON.parse(readFileSync(file, 'utf8')); } catch (err) {
+    findings.push({ check: 'metrics-unparseable', file,
+      grounded: groundedMetrics.has(file),
+      note: `Could not be parsed as JSON: ${String(err.message).slice(0, 120)}` });
+    continue;
+  }
   if (!doc || typeof doc !== 'object') continue;
   // A metrics file with no derivations was SKIPPED SILENTLY, which meant
   // omitting the block bought exemption from this audit. On 2026-08-04 every
@@ -488,6 +507,12 @@ console.log(JSON.stringify({
   metrics_files_seen: metricsFiles.length,
   metrics_files_untracked: untrackedMetrics.length,
   documented_commands_checked: documentedCommands,
+  // Skips, counted. Every silent-skip defect this session shared one property:
+  // the audit reported success while having examined less than it appeared to,
+  // and nothing distinguished "checked and clean" from "never looked". These
+  // two numbers make that distinction visible at a glance.
+  checks_skipped: findings.filter((f) => f.check === 'declared-derivation-unresolvable'
+    || f.check === 'metrics-unparseable').length,
   snapshot_numbers_published: snapshotNumbers,
   snapshot_numbers_undeclared: snapshotUndeclared.length,
   findings,
