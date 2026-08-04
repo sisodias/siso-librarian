@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-04T14:30:43Z",
+  "question": "GQ-008",
+  "action": "fifth independent re-derivation \u2014 the only claim whose evidence is a live experiment, re-run rather than re-queried",
+  "reruns": [
+    {
+      "run": 1,
+      "proxy_cached": 128,
+      "bifrost_cached": 0,
+      "prompt_tokens": 1078
+    },
+    {
+      "run": 2,
+      "proxy_cached": 1024,
+      "bifrost_cached": null,
+      "prompt_tokens": 1078,
+      "note": "immediate re-run, proxy arm only"
+    }
+  ],
+  "finding": "REPRODUCES. Proxy caches, Bifrost does not \u2014 the direction is stable across every run today.",
+  "variance_explained": {
+    "observed": "proxy cached_tokens moved 1024 -> 128 -> 1024 on an IDENTICAL prompt",
+    "cause": "Cache lifetime, not a regression. The 128 was a cold or expiring cache entry; an immediate re-run returned to 1024.",
+    "why_it_matters": "The claim quotes a single number, 2,944 of 3,033. That number is a point observation of a value that legitimately varies with cache age. The DIRECTION \u2014 proxy non-zero, Bifrost exactly zero \u2014 is what reproduces, and it is what the position actually rests on."
+  },
+  "bifrost_arm": "0 cached on every run without exception. Not variance; a flat zero.",
+  "verdict": "CONFIRMED. The gateway defect is real and reproducible on demand. The specific magnitude quoted in the claim should be read as one observation rather than a constant \u2014 cache reads vary with entry age while the zero does not.",
+  "derivations": {}
+}

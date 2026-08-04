@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T14:28:56.076Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T14:33:35.709Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -117,13 +117,13 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-008:cache-block — confidence 0.86, action `proposed`
+## GQ-008:cache-block — confidence 0.88, action `proposed`
 
 **Question.** Which available model should own each recurring work shape after quality, reliability, tool use, latency, quota, and cost are evaluated together?
 
 **Scope.** cost dimension — where prompt caching is lost on the MiniMax path
 
-**Position.** MiniMax's zero cache rate is a gateway defect, not a provider limitation: an identical request with cache_control reads 2,944 of 3,033 prompt tokens from cache through the local proxy and 0 through Bifrost, so the cheap lane's cost disadvantage is recoverable by fixing the routing path rather than by changing which model owns the work.
+**Position.** MiniMax's zero cache rate is a gateway defect, not a provider limitation. Re-run on demand 2026-08-04: an identical request with cache_control reads a non-zero number of prompt tokens from cache through the local proxy and EXACTLY ZERO through Bifrost, on every run. The proxy figure varies with cache entry age — observed 2,944 of 3,033 originally, then 1,024, 128 and 1,024 of 1,078 on later runs — so treat any single magnitude as a point observation. The zero does not vary. The cheap lane's cost disadvantage is therefore recoverable by fixing the routing path rather than by changing which model owns the work.
 
 **Proposed action.** Route MiniMax traffic through the local proxy rather than Bifrost, or fix Bifrost's cache_control forwarding. Measured saving on a 3,033-token prompt is 2,944 cached tokens per repeated call. This changes gateway topology and is not a librarian decision.
 
@@ -131,6 +131,8 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 - `"cached_tokens": 2944` — metrics/2026-08-04-gq008-cache-block-isolated.json [385:406], results[0].cached_tokens
 - `"cache_works": false` — metrics/2026-08-04-gq008-cache-block-isolated.json [548:568], results[1].cache_works
+- `"bifrost_arm": "0 cached on every run without exception` — metrics/2026-08-04-gq008-rerun-variance.json [1157:1212], bifrost_arm
+- `"proxy_cached": 1024` — metrics/2026-08-04-gq008-rerun-variance.json [356:376], reruns[1].proxy_cached
 
 <sub>claims/GQ-008-routing-cache-economics.v2.claim.json · claim:GQ-008.cache-economics.v2</sub>
 

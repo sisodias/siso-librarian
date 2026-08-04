@@ -10,11 +10,11 @@
   },
   "claim": {
     "id": "claim:GQ-008.cache-economics.v2",
-    "position": "MiniMax's zero cache rate is a gateway defect, not a provider limitation: an identical request with cache_control reads 2,944 of 3,033 prompt tokens from cache through the local proxy and 0 through Bifrost, so the cheap lane's cost disadvantage is recoverable by fixing the routing path rather than by changing which model owns the work.",
-    "confidence": 0.86,
+    "position": "MiniMax's zero cache rate is a gateway defect, not a provider limitation. Re-run on demand 2026-08-04: an identical request with cache_control reads a non-zero number of prompt tokens from cache through the local proxy and EXACTLY ZERO through Bifrost, on every run. The proxy figure varies with cache entry age \u2014 observed 2,944 of 3,033 originally, then 1,024, 128 and 1,024 of 1,078 on later runs \u2014 so treat any single magnitude as a point observation. The zero does not vary. The cheap lane's cost disadvantage is therefore recoverable by fixing the routing path rather than by changing which model owns the work.",
+    "confidence": 0.88,
     "status": "proposed",
     "created_at": "2026-08-04T04:25:34Z",
-    "updated_at": "2026-08-04T04:25:34Z",
+    "updated_at": "2026-08-04T14:30:57Z",
     "supersedes": [
       "claim:GQ-008.cache-economics.v1"
     ]
@@ -46,6 +46,34 @@
       "byte_range": {
         "start": 548,
         "end": 568
+      }
+    },
+    {
+      "quote": "\"bifrost_arm\": \"0 cached on every run without exception",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq008-rerun-variance.json",
+        "title": "GQ-008 experiment re-run on demand, with cache-age variance measured"
+      },
+      "locator": "bifrost_arm",
+      "passage_id": "gq008:bifrost-flat-zero",
+      "byte_range": {
+        "start": 1157,
+        "end": 1212
+      }
+    },
+    {
+      "quote": "\"proxy_cached\": 1024",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq008-rerun-variance.json",
+        "title": "GQ-008 experiment re-run on demand, with cache-age variance measured"
+      },
+      "locator": "reruns[1].proxy_cached",
+      "passage_id": "gq008:proxy-rerun",
+      "byte_range": {
+        "start": 356,
+        "end": 376
       }
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T14:28:34.540Z",
+  "generated_at": "2026-08-04T14:33:14.208Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -36,8 +36,8 @@
     "npm_scripts": 18,
     "verify_steps": 6,
     "scripts_on_disk": 20,
-    "metrics_files": 76,
-    "worklogs": 133,
+    "metrics_files": 77,
+    "worklogs": 134,
     "proposals": 17
   },
   "derivations": {
@@ -320,9 +320,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 147,
-    "prompt_tokens": 2694806,
-    "completion_tokens": 65439,
+    "requests": 151,
+    "prompt_tokens": 2699118,
+    "completion_tokens": 65499,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
@@ -445,7 +445,7 @@
     "orphaned_releases": 0
   },
   "disk": {
-    "available": "18Gi",
+    "available": "17Gi",
     "capacity": "50%"
   },
   "awaiting_decision": {
