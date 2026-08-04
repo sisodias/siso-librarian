@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "verify": "node scripts/verify-claim-packets.mjs"
+    "verify": "node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs",
+    "refresh:evaluate": "node scripts/evaluate-refresh.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
