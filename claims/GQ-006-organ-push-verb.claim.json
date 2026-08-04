@@ -10,11 +10,11 @@
   },
   "claim": {
     "id": "claim:GQ-006.push-verb.v1",
-    "position": "Three of the organ's four verbs are evidenced and the fourth is not: gathering, preservation and query all have live receipts, while push into an authorized workflow has never occurred \u2014 zero of five claims carry an approval reference, and the two marked done are changes made to my own repository under my own authority, which is self-authorization rather than authorization.",
-    "confidence": 0.79,
+    "position": "Three of the organ's four verbs are evidenced and the fourth is not. Re-tested live 2026-08-04: gather (90,209 curated owners in the people graph), preserve (22.59 GB vault copy of the passage index present) and query (that copy answers 77,540 book bodies) all have receipts. Push into an authorized workflow has never occurred \u2014 zero of SEVEN live claims carry an approval reference, up from zero of five when this was first written. The one claim marked done changed this repository under my own authority, which is precisely what does not count as an authorized push.",
+    "confidence": 0.86,
     "status": "proposed",
     "created_at": "2026-08-04T04:47:11Z",
-    "updated_at": "2026-08-04T04:47:11Z",
+    "updated_at": "2026-08-04T14:26:14Z",
     "supersedes": []
   },
   "grounding": [
@@ -44,6 +44,34 @@
       "byte_range": {
         "start": 679,
         "end": 708
+      }
+    },
+    {
+      "quote": "\"claims_with_approval_ref\": 0",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq006-rederived.json",
+        "title": "GQ-006 verbs re-tested live, independent of the stored metric"
+      },
+      "locator": "verbs.push.claims_with_approval_ref",
+      "passage_id": "gq006:push-still-zero",
+      "byte_range": {
+        "start": 734,
+        "end": 763
+      }
+    },
+    {
+      "quote": "\"live_claims\": 7",
+      "source": {
+        "kind": "external",
+        "id": "metrics/2026-08-04-gq006-rederived.json",
+        "title": "GQ-006 verbs re-tested live, independent of the stored metric"
+      },
+      "locator": "verbs.push.live_claims",
+      "passage_id": "gq006:denominator-grew",
+      "byte_range": {
+        "start": 771,
+        "end": 787
       }
     }
   ],

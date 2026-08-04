@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-04T14:23:50.366Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-04T14:28:56.076Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -96,13 +96,13 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 ---
 
-## GQ-006:push-verb — confidence 0.79, action `proposed`
+## GQ-006:push-verb — confidence 0.86, action `proposed`
 
 **Question.** How should the information organ continuously gather, preserve, query, and push valuable evidence into authorized agent workflows and self-improvement loops?
 
 **Scope.** which of the organ's four verbs have observed end-to-end receipts on this machine
 
-**Position.** Three of the organ's four verbs are evidenced and the fourth is not: gathering, preservation and query all have live receipts, while push into an authorized workflow has never occurred — zero of five claims carry an approval reference, and the two marked done are changes made to my own repository under my own authority, which is self-authorization rather than authorization.
+**Position.** Three of the organ's four verbs are evidenced and the fourth is not. Re-tested live 2026-08-04: gather (90,209 curated owners in the people graph), preserve (22.59 GB vault copy of the passage index present) and query (that copy answers 77,540 book bodies) all have receipts. Push into an authorized workflow has never occurred — zero of SEVEN live claims carry an approval reference, up from zero of five when this was first written. The one claim marked done changed this repository under my own authority, which is precisely what does not count as an authorized push.
 
 **Proposed action.** Treat the push verb as unbuilt rather than partially built. Adding an approval_ref field to the claim contract is cheap and would be theatre until a second party can actually grant one; the binding constraint is a reachable approver, not a schema.
 
@@ -110,6 +110,8 @@ Every claim states a position, a confidence, and an action. The useful review is
 
 - `"claims_with_approval_ref": 0` — metrics/2026-08-04-gq006-organ-receipts.json [819:848], organ_verbs.push.claims_with_approval_ref
 - `"vault_copy_book_body": 77540` — metrics/2026-08-04-gq006-organ-receipts.json [679:708], organ_verbs.query.vault_copy_book_body
+- `"claims_with_approval_ref": 0` — metrics/2026-08-04-gq006-rederived.json [734:763], verbs.push.claims_with_approval_ref
+- `"live_claims": 7` — metrics/2026-08-04-gq006-rederived.json [771:787], verbs.push.live_claims
 
 <sub>claims/GQ-006-organ-push-verb.claim.json · claim:GQ-006.push-verb.v1</sub>
 

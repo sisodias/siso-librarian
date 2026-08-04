@@ -1,0 +1,42 @@
+{
+  "measured_at": "2026-08-04T14:25:38Z",
+  "question": "GQ-006",
+  "action": "fourth independent re-derivation \u2014 the organ verbs, tested live rather than from the stored metric",
+  "verbs": {
+    "gather": {
+      "receipt": "curated awesome-cited owners in the people graph",
+      "value": 90209,
+      "verified": "re-derived from person_topic"
+    },
+    "preserve": {
+      "receipt": "vault copy of the passage index",
+      "value": "22.59 GB present",
+      "verified": "file exists on the external volume"
+    },
+    "query": {
+      "receipt": "preserved copy answers",
+      "value": 77540,
+      "verified": "book_body count from the vault copy with immutable=1"
+    },
+    "push": {
+      "receipt": "none",
+      "claims_with_approval_ref": 0,
+      "live_claims": 7,
+      "verified": "enumerated every live claim; not one carries approval_ref or approved_by"
+    }
+  },
+  "verdict": "CONFIRMED and STRENGTHENED. The claim says \"zero of five claims carry an approval reference\". There are now SEVEN live claims and the count is still zero. Growing the denominator without moving the numerator is stronger evidence for the position than the original.",
+  "staleness_found": {
+    "claim_says": "five claims",
+    "actual": "seven live claims",
+    "note": "The assertion is right and its arithmetic is out of date. Corrected in the position rather than left to drift."
+  },
+  "the_one_done_claim": "GQ-009 is marked done. Its action was a change to this repository under my own authority \u2014 which is exactly what the claim identifies as NOT a push into an authorized workflow. The exception proves the position rather than undermining it.",
+  "derivations": {
+    "verbs.gather.value": {
+      "kind": "sqlite",
+      "source": "~/foundry-data/domains/people/people_v2.sqlite",
+      "query": "select count(*) from person_topic where scheme='curated' and topic='awesome-cited';"
+    }
+  }
+}
