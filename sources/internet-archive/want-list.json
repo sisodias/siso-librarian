@@ -1,205 +1,366 @@
 {
   "schema_version": "ia-want-list-v1",
-  "generated_at": "2026-08-04T06:21:18Z",
-  "rationale": "Gutenberg is already loaded, so the value in IA is what Gutenberg lacks. CHARTER tier-1 names essays, letters and speeches (\"god source\") and century-old journalism. This want-list targets exactly those and excludes Gutenberg mirrors, which appear in IA results and would duplicate the corpus.",
+  "generated_at": "2026-08-04T06:30:55Z",
+  "supersedes": "want-list without language filter (2026-08-04); half its items were 18th-century Polish speeches",
+  "rationale": "Gutenberg is loaded, so IA value is what Gutenberg lacks: CHARTER tier-1 essays/letters/speeches and century-old journalism. language:eng is now required \u2014 without it 51% of the essays pool (1,598 -> 782) was non-English, and IA OCR degrades on non-Latin scripts per SOURCES.md.",
   "query_totals": {
-    "essays-letters-speeches": 1598,
-    "periodicals-1880-1930": 3515
+    "essays-letters-speeches": 782,
+    "periodicals-1880-1930": 2164
   },
+  "gutenberg_mirrors_excluded": 1,
   "items": [
     {
       "identifier": "caargm_000284",
       "title": "Letter to Alice from Uncle Fred, 1918",
       "year": 1918,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451",
-      "title": "Mowa w Dzien Rocznicy Otwarcia Towarzystwa Do Ksi\u0105g Elementarnych na Sessyi Dnia 7. Marca ",
-      "year": 1782,
+      "identifier": "caargm_000709",
+      "title": "Hisako Denda Envelope from Japan, 1996",
+      "year": 1996,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442",
-      "title": "G\u0142os Jasnie Wielmoznego Juliana Ursyna Niemcewicza, Pos\u0142a Inflantskiego, na Sessyi Seymowe",
-      "year": 1790,
+      "identifier": "caargm_000611",
+      "title": "Archbald Letter to Edith Grandy, 1917",
+      "year": 1917,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064",
-      "title": "Mowa Jasnie Oswieconego Xi\u0105z\u0119cia Jmci Lubomirskiego Marsza\u0142ka W. Kor. na Sessyi Seymowey D",
-      "year": 1774,
+      "identifier": "caargm_000244",
+      "title": "Elizabeth Neyman Nurses Club Letter to Edith",
+      "year": 1898,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149",
-      "title": "Mowa Do N. M. Stanis\u0142awa Szcz\u0119snego Potockiego ..., witai\u0105c go na W W. N.",
-      "year": 1785,
+      "identifier": "willan-72743",
+      "title": "An essay on the surgical treatment of h\u00e6morrhoidal tumours",
+      "year": 1854,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381",
-      "title": "Przymowienie Si\u0119 Ja\u015bnie Wielmo\u017cnego Jmci Pana Antoniego Na\u0142\u0119cz Ma\u0142achowskiego Woiewody Gen",
-      "year": 1791,
+      "identifier": "caargm_000212",
+      "title": "Letter to Edith Hartzell, June 1896",
+      "year": 1896,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934",
-      "title": "G\u0142os Ja\u015bnie Wielmo\u017cnego hrabiego Bieli\u0144skiego, senatora wojewody, prezesa S\u0105du Seymowego K",
-      "year": 1828,
+      "identifier": "s1id13404290",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1748.",
+      "year": 1748,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605",
-      "title": "G\u0142os Jasnje Oswjeconego Xj\u0119cja Giedroycia Biskupa Zmudzkiego Na Sessyi Seymowey Dnia 2. Wr",
-      "year": 1790,
+      "identifier": "caargm_000485",
+      "title": "L.E. Crosier's Christmas Letter, 1911",
+      "year": 1911,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971",
-      "title": "Mowa Zambrzyckiego, Pos\u0142a Nurskiego, Na Sessyi Seymowey d. 15. Mca Listopada R. 1791. O pr",
-      "year": 1791,
+      "identifier": "caargm_000277",
+      "title": "Letter Envelope to Mrs. E H. Grandy, 1915",
+      "year": 1915,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253",
-      "title": "G\u0142os Jasnie Wielmoznego Iana Nepomucena Zboinskiego Starosty Mszanskiego, Pos\u0142a Dobrzynski",
-      "year": 1791,
+      "identifier": "caargm_000499",
+      "title": "Dr. Charles Clapp's Description of Land Letter, October 1912",
+      "year": 1912,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_16300_XVIII-2-459_turski-podziekowanie_o_3985",
-      "title": "Podzi\u0119kowanie J.O. Xcia Jmci Felixa Paw\u0142a Turskiego Biskupa Krakowskiego Xcia Siewierskieg",
-      "year": 1791,
+      "identifier": "caargm_000240",
+      "title": "Nurses and Classmates Letter, November 1891",
+      "year": 1891,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_13493_XVIII-2-336_poniatowski-glos-o_4459",
-      "title": "G\u0142os J.O. Xcia Jmci Stanis\u0142awa Poniatowskiego Marsza\u0142ka Rady Nieustai\u0105cey Przy Usprawiedli",
-      "year": 1782,
+      "identifier": "caargm_000379",
+      "title": "October Child Custody Issues Letter From Edith's Sister, 1912",
+      "year": 1912,
+      "language": "eng",
       "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
-      "identifier": "rcin.org.pl.WA248_188510_P-I-1066_epoka16_o_158884",
-      "title": "Epoka : tygodnik po\u015bwi\u0119cony polityce, sprawom spo\u0142ecznym, literaturze i sztuce 1922 N.16",
-      "year": 1922,
-      "tier": "periodicals-1880-1930",
+      "identifier": "caargm_000928",
+      "title": "Southwest Subdividers Notices and Receipts, 1934",
+      "year": 1934,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "caargm_000953",
+      "title": "Letters to Edith Hartzell in Florida, 1898",
+      "year": 1898,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "casdla_000302",
+      "title": "Dear Gail, 1989-04-05, Jess Jessop letter to sister Gail",
+      "year": 1989,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "casdla_000309",
+      "title": "Dear Gail, 1988-06-17, Jess Jessop letter to sister Gail",
+      "year": 1989,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "caargm_000205",
+      "title": "Jennie Hartzell Letter from Ritter's Hall, September 1897",
+      "year": 1897,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "cainmnh_000081",
+      "title": "1943 Letter from Principal Simpson to Sixth Grade, Manzanar",
+      "year": 1943,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "caargm_000248",
+      "title": "August Letter from Archie Hartzell, 1938",
+      "year": 1938,
+      "language": "eng",
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
     },
     {
       "identifier": "labor-092070-0368",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1918,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0699",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1924,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0886",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1928,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0097",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1913,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0098",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1913,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0141",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1913,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0003",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1911,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0685",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1924,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0550",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1921,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0573",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1922,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     },
     {
       "identifier": "labor-092070-0428",
       "title": "American Federation of Labor Weekly News Letter",
       "year": 1919,
+      "language": "eng",
       "tier": "periodicals-1880-1930",
       "rights_evidence": "advancedsearch rights:\"public domain\"",
-      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0429",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1919,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0475",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1920,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0747",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1925,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0926",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1929,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0931",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1929,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0798",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1926,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0868",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1927,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0810",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1926,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0817",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1926,
+      "language": "eng",
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"periodicals\" AND year:[1880 TO 1930]"
     }
   ],
   "contract": "sources/internet-archive/adapter-contract.json",
-  "note": "Rights provenance is carried from the search result per the contract, not inferred from item metadata."
+  "note": "Rights provenance carried from the search result per the contract, not inferred from item metadata."
 }

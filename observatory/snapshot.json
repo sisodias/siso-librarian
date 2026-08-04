@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T06:29:29.142Z",
+  "generated_at": "2026-08-04T06:36:46.379Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -35,8 +35,8 @@
     "npm_scripts": 11,
     "verify_steps": 5,
     "scripts_on_disk": 12,
-    "metrics_files": 33,
-    "worklogs": 66,
+    "metrics_files": 34,
+    "worklogs": 67,
     "proposals": 17
   },
   "derivations": {
@@ -362,7 +362,7 @@
   },
   "disk": {
     "available": "20Gi",
-    "capacity": "46%"
+    "capacity": "47%"
   },
   "awaiting_decision": {
     "count": 6,

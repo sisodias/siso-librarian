@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-08-04T06:22:44.451Z",
+  "generated_at": "2026-08-04T06:33:44.773Z",
   "identifiers_checked": 10,
   "metadata_ok": 10,
   "public_domain_signal": 10,
   "djvu_txt_found": 10,
-  "head_ok": 10,
-  "accepted": 7,
+  "head_ok": 4,
+  "accepted": 1,
   "results": [
     {
       "id": "caargm_000284",
       "metadata_url": "https://archive.org/metadata/caargm_000284",
       "metadata_status": 200,
-      "elapsed_ms": 4699,
+      "elapsed_ms": 3843,
       "mediatype": "texts",
       "public_domain_signal": true,
       "djvu_txt": {
@@ -22,6 +22,132 @@
         "url": "https://archive.org/download/caargm_000284/caargm_000284_access_djvu.txt"
       },
       "head": {
+        "status": 500,
+        "content_length": 170,
+        "content_type": null
+      },
+      "decision": "review"
+    },
+    {
+      "id": "caargm_000709",
+      "metadata_url": "https://archive.org/metadata/caargm_000709",
+      "metadata_status": 200,
+      "elapsed_ms": 3283,
+      "mediatype": "texts",
+      "public_domain_signal": true,
+      "djvu_txt": {
+        "name": "caargm_000709_access_djvu.txt",
+        "format": "DjVuTXT",
+        "size": 239,
+        "md5": "218609bcd17c334ebfbf871eb789c6e1",
+        "url": "https://archive.org/download/caargm_000709/caargm_000709_access_djvu.txt"
+      },
+      "head": {
+        "status": 500,
+        "content_length": 170,
+        "content_type": null
+      },
+      "decision": "review"
+    },
+    {
+      "id": "caargm_000611",
+      "metadata_url": "https://archive.org/metadata/caargm_000611",
+      "metadata_status": 200,
+      "elapsed_ms": 2701,
+      "mediatype": "texts",
+      "public_domain_signal": true,
+      "djvu_txt": {
+        "name": "caargm_000611_access_djvu.txt",
+        "format": "DjVuTXT",
+        "size": 1606,
+        "md5": "0884a027b2821dcc41df9b1968f5ac06",
+        "url": "https://archive.org/download/caargm_000611/caargm_000611_access_djvu.txt"
+      },
+      "head": {
+        "status": 500,
+        "content_length": 170,
+        "content_type": null
+      },
+      "decision": "review"
+    },
+    {
+      "id": "caargm_000244",
+      "metadata_url": "https://archive.org/metadata/caargm_000244",
+      "metadata_status": 200,
+      "elapsed_ms": 2897,
+      "mediatype": "texts",
+      "public_domain_signal": true,
+      "djvu_txt": {
+        "name": "caargm_000244_access_djvu.txt",
+        "format": "DjVuTXT",
+        "size": 250,
+        "md5": "cff1801a26c42a8cf7642a2c79854f18",
+        "url": "https://archive.org/download/caargm_000244/caargm_000244_access_djvu.txt"
+      },
+      "head": {
+        "status": 500,
+        "content_length": 170,
+        "content_type": null
+      },
+      "decision": "review"
+    },
+    {
+      "id": "willan-72743",
+      "metadata_url": "https://archive.org/metadata/willan-72743",
+      "metadata_status": 200,
+      "elapsed_ms": 2248,
+      "mediatype": "texts",
+      "public_domain_signal": true,
+      "djvu_txt": {
+        "name": "willan-72743_djvu.txt",
+        "format": "DjVuTXT",
+        "size": 54194,
+        "md5": "e8631cc26b6aecb85d55cf9cc87b8825",
+        "url": "https://archive.org/download/willan-72743/willan-72743_djvu.txt"
+      },
+      "head": {
+        "status": 500,
+        "content_length": 170,
+        "content_type": null
+      },
+      "decision": "review"
+    },
+    {
+      "id": "caargm_000212",
+      "metadata_url": "https://archive.org/metadata/caargm_000212",
+      "metadata_status": 200,
+      "elapsed_ms": 2049,
+      "mediatype": "texts",
+      "public_domain_signal": true,
+      "djvu_txt": {
+        "name": "caargm_000212_access_djvu.txt",
+        "format": "DjVuTXT",
+        "size": 524,
+        "md5": "962db5a85e47543c50976cee516c2ed8",
+        "url": "https://archive.org/download/caargm_000212/caargm_000212_access_djvu.txt"
+      },
+      "head": {
+        "status": 200,
+        "content_length": 524,
+        "content_type": "text/plain; charset=utf-8"
+      },
+      "decision": "review"
+    },
+    {
+      "id": "s1id13404290",
+      "metadata_url": "https://archive.org/metadata/s1id13404290",
+      "metadata_status": 200,
+      "elapsed_ms": 3518,
+      "mediatype": "texts",
+      "public_domain_signal": true,
+      "djvu_txt": {
+        "name": "s1id13404290_djvu.txt",
+        "format": "DjVuTXT",
+        "size": 3017279,
+        "md5": "9395ab0b6443208710be0380b8c73367",
+        "url": "https://archive.org/download/s1id13404290/s1id13404290_djvu.txt"
+      },
+      "head": {
         "status": 200,
         "content_length": 0,
         "content_type": "text/plain; charset=utf-8"
@@ -29,60 +155,39 @@
       "decision": "review"
     },
     {
-      "id": "rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451",
+      "id": "caargm_000485",
+      "metadata_url": "https://archive.org/metadata/caargm_000485",
       "metadata_status": 200,
-      "elapsed_ms": 3460,
+      "elapsed_ms": 2714,
       "mediatype": "texts",
       "public_domain_signal": true,
       "djvu_txt": {
-        "name": "WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_djvu.txt",
+        "name": "caargm_000485_access_djvu.txt",
         "format": "DjVuTXT",
-        "size": 36335,
-        "md5": "a365913f9b81284ead6bf611f4e0e047",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451/WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_djvu.txt"
+        "size": 2183,
+        "md5": "eae2b1d3f73b45049e5fc61c75cae33f",
+        "url": "https://archive.org/download/caargm_000485/caargm_000485_access_djvu.txt"
       },
       "head": {
         "status": 200,
-        "content_length": 36335,
+        "content_length": 2183,
         "content_type": "text/plain; charset=utf-8"
       },
       "decision": "accept"
     },
     {
-      "id": "rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442",
+      "id": "caargm_000277",
+      "metadata_url": "https://archive.org/metadata/caargm_000277",
       "metadata_status": 200,
-      "elapsed_ms": 2916,
+      "elapsed_ms": 3818,
       "mediatype": "texts",
       "public_domain_signal": true,
       "djvu_txt": {
-        "name": "WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_djvu.txt",
+        "name": "caargm_000277_access_djvu.txt",
         "format": "DjVuTXT",
-        "size": 19695,
-        "md5": "45a384937144c1da0ece59042430dd0f",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442/WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_djvu.txt"
-      },
-      "head": {
-        "status": 200,
-        "content_length": 19695,
-        "content_type": "text/plain; charset=utf-8"
-      },
-      "decision": "accept"
-    },
-    {
-      "id": "rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064",
-      "metadata_status": 200,
-      "elapsed_ms": 4837,
-      "mediatype": "texts",
-      "public_domain_signal": true,
-      "djvu_txt": {
-        "name": "WA248_18619_XVIII-2-344_lubomirski-mowa-o_djvu.txt",
-        "format": "DjVuTXT",
-        "size": 8616,
-        "md5": "bc82a17fccc4e414a6c78247811579ab",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064/WA248_18619_XVIII-2-344_lubomirski-mowa-o_djvu.txt"
+        "size": 0,
+        "md5": "d41d8cd98f00b204e9800998ecf8427e",
+        "url": "https://archive.org/download/caargm_000277/caargm_000277_access_djvu.txt"
       },
       "head": {
         "status": 200,
@@ -92,130 +197,25 @@
       "decision": "review"
     },
     {
-      "id": "rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149",
+      "id": "caargm_000499",
+      "metadata_url": "https://archive.org/metadata/caargm_000499",
       "metadata_status": 200,
-      "elapsed_ms": 3226,
+      "elapsed_ms": 3561,
       "mediatype": "texts",
       "public_domain_signal": true,
       "djvu_txt": {
-        "name": "WA248_189389_XVIII-1-1365_potocki-mowa_o_djvu.txt",
+        "name": "caargm_000499_access_djvu.txt",
         "format": "DjVuTXT",
-        "size": 11746,
-        "md5": "75ee527218aa02d1fa142d777f8d2bbe",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149/WA248_189389_XVIII-1-1365_potocki-mowa_o_djvu.txt"
+        "size": 310,
+        "md5": "b580ac48eb68b6566c30dc7f032a7271",
+        "url": "https://archive.org/download/caargm_000499/caargm_000499_access_djvu.txt"
       },
       "head": {
-        "status": 200,
-        "content_length": 11746,
-        "content_type": "text/plain; charset=utf-8"
-      },
-      "decision": "accept"
-    },
-    {
-      "id": "rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381",
-      "metadata_status": 200,
-      "elapsed_ms": 13325,
-      "mediatype": "texts",
-      "public_domain_signal": true,
-      "djvu_txt": {
-        "name": "WA248_21438_XVIII-2-890_malachow-przymowienie-o_djvu.txt",
-        "format": "DjVuTXT",
-        "size": 5208,
-        "md5": "2b5a8b1b7b2b654c235b607bcf715240",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381/WA248_21438_XVIII-2-890_malachow-przymowienie-o_djvu.txt"
-      },
-      "head": {
-        "status": 200,
-        "content_length": 5208,
-        "content_type": "text/plain; charset=utf-8"
-      },
-      "decision": "accept"
-    },
-    {
-      "id": "rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934",
-      "metadata_status": 200,
-      "elapsed_ms": 18176,
-      "mediatype": "texts",
-      "public_domain_signal": true,
-      "djvu_txt": {
-        "name": "WA248_275484_F-5423_bielins-glos_o_djvu.txt",
-        "format": "DjVuTXT",
-        "size": 8338,
-        "md5": "e872c1b0ca83df290f1e51094f28ab9b",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934/WA248_275484_F-5423_bielins-glos_o_djvu.txt"
-      },
-      "head": {
-        "status": 200,
-        "content_length": 0,
-        "content_type": "text/plain; charset=utf-8"
+        "status": 500,
+        "content_length": 170,
+        "content_type": null
       },
       "decision": "review"
-    },
-    {
-      "id": "rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605",
-      "metadata_status": 200,
-      "elapsed_ms": 2623,
-      "mediatype": "texts",
-      "public_domain_signal": true,
-      "djvu_txt": {
-        "name": "WA248_53217_XVIII-2-843_giedroyc-glos_o_djvu.txt",
-        "format": "DjVuTXT",
-        "size": 5499,
-        "md5": "6e3e21b52947dce18c87ece12c78e2b3",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605/WA248_53217_XVIII-2-843_giedroyc-glos_o_djvu.txt"
-      },
-      "head": {
-        "status": 200,
-        "content_length": 5499,
-        "content_type": "text/plain; charset=utf-8"
-      },
-      "decision": "accept"
-    },
-    {
-      "id": "rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971",
-      "metadata_status": 200,
-      "elapsed_ms": 4706,
-      "mediatype": "texts",
-      "public_domain_signal": true,
-      "djvu_txt": {
-        "name": "WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_djvu.txt",
-        "format": "DjVuTXT",
-        "size": 14471,
-        "md5": "a4bf26f5a8032cab68b44f4bffc8f778",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971/WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_djvu.txt"
-      },
-      "head": {
-        "status": 200,
-        "content_length": 14471,
-        "content_type": "text/plain; charset=utf-8"
-      },
-      "decision": "accept"
-    },
-    {
-      "id": "rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253",
-      "metadata_url": "https://archive.org/metadata/rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253",
-      "metadata_status": 200,
-      "elapsed_ms": 5995,
-      "mediatype": "texts",
-      "public_domain_signal": true,
-      "djvu_txt": {
-        "name": "WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_djvu.txt",
-        "format": "DjVuTXT",
-        "size": 6186,
-        "md5": "bb9c6ecf6355581614d6003bfe19bfc0",
-        "url": "https://archive.org/download/rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253/WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_djvu.txt"
-      },
-      "head": {
-        "status": 200,
-        "content_length": 6186,
-        "content_type": "text/plain; charset=utf-8"
-      },
-      "decision": "accept"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
-  "checked": 24,
-  "distinct_author": 12,
+  "checked": 39,
+  "distinct_author": 39,
   "review_possible_duplicate": 0,
-  "no_creator_metadata": 12,
+  "no_creator_metadata": 0,
   "library_authors_indexed": 35312,
   "results": [
     {
@@ -15,88 +15,166 @@
       "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451",
-      "title": "Mowa w Dzien Rocznicy Otwarcia Towarzystwa Do Ksiąg Elementarnych na Sessyi Dnia 7. Marca ",
-      "ia_creators": [],
+      "identifier": "caargm_000709",
+      "title": "Hisako Denda Envelope from Japan, 1996",
+      "ia_creators": [
+        "Denda, Hisako"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442",
-      "title": "Głos Jasnie Wielmoznego Juliana Ursyna Niemcewicza, Posła Inflantskiego, na Sessyi Seymowe",
-      "ia_creators": [],
+      "identifier": "caargm_000611",
+      "title": "Archbald Letter to Edith Grandy, 1917",
+      "ia_creators": [
+        "Archbald, M. S."
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064",
-      "title": "Mowa Jasnie Oswieconego Xiązęcia Jmci Lubomirskiego Marszałka W. Kor. na Sessyi Seymowey D",
-      "ia_creators": [],
+      "identifier": "caargm_000244",
+      "title": "Elizabeth Neyman Nurses Club Letter to Edith",
+      "ia_creators": [
+        "Neyman, Elizabeth"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149",
-      "title": "Mowa Do N. M. Stanisława Szczęsnego Potockiego ..., witaiąc go na W W. N.",
-      "ia_creators": [],
+      "identifier": "willan-72743",
+      "title": "An essay on the surgical treatment of hæmorrhoidal tumours",
+      "ia_creators": [
+        "Lee, Henry, 1817-11 June 1898"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381",
-      "title": "Przymowienie Się Jaśnie Wielmożnego Jmci Pana Antoniego Nałęcz Małachowskiego Woiewody Gen",
-      "ia_creators": [],
+      "identifier": "caargm_000212",
+      "title": "Letter to Edith Hartzell, June 1896",
+      "ia_creators": [
+        "[J. N. de M.]"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934",
-      "title": "Głos Jaśnie Wielmożnego hrabiego Bielińskiego, senatora wojewody, prezesa Sądu Seymowego K",
-      "ia_creators": [],
+      "identifier": "s1id13404290",
+      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1748.",
+      "ia_creators": [
+        "The London magazine, or, Gentleman's monthly intelligencer."
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605",
-      "title": "Głos Jasnje Oswjeconego Xjęcja Giedroycia Biskupa Zmudzkiego Na Sessyi Seymowey Dnia 2. Wr",
-      "ia_creators": [],
+      "identifier": "caargm_000485",
+      "title": "L.E. Crosier's Christmas Letter, 1911",
+      "ia_creators": [
+        "Crosier, L. E."
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971",
-      "title": "Mowa Zambrzyckiego, Posła Nurskiego, Na Sessyi Seymowey d. 15. Mca Listopada R. 1791. O pr",
-      "ia_creators": [],
+      "identifier": "caargm_000277",
+      "title": "Letter Envelope to Mrs. E H. Grandy, 1915",
+      "ia_creators": [
+        "American National Bank (Monrovia, Calif.)"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253",
-      "title": "Głos Jasnie Wielmoznego Iana Nepomucena Zboinskiego Starosty Mszanskiego, Posła Dobrzynski",
-      "ia_creators": [],
+      "identifier": "caargm_000499",
+      "title": "Dr. Charles Clapp's Description of Land Letter, October 1912",
+      "ia_creators": [
+        "Clapp, Charles R."
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_16300_XVIII-2-459_turski-podziekowanie_o_3985",
-      "title": "Podziękowanie J.O. Xcia Jmci Felixa Pawła Turskiego Biskupa Krakowskiego Xcia Siewierskieg",
-      "ia_creators": [],
+      "identifier": "caargm_000240",
+      "title": "Nurses and Classmates Letter, November 1891",
+      "ia_creators": [
+        "Unknown"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_13493_XVIII-2-336_poniatowski-glos-o_4459",
-      "title": "Głos J.O. Xcia Jmci Stanisława Poniatowskiego Marszałka Rady Nieustaiącey Przy Usprawiedli",
-      "ia_creators": [],
+      "identifier": "caargm_000379",
+      "title": "October Child Custody Issues Letter From Edith's Sister, 1912",
+      "ia_creators": [
+        "Sherwin, Myra Gae"
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
     },
     {
-      "identifier": "rcin.org.pl.WA248_188510_P-I-1066_epoka16_o_158884",
-      "title": "Epoka : tygodnik poświęcony polityce, sprawom społecznym, literaturze i sztuce 1922 N.16",
-      "ia_creators": [],
+      "identifier": "caargm_000928",
+      "title": "Southwest Subdividers Notices and Receipts, 1934",
+      "ia_creators": [
+        "Southwest Subdividers, Ltd."
+      ],
       "author_matches": [],
-      "verdict": "no_creator_metadata"
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "caargm_000953",
+      "title": "Letters to Edith Hartzell in Florida, 1898",
+      "ia_creators": [
+        "Clements, Jessie A. G."
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "casdla_000302",
+      "title": "Dear Gail, 1989-04-05, Jess Jessop letter to sister Gail",
+      "ia_creators": [
+        "Jessop, Robert Hall \"Jess\""
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "casdla_000309",
+      "title": "Dear Gail, 1988-06-17, Jess Jessop letter to sister Gail",
+      "ia_creators": [
+        "Jessop, Robert Hall \"Jess\""
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "caargm_000205",
+      "title": "Jennie Hartzell Letter from Ritter's Hall, September 1897",
+      "ia_creators": [
+        "Hartzell, Jennie"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "cainmnh_000081",
+      "title": "1943 Letter from Principal Simpson to Sixth Grade, Manzanar",
+      "ia_creators": [
+        "United States"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "caargm_000248",
+      "title": "August Letter from Archie Hartzell, 1938",
+      "ia_creators": [
+        "Hartzell, Archie"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
     },
     {
       "identifier": "labor-092070-0368",
@@ -190,6 +268,87 @@
     },
     {
       "identifier": "labor-092070-0428",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0429",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0475",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0747",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0926",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0931",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0798",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0868",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0810",
+      "title": "American Federation of Labor Weekly News Letter",
+      "ia_creators": [
+        "American Federation of Labor"
+      ],
+      "author_matches": [],
+      "verdict": "distinct_author"
+    },
+    {
+      "identifier": "labor-092070-0817",
       "title": "American Federation of Labor Weekly News Letter",
       "ia_creators": [
         "American Federation of Labor"

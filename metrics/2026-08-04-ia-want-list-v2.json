@@ -1,0 +1,37 @@
+{
+  "measured_at": "2026-08-04T06:34:30Z",
+  "thread": "ia-want-list-v2",
+  "language_filter": {
+    "essays_letters_speeches": {
+      "any_language": 1598,
+      "language_eng": 782,
+      "non_english_share_pct": 51.1
+    },
+    "periodicals_1880_1930": {
+      "any_language": 3515,
+      "language_eng": 2164,
+      "non_english_share_pct": 38.4
+    }
+  },
+  "dedup_after_filter": {
+    "checked": 39,
+    "distinct_author": 39,
+    "review_possible_duplicate": 0,
+    "no_creator_metadata": 0,
+    "before_filter": {
+      "checked": 24,
+      "no_creator_metadata": 12
+    }
+  },
+  "contract_probe_after_filter": {
+    "checked": 10,
+    "metadata_ok": 10,
+    "public_domain_signal": 10,
+    "djvu_txt_found": 10,
+    "accepted": 1,
+    "accepted_before_filter": 7
+  },
+  "why_acceptance_fell": "The language filter removed an institutional dump of Polish speeches and replaced it with English archival correspondence \u2014 single-page letters with 239-1,606 byte sidecars. The size/HEAD gate correctly routes those to review. Acceptance fell because the candidates got smaller, not because the gate got stricter; IA also returned HTTP 500 on most HEAD requests in this sample.",
+  "the_real_problem": "subject:\"letters\" matches personal correspondence \u2014 'Letter to Alice from Uncle Fred, 1918' \u2014 not the published letters CHARTER means by 'god source'. Rights, language and format all pass; relevance still fails. collection:americana finds published works ('Antislavery and disunion', 'Miscellanies') but only 2 carry the speeches subject tag, so subject-based querying cannot reach this material at useful scale.",
+  "conclusion": "The want-list is a better probe and still not a corpus plan. Three filters now pass (rights, language, format) and the fourth \u2014 is this the kind of text the Library wants \u2014 has no mechanical expression. IA subject tags are folksonomy, exactly as SOURCES.md warned."
+}
