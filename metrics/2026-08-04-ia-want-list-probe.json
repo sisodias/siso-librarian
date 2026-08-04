@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-04T06:23:25Z",
+  "question": "charter gap 2 \u2014 sources beyond Gutenberg",
+  "want_list": {
+    "path": "sources/internet-archive/want-list.json",
+    "items": 24,
+    "query_totals": {
+      "essays-letters-speeches": 1598,
+      "periodicals-1880-1930": 3515
+    },
+    "targeting": "CHARTER tier-1 categories Gutenberg lacks: essays/letters/speeches, and 1880-1930 periodicals"
+  },
+  "probe": {
+    "identifiers_checked": 10,
+    "metadata_ok": 10,
+    "public_domain_signal": 10,
+    "djvu_txt_found": 10,
+    "accepted": 7,
+    "routed_to_review": 3
+  },
+  "finding": "The contract's core assumption holds on non-Gutenberg material: 10 of 10 want-list identifiers carried a DjVuTXT sidecar and a public-domain rights signal. 7 accepted outright; the rest routed to review on the size/HEAD gate rather than rejected, which is the contract behaving as designed.",
+  "caveat": "Gutenberg mirrors appear in IA search results \u2014 one surfaced in the first query \u2014 so the want-list excludes identifiers matching gutenberg patterns. Without that filter this expansion would partly re-ingest a corpus the Library already holds.",
+  "not_done": "No text was downloaded. This measures the want-list against the contract's before-gates only."
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T06:19:29.833Z",
+  "generated_at": "2026-08-04T06:24:07.993Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -35,8 +35,8 @@
     "npm_scripts": 11,
     "verify_steps": 5,
     "scripts_on_disk": 11,
-    "metrics_files": 31,
-    "worklogs": 64,
+    "metrics_files": 32,
+    "worklogs": 65,
     "proposals": 17
   },
   "derivations": {

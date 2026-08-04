@@ -1,0 +1,205 @@
+{
+  "schema_version": "ia-want-list-v1",
+  "generated_at": "2026-08-04T06:21:18Z",
+  "rationale": "Gutenberg is already loaded, so the value in IA is what Gutenberg lacks. CHARTER tier-1 names essays, letters and speeches (\"god source\") and century-old journalism. This want-list targets exactly those and excludes Gutenberg mirrors, which appear in IA results and would duplicate the corpus.",
+  "query_totals": {
+    "essays-letters-speeches": 1598,
+    "periodicals-1880-1930": 3515
+  },
+  "items": [
+    {
+      "identifier": "caargm_000284",
+      "title": "Letter to Alice from Uncle Fred, 1918",
+      "year": 1918,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_15085_XVIII-2-318_piramowicz-mowa-82-o_4451",
+      "title": "Mowa w Dzien Rocznicy Otwarcia Towarzystwa Do Ksi\u0105g Elementarnych na Sessyi Dnia 7. Marca ",
+      "year": 1782,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_15900_XVIII-2-1483_niemcewicz-glos-16wr-o_4442",
+      "title": "G\u0142os Jasnie Wielmoznego Juliana Ursyna Niemcewicza, Pos\u0142a Inflantskiego, na Sessyi Seymowe",
+      "year": 1790,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_18619_XVIII-2-344_lubomirski-mowa-o_5064",
+      "title": "Mowa Jasnie Oswieconego Xi\u0105z\u0119cia Jmci Lubomirskiego Marsza\u0142ka W. Kor. na Sessyi Seymowey D",
+      "year": 1774,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_189389_XVIII-1-1365_potocki-mowa_o_157149",
+      "title": "Mowa Do N. M. Stanis\u0142awa Szcz\u0119snego Potockiego ..., witai\u0105c go na W W. N.",
+      "year": 1785,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_21438_XVIII-2-890_malachow-przymowienie-o_8381",
+      "title": "Przymowienie Si\u0119 Ja\u015bnie Wielmo\u017cnego Jmci Pana Antoniego Na\u0142\u0119cz Ma\u0142achowskiego Woiewody Gen",
+      "year": 1791,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_275484_F-5423_bielins-glos_o_239934",
+      "title": "G\u0142os Ja\u015bnie Wielmo\u017cnego hrabiego Bieli\u0144skiego, senatora wojewody, prezesa S\u0105du Seymowego K",
+      "year": 1828,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_53217_XVIII-2-843_giedroyc-glos_o_35605",
+      "title": "G\u0142os Jasnje Oswjeconego Xj\u0119cja Giedroycia Biskupa Zmudzkiego Na Sessyi Seymowey Dnia 2. Wr",
+      "year": 1790,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_15850_XVIII-2-312_zambrzycki-mowa-15_o_3971",
+      "title": "Mowa Zambrzyckiego, Pos\u0142a Nurskiego, Na Sessyi Seymowey d. 15. Mca Listopada R. 1791. O pr",
+      "year": 1791,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_12280_XVIII-2-315_glos-zboinskiego-1_o_1253",
+      "title": "G\u0142os Jasnie Wielmoznego Iana Nepomucena Zboinskiego Starosty Mszanskiego, Pos\u0142a Dobrzynski",
+      "year": 1791,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_16300_XVIII-2-459_turski-podziekowanie_o_3985",
+      "title": "Podzi\u0119kowanie J.O. Xcia Jmci Felixa Paw\u0142a Turskiego Biskupa Krakowskiego Xcia Siewierskieg",
+      "year": 1791,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_13493_XVIII-2-336_poniatowski-glos-o_4459",
+      "title": "G\u0142os J.O. Xcia Jmci Stanis\u0142awa Poniatowskiego Marsza\u0142ka Rady Nieustai\u0105cey Przy Usprawiedli",
+      "year": 1782,
+      "tier": "essays-letters-speeches",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND (subject:\"speeches\" OR subject:\"letters\" OR subject:\"essays\")"
+    },
+    {
+      "identifier": "rcin.org.pl.WA248_188510_P-I-1066_epoka16_o_158884",
+      "title": "Epoka : tygodnik po\u015bwi\u0119cony polityce, sprawom spo\u0142ecznym, literaturze i sztuce 1922 N.16",
+      "year": 1922,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0368",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1918,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0699",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1924,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0886",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1928,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0097",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1913,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0098",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1913,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0141",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1913,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0003",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1911,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0685",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1924,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0550",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1921,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0573",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1922,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    },
+    {
+      "identifier": "labor-092070-0428",
+      "title": "American Federation of Labor Weekly News Letter",
+      "year": 1919,
+      "tier": "periodicals-1880-1930",
+      "rights_evidence": "advancedsearch rights:\"public domain\"",
+      "query": "mediatype:texts AND rights:\"public domain\" AND subject:\"periodicals\" AND year:[1880 TO 1930]"
+    }
+  ],
+  "contract": "sources/internet-archive/adapter-contract.json",
+  "note": "Rights provenance is carried from the search result per the contract, not inferred from item metadata."
+}
