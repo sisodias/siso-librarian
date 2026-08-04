@@ -36,7 +36,7 @@ const registryCounts = {
   works: countFiles(join(registry, 'works')),
   releases: countFiles(join(registry, 'releases')),
   source_inventories: countFiles(join(registry, 'source-inventories')),
-  assemblies: countFiles(join(registry, 'assemblies')),
+  assembly_versions: countFiles(join(registry, 'assemblies')),
   snapshot_versions: countFiles(join(registry, 'snapshots')),
   events: countFiles(join(registry, 'events')),
   decisions: countFiles(join(registry, 'decisions')),
@@ -50,14 +50,21 @@ function currentSnapshot() {
   const dir = join(registry, 'snapshots');
   if (!existsSync(dir)) return null;
   const files = sh('find', [dir, '-type', 'f', '-name', '*.json']).split('\n').filter(Boolean);
+  const unreadable = [];
   let best = null;
   for (const f of files) {
     try {
       const d = JSON.parse(readFileSync(f, 'utf8'));
       const n = parseInt(String(d.version || '0'), 10) || 0;
       if (!best || n > best.n) best = { n, version: d.version, name: d.name, releases: (d.releases || []).length, created_at: d.created_at, immutable: d.immutable === true };
-    } catch { /* a malformed snapshot should not break the page */ }
+    } catch {
+      // Never swallow this. A corrupt highest-version file would otherwise make
+      // the page quietly display the previous version as if it were current —
+      // verified: corrupting v36 silently rendered v35 with no warning.
+      unreadable.push(f.split('/').pop());
+    }
   }
+  if (best) best.unreadable_files = unreadable;
   return best;
 }
 const snapshotState = currentSnapshot();
@@ -114,7 +121,7 @@ const derivations = {
   'registry.works': { source: join(registry, 'works'), kind: 'file-count', query: "*.json" },
   'registry.releases': { source: join(registry, 'releases'), kind: 'file-count', query: "*.json" },
   'registry.source_inventories': { source: join(registry, 'source-inventories'), kind: 'file-count', query: "*.json" },
-  'registry.assemblies': { source: join(registry, 'assemblies'), kind: 'file-count', query: "*.json" },
+  'registry.assembly_versions': { source: join(registry, 'assemblies'), kind: 'file-count', query: "*.json" },
   'registry.snapshot_versions': { source: join(registry, 'snapshots'), kind: 'file-count', query: "*.json" },
   'registry.events': { source: join(registry, 'events'), kind: 'file-count', query: "*.json" },
   'registry.decisions': { source: join(registry, 'decisions'), kind: 'file-count', query: "*.json" },
@@ -141,7 +148,7 @@ mkdirSync(join(root, 'public'), { recursive: true });
 writeFileSync(join(root, 'observatory/snapshot.json'), JSON.stringify(snapshot, null, 2) + '\n');
 
 const cards = [
-  ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Source inventories', registryCounts.source_inventories], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
+  ['Works', registryCounts.works], ['Releases', registryCounts.releases], ['Source inventories', registryCounts.source_inventories], ['Library snapshot', snapshotState ? `v${snapshotState.n} · ${snapshotState.releases} rel${snapshotState.unreadable_files?.length ? ` · ${snapshotState.unreadable_files.length} UNREADABLE` : ''}` : 'none'], ['Passages', passageCounts.passages.toLocaleString()], ['Books with passages', passageCounts.books.toLocaleString()],
   ['People', peopleCounts.people.toLocaleString()], ['Content edges', peopleCounts.content_edges.toLocaleString()], ['Topic edges', peopleCounts.topic_edges.toLocaleString()], ['External IDs', peopleCounts.external_ids.toLocaleString()], ['Cross-domain people', peopleCounts.cross_domain_people], ['Identity claims', peopleCounts.identity_claims],
   ['Active questions', claimLayer.portfolio_questions], ['Production claims', claimLayer.production_claims], ['Refresh entries', claimLayer.refresh_entries], ['MiniMax route (24h)', minimaxRouting.measured ? `${minimaxRouting.minimax_8081} · ${minimaxRouting.requests} req` : 'unknown']
 ];
