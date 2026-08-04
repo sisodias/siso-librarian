@@ -1,0 +1,57 @@
+{
+  "measured_at": "2026-08-04T12:38:04Z",
+  "question": "GQ-006",
+  "subject": "the partial-extraction blind spot I named but had not tested",
+  "gap_named": "The <2KB survey cannot see a book with 50 KB locally and 500 KB upstream.",
+  "no_local_oracle": "books.sqlite records Authors, Bookshelves, Issued, Language, LoCC, Subjects, Text#, Title, Type \u2014 no source byte size. So there is no purely local way to compare against the original.",
+  "signature_test": {
+    "method": "A partial extraction leaves body bytes that produced no passages, so bytes-per-passage would spike.",
+    "avg_bytes_per_passage": 697.1,
+    "min": 75,
+    "max": 2397,
+    "books_over_20000_bpp": 0,
+    "reading": "Tight distribution, no outliers. The max is 3.4x the mean, not the order of magnitude a truncated extraction would show."
+  },
+  "band_sample": {
+    "band": "Text media_type, 2-8 KB body \u2014 the range the previous survey missed",
+    "population": 693,
+    "sampled": 6,
+    "sampling": "random",
+    "results": [
+      {
+        "gid": 36584,
+        "local": 6302,
+        "upstream": 6302
+      },
+      {
+        "gid": 27654,
+        "local": 7250,
+        "upstream": 7250
+      },
+      {
+        "gid": 34622,
+        "local": 7970,
+        "upstream": 7970
+      },
+      {
+        "gid": 18341,
+        "local": 4797,
+        "upstream": 4797
+      },
+      {
+        "gid": 16905,
+        "local": 5640,
+        "upstream": 5640
+      },
+      {
+        "gid": 29948,
+        "local": 4779,
+        "upstream": 4779
+      }
+    ],
+    "matches": "6 of 6, byte-exact"
+  },
+  "combined": "Three independent checks now agree: 157/157 exact below 2 KB, 6/6 exact in the 2-8 KB band, and zero bytes-per-passage outliers across all 77,540 books. The extractor is faithful.",
+  "honest_limit": "6 of 693 is a sample, not a survey. A 1-in-100 defect rate would very likely produce six clean draws. What has changed is that the blind spot is now sampled rather than merely acknowledged, and the signature test covers the whole corpus where the fetch test cannot.",
+  "derivations": {}
+}
