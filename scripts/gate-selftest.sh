@@ -159,6 +159,20 @@ p='observatory/snapshot.json'
 d=json.load(open(p)); d['god_questions']['total']=99
 json.dump(d,open(p,'w'),indent=2)"
 
+# A derivation that does not read the source it names. This is the defect that
+# appeared four times in one session — a checker keyed differently from the
+# thing it checks — and it always agreed rather than erroring, so only a
+# sensitivity test can see it.
+check "sensitivity catches a derivation that reads nothing" \
+  "observatory/snapshot.json" \
+  "node scripts/derivation-sensitivity.mjs" \
+  "
+import json
+p='observatory/snapshot.json'
+d=json.load(open(p))
+d['derivations']['fake.insensitive']={'kind':'file-count','source':'scripts','query':'*.nonexistent-ext'}
+json.dump(d,open(p,'w'),indent=2)"
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

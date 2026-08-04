@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "verify": "node scripts/build-observatory.mjs && node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs",
+    "verify": "node scripts/build-observatory.mjs && node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs && node scripts/derivation-sensitivity.mjs",
     "refresh:evaluate": "node scripts/evaluate-refresh.mjs",
     "audit:numbers": "node scripts/audit-asserted-numbers.mjs",
     "review:packet": "node scripts/build-review-packet.mjs",
@@ -14,7 +14,8 @@
     "ia:dedup": "node scripts/ia-dedup-check.mjs",
     "movement:baseline": "node scripts/movement-baseline.mjs",
     "gq008:experiment": "bash scripts/gq008-cache-experiment.sh",
-    "gates:selftest": "bash scripts/gate-selftest.sh"
+    "gates:selftest": "bash scripts/gate-selftest.sh",
+    "derivations:sensitivity": "node scripts/derivation-sensitivity.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

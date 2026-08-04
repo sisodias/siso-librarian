@@ -36,6 +36,7 @@ npm run movement:baseline   # GQ-005 naive baseline: language share by repo-crea
 npm run gq008:experiment    # re-run the cache experiment (issues 4 live requests; --write to record)
 npm run ia:probe            # re-run the IA metadata probe (live network; gates on contract, not census)
 npm run gates:selftest      # prove every gate still fails on the defect it exists to catch
+npm run derivations:sensitivity # prove each derivation actually reads the source it names
 npm run mailbox:flush       # deliver queued escalations (no-op when the link is down)
 ```
 
