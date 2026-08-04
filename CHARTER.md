@@ -136,6 +136,16 @@ still zero new matches. Realistic maximum is ~419. Do not chase it.
   half; nothing covers the half you type into a shell.
 - **Transactional writes on internal SSD; bulk sequential artifacts on the vault.**
   SQLite over USB 2.0 caused a real disk I/O error at 500 books.
+- **Your own loop is a disk cost, and it compounds.** Measured 2026-08-04: this
+  agent generated **91% of the day's disk growth** — 1,490 requests, 4.25 GB of
+  the 4.68 GB written. Each request costs ~2.92 MB of gateway log, and Bifrost
+  stores the body **twice** (`raw_request` + `responses_input_history`, ~1:1).
+  Both dimensions rise together: requests/hour went 48 → 134 and average size
+  0.91 → 1.48 MB in one day, because every loop carries the prior conversation
+  forward. A 93% token cache rate does **not** help — caching saves tokens and
+  saves nothing on disk. Before a long investigative thread, check `df -h /`
+  against ~2.92 MB per request; a loop that investigates disk pressure while
+  compounding its own context is not neutral about the outcome it measures.
 - **Check machine health before heavy work** — `df -h /`, load average. This is a
   16 GB machine also running the tunnel, the model catalog, and a herdr server.
 - **Escalate rather than guess.** For hard reasoning, you are the Opus tier; for

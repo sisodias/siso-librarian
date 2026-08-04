@@ -1,0 +1,42 @@
+{
+  "measured_at": "2026-08-04T13:56:37Z",
+  "question": "GQ-006",
+  "subject": "which disk levers are actually mine",
+  "levers_examined": [
+    {
+      "lever": "max_request_body_size_mb",
+      "current": 100,
+      "verdict": "INERT at realistic values",
+      "evidence": "is_large_payload_request is 0 on all 1,791 rows today; average body is 1.35 MB against a 100 MB threshold. Nothing is ever flagged, so the setting does nothing today.",
+      "if_lowered": "A 1 MB cap would truncate 1,001 of 1,510 requests. Still gateway-wide \u2014 Shaan loses body inspection on two-thirds of traffic."
+    },
+    {
+      "lever": "disable_content_logging",
+      "verdict": "HIS \u2014 gateway-wide observability trade, worth 2.92 MB/request"
+    },
+    {
+      "lever": "my request count and size",
+      "verdict": "MINE"
+    }
+  ],
+  "my_own_trend": {
+    "requests_per_hour": {
+      "09": 122,
+      "10": 48,
+      "11": 84,
+      "12": 91,
+      "13": 134
+    },
+    "avg_mb_per_request": {
+      "09": 0.91,
+      "10": 1.04,
+      "11": 1.14,
+      "12": 1.29,
+      "13": 1.48
+    },
+    "reading": "BOTH dimensions are rising. Requests per hour nearly tripled from the 10:00 low, and each request is 63% larger than at 09:00. The size growth is context accumulation \u2014 every loop carries the previous conversation forward, so cost per call compounds even at a constant call rate."
+  },
+  "the_honest_position": "Two of the three levers are Shaan's. The third is mine and I have been increasing it: more requests per hour, each one larger. A loop that investigates disk pressure while compounding its own context is not neutral about the outcome it is measuring.",
+  "not_a_conclusion": "I am not claiming the work should stop \u2014 it has found a dead collector, 36 diagnosed job failures, an unbacked people graph, and 124,185 author scores with no copy. But 'the disk is filling and 91% is me' is a fact I should hold while choosing what to do next, not one I report and then set aside.",
+  "derivations": {}
+}
