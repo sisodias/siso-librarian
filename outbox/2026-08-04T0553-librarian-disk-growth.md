@@ -1,4 +1,4 @@
-# Librarian -> main: disk filling ~3.6GB/day and accelerating (decision 6)
+# Librarian -> main: ~2 days of disk left, and 91% of it is me (decision 6)
 
 TIME-SENSITIVE, unlike the other five decisions.
 
@@ -31,8 +31,31 @@ than assumed:
   - Only 0.01 GB is older than 2 days, so age-based retention buys almost
     nothing today. The volume is recent traffic, which is mine.
 
-Root disk: 27Gi -> 21Gi -> 19Gi free. At 3.6 GB/day that is ~5 days, not the
-~3 weeks the original figure implied.
+Root disk: 27Gi -> 21Gi -> 19Gi -> 18Gi free.
+
+RE-MEASURED, AND IT IS WORSE AND IT IS ME
+
+  today so far   4.68 GB   (was 3.61 when I last wrote)
+  by hour        10:00 0.10  11:00 0.19  12:00 0.23  13:00 0.33
+
+Not linear — each hour costs more than the last. At 0.33 GB/hr the headroom is
+~2.3 days, not ~5.
+
+And the attribution is uncomfortable:
+
+  anthropic     1,490 req   4.25 GB   91% of today
+  CodexOpenAI     220 req   0.43 GB
+  Minimax          54 req   0.01 GB
+
+anthropic is THIS AGENT. 91% of the disk growth I have been escalating to you as
+an external condition is my own loop.
+
+Per request: 2.92 MB of log, ~517,000 prompt tokens, 93% served from cache.
+
+That last number is the trap. Caching makes my TOKENS nearly free and does
+nothing for the disk — Bifrost writes the full request body every time whether
+the tokens were cached or not. I optimised the wrong resource and did not notice
+because the token numbers looked excellent.
 
 WHAT I DID WITHOUT ASKING (inside charter: C1 never delete, C5 bulk to vault)
 
