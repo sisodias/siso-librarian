@@ -1,0 +1,55 @@
+{
+  "audited_at": "2026-08-04T03:33:06.359Z",
+  "worklogs_with_timestamps": 20,
+  "timestamp_drift_findings": 6,
+  "metric_count_findings": 0,
+  "metric_checks_passed": [
+    "observatory/snapshot.json people_graph.topic_edges re-derived from live graph"
+  ],
+  "findings": [
+    {
+      "check": "worklog-timestamp",
+      "path": "worklog/2026-08-03-2330-passage-index-vault-backup.md",
+      "claimed": "2026-08-03T23:30:00.000Z",
+      "actual_commit_time": "2026-08-04T03:10:38.000Z",
+      "drift_minutes": 221
+    },
+    {
+      "check": "worklog-timestamp",
+      "path": "worklog/2026-08-04-0010-rescue-refs-and-bundle-restore.md",
+      "claimed": "2026-08-04T00:10:00.000Z",
+      "actual_commit_time": "2026-08-04T03:12:58.000Z",
+      "drift_minutes": 183
+    },
+    {
+      "check": "worklog-timestamp",
+      "path": "worklog/2026-08-04-0025-tier-score-gap-not-actionable-here.md",
+      "claimed": "2026-08-04T00:25:00.000Z",
+      "actual_commit_time": "2026-08-04T03:20:16.000Z",
+      "drift_minutes": 175
+    },
+    {
+      "check": "worklog-timestamp",
+      "path": "worklog/2026-08-04-0045-observatory-tailnet-exposure.md",
+      "claimed": "2026-08-04T00:45:00.000Z",
+      "actual_commit_time": "2026-08-04T03:23:53.000Z",
+      "drift_minutes": 159
+    },
+    {
+      "check": "worklog-timestamp",
+      "path": "worklog/2026-08-04-0100-refresh-ledger-earns-its-claim.md",
+      "claimed": "2026-08-04T01:00:00.000Z",
+      "actual_commit_time": "2026-08-04T03:26:34.000Z",
+      "drift_minutes": 147
+    },
+    {
+      "check": "worklog-timestamp",
+      "path": "worklog/2026-08-04-0115-regrounding-gq009.md",
+      "claimed": "2026-08-04T01:15:00.000Z",
+      "actual_commit_time": "2026-08-04T03:29:06.000Z",
+      "drift_minutes": 134
+    }
+  ],
+  "interpretation": "Six worklogs carry filename timestamps 134-221 minutes earlier than the commit that added them. The times were typed as plausible values rather than read from the system clock. Filenames are left as committed: renaming history to satisfy a checker would destroy the audit trail that exposed the problem. This file is the correction.",
+  "remediation": "All timestamps written after 2026-08-04T03:31Z come from date -u. The audit now runs in npm run verify."
+}
