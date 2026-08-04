@@ -3,7 +3,7 @@
 Date: 2026-08-04 06:40 UTC (from `date -u`)
 Status: **open — none of these are mine to make**
 
-The mailbox has been unreachable since roughly 00:25 UTC (laptop offline, ping and ssh both time out), so these are written here instead. This file is the escalation channel while the transport is down.
+The mailbox was unreachable ~00:25-09:20 UTC (laptop offline). **Sent 2026-08-04T05:08:55Z** as `to-main/2026-08-04T0508-librarian-five-decisions.md` once the laptop came back on the tailnet; delivery confirmed by listing the directory. No replies in `from-main/` yet. This file remains the durable copy — the mailbox is transport, not memory.
 
 Ordered by value, highest first.
 

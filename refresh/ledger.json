@@ -1,6 +1,6 @@
 {
   "schema_version": "refresh-ledger-v1",
-  "generated_at": "2026-08-04T05:05:58Z",
+  "generated_at": "2026-08-04T05:09:34Z",
   "entries": [
     {
       "claim_packet": "claims/GQ-009-claim-layer-contract.claim.json",
@@ -174,7 +174,7 @@
     {
       "claim_packet": "claims/GQ-001-enforcement-limits.claim.json",
       "question_id": "GQ-001",
-      "checked_at": "2026-08-04T05:01:45Z",
+      "checked_at": "2026-08-04T05:09:34Z",
       "selectors_used": [
         "GQ-001",
         "workspace",
@@ -187,7 +187,7 @@
         "approved action status change"
       ],
       "result": "fresh",
-      "evidence_note": "Counted from this session's own worklogs; an initial looser grep gave 5 gate-caught and was reconciled to 3 by counting phrases separately. All three byte ranges verified.",
+      "evidence_note": "Counted from this session's own worklogs; an initial looser grep gave 5 gate-caught and was reconciled to 3 by counting phrases separately. All three byte ranges verified. Re-checked after commit 99b280d modified this claim file; all three grounding byte ranges re-derived and still resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/"
     }
   ]
