@@ -175,6 +175,29 @@ for (const file of claimFiles) {
   }
 }
 
+// The observatory must have been rebuilt by THIS verify run. Chain order in
+// package.json is a comment, and a comment is the weakest guarantee here: a
+// reordering would silently return the gate to inspecting stale data. An age
+// bound makes the dependency enforced rather than remembered.
+const SNAPSHOT_MAX_AGE_S = Number(process.env.SNAPSHOT_MAX_AGE_S || 300);
+const snapPath = join(root, 'observatory/snapshot.json');
+if (existsSync(snapPath)) {
+  try {
+    const snap = JSON.parse(readFileSync(snapPath, 'utf8'));
+    const ageS = (Date.now() - Date.parse(snap.generated_at)) / 1000;
+    if (!Number.isFinite(ageS)) {
+      fail('observatory/snapshot.json', 'generated_at is missing or unparseable');
+    } else if (ageS > SNAPSHOT_MAX_AGE_S) {
+      fail('observatory/snapshot.json',
+        `stale by ${Math.round(ageS)}s (limit ${SNAPSHOT_MAX_AGE_S}s) — run \`npm run observatory:build\` first; verify must rebuild it before checking`);
+    }
+  } catch (error) {
+    fail('observatory/snapshot.json', `unreadable: ${error.message}`);
+  }
+} else {
+  fail('observatory/snapshot.json', 'missing — the observatory has never been built');
+}
+
 const sourceContracts = walk(join(root, 'sources')).filter((path) => path.endsWith('adapter-contract.json')).sort();
 for (const file of sourceContracts) {
   const rel = relative(root, file);
