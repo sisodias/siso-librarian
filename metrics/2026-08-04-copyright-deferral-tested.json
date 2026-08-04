@@ -1,0 +1,17 @@
+{
+  "measured_at": "2026-08-04T16:00:51Z",
+  "question": "GQ-004",
+  "subject": "the tenth deferral \u2014 \"a copyright determination, not mine to make\"",
+  "the_deferral": "\"A 1900 Twain edition is almost certainly public domain despite absent metadata \u2014 and asserting that is a copyright determination, not a query fix. It is not mine to make on someone else's behalf, however confident I am.\"",
+  "verdict_on_the_deferral": "STANDS. Asserting a work is public domain when its metadata does not say so is a legal judgement, and confidence is not authority.",
+  "what_it_obscured": {
+    "question_i_never_asked": "How many candidates need NO determination because IA has already made it?",
+    "measured_now": 270049,
+    "query": "mediatype:texts AND rights:\"public domain\" AND language:eng NOT collection:printdisabled NOT collection:inlibrary",
+    "this_morning": 270046,
+    "reading": "Every one of those 270,049 carries an EXPLICIT rights field set by the Internet Archive. Ingesting them requires no determination by me \u2014 the determination is already recorded upstream. The pool grew by 3 since 06:43 today, so it is live."
+  },
+  "the_correction": "The deferral is true and was doing extra work. It reads as \"IA expansion is blocked on a copyright call\", when what is blocked is only the SPARSE-METADATA subset \u2014 the Twain case. A quarter of a million texts with explicit rights are not blocked on anything I cannot decide.",
+  "what_is_actually_blocked": "Selection, not rights. I measured this earlier: the head of the explicit pool is ephemera \u2014 student newspapers, sales catalogues, family photographs. The open question is which of 270,049 the Library wants, and that is a curation decision, not a legal one.",
+  "derivations": {}
+}

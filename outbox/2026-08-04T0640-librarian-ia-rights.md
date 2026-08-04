@@ -11,6 +11,23 @@ corpus. Loosening it is not safe: the same sample shows printdisabled (16) and
 inlibrary (13) — the controlled-lending collections the contract excludes after
 Hachette v. IA. The substitute signals are the ones indicating borrow-only material.
 
+SCOPE CORRECTION (added later the same day). What follows is true of the
+SPARSE-METADATA subset only. I re-measured the pool that carries an explicit
+rights field:
+
+  270,049 English texts with rights:"public domain", excluding borrow-only
+  (270,046 this morning — the pool is live and growing)
+
+Every one of those has a rights determination ALREADY MADE by the Internet
+Archive. Ingesting them needs no judgement from me. So IA expansion is not
+blocked on a copyright call; only the Twain-style sparse-metadata cases are.
+
+What IS open is selection, not rights: the head of that 270k pool is ephemera —
+student newspapers, sales catalogues, family photographs — and choosing which
+the Library wants is a curation decision, not a legal one.
+
+The original text follows, and it stands for the sparse cases.
+
 This is a copyright determination, not a query problem. A 1900 Twain edition is
 almost certainly public domain despite absent metadata, and that is still not a
 call I should make for you.
