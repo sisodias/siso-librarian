@@ -1,0 +1,50 @@
+{
+  "measured_at": "2026-08-04T11:54:38Z",
+  "question": "GQ-006",
+  "action": "answer the ranking question by proving containment, not by guessing at redundancy",
+  "method": "A PRE-* snapshot is redundant only if every row it holds survives in the live database. Counts cannot show that \u2014 a merge can swap rows while preserving totals \u2014 so each check is an anti-join on STABLE keys, never on ids a merge could renumber.",
+  "snapshots": [
+    {
+      "file": "people_v2.PRE-AWESOME-PROMOTE-20260803T220449Z.sqlite",
+      "gb": 1.08,
+      "counts": {
+        "person": "280722 = 280722",
+        "person_content": "564579 = 564579",
+        "person_topic": "2517910 -> 2555047",
+        "external_ids": "845004 = 845004"
+      },
+      "rows_in_snapshot_absent_from_live": 0,
+      "rows_only_in_live": 37137,
+      "reading": "Live is a strict superset. The 37,137 delta is exactly the awesome-signal promotion. Provably redundant."
+    },
+    {
+      "file": "identity.PRE-MERGE-20260626-125227.sqlite",
+      "gb": 1.8,
+      "counts": {
+        "category": "255 -> 264",
+        "repo_category": "155691 -> 385964",
+        "repo_identity": "465192 = 465192"
+      },
+      "category_slugs_absent_from_live": 0,
+      "repo_category_pairs_absent_from_live": 0,
+      "join_key_note": "Joined on category SLUG, not id \u2014 a merge renumbers ids, and matching on them would have compared different categories and produced a confident wrong answer.",
+      "reading": "Every row survives the merge. Provably redundant."
+    },
+    {
+      "file": "people_v2_gh.PRE-ENRICH-20260803-174831.sqlite",
+      "gb": 0.54,
+      "counts": {
+        "person": "280708 -> 280722",
+        "person_content": "564486 -> 564579"
+      },
+      "persons_absent_from_live": 0,
+      "content_edges_absent_from_live": 0,
+      "reading": "Live has 14 more people and 93 more edges, and every snapshot row survives. The deltas are additions from enrichment, not replacements. Provably redundant."
+    }
+  ],
+  "total_gb_provably_redundant": 3.42,
+  "disposition": "NOT deleted and NOT moved. Redundant is not the same as unwanted, and C1 is absolute. What changed is that these two are no longer candidates for backup \u2014 backing up a proven subset of a live database would consume vault space to store nothing new.",
+  "ranking_answered": "The question was which unbacked databases deserve backups. For these two the answer is neither, and it is now measured rather than assumed.",
+  "derivations": {},
+  "snapshots_tested": 3
+}
