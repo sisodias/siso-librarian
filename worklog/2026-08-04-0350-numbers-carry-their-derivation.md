@@ -37,3 +37,19 @@ That is the property I wanted: the number in the file and the number in the data
 This is not self-verification in any strong sense. The builder writes both the count and the derivation, so a bug that corrupted both consistently would pass. What it defends against is the failure that actually happened tonight — a value typed by hand, or drifting after its source changed — because now the value and the source are compared by separate code paths on every `npm run verify`.
 
 It also only covers the observatory snapshot. The transfer rate in the passage-backup worklog, the token counts in the MiniMax metrics, the throughput figures — those remain prose I typed, with no declared derivation and nothing to re-run. Extending this pattern to the metrics files those loops produced is the next step, and I would rather name it than let fourteen green checks imply the whole repo is covered.
+
+## Correction: I pushed on a red gate
+
+Appended 03:55 UTC.
+
+Commit `006bba0` went out while `npm run verify` was exiting 2. I read the grep output confirming the parts I cared about, saw `grounding byte ranges: 5 checked, 0 broken`, and pushed without checking the exit code I had printed one line earlier. The whole point of a gate is that it stops you, and I walked past mine.
+
+The failure it was reporting was real, and in two layers.
+
+**Layer one, a genuine design flaw.** `approved action status change` mapped to the whole `claims/` directory, so adding GQ-010 marked GQ-009 and its v2 stale. That is drift manufactured by the registry merely growing — a new question would invalidate every existing one, forever. The trigger is about *this claim's* action, so it now scopes to the entry's own `claim_packet` path.
+
+**Layer two, real drift I should not suppress.** With that fixed, GQ-010 still flagged: commit `564be28` genuinely modified its own claim file after its `checked_at`. Correct behaviour. So I re-checked it properly — re-derived both grounding byte ranges against their source, confirmed both still resolve, and set `checked_at` from `date -u`. A timestamp bump without re-reading the evidence would have been the same fabrication I spent two loops fixing.
+
+Verified afterwards that the narrowed trigger did not blunt the gate: backdating an entry still exits 2, full verify exits 0.
+
+`006bba0` is left in history as pushed. The code is fixed in the follow-up rather than amended, because a clean history here would hide that I bypassed my own check.

@@ -51,8 +51,13 @@ for (const entry of ledger.entries || []) {
   const unevaluatable = [];
 
   for (const trigger of entry.invalidate_on_considered || []) {
-    const paths = TRIGGER_PATHS[trigger];
+    let paths = TRIGGER_PATHS[trigger];
     if (!paths) { unevaluatable.push(trigger); continue; }
+    // "approved action status change" is about THIS claim's action, not any
+    // claim's. Scoping it to the directory meant adding an unrelated claim
+    // marked every existing one stale — drift that is an artifact of the
+    // registry growing, which would make the gate fire on every new question.
+    if (trigger === 'approved action status change') paths = [entry.claim_packet];
     const commits = gitCommitsSince(entry.checked_at, paths);
     if (commits.length) fired.push({ trigger, commits, count: commits.length });
   }
