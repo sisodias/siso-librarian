@@ -48,32 +48,48 @@ for (const path of worklogs) {
 // --- Check 2: metrics files claiming counts that name a live source ---------
 // A metrics file asserting "passages: 41501325" is only trustworthy if the
 // artifact it names still reports that. Only checks sources cheap to re-derive.
-const CHEAP_COUNTS = [
-  {
-    file: 'observatory/snapshot.json',
-    pointer: (d) => d?.bucket_counts?.people_graph?.topic_edges,
-    label: 'people_graph.topic_edges',
-    derive: () => {
-      const db = `${process.env.HOME}/foundry-data/domains/people/people_v2.sqlite`;
-      if (!existsSync(db)) return null;
-      const out = execFileSync('sqlite3', [`file:${db}?mode=ro`, 'select count(*) from person_topic;'], { encoding: 'utf8' }).trim();
-      return Number(out);
-    },
-  },
-];
+// The snapshot declares how each count was derived, so this re-runs those
+// declarations rather than hardcoding checks here. Anything the builder can
+// measure, the auditor can independently re-measure — the number in the file
+// and the number in the source cannot silently diverge.
+let countsChecked = 0;
+const SNAPSHOT = 'observatory/snapshot.json';
 
-for (const c of CHEAP_COUNTS) {
-  if (!existsSync(c.file)) continue;
-  const asserted = c.pointer(JSON.parse(readFileSync(c.file, 'utf8')));
-  if (asserted === undefined || asserted === null) continue;
-  let derived = null;
-  try { derived = c.derive(); } catch { derived = null; }
-  if (derived === null) {
-    findings.push({ check: 'metric-count', file: c.file, label: c.label, asserted, derived: 'unavailable', status: 'unverifiable' });
-    continue;
+function deriveCount(d) {
+  if (d.kind === 'sqlite') {
+    if (!existsSync(d.source)) return null;
+    return Number(execFileSync('sqlite3', [`file:${d.source}?mode=ro`, d.query], { encoding: 'utf8' }).trim());
   }
-  if (derived !== asserted) {
-    findings.push({ check: 'metric-count', file: c.file, label: c.label, asserted, derived, delta: derived - asserted });
+  if (d.kind === 'file-count') {
+    if (!existsSync(d.source)) return 0;
+    const out = execFileSync('find', [d.source, '-type', 'f', '-name', d.query], { encoding: 'utf8' }).trim();
+    return out ? out.split('\n').length : 0;
+  }
+  if (d.kind === 'json-length') {
+    if (!existsSync(d.source)) return null;
+    const doc = JSON.parse(readFileSync(d.source, 'utf8'));
+    const key = d.query.replace('[]', '');
+    return Array.isArray(doc?.[key]) ? doc[key].length : null;
+  }
+  return null;
+}
+
+if (existsSync(SNAPSHOT)) {
+  const snap = JSON.parse(readFileSync(SNAPSHOT, 'utf8'));
+  for (const [label, d] of Object.entries(snap.derivations || {})) {
+    const [group, key] = label.split('.');
+    const asserted = snap?.bucket_counts?.[group]?.[key];
+    if (typeof asserted !== 'number') continue;
+    let derived = null;
+    try { derived = deriveCount(d); } catch { derived = null; }
+    if (derived === null) {
+      findings.push({ check: 'metric-count', file: SNAPSHOT, label, asserted, derived: 'unavailable', status: 'unverifiable' });
+      continue;
+    }
+    countsChecked += 1;
+    if (derived !== asserted) {
+      findings.push({ check: 'metric-count', file: SNAPSHOT, label, asserted, derived, delta: derived - asserted });
+    }
   }
 }
 
@@ -84,6 +100,7 @@ console.log(JSON.stringify({
   worklogs_with_timestamps: worklogs.filter((p) => /-\d{4}-/.test(p)).length,
   timestamp_drift_findings: drift.length,
   metric_count_findings: counts.length,
+  counts_independently_rederived: countsChecked,
   findings,
 }, null, 2));
 

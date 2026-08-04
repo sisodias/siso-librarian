@@ -45,9 +45,31 @@ const claimLayer = {
   refresh_entries: refresh.entries.length,
 };
 
+// Every count records the exact command that produced it, so an auditor can
+// re-derive it without knowing anything about this script. Written after an
+// audit found fabricated values elsewhere in the repo: a number with no stated
+// derivation is indistinguishable from one that was typed.
+const derivations = {
+  'passages.passages': { source: passagesDb, kind: 'sqlite', query: "select count(*) from passage;" },
+  'passages.books': { source: passagesDb, kind: 'sqlite', query: "select count(*) from book_body;" },
+  'people_graph.people': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person;" },
+  'people_graph.content_edges': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person_content;" },
+  'people_graph.topic_edges': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person_topic;" },
+  'people_graph.external_ids': { source: peopleDb, kind: 'sqlite', query: "select count(*) from external_ids;" },
+  'registry.works': { source: join(registry, 'works'), kind: 'file-count', query: "*.json" },
+  'registry.releases': { source: join(registry, 'releases'), kind: 'file-count', query: "*.json" },
+  'registry.source_inventories': { source: join(registry, 'source_inventories'), kind: 'file-count', query: "*.json" },
+  'registry.events': { source: join(registry, 'events'), kind: 'file-count', query: "*.json" },
+  'registry.decisions': { source: join(registry, 'decisions'), kind: 'file-count', query: "*.json" },
+  'claim_layer.production_claims': { source: join(root, 'claims'), kind: 'file-count', query: "*.json" },
+  'claim_layer.portfolio_questions': { source: join(root, 'questions/portfolio.json'), kind: 'json-length', query: "questions[]" },
+  'claim_layer.refresh_entries': { source: join(root, 'refresh/ledger.json'), kind: 'json-length', query: "entries[]" },
+};
+
 const snapshot = {
   generated_at: new Date().toISOString(),
   bucket_counts: { registry: registryCounts, passages: passageCounts, people_graph: peopleCounts, claim_layer: claimLayer },
+  derivations,
   active_questions: portfolio.questions.map(q => ({ id: q.id, text: q.text, status: q.status, action_status: q.action_status, claim_packets: q.claim_packets })),
   routing: { minimax_8081: 'verified: model MiniMax-M3 via worklog/2026-08-03-2145-minimax-routing-repair.md' },
   caveats: [
