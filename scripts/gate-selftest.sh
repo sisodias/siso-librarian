@@ -53,6 +53,19 @@ check() {
   cp "$file" "$SCRATCH/backup"
   /usr/bin/python3 -c "$mutate" 2>/dev/null || { echo "SKIP $name (could not mutate)"; cp "$SCRATCH/backup" "$file"; return; }
 
+  # A byte-comparison guard was tried here on 2026-08-04 and REMOVED, because it
+  # could not detect what it was written for. Most mutations round-trip JSON, and
+  # json.dump reformats the file even when the VALUE is unchanged — so `cmp`
+  # reports "changed" for a mutation that changed nothing. Verified by making one
+  # case a no-op: bytes differed, the guard stayed silent, the case still said
+  # PASS.
+  #
+  # The honest check is semantic, and it already exists: this function requires
+  # the gate to exit NON-ZERO. A mutation that does nothing leaves the target
+  # healthy, the gate exits 0, and the case reports FAIL. That is the correct
+  # signal — it says "this case proves nothing", which is exactly what is true.
+  # Adding a check that cannot see its own target would have been decoration.
+
   local out status
   out=$(eval "$gate" 2>&1); status=$?
   cp "$SCRATCH/backup" "$file"

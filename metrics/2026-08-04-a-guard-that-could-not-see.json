@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-04T21:44:39Z",
+  "question": "GQ-001",
+  "subject": "a mechanism with no adopters, and a guard that could not see its own target",
+  "what_i_set_out_to_do": "adopt lib/patch.mjs across the repo \u2014 I built it last turn and had not used it once",
+  "what_i_found_instead": {
+    "scripts_that_read_and_write": 11,
+    "scripts_that_patch_IN_PLACE": 0,
+    "detail": "build-observatory, ia-ingest and ia-dedup-check use .replace() for string normalisation and display formatting, not for editing a file in place. They GENERATE files. The production code never had this defect \u2014 only my ad-hoc session edits did.",
+    "so": "there was nothing to adopt it into. The honest finding is that the defect lives in how I work, not in the repo."
+  },
+  "the_one_real_exposure": {
+    "where": "gate-selftest.sh check(), which patches files 13 times by design",
+    "the_risk": "a mutation that silently does nothing leaves the target healthy, the gate exits 0, and the case reports GATE DID NOT FIRE \u2014 blaming a working gate for a broken test"
+  },
+  "my_guard_failed_its_own_test": {
+    "what_i_added": "cmp -s to prove the mutation changed the file",
+    "how_i_tested_it": "made one case a no-op on a scratch copy",
+    "result": "the case still reported PASS \u2014 the guard stayed silent",
+    "cause": "most mutations round-trip JSON, and json.dump REFORMATS the file even when the value is unchanged, so the bytes differ and cmp reports \"changed\"",
+    "decision": "REMOVED it, and left the reasoning in place so nobody re-adds it",
+    "why_removal_is_right": "the honest check already exists and is semantic: check() requires the gate to exit non-zero. A no-op mutation makes the case report FAIL, which correctly says \"this case proves nothing\". A check that cannot detect its own target is decoration, and decoration in a gate is worse than an absence \u2014 it reads as coverage."
+  },
+  "result": {
+    "verify_exit": 0,
+    "gate_selftest": "15 passed, 0 failed",
+    "net_change": "one bad guard removed, reasoning preserved"
+  },
+  "derivations": {}
+}
