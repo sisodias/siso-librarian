@@ -56,4 +56,43 @@ for lo in $BANDS; do
 done
 
 echo "bands matching: $match/$total   rows compared: $rows"
-[ "$match" -eq "$total" ] || exit 8
+# Recorded now, exited at the very end. Exiting here would skip the people-graph
+# check entirely, so a passage-index failure would HIDE a graph failure — one
+# artifact's problem masking another's is exactly the shape of defect this
+# script exists to surface.
+passage_ok=$([ "$match" -eq "$total" ] && echo 1 || echo 0)
+
+# --- people graph -----------------------------------------------------------
+# 1.09 GB rather than 24 GB, so whole-table counts are affordable here and no
+# banding is needed. Backed up 2026-08-04 after discovering it had NO vault copy
+# at all — the passage index had one, and the graph six claims ground in did not.
+GRAPH_LIVE="$HOME/foundry-data/domains/people/people_v2.sqlite"
+GRAPH_VAULT=$(ls -t /Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/people-graph/people_v2-*.sqlite 2>/dev/null | head -1)
+
+if [ -n "$GRAPH_VAULT" ] && [ -f "$GRAPH_LIVE" ]; then
+  echo
+  echo "people graph: full table counts, live vs $(basename "$GRAPH_VAULT")"
+  gmatch=0; gtotal=0
+  for t in person person_content person_topic external_ids identity_claim; do
+    a=$(sqlite3 "file:$GRAPH_LIVE?mode=ro" "select count(*) from $t;" 2>/dev/null)
+    b=$(sqlite3 "file:$GRAPH_VAULT?mode=ro&immutable=1" "select count(*) from $t;" 2>/dev/null)
+    gtotal=$((gtotal + 1))
+    if [ -z "$a" ] || [ -z "$b" ]; then
+      printf "  %-16s UNREADABLE (live='%s' vault='%s')\n" "$t" "$a" "$b"
+    elif [ "$a" = "$b" ]; then
+      gmatch=$((gmatch + 1)); printf "  %-16s MATCH   %s\n" "$t" "$a"
+    else
+      printf "  %-16s DIFFER  live=%s vault=%s\n" "$t" "$a" "$b"
+    fi
+  done
+  echo "tables matching: $gmatch/$gtotal"
+  graph_ok=$([ "$gmatch" -eq "$gtotal" ] && echo 1 || echo 0)
+else
+  echo
+  echo "people graph: NO VAULT COPY FOUND — the live graph is unbacked" >&2
+  graph_ok=0
+fi
+
+# Both artifacts always reported before either exit code is returned.
+[ "$passage_ok" -eq 1 ] || exit 8
+[ "$graph_ok" -eq 1 ] || exit 9

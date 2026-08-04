@@ -1,0 +1,21 @@
+{
+  "measured_at": "2026-08-04T11:16:32Z",
+  "question": "GQ-006",
+  "finding": "The people graph had NO vault backup. The passage index had one; the graph six claims ground in did not.",
+  "action": "sqlite3 .backup to vault (WAL database \u2014 cp would tear it), verified table by table",
+  "vault_path": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/people-graph/people_v2-20260804T110816Z.sqlite",
+  "vault_bytes": 1171537920,
+  "quick_check": "ok",
+  "header_write_version": 2,
+  "tables": {
+    "person": 280722,
+    "person_content": 564579,
+    "person_topic": 2555047,
+    "external_ids": 845004,
+    "identity_claim": 6
+  },
+  "all_tables_match": true,
+  "prose_correction": "I have repeatedly written '463,230 content edges' for the people graph. That is the GitHub-domain SUBSET. The table holds 564,579. The observatory published the correct total the whole time; my prose was quoting a filtered count as if it were the whole graph.",
+  "ordering_bug_fixed": "The verifier exited on a passage-index failure before running the graph check, so one artifact's problem would have masked the other's. Both are now always reported before any exit code is returned \u2014 proven: with the passage index unreadable, the graph still reports 5/5 and the exit is still 8.",
+  "derivations": {}
+}
