@@ -93,9 +93,29 @@ English poetry yields 40% new against science fiction's 2.5% — a 16x differenc
 driven entirely by what this Library already holds. The three WEAK subjects
 contribute 84 of the 105 despite pools an order of magnitude smaller.
 
-So the answer to decision 7 is roughly A HUNDRED BOOKS across six subjects. Not
-thousands, and not the ~30 my science-fiction-only sample implied. These are
-sample-based estimates (20-40 titles each) with real sampling error, not counts.
+I then replaced the estimates with a CENSUS. Five of the six pools are small
+enough to check in full, one query each, no sampling error:
+
+  subject                        pool   checked   NEW    was estimated
+  English poetry                   92        92    38              37
+  Essays                           77        77    37              26
+  Cookery                          60        60    30              21
+  Detective and mystery stories   128       128    14               4
+  Historical fiction               58        58     5               4
+                                                  ---
+                                                  124
+
+  Science fiction                 535        40   ~13   (still sampled)
+
+124 NEW BOOKS COUNTED, plus ~13 estimated for science fiction.
+
+The samples had understated every weak subject — Detective went 4 to 14, Essays
+26 to 37. Small samples on small pools were noisy in the pessimistic direction,
+which is worth knowing before trusting any of my other 20-40 title samples.
+
+I checked the 95% interval on the sampled version before doing this: 42-186
+around a point estimate of 105. That range is why the census was worth an extra
+five queries.
 
 The method is counter-intuitive and worth stating plainly: aim at what the
 Library is WEAK in. You would normally deepen a strength, but the goal here is

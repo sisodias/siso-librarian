@@ -1,0 +1,61 @@
+{
+  "measured_at": "2026-08-04T16:31:47Z",
+  "question": "GQ-004",
+  "subject": "replacing the sampled estimate with a census",
+  "why": "The 105 rested on 20-40 titles per subject. Computing the 95% interval gave 42-186 \u2014 a range so wide the point estimate was more precise-looking than the evidence supported. The science-fiction band alone spanned 0-39 from a single hit in 40 titles.",
+  "what_changed": "Five of the six pools are small enough to check in full. A census has no sampling error, and it cost one query each.",
+  "census": [
+    {
+      "subject": "English poetry",
+      "pool": 92,
+      "checked": 92,
+      "new": 38,
+      "pct": 41.3,
+      "was_sampled": 37
+    },
+    {
+      "subject": "Essays",
+      "pool": 77,
+      "checked": 77,
+      "new": 37,
+      "pct": 48.1,
+      "was_sampled": 26
+    },
+    {
+      "subject": "Cookery",
+      "pool": 60,
+      "checked": 60,
+      "new": 30,
+      "pct": 50.0,
+      "was_sampled": 21
+    },
+    {
+      "subject": "Detective and mystery stories",
+      "pool": 128,
+      "checked": 128,
+      "new": 14,
+      "pct": 10.9,
+      "was_sampled": 4
+    },
+    {
+      "subject": "Historical fiction",
+      "pool": 58,
+      "checked": 58,
+      "new": 5,
+      "pct": 8.6,
+      "was_sampled": 4
+    },
+    {
+      "subject": "Science fiction",
+      "pool": 535,
+      "checked": 40,
+      "new": 1,
+      "pct": 2.5,
+      "note": "still sampled \u2014 pool too large for a single query"
+    }
+  ],
+  "counted_new_books": 124,
+  "reading": "124 new books COUNTED across five subjects, plus a sampled estimate of ~13 for science fiction. The sampled figures understated every weak subject: Essays 26 -> 37, Cookery 21 -> 30, Detective 4 -> 14. Small samples on small pools were noisy in the pessimistic direction.",
+  "honest_note": "Science fiction remains sampled at 40 of 535. It is also the lowest-yield subject measured, so its contribution is small either way \u2014 but the total is \"124 counted + ~13 estimated\", not a single clean number.",
+  "derivations": {}
+}
