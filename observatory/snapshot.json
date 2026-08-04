@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-04T03:54:02.655Z",
+  "generated_at": "2026-08-04T03:57:54.008Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
       "releases": 75,
       "source_inventories": 6,
       "assemblies": 2,
-      "snapshots": 36,
+      "snapshot_versions": 36,
       "events": 28,
       "decisions": 4
     },
@@ -89,7 +89,7 @@
       "kind": "file-count",
       "query": "*.json"
     },
-    "registry.snapshots": {
+    "registry.snapshot_versions": {
       "source": "/Users/shaansisodia/SISO_Workspace/great-library-of-siso/registry/snapshots",
       "kind": "file-count",
       "query": "*.json"
@@ -155,6 +155,14 @@
     "completion_tokens": 64759,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
+  },
+  "library_snapshot": {
+    "n": 36,
+    "version": "36.0.0",
+    "name": "Whole Library V36 — Foundry Agency OS Coverage Inventory",
+    "releases": 25,
+    "created_at": "2026-08-03T02:10:00+07:00",
+    "immutable": true
   },
   "caveats": [
     "/tmp/people_v2_gh.sqlite is a zero-byte stub; observatory uses ~/foundry-data/domains/people/people_v2.sqlite read-only.",
