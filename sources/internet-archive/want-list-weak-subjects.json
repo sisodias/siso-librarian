@@ -1,6 +1,6 @@
 {
   "schema_version": "want-list-v1",
-  "generated_at": "2026-08-04T16:49:34.484Z",
+  "generated_at": "2026-08-04T16:52:25.886Z",
   "supersedes": "sources/internet-archive/want-list.json",
   "rationale": "Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.",
   "query_totals": [
@@ -43,7 +43,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -83,7 +83,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -93,7 +93,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -103,7 +103,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -113,7 +113,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -123,7 +123,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -143,7 +143,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -153,7 +153,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -183,7 +183,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -193,7 +193,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -203,7 +203,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -213,7 +213,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -223,7 +223,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -233,7 +233,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -243,7 +243,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -253,7 +253,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -263,7 +263,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -273,7 +273,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -283,7 +283,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -293,7 +293,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -303,7 +303,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -313,7 +313,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -323,7 +323,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -333,7 +333,7 @@
       "language": "eng",
       "tier": "weak-subject:English poetry",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -343,7 +343,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -353,7 +353,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -363,7 +363,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -373,7 +373,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -383,7 +383,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -393,7 +393,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -403,7 +403,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -413,7 +413,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -423,7 +423,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -433,7 +433,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -443,17 +443,17 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
       "identifier": "willan-72743",
-      "title": "An essay on the surgical treatment of hæmorrhoidal tumours",
+      "title": "An essay on the surgical treatment of h\u00e6morrhoidal tumours",
       "year": 1854,
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -463,7 +463,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -473,7 +473,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -483,7 +483,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -493,7 +493,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -503,7 +503,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "bare-assertion",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -513,7 +513,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -523,7 +523,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -533,7 +533,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -543,7 +543,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -553,7 +553,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain License",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "not-a-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -563,7 +563,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -573,7 +573,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -583,7 +583,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -593,7 +593,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -603,7 +603,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -613,7 +613,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -623,7 +623,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -633,7 +633,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -643,7 +643,7 @@
       "language": "eng",
       "tier": "weak-subject:Essays",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -653,7 +653,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -663,7 +663,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -673,27 +673,27 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
       "identifier": "b21504830",
-      "title": "Soups, broths, purées : with directions how to prepare them easily and economically",
+      "title": "Soups, broths, pur\u00e9es : with directions how to prepare them easily and economically",
       "year": 1894,
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
       "identifier": "b28407313",
-      "title": "Practical œconomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
+      "title": "Practical \u0153conomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
       "year": 1801,
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -703,17 +703,17 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
       "identifier": "b2150491x",
-      "title": "Cyclopædia of foods, condiments and beverages : the greatest delicacies and common necessaries",
+      "title": "Cyclop\u00e6dia of foods, condiments and beverages : the greatest delicacies and common necessaries",
       "year": 1890,
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -723,7 +723,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -733,7 +733,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -743,7 +743,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -753,7 +753,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -763,7 +763,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -773,7 +773,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -783,7 +783,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -793,7 +793,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -803,7 +803,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -813,7 +813,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -823,7 +823,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -833,7 +833,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -843,7 +843,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -853,7 +853,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -863,7 +863,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -873,7 +873,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -883,7 +883,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -893,7 +893,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -903,7 +903,7 @@
       "language": "eng",
       "tier": "weak-subject:Cookery",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "formal-designation",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -913,7 +913,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -923,7 +923,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -933,7 +933,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -943,7 +943,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -953,7 +953,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -963,7 +963,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -973,7 +973,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -983,7 +983,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -993,7 +993,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1003,7 +1003,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1013,7 +1013,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1023,7 +1023,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1033,7 +1033,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1043,7 +1043,7 @@
       "language": "eng",
       "tier": "weak-subject:Detective and mystery stories",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Detective and mystery stories\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1053,7 +1053,7 @@
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1063,7 +1063,7 @@
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is now in public domain.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "bare-assertion",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1073,7 +1073,7 @@
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1083,7 +1083,7 @@
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
@@ -1093,8 +1093,28 @@
       "language": "eng",
       "tier": "weak-subject:Historical fiction",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public domain in the USA.",
-      "rights_provenance": "unreviewed-or-user-supplied",
+      "rights_provenance": "jurisdiction-scoped",
       "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
     }
-  ]
+  ],
+  "rights_provenance_summary": {
+    "counts": {
+      "formal-designation": 72,
+      "jurisdiction-scoped": 25,
+      "institutional-review": 6,
+      "bare-assertion": 2,
+      "not-a-designation": 1
+    },
+    "grades": {
+      "institutional-review": "A named institution recorded a copyright review with its source (HathiTrust via Princeton). Strongest.",
+      "formal-designation": "Creative Commons Public Domain Mark \u2014 a formal designation for works already in the public domain.",
+      "jurisdiction-scoped": "\"Public domain in the USA.\" True as stated, scoped to one jurisdiction.",
+      "bare-assertion": "Says public domain with no source or review.",
+      "not-a-designation": "\"Public Domain License\" \u2014 not a real thing. One item, a 2025 third-party upload."
+    },
+    "how_to_use": "Pick a threshold. institutional-review + formal-designation is 78 of 106 and the strongest subset. Excluding only not-a-designation leaves 105. No copyright judgement is made here \u2014 this grades the EVIDENCE, not the works.",
+    "the_one_to_look_at": [
+      "dilip-simeon-closing-the-circle-essays-in-contemporary-history-politics-2025"
+    ]
+  }
 }

@@ -65,6 +65,29 @@ async function fetchSubject(subject) {
   return { q, docs };
 }
 
+// Rights evidence is not binary. Measured across 106 items, the field carries
+// six distinct strings representing four grades of evidence:
+//
+//   72  "Creative Commons, Public Domain Mark"      a formal PD designation
+//   25  "Public domain in the USA."                 jurisdiction-scoped assertion
+//    6  "Copyright review: ... HathiTrust ..."      institutional review, sourced
+//    1  "Public Domain"                             bare assertion
+//    1  "This work is now in public domain."        bare assertion
+//    1  "Public Domain License"                     not a real designation
+//
+// My first classifier had two buckets and put the CC Public Domain Mark in the
+// same bin as free text an uploader typed. These grade differently and a
+// consumer should be able to choose a threshold.
+function classifyRights(s) {
+  const r = String(s || '');
+  if (/^copyright review/i.test(r)) return 'institutional-review';
+  if (/public domain mark/i.test(r)) return 'formal-designation';
+  if (/public domain in the (usa|united states)/i.test(r)) return 'jurisdiction-scoped';
+  if (/public domain license/i.test(r)) return 'not-a-designation';
+  if (/public domain/i.test(r)) return 'bare-assertion';
+  return 'none';
+}
+
 const items = [];
 const seen = new Set();
 const perSubject = [];
@@ -94,7 +117,7 @@ for (const subject of subjects) {
       // a 2025 upload is free text an uploader typed. The contract treated both
       // as "IA says public domain". They are not the same evidence.
       rights_evidence: rightsString ? `advancedsearch ${RIGHTS}; item rights: ${rightsString}` : `advancedsearch ${RIGHTS}`,
-      rights_provenance: /^copyright review/i.test(rightsString || '') ? 'institutional-review' : 'unreviewed-or-user-supplied',
+      rights_provenance: classifyRights(rightsString),
       query: q,
     });
   }
