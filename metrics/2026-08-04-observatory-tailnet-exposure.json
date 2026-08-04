@@ -1,0 +1,46 @@
+{
+  "date": "2026-08-04",
+  "thread": "observatory-exposure",
+  "before": {
+    "bind_addresses": ["127.0.0.1"],
+    "reachable_from_other_devices": false,
+    "loopback_http": 200,
+    "tailnet_http": null,
+    "lan_http": null
+  },
+  "after": {
+    "bind_addresses": ["127.0.0.1", "100.66.34.21"],
+    "reachable_from_other_devices": true,
+    "loopback_http": 200,
+    "tailnet_http": 200,
+    "lan_http": 0,
+    "single_process_pid": 77118,
+    "page_bytes": 4139
+  },
+  "live_counts_served_over_tailnet": {
+    "passages": 41501325,
+    "topic_edges": 2555047
+  },
+  "cloudflare_tunnel_finding": {
+    "tunnel_healthy": true,
+    "ready_connections": 4,
+    "connector_id": "92bbf9fc-56a0-4795-8298-13b1b2bf32dd",
+    "cloudflared_version": "2025.11.1",
+    "local_config_pushes": 0,
+    "orchestration_config_version": 1,
+    "local_config_files_found": [],
+    "conclusion": "Ingress is edge-managed via the dashboard, not from any local file. There is no local config on this host that can route a public hostname to port 8765, so public exposure cannot be completed from the mini alone."
+  },
+  "security_posture": {
+    "page_is_unauthenticated": true,
+    "binds_0_0_0_0": false,
+    "lan_reachable": false,
+    "rationale": "Tailnet is an authenticated private mesh. Binding every interface would publish an unauthenticated page to the local network."
+  },
+  "verification": {
+    "method": "curl against each interface after launchd re-bootstrap, plus lsof to confirm actual bound sockets",
+    "loopback": "http 200",
+    "tailnet": "http 200",
+    "lan_192_168_0_100": "http 000 (connection refused)"
+  }
+}

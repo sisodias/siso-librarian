@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
-  <key>Label</key><string>com.siso.observatory</string>
-  <key>ProgramArguments</key><array><string>/opt/homebrew/bin/node</string><string>/Users/shaansisodia/SISO_Library_Agent/scripts/serve-observatory.mjs</string></array>
-  <key>WorkingDirectory</key><string>/Users/shaansisodia/SISO_Library_Agent</string>
-  <key>EnvironmentVariables</key><dict><key>SISO_OBSERVATORY_PORT</key><string>8765</string></dict>
-  <key>RunAtLoad</key><true/>
-  <key>KeepAlive</key><true/>
-  <key>StandardOutPath</key><string>/tmp/siso-observatory.log</string>
-  <key>StandardErrorPath</key><string>/tmp/siso-observatory.err.log</string>
-</dict></plist>
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>SISO_OBSERVATORY_HOST</key>
+		<string>100.66.34.21</string>
+		<key>SISO_OBSERVATORY_PORT</key>
+		<string>8765</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.siso.observatory</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/node</string>
+		<string>/Users/shaansisodia/SISO_Library_Agent/scripts/serve-observatory.mjs</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/siso-observatory.err.log</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/siso-observatory.log</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/shaansisodia/SISO_Library_Agent</string>
+</dict>
+</plist>
