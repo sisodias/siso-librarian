@@ -60,6 +60,27 @@ So the honest number is roughly 30 new books, not 1,264. The 99.5% reduction
 from 270k was real; the assumption that what survived was NEW was never tested,
 and it was wrong.
 
+I then checked whether that was a science-fiction artifact. It is not:
+
+  subject                        library books   sample   held    overlap
+  Science fiction                        3,291       40      39     97.5%
+  Detective and mystery stories          1,013       30      29     96.7%
+  Historical fiction                     1,080       30      28     93.3%
+  Cookery                                  384       20      13     65.0%
+
+OVERLAP TRACKS LIBRARY STRENGTH, not IA content. Where this Library holds
+thousands, IA offers almost nothing new. Where it holds hundreds, a third of the
+sample is new. Both corpora draw heavily on Gutenberg, so they converge exactly
+where Gutenberg is deep.
+
+Which means my subject filter was aimed at the Library's TOP subjects —
+precisely where it yields least. Aiming at weak subjects inverts that, but the
+pools there are small (IA has 60 cookery texts total).
+
+The honest ceiling: nothing I measured today suggests IA expansion adds
+thousands of books. It suggests tens to low hundreds. That may still be worth
+having, but it is a different decision from the one I originally framed.
+
 That is a THIRD option for decision 7, alongside "someone supplies identifiers"
 and "sample relevance after fetch". I have not built it — the want-list contract
 takes named identifiers and this produces a query, so wiring them together is a

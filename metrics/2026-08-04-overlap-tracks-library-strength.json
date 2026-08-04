@@ -1,0 +1,41 @@
+{
+  "measured_at": "2026-08-04T16:19:06Z",
+  "question": "GQ-004",
+  "subject": "testing whether the 97.5% overlap was a science-fiction artifact",
+  "why": "The overlap sample came from science fiction, the Library's STRONGEST subject at 3,291 books. That is the worst case for finding new material, so a single measurement there could not settle the question.",
+  "measured": [
+    {
+      "subject": "Science fiction",
+      "library_books": 3291,
+      "sample": 40,
+      "held": 39,
+      "overlap_pct": 97.5
+    },
+    {
+      "subject": "Detective and mystery stories",
+      "library_books": 1013,
+      "sample": 30,
+      "held": 29,
+      "overlap_pct": 96.7
+    },
+    {
+      "subject": "Historical fiction",
+      "library_books": 1080,
+      "sample": 30,
+      "held": 28,
+      "overlap_pct": 93.3
+    },
+    {
+      "subject": "Cookery",
+      "library_books": 384,
+      "sample": 20,
+      "held": 13,
+      "overlap_pct": 65.0,
+      "ia_pool": 60
+    }
+  ],
+  "the_pattern": "Overlap tracks LIBRARY STRENGTH, not IA content. Where the Library holds thousands, IA offers almost nothing new (93-98% held). Where it holds hundreds, a third of the sample is new. Both corpora draw heavily on Gutenberg, so they converge exactly where Gutenberg is deep.",
+  "consequence_for_selection": "My subject filter was aimed at the Library's TOP subjects \u2014 precisely where it yields least. Aiming at weak subjects inverts it: fewer candidates, higher novelty. Cookery has an IA pool of only 60, so the absolute numbers stay small either way.",
+  "honest_ceiling": "Across every subject tested the new-book yield is bounded by how much of IA is not Gutenberg-derived. Nothing measured today suggests IA expansion adds thousands of books to this Library; it suggests tens to low hundreds.",
+  "derivations": {}
+}
