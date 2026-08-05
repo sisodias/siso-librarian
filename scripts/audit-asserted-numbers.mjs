@@ -79,6 +79,15 @@ const SNAPSHOT = 'observatory/snapshot.json';
 // lived in one, file-bytes and the jsonl kinds in the other. A label declared
 // against the wrong caller resolved to "unavailable" while the gate reported
 // success. Adding a kind here now reaches every path by construction.
+// --skip-sqlite: see the note in the sqlite case. Refuses to combine with
+// --strict, because a run that checks less must never be the run that gates.
+const skipSqlite = process.argv.includes('--skip-sqlite');
+let sqliteSkipped = 0;
+if (skipSqlite && process.argv.includes('--strict')) {
+  console.error('--skip-sqlite cannot be combined with --strict: a run that skips checks may not gate a push');
+  process.exit(64);
+}
+
 function derive(d) {
   const src = String(d.source || '').replace(/^~/, process.env.HOME);
   if (!src) return null;
@@ -92,6 +101,19 @@ function derive(d) {
   }
   switch (d.kind) {
     case 'sqlite': {
+      // --skip-sqlite exists for the gate self-test, which invokes this audit ten
+      // times. Measured 2026-08-05: the sqlite derivations cost 25s per
+      // invocation — 15.3s of it one `count(*)` over 41.5M rows — and NOT ONE
+      // self-test case exercises a sqlite derivation. They break metrics files,
+      // package.json and snapshot labels under bucket_counts / god_questions.
+      // That is 150s of work irrelevant to what those cases assert.
+      //
+      // DANGEROUS IF SILENT. A flag that quietly checks less would let the audit
+      // pass while covering nothing — the defect class that has cost the most
+      // here. So the skipped labels are COUNTED and REPORTED in the output, and
+      // --strict refuses to combine with it: a run that skips checks may never
+      // be the run that gates a push.
+      if (skipSqlite) { sqliteSkipped += 1; return null; }
       // `mode=ro` fails with "unable to open database file (14)" on SOME vault
       // databases. My first explanation — "the external volume refuses sidecars"
       // — was too broad and wrong: the vaulted passage index opens fine either
@@ -630,6 +652,10 @@ console.log(JSON.stringify({
   metric_count_findings: counts.length,
   counts_independently_rederived: countsChecked,
   declared_derivations_rederived: declaredChecked,
+  // Reported unconditionally, not only when non-zero. A skip visible only in the
+  // runs where it happened is invisible in the runs where it matters, and a
+  // silently reduced check is the defect this audit exists to catch.
+  sqlite_skipped: sqliteSkipped,
   declared_derivations_unavailable: declaredUnavailable,
   derivation_sources_checked: sourcesChecked,
   metrics_files_seen: metricsFiles.length,

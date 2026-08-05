@@ -41,7 +41,8 @@
     "audit:verify-chain": "node scripts/audit-verify-chain.mjs",
     "hooks:install": "git config core.hooksPath .githooks && echo \"hooks active: $(git config --get core.hooksPath)\"",
     "check:all": "bash scripts/check-all.sh",
-    "check:quick": "bash scripts/check-all.sh --quick"
+    "check:quick": "bash scripts/check-all.sh --quick",
+    "audit:quick": "node scripts/audit-asserted-numbers.mjs --skip-sqlite"
   },
   "devDependencies": {
     "ajv": "^8.17.1"

@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-05T02:42:41Z",
+  "question": "GQ-001",
+  "subject": "\"no honest way to speed it up\" was one idea, not a search",
+  "what_i_said_last_turn": "\"I found no honest way to make it faster\" \u2014 after trying exactly one thing, a cache, which could never have worked",
+  "what_a_second_look_found": {
+    "observation": "NOT ONE self-test case exercises a sqlite derivation \u2014 they break metrics files, package.json, and snapshot labels under bucket_counts / god_questions",
+    "verified": "the only derivation any case manipulates is fake.insensitive, kind file-count",
+    "so": "each of the 10 audit invocations re-runs 11 sqlite queries, including a 15.3s count(*), for work no case asserts on"
+  },
+  "built": "--skip-sqlite on audit-asserted-numbers.mjs",
+  "the_two_rules_that_make_it_safe": [
+    {
+      "rule": "refuses to combine with --strict, exit 64",
+      "why": "a run that checks less may never be the run that gates a push"
+    },
+    {
+      "rule": "the skipped count is reported UNCONDITIONALLY",
+      "why": "a skip visible only in the runs where it happened is invisible in the runs where it matters",
+      "proof": "--skip-sqlite reports 16 rederived / 26 skipped; a normal run reports 31 / 0"
+    }
+  ],
+  "it_did_NOT_achieve_the_goal": {
+    "goal": "get gate-selftest.sh onto the pre-push hook",
+    "blocker": "all 11 cases need --strict to detect a gate firing, and --skip-sqlite refuses --strict",
+    "decision": "kept the rule, did not weaken it to fit. The self-test stays at 367s and off the hook."
+  },
+  "what_it_is_actually_worth": {
+    "iteration_check": "3s",
+    "full_check": "37s",
+    "use": "the feedback loop I run dozens of times per turn, not the gate"
+  },
+  "verify_chain_unaffected": "still runs the full audit with --strict",
+  "derivations": {}
+}
