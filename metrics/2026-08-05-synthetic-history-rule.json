@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-05T04:16:05Z",
+  "question": "GQ-001",
+  "subject": "synthetic git history burned me three times; making the rule mechanical",
+  "the_pattern": [
+    "the gate self-test originally ran without .git and the refresh evaluator reported 10 entries fresh from zero information",
+    "gates-are-load-bearing.sh BASELINE FAILED because one synthetic commit touches every watched path at once",
+    "my trigger test last turn fired all three triggers for the same reason, and I read it as my fix not working"
+  ],
+  "the_surface": {
+    "scripts_building_synthetic_history": 3,
+    "gates_reading_git_history": 1,
+    "so": "the rule is narrow: evaluate-refresh.mjs is the only gate that can be misled this way"
+  },
+  "what_i_found_looking": {
+    "gate-selftest.sh case 7 DOES run it against synthetic history": true,
+    "and_that_is_correct": "the case backdates the ledger so triggers fire against the scratch repo's own commits \u2014 a legitimate use, and its comment already said so",
+    "but": "the case depends on the base commit touching a WATCHED path, and nothing stated or checked that. I narrowed new evidence source to contracts only this same session \u2014 narrow far enough and case 7 stops firing FOR THE RIGHT REASON and passes FOR THE WRONG ONE."
+  },
+  "fix": {
+    "documented": "the dependency on TRIGGER_PATHS is now written into the case",
+    "mechanical": "a probe asserts at least one watched path exists before the case is trusted",
+    "proven_both_ways": {
+      "normal": "PASS (3 watched paths present)",
+      "with schemas/, the contract and claims/ removed": "FAIL \u2014 \"case 7 would pass having tested nothing\""
+    }
+  },
+  "why_a_comment_was_not_enough": "a comment asking the next person to re-check is a comment. The probe fails loudly instead.",
+  "gates": {
+    "verify_exit": 0,
+    "suites": "3 pass, 0 fail",
+    "gate_selftest": "15 passed, 0 failed"
+  },
+  "derivations": {}
+}

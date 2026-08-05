@@ -149,6 +149,28 @@ json.dump(d,open(p,'w'),indent=2)"
 # commit touched a watched path since then. The scratch repo's own base commit
 # touches schemas/ and sources/, so backdating past it makes those triggers fire
 # against real history — which is what this gate is supposed to notice.
+#
+# THIS CASE DEPENDS ON TRIGGER_PATHS, and that dependency is invisible. It passes
+# only because the base commit touches at least one watched path. Checked
+# 2026-08-05 after narrowing 'new evidence source' from sources/ to contract
+# files only: schemas/ 1 file, adapter-contract.json 1, claims/ 10 — three live
+# triggers, so it still fires. Narrow TRIGGER_PATHS far enough and this case
+# would stop firing FOR THE RIGHT REASON and pass FOR THE WRONG ONE.
+#
+# If you tighten a trigger, re-check that this case still exits non-zero.
+# Mechanical version of the paragraph above: prove at least one watched path is
+# present before relying on it. A comment asking the next person to re-check is
+# a comment; this fails loudly instead.
+echo -n "PROBE the refresh case has a trigger to fire — "
+(
+  live=0
+  for pat in schemas sources/internet-archive/adapter-contract.json claims; do
+    [ -e "$pat" ] && live=$((live+1))
+  done
+  if [ "$live" -gt 0 ]; then echo "PASS ($live watched path(s) present)"
+  else echo "FAIL — no watched path in the scratch repo; case 7 would pass having tested nothing"; fi
+)
+
 check "refresh evaluator detects a stale entry claiming fresh" \
   "refresh/ledger.json" \
   "node scripts/evaluate-refresh.mjs" \
