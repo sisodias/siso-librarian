@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-05T19:36:52Z",
+  "question": "GQ-001",
+  "subject": "my own pre-push hook refused a push, and it was right",
+  "what_happened": "push rejected; I first read it as a transient remote error and printed \"pushed\" \u2014 the tail -1 in my command had HIDDEN the refusal line",
+  "lesson_about_my_own_reporting": "a pipeline ending in tail can drop the very line that says the operation failed; PUSH REFUSED was there and I did not see it",
+  "the_real_cause": {
+    "suite": "rebuild self-test, 8 passed 1 failed",
+    "case": "--check runs, reports, and changes nothing",
+    "observed": "rc=8, 1328 -> 1328",
+    "meaning": "exit 8 is INCOMPLETE \u2014 the index held 1,328 books while the fetch I had just run put 1,528 texts on disk. --check was CORRECT."
+  },
+  "the_defect_in_the_TEST": {
+    "what": "the case asserted rc==0 AND before==after, but its name claims only the second",
+    "why_wrong": "rc==0 asserts the corpus is currently up to date \u2014 a fact about the WORLD, not about --check, and false during any fetch",
+    "consequence": "the suite would fail on every ingest, training me to ignore it \u2014 the exact failure mode I spent today fixing"
+  },
+  "the_fix": "accept rc 0 (up to date) and rc 8 (INCOMPLETE, correctly reported); reject anything else, and mutation always",
+  "verified_it_still_discriminates": {
+    "real_mid_fetch_state": "9 passed, 0 failed",
+    "simulated_mutation_1328_to_1300": "correctly FAILS",
+    "unexpected_exit_rc_9": "correctly FAILS"
+  },
+  "gap_that_was_real": {
+    "texts_on_disk": 1528,
+    "indexed": 1328,
+    "action": "rebuild running"
+  },
+  "derivations": {}
+}

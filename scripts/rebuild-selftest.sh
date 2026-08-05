@@ -48,8 +48,20 @@ else bad "rebuild-corpus.sh is present" "missing — every case below would be v
 before=$(sqlite3 "file:$DB?mode=ro" "select count(*) from book_ext;" 2>/dev/null)
 out=$(bash "$PIPE" --check 2>&1); rc=$?
 after=$(sqlite3 "file:$DB?mode=ro" "select count(*) from book_ext;" 2>/dev/null)
-if [ "$rc" -eq 0 ] && [ "$before" = "$after" ] && printf '%s' "$out" | grep -q 'passage index'; then
-  ok "--check runs, reports, and changes nothing ($before books)"
+# EXIT 8 IS --check DOING ITS JOB, NOT FAILING. Measured 2026-08-05: this case
+# failed with rc=8, 1328 -> 1328 — immediately after a fetch added 199 texts.
+# The index was genuinely behind the disk and --check said so; the count did not
+# move, which is the only thing this case's NAME claims to test.
+#
+# Asserting rc=0 here conflates "changed nothing" with "the corpus is currently
+# up to date". The second is a fact about the world, not about --check, and it
+# is FALSE during any fetch. A case that fails whenever I am ingesting is a case
+# that trains me to ignore it — the failure mode I have been fixing all day.
+#
+# So: rc 0 (up to date) and rc 8 (INCOMPLETE, correctly reported) both pass;
+# any other exit does not, and mutation never does.
+if { [ "$rc" -eq 0 ] || [ "$rc" -eq 8 ]; } && [ "$before" = "$after" ] && printf '%s' "$out" | grep -q 'passage index'; then
+  ok "--check runs, reports, and changes nothing ($before books, rc=$rc)"
 else
   bad "--check runs and changes nothing" "rc=$rc, $before -> $after"
 fi
