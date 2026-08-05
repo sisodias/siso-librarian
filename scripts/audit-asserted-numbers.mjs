@@ -114,6 +114,18 @@ function derive(d) {
       // let the audit read a stale page and agree with a number that has moved.
       const archived = src.startsWith('/Volumes/');
       const uri = archived ? `file:${src}?mode=ro&immutable=1` : `file:${src}?mode=ro`;
+      // A within-run cache was tried here on 2026-08-05 and REMOVED: all 11
+      // sqlite derivations are DISTINCT (uri, query) pairs, so a cache can
+      // never hit. It appeared to cut the audit 25s -> 3s, but that number came
+      // from `sqliteCache` being referenced and never declared — a
+      // ReferenceError that made the audit skip work rather than do it faster.
+      // Declaring it properly restored the honest 32s.
+      //
+      // The real cost is one query: `select count(*) from passage` over 41.5M
+      // rows, 15.3s, and it is unavoidable here. max(rowid) returns the same
+      // number in 4ms and is NOT used — rowids gap the moment a row is deleted,
+      // so it would silently overstate. A correct slow answer beats a fast one
+      // that can lie.
       return Number(execFileSync('sqlite3', [uri, d.query], { encoding: 'utf8' }).trim());
     }
     case 'file-count': {

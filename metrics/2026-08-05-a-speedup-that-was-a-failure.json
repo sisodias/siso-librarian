@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-05T02:30:34Z",
+  "question": "GQ-001",
+  "subject": "a 437s suite I could not honestly speed up",
+  "the_goal": "get gate-selftest.sh onto the pre-push hook by making it fast enough to run there",
+  "my_hypothesis_was_wrong": {
+    "thought": "it replays the full 8-gate chain 15 times",
+    "measured": "it already invokes single gates \u2014 10 cases call audit-asserted-numbers.mjs directly",
+    "so": "the cost is one gate, not chain replay"
+  },
+  "where_the_time_actually_is": {
+    "audit_per_invocation": "25s",
+    "the_dominant_query": "select count(*) from passage on 41.5M rows \u2014 15,301ms, 61% of it",
+    "vault_queries": "1,411ms \u2014 NOT the problem, despite my earlier warning about USB",
+    "local_person_topic": "66ms"
+  },
+  "a_fast_answer_i_refused": {
+    "what": "max(rowid) returns 41501325 in 4ms; count(*) returns 41501325 in 15,301ms",
+    "identical_today": true,
+    "why_refused": "rowids gap the moment a row is deleted, so max(rowid) would silently overstate. A correct slow answer beats a fast one that can lie."
+  },
+  "the_cache_that_was_a_lie": {
+    "appeared_to_work": "audit 25s -> 3s, an 8x speedup",
+    "what_actually_happened": "sqliteCache was REFERENCED on three lines and declared nowhere. The ReferenceError made the audit skip work rather than do it faster. node --check passes on this \u2014 an undeclared identifier is only an error when the line executes.",
+    "honest_number_after_declaring_it": "32s",
+    "then_i_measured_whether_a_cache_CAN_help": "11 sqlite derivations, 11 DISTINCT (uri, query) pairs \u2014 nothing repeats, so a cache can never hit",
+    "outcome": "REMOVED, with the reasoning kept in the file so nobody re-adds it"
+  },
+  "result": {
+    "gate_selftest": "367s, stays out of the pre-push hook",
+    "suites": "all pass",
+    "derivations": 31,
+    "skipped": 0,
+    "net_change": "one dead cache removed, one latent ReferenceError fixed, timings documented"
+  },
+  "what_i_did_not_achieve": "the self-test still cannot run on every push. I found no honest way to make it faster, and I am recording that rather than shipping max(rowid).",
+  "derivations": {}
+}
