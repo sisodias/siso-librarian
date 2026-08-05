@@ -1,0 +1,62 @@
+{
+  "measured_at": "2026-08-05T05:37:23Z",
+  "question": "GQ-007",
+  "subject": "third want-list \u2014 the Library reaches 298 books",
+  "selection": {
+    "subjects": [
+      "Medicine -- History",
+      "Philosophy -- History",
+      "Women -- Education"
+    ],
+    "library_holdings": {
+      "Medicine -- History": 15,
+      "Philosophy -- History": 15,
+      "Women -- Education": 19
+    },
+    "ia_availability": {
+      "Medicine -- History": 124,
+      "Philosophy -- History": 22,
+      "Women -- Education": 9,
+      "Folklore -- Ireland": 0
+    },
+    "probed_first": "Irish folklore returned ZERO \u2014 thin in the Library does not mean available on IA. Dropped before building."
+  },
+  "result": {
+    "candidates": 120,
+    "eligible": 119,
+    "fetched": "119 of 119",
+    "first_pass": "115 ok, 4 BAD_BODY",
+    "after_retry": "4/4 recovered, 9 KB to 2,608 KB"
+  },
+  "three_lists_one_pattern": "every failure across all three want-lists has been transient truncation, recovered on retry. Not one book was ever actually unavailable \u2014 78/78, 101/101, 119/119.",
+  "a_third_rights_profile": {
+    "list_1": "72 formal-designation of 81",
+    "list_2": "84 institutional-review of 111",
+    "list_3": "115 formal-designation of 120",
+    "note": "same gate, three different evidence mixes"
+  },
+  "corpus": {
+    "books": 298,
+    "catalogued_words": 31609828,
+    "passages": 318290,
+    "indexed_words": 27312642,
+    "headings": 22321,
+    "long_s_passages": 108775,
+    "index_mb": 434.4
+  },
+  "integrity_at_298": {
+    "exact_title_duplicates": 0,
+    "shared_passages": 3,
+    "note": "unchanged from 179 books \u2014 the title dedup holds across three independent lists"
+  },
+  "growth_today": {
+    "books": "78 -> 298",
+    "passages": "122,553 -> 318,290",
+    "catalogued_words": "11.5M -> 31.6M"
+  },
+  "search_verified": {
+    "physick": "Philip Syng Physick, early American surgeon",
+    "zxqwvblorptik": "no matches"
+  },
+  "derivations": {}
+}
