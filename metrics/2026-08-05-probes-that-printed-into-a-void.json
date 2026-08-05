@@ -1,0 +1,26 @@
+{
+  "measured_at": "2026-08-05T19:01:44Z",
+  "question": "GQ-001",
+  "subject": "six probes that printed verdicts nothing acted on",
+  "how_i_got_here": "three bugs today shared one shape \u2014 input ABSENT, not wrong. I went to teach the self-test that shape and found the suite could not fail on it either.",
+  "the_missing_test_class": {
+    "what_the_suite_did": "every case broke an artifact by making it WRONG \u2014 corrupt JSON, bad number, missing table",
+    "what_it_never_did": "remove the input entirely so the gate has nothing to read",
+    "why_that_matters": "all three of today bugs passed corruption and failed starvation \u2014 they are different tests"
+  },
+  "the_worse_finding": {
+    "what": "a probe printing FAIL did not fail the suite",
+    "proven": "forced one probe to print \"FAIL \u2014 forced\"; suite still reported \"15 passed, 0 failed\" and exit 0",
+    "cause": "PASS/FAIL counters were incremented only inside check(); the 6 probes are ( ) subshells and cannot touch a parent variable",
+    "consequence": "six probes had been decorative for their entire existence \u2014 the same defect they exist to catch, inside the tool I use to catch it"
+  },
+  "the_fix": {
+    "starvation_cases": "2 added \u2014 source-coverage with an empty sources/, retention pointed at a file that is not a database",
+    "signalling": "all 8 FAIL branches now exit 1; a probe_done helper counts each subshell status in the parent"
+  },
+  "verified_both_directions": {
+    "healthy_repo": "23 passed, 0 failed, exit 0 (was 15 \u2014 the 8 probes now count)",
+    "one_probe_forced_to_fail": "22 passed, 1 failed, exit 1 (identical forcing gave 15/0 and exit 0 before)"
+  },
+  "derivations": {}
+}

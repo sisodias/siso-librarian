@@ -80,6 +80,17 @@ check() {
   fi
 }
 
+# A PROBE THAT PRINTS FAIL MUST FAIL THE SUITE. Measured 2026-08-05: forcing one
+# probe to print "FAIL — forced" still produced "15 passed, 0 failed" and exit 0.
+# Six probes had been decorative for their whole existence — printing verdicts
+# nothing acted on, which is the same defect the probes exist to catch.
+#
+# Subshells cannot increment the parent's counters, so they signal by exit status
+# and the parent counts it here.
+probe_done() {
+  if [ "$1" -eq 0 ]; then PASS=$((PASS+1)); else FAIL=$((FAIL+1)); fi
+}
+
 echo "=== gate self-test: each case breaks one thing and requires the gate to notice ==="
 
 # 1. Claim schema validation — an invalid confidence must be rejected.
@@ -168,8 +179,9 @@ echo -n "PROBE the refresh case has a trigger to fire — "
     [ -e "$pat" ] && live=$((live+1))
   done
   if [ "$live" -gt 0 ]; then echo "PASS ($live watched path(s) present)"
-  else echo "FAIL — no watched path in the scratch repo; case 7 would pass having tested nothing"; fi
+  else echo "FAIL — no watched path in the scratch repo; case 7 would pass having tested nothing"; exit 1; fi
 )
+probe_done $?
 
 check "refresh evaluator detects a stale entry claiming fresh" \
   "refresh/ledger.json" \
@@ -212,8 +224,9 @@ echo -n "PROBE corrupt file inside a derivation source — "
   st=$?
   cp /tmp/selftest-rel-backup.json "$T"     # restore first, always
   rm -f /tmp/selftest-rel-backup.json
-  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — corrupt source passed silently"; fi
+  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — corrupt source passed silently"; exit 1; fi
 )
+probe_done $?
 
 # A list published as a bare count. Twice this session the page showed "N queued"
 # or "N awaiting" while the content lived only in the raw JSON dump — same
@@ -303,8 +316,9 @@ echo -n "PROBE prose mention does not count as a reference — "
   printf '\nWe once considered scripts/orphan-probe.mjs but abandoned it.\n' >> README.md
   n=$(node scripts/audit-asserted-numbers.mjs 2>/dev/null | grep -c 'orphan-probe')
   rm -rf "$P"
-  if [ "${n:-0}" -gt 0 ]; then echo "PASS (flagged despite the prose mention)"; else echo "FAIL — prose alone marked it referenced"; fi
+  if [ "${n:-0}" -gt 0 ]; then echo "PASS (flagged despite the prose mention)"; else echo "FAIL — prose alone marked it referenced"; exit 1; fi
 )
+probe_done $?
 
 # The shared claim reader must not silently stop resolving. If groundingSourceId
 # returned '' for everything, the audit would find zero grounded metrics and
@@ -332,8 +346,9 @@ echo -n "PROBE patch helper refuses a silent no-op — "
     try { applyEdit(process.env.TARGET, { find: 'a = 1', replace: 'a = 1' }); console.log('NOTHROW'); }
     catch { console.log('THREW'); }" 2>/dev/null)
   rm -rf "$W"
-  if [ "$out" = "THREW" ]; then echo "PASS (no-op rejected)"; else echo "FAIL — a no-op edit reported success"; fi
+  if [ "$out" = "THREW" ]; then echo "PASS (no-op rejected)"; else echo "FAIL — a no-op edit reported success"; exit 1; fi
 )
+probe_done $?
 
 # The destructive script must refuse when its guards are broken. Added
 # 2026-08-05 after finding enforce-log-retention.sh — the ONE script here that
@@ -343,8 +358,9 @@ echo -n "PROBE patch helper refuses a silent no-op — "
 echo -n "PROBE the deleting script is actually exercised — "
 (
   out=$(bash "$ROOT/scripts/retention-selftest.sh" 2>&1 | tail -1)
-  if printf '%s' "$out" | grep -q '6 passed, 0 failed'; then echo "PASS ($out)"; else echo "FAIL — $out"; fi
+  if printf '%s' "$out" | grep -q '6 passed, 0 failed'; then echo "PASS ($out)"; else echo "FAIL — $out"; exit 1; fi
 )
+probe_done $?
 
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
@@ -355,8 +371,44 @@ echo -n "PROBE refuses to evaluate without git — "
   cd "$NOGIT/repo" && node scripts/evaluate-refresh.mjs >/dev/null 2>&1
   st=$?
   rm -rf "$NOGIT"
-  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — reported fresh with no git"; fi
+  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — reported fresh with no git"; exit 1; fi
 )
+probe_done $?
+
+# STARVATION, not corruption. Every case above breaks an artifact by making it
+# WRONG — a corrupt JSON, a bad number, a missing table. Measured 2026-08-05,
+# three separate bugs in one day shared the opposite shape: the input was not
+# wrong, it was ABSENT, and each gate answered as though absent meant fine.
+#
+#   rebuild-corpus     mktemp failed -> LOGFILE empty -> grep found no skips ->
+#                      exit 9 on a corpus that was correct
+#   enforce-retention  unreadable database -> counts empty -> "nothing to do", exit 0
+#   audit-source-cov   empty sources/ -> checked_files 0 -> findings [], exit 0
+#
+# A corrupt file and a missing file are DIFFERENT tests, and passing the first
+# says nothing about the second. These cases starve a gate of its input entirely
+# and require it to refuse.
+echo -n "PROBE source-coverage audit starved of every source file — "
+(
+  S=$(mktemp -d "/tmp/gate-starve-XXXXXX")
+  mkdir -p "$S/sources"
+  cd "$S" && node "$ROOT/scripts/audit-source-coverage.mjs" --strict >/dev/null 2>&1
+  st=$?
+  rm -rf "$S"
+  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — reported clean having read zero files"; exit 1; fi
+)
+probe_done $?
+
+echo -n "PROBE retention job pointed at a file that is not a database — "
+(
+  S=$(mktemp -d "/tmp/gate-starve-XXXXXX")
+  printf 'not a database\n' > "$S/garbage.sqlite"
+  LOG_DB_OVERRIDE="$S/garbage.sqlite" bash "$ROOT/scripts/enforce-log-retention.sh" >/dev/null 2>&1
+  st=$?
+  rm -rf "$S"
+  if [ "$st" -ne 0 ]; then echo "PASS (exit $st)"; else echo "FAIL — reported 'nothing to do' on an unreadable log"; exit 1; fi
+)
+probe_done $?
 
 echo
 echo "=== $PASS passed, $FAIL failed ==="
