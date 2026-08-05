@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T04:40:42.627Z",
+  "generated_at": "2026-08-05T04:46:43.849Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -41,8 +41,8 @@
     "npm_scripts": 45,
     "verify_steps": 10,
     "scripts_on_disk": 39,
-    "metrics_files": 149,
-    "worklogs": 208,
+    "metrics_files": 150,
+    "worklogs": 209,
     "proposals": 18
   },
   "derivations": {
@@ -336,9 +336,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 45,
-    "prompt_tokens": 632048,
-    "completion_tokens": 17237,
+    "requests": 41,
+    "prompt_tokens": 628707,
+    "completion_tokens": 17173,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
@@ -472,7 +472,7 @@
       "Cloudflare ingress for the observatory — RE-VERIFIED, still yours",
       "Bifrost's request log — retention APPLIED; only the content-logging policy is still yours",
       "oracle-gate is 13 git worktrees — 13.7 GB reclaimable, and the unique work is already saved",
-      "Internet Archive expansion — NOT blocked on rights. Selection was, and it is now answered."
+      "Internet Archive expansion — the selection half is DONE. Only the Twain case is still yours."
     ],
     "source": "proposals/2026-08-04-decisions-awaiting-shaan.md",
     "successor_handover": "HANDOVER-NEXT.md",
@@ -483,7 +483,7 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 22.8,
+    "oldest_queued_age_hours": 22.9,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",

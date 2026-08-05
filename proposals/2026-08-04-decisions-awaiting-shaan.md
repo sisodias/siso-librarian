@@ -310,7 +310,39 @@ Reclaims ~13.7 GB. I have not run any of it. Evidence:
 
 ---
 
-## 7. Internet Archive expansion — NOT blocked on rights. Selection was, and it is now answered.
+## 7. Internet Archive expansion — the selection half is DONE. Only the Twain case is still yours.
+
+**Updated 2026-08-05.** Everything below described a plan. It has since run
+twice, and the decision needs re-scoping to what is actually still open.
+
+**Done, not pending.** 179 books ingested across two want-lists, 20.2M catalogued
+words, 206,574 searchable passages. Both lists used only IA's own explicit
+`rights` field, so no copyright judgement of mine was involved:
+
+| list | candidates | rights profile | ingested |
+| --- | ---: | --- | ---: |
+| weak subjects (poetry, essays, cookery) | 81 | 72 formal-designation | 78 |
+| tier-1 thin subjects (criticism, philosophy, mythology) | 111 | 84 institutional-review | 101 |
+
+**A caveat below that testing contradicted.** I wrote that the Essays tier is
+"18th-century medical serials" and suggested dropping it. Reading the corpus
+showed otherwise: it is London Magazine runs from 1742–1779 plus genuine essay
+collections, and the medical framing came from IA *collection* labels
+(`medicalheritagelibrary`), not from the books. A Keats critical essay sits in
+that collection. **Dropping Essays would have discarded on-subject material.**
+
+**Still yours, and unchanged:** the Twain case. 2,015 texts, exactly 1 with an
+explicit rights field, and the available substitute signals (`printdisabled`,
+`inlibrary`) are precisely the controlled-lending markers the contract excludes
+after Hachette v. IA. Deciding a 1900 edition is public domain despite absent
+metadata is still a copyright call I should not make on your behalf.
+
+**What that costs:** the sparse-metadata tier stays out. Everything with an
+explicit rights field is already flowing, and `npm run ia:want-list` +
+`npm run ia:ingest` will keep it flowing without you.
+
+### The original text follows, unedited.
+
 
 The headline below is wrong in scope. **270,049 IA texts carry an explicit
 rights field set by IA** — those need no judgement from me. Only the

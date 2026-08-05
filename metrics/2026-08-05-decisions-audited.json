@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-05T04:45:38Z",
+  "question": "GQ-009",
+  "subject": "reachable is not the same as true \u2014 auditing what the page tells Shaan",
+  "why": "I have spent turns making things reachable. I had never checked whether what the observatory SAYS is still true after two days of change. A stale decision costs him more than a missing link.",
+  "served_page_is_current": "byte-identical to the built file, 61,829 bytes",
+  "decision_7_was_describing_a_plan_that_has_since_run_twice": {
+    "said": "want-list of 81 identifiers, selection now answered",
+    "actually_happened": "179 books ingested across TWO lists, 20.2M catalogued words, 206,574 passages",
+    "so": "the selection half is DONE, not pending \u2014 presenting it as awaiting him wasted his attention"
+  },
+  "a_caveat_of_mine_that_testing_contradicted": {
+    "i_wrote": "the Essays tier (30 of 81) is 18th-century medical serials; dropping it leaves ~51",
+    "reading_the_corpus_showed": "London Magazine runs 1742-1779 plus genuine essay collections. The medical framing came from IA COLLECTION labels (medicalheritagelibrary), not from the books \u2014 a Keats critical essay sits in that collection.",
+    "consequence_avoided": "dropping Essays would have discarded on-subject material"
+  },
+  "what_remains_genuinely_his": "the Twain case: 2,015 texts, exactly 1 with an explicit rights field, and the substitute signals are the controlled-lending markers the contract excludes after Hachette v. IA. Unchanged and still not mine to decide.",
+  "decision_2_re_verified_rather_than_trusted": {
+    "claim": "5 refs under refs/rescue/, all SHAs in a 621 MB vault bundle",
+    "my_first_check_was_wrong": "I counted rescue refs in THIS repo and got 0 \u2014 they are in SISO_Agency/apps/oracle-streaming, which the decision names",
+    "result": "5 refs present, 621 MB bundle present. The claim holds exactly as written."
+  },
+  "derivations": {}
+}
