@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-05T04:07:09Z",
+  "question": "GQ-009",
+  "subject": "a treadmill I built: every ingest would have blocked a push",
+  "what_happened_last_turn": "the hook refused my push because 10 ledger entries disagreed. I re-derived grounding, refreshed the ledger, pushed clean \u2014 and treated it as a one-off.",
+  "it_was_not_a_one_off": {
+    "trigger": "new evidence source, watching sources/",
+    "what_trips_it": "writing a want-list, which every ingest does",
+    "so": "each future ingest = one blocked push + ten hand-refreshed entries, forever"
+  },
+  "the_measurement_that_settled_it": {
+    "claims_grounding_in_sources": 1,
+    "what_that_one_cites": "sources/internet-archive/adapter-contract.json",
+    "what_my_commit_changed": "sources/internet-archive/want-list-weak-subjects.json",
+    "conclusion": "the trigger blocked a push over a file that ZERO claims ground in"
+  },
+  "the_precedent_was_already_in_the_file": "the comment above \"schema change\" says a trigger that fires on maintenance trains you to dismiss it \u2014 I had narrowed that one for exactly this reason on 2026-08-04 and left its neighbour broad",
+  "fix": {
+    "from": "['sources/']",
+    "to": "['sources/**/adapter-contract.json', 'sources/**/*contract*.json']",
+    "measured_over_full_history": {
+      "old_pattern_commits": 9,
+      "new_pattern_commits": 2,
+      "meaning": "7 maintenance commits will no longer block a push; both genuine contract changes still caught"
+    }
+  },
+  "a_test_of_mine_that_was_wrong": {
+    "what": "built a scratch repo, touched the want-list, expected no trigger \u2014 got all three firing",
+    "cause": "the scratch copy has ONE synthetic base commit touching every watched path at once",
+    "same_artefact": "broke the gates-are-load-bearing baseline earlier today",
+    "lesson": "a git-history gate cannot be tested on synthetic history; test the pathspec against the real log"
+  },
+  "gates": {
+    "verify_exit": 0,
+    "suites": "3 pass, 0 fail"
+  },
+  "derivations": {}
+}

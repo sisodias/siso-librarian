@@ -24,7 +24,17 @@ const TRIGGER_PATHS = {
   // things it checks, and a trigger that fires on maintenance trains you to
   // dismiss it.
   'schema change': ['schemas/'],
-  'new evidence source': ['sources/'],
+  // Adapter CONTRACTS, not every file under sources/. Measured 2026-08-05:
+  // ingesting 101 books rewrote sources/internet-archive/want-list-weak-subjects.json
+  // and marked all 10 claims stale, blocking a push — over a file that exactly
+  // ZERO claims ground in. The only grounding under sources/ cites
+  // adapter-contract.json.
+  //
+  // Same defect the 'schema change' comment above describes, and the same fix:
+  // watch what a claim can actually ground in. A want-list is an input to the
+  // ingest, not evidence for a position — and every future ingest would have
+  // tripped this, so the cost was a permanent treadmill, not one bad push.
+  'new evidence source': ['sources/**/adapter-contract.json', 'sources/**/*contract*.json'],
   'approved action status change': ['claims/'],
 };
 
