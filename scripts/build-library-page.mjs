@@ -73,6 +73,7 @@ const html = `<!doctype html><html lang="en"><head><meta charset="utf-8">
  .none{color:#888;padding:2rem 0}
  code{background:#f4f4f4;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
 </style></head><body>
+<p style="margin:0 0 .75rem"><a href="/">&larr; Observatory</a></p>
 <h1>The Library — Internet Archive corpus</h1>
 <p class="sub">${Number(books.length).toLocaleString()} books &middot; ${Number(passages).toLocaleString()} passages &middot; ${Number(words).toLocaleString()} words &middot; ${Number(longS).toLocaleString()} passages in long-s spelling</p>
 <input id="q" placeholder="Search titles and chapter headings…" autocomplete="off" autofocus>

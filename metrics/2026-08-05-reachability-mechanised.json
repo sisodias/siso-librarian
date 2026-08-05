@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-08-05T04:39:53Z",
+  "question": "GQ-001",
+  "subject": "the unreachability pattern, mechanised instead of fixed a sixth time",
+  "the_pattern": "Five times this session I built something and left it unreachable \u2014 outbox messages, corpus counts, search indexes, the search CLI, and a gate wired to nothing. Each fixed by hand, after noticing.",
+  "what_was_already_covered": {
+    "scripts": "audit-asserted-numbers reports script-unreferenced \u2014 checked, every script is reachable",
+    "gates": "audit-verify-chain reports gate-dropped-from-chain",
+    "not_covered": "the thing all five failures actually were \u2014 a PAGE a person is expected to read, with no path to it"
+  },
+  "the_defect_found_by_looking": {
+    "what": "library.html was linked FROM the observatory and linked nowhere itself",
+    "consequence": "a reader browsing to the corpus hit a dead end and had to edit the URL by hand",
+    "fixed": "back-link added; round trip verified in both directions over the tailnet"
+  },
+  "built": "scripts/audit-reachability.mjs \u2014 npm run audit:reachability",
+  "checks": [
+    "every page reachable from the index",
+    "every page links somewhere \u2014 a dead end is half a defect",
+    "no link to a missing page",
+    "refuses to report clean when there are no pages at all"
+  ],
+  "proven_both_ways": {
+    "fixed_tree": "0 findings",
+    "tree_before_my_fix": "page-is-a-dead-end"
+  },
+  "the_mechanism_worked_this_time": "audit-verify-chain FLAGGED audit-reachability.mjs as gate-dropped-from-chain before I wired it in. Last turn I had to notice corpus-integrity.mjs myself; this turn the repo told me. That is the difference between a lesson and a mechanism.",
+  "gates": {
+    "chain": 10,
+    "findings": 0,
+    "verify_exit": 0,
+    "suites": "3 pass, 0 fail"
+  },
+  "derivations": {}
+}
