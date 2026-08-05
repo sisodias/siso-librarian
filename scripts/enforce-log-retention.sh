@@ -53,6 +53,20 @@ printf "file size        : %.2f GB\n" "$(echo "${before_bytes:-0} / 1073741824" 
 # first version exited here and never reached the prune — which is the step that
 # actually controls the file size, since deleting 136 expired rows made the file
 # GROW. Zero rows to evict says nothing about bytes to reclaim.
+# UNREADABLE IS NOT EMPTY. Measured 2026-08-05: pointed at a file containing the
+# literal text "not a database", this script printed "rows total: unknown", then
+# "no rows past the window", then "nothing to do", and exited 0. A nightly cron
+# against a corrupt log would report success forever.
+#
+# Same shape as the rebuild guard fixed earlier today: a default turned a broken
+# INPUT into a plausible ANSWER. Here the queries return empty, ${stale:-0}
+# reads 0, and 0 is indistinguishable from "healthy, nothing expired".
+if [ -z "${before_rows:-}" ] || [ -z "${stale:-}" ]; then
+  echo "REFUSING: cannot read the log database — counts came back empty, not zero." >&2
+  echo "  A corrupt or wrong-schema file must not be reported as 'nothing to do'." >&2
+  sqlite3 "file:$DB?mode=ro" "pragma quick_check(1);" 2>&1 | sed 's/^/  /' >&2
+  exit 75
+fi
 if [ "${stale:-0}" -eq 0 ]; then
   echo "no rows past the window"
 fi

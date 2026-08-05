@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-05T18:37:50Z",
+  "question": "GQ-001",
+  "subject": "a nightly job that reports success against a corrupt database",
+  "found_by": "sweeping for the defect SHAPE found in the rebuild guard \u2014 a default that turns a broken input into a plausible answer",
+  "the_defect": {
+    "script": "enforce-log-retention.sh",
+    "behaviour": "pointed at a file containing the literal text \"not a database\", it printed \"rows total: unknown\", then \"no rows past the window\", then \"nothing to do\", and exited 0",
+    "why": "the count queries return EMPTY on error; ${stale:-0} reads 0; and 0 is indistinguishable from \"healthy, nothing expired\"",
+    "consequence": "a cron running nightly against a damaged log reports success forever"
+  },
+  "two_of_my_own_probes_were_wrong_first": {
+    "probe_1": "set DB= to redirect it \u2014 the real knob is LOG_DB_OVERRIDE, so it read the REAL 9.5 GB log and I nearly recorded a hardcoded-path defect that does not exist",
+    "probe_2": "my first guard checked ${total} \u2014 that variable does not exist, the name is before_rows; it would have refused on EVERY run including healthy ones",
+    "lesson": "both were caught by checking the variable actually existed before trusting the edit"
+  },
+  "the_fix": "refuse with exit 75 when the counts come back empty rather than zero, and print pragma quick_check(1) so the reason is visible",
+  "verified_three_ways": {
+    "file_that_is_not_a_database": "exit 75",
+    "valid_sqlite_with_wrong_schema": "exit 75",
+    "the_real_9.5GB_log": "exit 0, reads 4,199 rows \u2014 still works"
+  },
+  "derivations": {}
+}
