@@ -1,0 +1,41 @@
+{
+  "measured_at": "2026-08-05T00:57:58Z",
+  "question": "GQ-001",
+  "subject": "closing the hole I found and left open last turn",
+  "the_vulnerability_confirmed": {
+    "method": "corrupted a claim on a scratch copy, then appended \"|| true\" to the verify script",
+    "intact_chain": "exit 1",
+    "with_swallow": "exit 0",
+    "meaning": "two words in package.json make a corrupted repo report healthy"
+  },
+  "built": "scripts/audit-verify-chain.mjs \u2014 inspects the chain DEFINITION rather than the artifacts",
+  "catches": [
+    "|| true",
+    "|| :",
+    "a gate named in the chain but absent from disk",
+    "a gate on disk but dropped from the chain"
+  ],
+  "all_four_verified": "each defect injected on a scratch copy produced exactly one finding of the right kind",
+  "my_fix_did_not_work_the_first_time": {
+    "what_i_did": "put the guard FIRST in the verify chain",
+    "result": "the end-to-end test still exited 0",
+    "why": "\"|| true\" wraps the WHOLE chain including the guard \u2014 it exits 4 standalone and 0 through npm",
+    "the_principle": "a guard cannot protect the mechanism that invokes it",
+    "how_i_caught_it": "ran the end-to-end test instead of trusting that the gate fired in isolation"
+  },
+  "the_actual_fix": {
+    "what": "a pre-push hook that calls the guard DIRECTLY, outside the chain, before running the chain",
+    "verified": {
+      "compromised_chain": "hook exit 1",
+      "intact_chain": "hook exit 0"
+    },
+    "caveat": ".git/hooks/ is not version-controlled, so this protects THIS clone only. The script is committed as .githooks-pre-push with npm run hooks:install. A fresh clone is unprotected until someone runs it \u2014 stated rather than glossed."
+  },
+  "a_claim_this_confirms": "GQ-001 says the gates \"have blocked ZERO pushes: verify runs by habit and stops voluntarily, so it is a pre-commit convention rather than an enforcement boundary.\" There were no git hooks at all until now. The claim was exactly right, and this is the first thing in the repo that can actually stop a push.",
+  "gates": {
+    "verify_exit": 0,
+    "gate_selftest": "15 passed, 0 failed",
+    "load_bearing": "7 of 7"
+  },
+  "derivations": {}
+}
