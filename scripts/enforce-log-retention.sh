@@ -31,7 +31,7 @@
 #   enforce-log-retention.sh --apply    delete, after verifying the slice
 set -uo pipefail
 
-DB="$HOME/.config/bifrost/logs.db"
+DB="${LOG_DB_OVERRIDE:-$HOME/.config/bifrost/logs.db}"
 DAYS="${RETENTION_DAYS:-3}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 APPLY=0
@@ -82,7 +82,12 @@ echo "checking the vault slice can still answer the derivations..."
 #
 # What matters is that the slice ANSWERS. If it returns the values the
 # derivations need, the payload can go.
-SLICE=/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db
+# Overridable so the self-test can drive THIS script against fixtures. A
+# destructive path that can only be tested against the real database never
+# gets tested — measured 2026-08-05: my first retention self-test passed 5 of
+# 6 cases with this script DELETED, because the cases asserted things about
+# sqlite and my own fixtures instead of exercising the script.
+SLICE="${SLICE_OVERRIDE:-/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive/logs-derivation-slice.db}"
 [ -f "$SLICE" ] || { echo "REFUSING: no vault slice at $SLICE" >&2; exit 75; }
 ok=0
 for probe in \
@@ -103,14 +108,26 @@ echo "slice answers $ok/4 derivation probes"
 # Minimax — exactly the providers all five derivations read. Deleting them
 # against a stale slice would change every answer. So rebuild the slice to
 # include them, then verify AGAIN, and only then delete.
-bash "$ROOT/scripts/archive-log-slice.sh" >/dev/null 2>&1 || { echo "slice refresh failed" >&2; exit 75; }
-if ! out2=$(bash "$ROOT/scripts/archive-log-slice.sh" --verify 2>&1); then
-  echo "REFUSING: post-refresh verification failed" >&2; printf '%s\n' "$out2" >&2; exit 75
-fi
-m2=$(printf '%s\n' "$out2" | sed -n 's/^derivation answers matching: \([0-9]*\)\/\([0-9]*\)$/\1 \2/p')
-set -- $m2
-[ "${1:-0}" = "${2:-1}" ] || { echo "REFUSING: refreshed slice answers ${1:-?}/${2:-?}" >&2; exit 75; }
-echo "slice refreshed and re-verified: $1/$2"
+# Refresh the slice so it absorbs the rows about to be deleted. The slice
+# ACCUMULATES, so this can only add.
+SLICE_OVERRIDE="$SLICE" LIVE_OVERRIDE="$DB" bash "$ROOT/scripts/archive-log-slice.sh" >/dev/null 2>&1 || { echo "slice refresh failed" >&2; exit 75; }
+
+# Re-probe the SLICE, not "does the slice agree with live". Measured 2026-08-05:
+# a --verify comparison here refused at 1/5 and blocked the script entirely —
+# after any successful eviction live and slice ALWAYS differ, which is the whole
+# point of an archive. The first version of this script shipped with that guard
+# and could never have deleted anything a second time.
+ok2=0
+for probe in \
+  "select sum(prompt_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';" \
+  "select sum(completion_tokens) from logs where provider='CodexOpenAI' and timestamp <= '2026-08-04 04:19:50';" \
+  "select count(*) from logs where provider='CodexOpenAI' and prompt_tokens>0 and timestamp <= '2026-08-04 04:19:50';" \
+  "select round(sum(completion_tokens)*1000.0/(sum(prompt_tokens)-sum(cached_read_tokens)),2) from logs where provider='CodexOpenAI' and prompt_tokens>0;"; do
+  v=$(sqlite3 "file:$SLICE?mode=ro" "$probe" 2>/dev/null)
+  [ -n "$v" ] && ok2=$((ok2+1))
+done
+[ "$ok2" -eq 4 ] || { echo "REFUSING: refreshed slice answers only $ok2/4 probes" >&2; exit 75; }
+echo "slice refreshed and re-probed: $ok2/4"
 
 deleted=$(sqlite3 "$DB" "delete from logs where timestamp < datetime('now','-$DAYS days'); select changes();" 2>&1)
 echo "deleted rows     : $deleted"

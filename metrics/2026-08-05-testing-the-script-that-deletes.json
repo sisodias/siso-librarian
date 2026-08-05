@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-05T00:03:23Z",
+  "question": "GQ-001",
+  "subject": "the only script that deletes had no test, and my first test was decoration",
+  "the_gap": "enforce-log-retention.sh is the one script in this repo that removes data. Every other gate has a self-test case proving it fires. This had ZERO coverage \u2014 and it had already destroyed the archive it depends on.",
+  "my_first_attempt_was_decoration": {
+    "result": "6 passed, 0 failed",
+    "the_test_that_mattered": "deleted the script and re-ran \u2014 5 of 6 still passed",
+    "why": "four cases asserted things about sqlite and my own fixtures; they would pass on an empty repo",
+    "this_is_the_defect_i_removed_a_guard_for_earlier_today": "a check that cannot detect its own target reads as coverage"
+  },
+  "the_rewrite": {
+    "change": "every case now drives the real script via LOG_DB_OVERRIDE and SLICE_OVERRIDE against temp fixtures",
+    "why_overrides": "a destructive path that can only be tested against the real database never gets tested",
+    "proof": "with the script deleted the result inverts \u2014 5 passed becomes 5 FAILED"
+  },
+  "a_real_bug_the_new_test_found": {
+    "symptom": "cases 4 and 5 failed: the script evicted nothing and pruned nothing on a clean fixture",
+    "cause": "a leftover guard compared the refreshed slice against LIVE and refused at 1/5. After ANY successful eviction live and slice always differ \u2014 that is what an archive is.",
+    "consequence": "the script could never have deleted anything a second time. It had run once; the next run would have refused forever.",
+    "fix": "re-probe the slice directly \u2014 does it ANSWER \u2014 instead of asking whether it agrees with a source that has moved on"
+  },
+  "result": {
+    "retention_selftest": "6 passed, 0 failed",
+    "with_script_deleted": "1 passed, 5 failed",
+    "wired_into": "gate-selftest.sh as a probe, and npm run retention:selftest",
+    "verify_exit": 0
+  },
+  "derivations": {}
+}

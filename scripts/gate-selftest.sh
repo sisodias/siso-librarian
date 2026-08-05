@@ -313,6 +313,17 @@ echo -n "PROBE patch helper refuses a silent no-op — "
   if [ "$out" = "THREW" ]; then echo "PASS (no-op rejected)"; else echo "FAIL — a no-op edit reported success"; fi
 )
 
+# The destructive script must refuse when its guards are broken. Added
+# 2026-08-05 after finding enforce-log-retention.sh — the ONE script here that
+# deletes data — had zero self-test coverage, and my first attempt at covering
+# it passed 5 of 6 cases with the script DELETED, because the cases asserted
+# things about sqlite rather than exercising the script.
+echo -n "PROBE the deleting script is actually exercised — "
+(
+  out=$(bash "$ROOT/scripts/retention-selftest.sh" 2>&1 | tail -1)
+  if printf '%s' "$out" | grep -q '6 passed, 0 failed'; then echo "PASS ($out)"; else echo "FAIL — $out"; fi
+)
+
 # The swallow that started all this: if git cannot answer, the gate must refuse
 # rather than report everything fresh from zero information.
 echo -n "PROBE refuses to evaluate without git — "

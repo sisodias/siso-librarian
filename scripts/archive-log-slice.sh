@@ -23,9 +23,9 @@
 #   archive-log-slice.sh --verify   compare slice answers against the live log
 set -uo pipefail
 
-LIVE="$HOME/.config/bifrost/logs.db"
+LIVE="${LIVE_OVERRIDE:-$HOME/.config/bifrost/logs.db}"
 OUT=/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/bifrost-logs/derivation-archive
-SLICE="$OUT/logs-derivation-slice.db"
+SLICE="${SLICE_OVERRIDE:-$OUT/logs-derivation-slice.db}"
 
 [ -f "$LIVE" ] || { echo "live log not present: $LIVE" >&2; exit 70; }
 [ -d "$(dirname "$OUT")" ] || { echo "vault not mounted: $OUT" >&2; exit 70; }
