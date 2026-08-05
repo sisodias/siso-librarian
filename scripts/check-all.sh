@@ -64,6 +64,7 @@ echo "=== every suite, run to completion ==="
 run "verify chain"        "npm run verify"
 run "gate self-test"      "bash scripts/gate-selftest.sh"
 run "retention self-test" "bash scripts/retention-selftest.sh"
+run "rebuild self-test"   "bash scripts/rebuild-selftest.sh"
 run "gates load-bearing"  "bash scripts/gates-are-load-bearing.sh" 1
 
 echo

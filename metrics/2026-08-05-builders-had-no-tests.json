@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-05T07:00:35Z",
+  "question": "GQ-001",
+  "subject": "the builders had no tests, and my first test of them proved nothing",
+  "the_finding": {
+    "scripts_that_build_the_corpus": 7,
+    "appearing_in_any_selftest": 0,
+    "in_verify": 1,
+    "reading": "the gates check ARTIFACTS. Nothing checked the BUILDERS \u2014 the passage index, the modern index, the catalogue migration, the page, the ingester, the search CLI."
+  },
+  "the_structural_cause": {
+    "scripts_with_hardcoded_vault_paths": 8,
+    "overridable_for_testing": 1,
+    "which_one": "corpus-integrity.mjs \u2014 the one I fixed after a probe failed on it",
+    "consequence": "three times this session a probe measured my fixture instead of the thing, because the script could not be pointed at a copy"
+  },
+  "my_first_selftest_reproduced_the_defect": {
+    "result": "7 passed, 0 failed",
+    "the_test_that_mattered": "deleted rebuild-corpus.sh and re-ran \u2014 4 of 7 STILL PASSED",
+    "why": "three cases asserted sqlite behaviour and one asserted that a missing script changes nothing",
+    "worst_case": "\"--check changes nothing\" passes when --check does not exist"
+  },
+  "rewritten": {
+    "every_case_invokes_the_pipeline": true,
+    "with_pipeline_deleted": "0 passed (was 4)",
+    "with_pipeline_present": "7 passed"
+  },
+  "now_in_the_suite": "check-all runs 4 suites; the rebuild self-test gates every push",
+  "derivations": {}
+}

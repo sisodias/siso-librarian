@@ -47,7 +47,8 @@
     "audit:reachability": "node scripts/audit-reachability.mjs",
     "audit:decisions": "node scripts/audit-decisions.mjs",
     "corpus:rebuild": "bash scripts/rebuild-corpus.sh",
-    "corpus:check": "bash scripts/rebuild-corpus.sh --check"
+    "corpus:check": "bash scripts/rebuild-corpus.sh --check",
+    "rebuild:selftest": "bash scripts/rebuild-selftest.sh"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
