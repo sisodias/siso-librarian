@@ -99,9 +99,28 @@ async function fetchSubject(subject) {
 // that runs before is a filter.
 const GERMAN_TITLE = /\b(für|und|der|die|das|von|zur|des|zeitschrift|geschichte|beiträge|über)\b/i;
 const LATIN_TITLE = /\b(medicinae|doctoris|historia|libri|opera|de|ad|cum|atque|quae)\b/gi;
+// Italian, added 2026-08-05 after "Viaggio al Surinam e nell' interno della
+// Guiana" reached the corpus — 26.7% English-dictionary hit rate, admitted
+// because the filter only knew German and Latin.
+//
+// TWO markers, measured rather than assumed: a one-marker rule flags 3 of 1,100
+// candidates and two of them are ENGLISH — "Sylva sylvarum ... naturall
+// historie" and "The travels of Sig. Pietro della Valle", where "della" is part
+// of an Italian NAME. Two markers flags exactly the one Italian book.
+const ACCENTED = /[\u00e0\u00e2\u00e4\u00e7\u00e9\u00e8\u00ea\u00eb\u00ee\u00ef\u00f4\u00f6\u00f9\u00fb\u00fc\u00f1]/i;
+const FRENCH_TITLE = /\b(\u00e0|au|aux|du|des|le|la|les|dans|sur|pour|par|nouvelle|voyage)\b/gi;
+const ITALIAN_TITLE = /\b(viaggio|della|delle|nell|degli|dei|sulla|nella|ossia|di|il|lo|gli)\b/gi;
+
 function looksNonEnglish(title) {
   const t = String(title || '');
   if (GERMAN_TITLE.test(t)) return 'german';
+  if ((t.match(ITALIAN_TITLE) || []).length >= 2) return 'italian';
+  // French needs an ACCENT and THREE markers. Measured 2026-08-05 on 1,100
+  // candidates: an accent alone flags 4, three of which are English books using
+  // French loanwords — "catalogue raisonné", "in search of La Pérouse". Accent
+  // plus two still catches La Pérouse. Accent plus three flags exactly the one
+  // French book, "Voyage à la Nouvelle Galles du Sud".
+  if (ACCENTED.test(t) && (t.match(FRENCH_TITLE) || []).length >= 3) return 'french';
   // Latin needs TWO markers: "de" and "ad" appear in English titles alone.
   if ((t.match(LATIN_TITLE) || []).length >= 2) return 'latin';
   return null;

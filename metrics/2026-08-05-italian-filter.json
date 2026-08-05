@@ -1,0 +1,62 @@
+{
+  "measured_at": "2026-08-05T07:48:57Z",
+  "question": "GQ-007",
+  "subject": "an Italian book got through, and the fix was measured before it was written",
+  "the_miss": {
+    "book": "Viaggio al Surinam e nell' interno della Guiana",
+    "english_dict_hit_rate": "26.7%",
+    "why_it_passed": "the title filter knew German and Latin. It did not know Italian.",
+    "found_by": "scoring the 105 newly landed books \u2014 104 of 105 English"
+  },
+  "the_fix_was_measured_not_assumed": {
+    "one_marker_rule": "flags 3 of 1,100 candidates \u2014 and TWO are English",
+    "the_false_positives": [
+      "Sylva sylvarum: or a naturall historie",
+      "The travels of Sig. Pietro della Valle \u2014 'della' is part of an Italian NAME"
+    ],
+    "two_marker_rule": "flags exactly 1 of 1,100, the Italian book",
+    "so": "the threshold was chosen from the data, not by analogy with the Latin rule"
+  },
+  "edge_cases_verified": {
+    "Viaggio al Surinam": "italian",
+    "Pietro della Valle": "passes",
+    "Sylva sylvarum": "passes",
+    "Janus (German)": "german",
+    "Opera historiam naturalem spectantia": "passes \u2014 Latin title, English body",
+    "score": "5/5"
+  },
+  "a_case_the_two_marker_latin_rule_already_saved": {
+    "title": "Opera, historiam naturalem spectantia; or, gazophylacium. Containing several 1000 figures of birds...",
+    "why_it_matters": "Latin title, English content. A one-marker rule would have excluded a legitimate English natural-history book."
+  },
+  "batch_progress": {
+    "target": 120,
+    "landed_so_far": 112,
+    "new_books_scored": 105,
+    "english": 104
+  },
+  "derivations": {},
+  "french_added_same_turn": {
+    "book": "Voyage \u00e0 la Nouvelle Galles du Sud \u2014 30.8% English hit rate",
+    "why_it_passed": "the filter knew German, Latin and Italian. Not French.",
+    "a_general_rule_i_rejected": {
+      "rule": "any romance accent in the title",
+      "flags": "4 of 1,100",
+      "why_rejected": "three are ENGLISH \u2014 \"catalogue raisonn\u00e9\", \"in search of La P\u00e9rouse\". An accent alone is a false-positive machine."
+    },
+    "the_measured_threshold": {
+      "accent_plus_2_markers": "still catches La P\u00e9rouse",
+      "accent_plus_3": "flags exactly the one French book"
+    },
+    "verified": "3/3 \u2014 French caught, both English titles with French loanwords spared"
+  },
+  "corpus_after": {
+    "books": 458,
+    "passages": 526418,
+    "words": 46525529,
+    "headings": 523334,
+    "long_s": 160175,
+    "duplicates": 0,
+    "non_english_remaining": 8
+  }
+}
