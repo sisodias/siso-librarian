@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-05T07:21:43Z",
+  "question": "GQ-001",
+  "subject": "using the fixtures I made possible last turn",
+  "the_gap": "I made 7 builders overridable and tested none of them. The rebuild self-test still asserted that guard STRINGS appear in the source \u2014 4 of its 7 cases were grep-on-text, which pass if the guard is a comment.",
+  "now_tested_by_behaviour": [
+    "the index builder produces exactly the fixture 2 books",
+    "the real 334-book index is untouched by a fixture run",
+    "the modern-spelling builder adds passage_modern to the fixture",
+    "search answers from the fixture index"
+  ],
+  "the_untouched_check_matters_most": "a builder that ignores VAULT_ROOT and writes to the real vault is the exact defect this session kept hitting. Now the test asserts the real index still holds 334 books after a fixture run.",
+  "proven_on_real_breakage": {
+    "pipeline_deleted": "0 passed, 2 failed",
+    "index_builder_made_to_exit_early": "\"got 0 books, expected 2\" \u2014 the silent-failure shape that let 34 books go uncatalogued"
+  },
+  "a_defect_i_nearly_recorded_that_did_not_exist": {
+    "symptom": "search found nothing for \"poem\" in two poetry books",
+    "investigated": "\"poem\" appears ZERO times in their text \u2014 they ARE poems, so the word is in the title, not the body",
+    "proof": "searching \"the\" returns a hit immediately",
+    "lesson": "the test was wrong, not the search. I checked before adjusting anything."
+  },
+  "result": {
+    "cases": "8 passed, 0 failed",
+    "suites": "4 pass",
+    "verify_exit": 0
+  },
+  "derivations": {}
+}

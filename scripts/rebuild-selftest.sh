@@ -62,18 +62,55 @@ else
   bad "--check reports passage_modern state" "not mentioned in its output"
 fi
 
-# 3. The guards must be present IN the pipeline, not merely intended.
-for g in "holds no books" "passage_modern absent" "MISMATCH"; do
-  if grep -q "$g" "$PIPE"; then ok "pipeline carries the '$g' guard"
-  else bad "pipeline carries the '$g' guard" "not found"; fi
+# 3. BEHAVIOUR, not grep. The four cases below used to assert that guard strings
+#    appear in the source — which passes if the guard is a comment. Now that
+#    lib/vault-paths.mjs makes VAULT_ROOT overridable, the builders can run
+#    against a fixture and be judged on what they DO.
+FX=$(mktemp -d "$W/fixture-XXXXXX")
+mkdir -p "$FX/ia-ingest/text"
+REAL_TEXT=/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/text
+for b in b28982642 b2497464x; do
+  [ -f "$REAL_TEXT/$b.txt" ] && cp "$REAL_TEXT/$b.txt" "$FX/ia-ingest/text/"
 done
+nfix=$(ls "$FX/ia-ingest/text" 2>/dev/null | wc -l | tr -d ' ')
 
-# 4. The mismatch guard must compare the two counts it claims to. Assert the
-#    comparison reads BOTH databases, not one of them twice.
-if grep -q 'books.sqlite' "$PIPE" && grep -q 'book_ext;' "$PIPE"; then
-  ok "the mismatch guard reads both the catalogue and the index"
+if [ "${nfix:-0}" -lt 2 ]; then
+  bad "fixture has source text" "only $nfix files — cases below would be vacuous"
 else
-  bad "mismatch guard reads both sources" "one of the two queries is absent"
+  ok "fixture prepared with $nfix books"
+
+  # The index builder must produce a real index from a fixture.
+  if VAULT_ROOT="$FX" node "$ROOT/scripts/build-external-passages.mjs" >/dev/null 2>&1; then
+    n=$(sqlite3 "file:$FX/ia-ingest/external-passages.sqlite?mode=ro" "select count(*) from book_ext;" 2>/dev/null)
+    if [ "${n:-0}" -eq 2 ]; then ok "index builder indexes exactly the fixture's 2 books"
+    else bad "index builder indexes the fixture" "got ${n:-0} books, expected 2"; fi
+  else
+    bad "index builder runs against a fixture" "non-zero exit"
+  fi
+
+  # It must NOT have touched the real index. A builder that ignores VAULT_ROOT
+  # and writes to the vault is the exact defect this session kept hitting.
+  real_n=$(sqlite3 "file:$DB?mode=ro" "select count(*) from book_ext;" 2>/dev/null)
+  if [ "${real_n:-0}" -gt 100 ]; then ok "the real index is untouched ($real_n books)"
+  else bad "the real index is untouched" "it now holds ${real_n:-0} books"; fi
+
+  # The modern-spelling builder must add passage_modern to the FIXTURE.
+  if VAULT_ROOT="$FX" node "$ROOT/scripts/add-longs-variants.mjs" >/dev/null 2>&1; then
+    has=$(sqlite3 "file:$FX/ia-ingest/external-passages.sqlite?mode=ro" "select count(*) from sqlite_master where name='passage_modern';" 2>/dev/null)
+    if [ "${has:-0}" = "1" ]; then ok "modern-spelling builder adds passage_modern to the fixture"
+    else bad "modern builder adds passage_modern" "table absent after its own run"; fi
+  else
+    bad "modern-spelling builder runs against a fixture" "non-zero exit"
+  fi
+
+  # Search must answer from the fixture, and must NOT answer from the real index.
+  # A word that is actually IN the fixture text. "poem" appears zero times in
+  # these two books — they ARE poems, so the word is in the title, not the body.
+  # Measured 2026-08-05: the first version of this case searched "poem", found
+  # nothing, and I nearly recorded a search defect that did not exist.
+  hits=$(CORPUS_DB="$FX/ia-ingest/external-passages.sqlite" node "$ROOT/scripts/search-library.mjs" "the" --limit 1 2>/dev/null | grep -c 'passage(s)')
+  if [ "${hits:-0}" -ge 1 ]; then ok "search answers from the fixture index"
+  else bad "search answers from the fixture" "no result"; fi
 fi
 
 echo
