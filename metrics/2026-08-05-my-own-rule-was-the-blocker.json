@@ -1,0 +1,41 @@
+{
+  "measured_at": "2026-08-05T02:56:55Z",
+  "question": "GQ-001",
+  "subject": "a rule of mine was blocking the goal, not protecting it",
+  "the_blocker": "\"--skip-sqlite refuses --strict\" \u2014 my own rule, written one turn earlier",
+  "why_it_was_wrong": {
+    "what_i_conflated": "--strict with \"checks everything\"",
+    "what_strict_actually_is": "ONE line: exit 3 if findings exist. An exit-code switch, not a coverage switch.",
+    "the_real_danger": "a skipping run standing in for the run that GATES A PUSH \u2014 which is the hook, not the self-test",
+    "verified_before_changing_it": "lifted the rule on a scratch copy; a falsified declared number still exited 3 under --skip-sqlite"
+  },
+  "the_narrower_rule": {
+    "now": "refuses when GATING=1, which the pre-push hook sets",
+    "proof": {
+      "GATING=1 + skip": "exit 64",
+      "--strict + skip (non-gating)": "exit 3 on findings"
+    }
+  },
+  "result": {
+    "gate_selftest": {
+      "before_s": 367,
+      "after_s": 56,
+      "speedup": "6.5x",
+      "cases": "15 passed, 0 failed"
+    },
+    "coverage_unchanged": "removing the audit's --strict exit on a scratch copy makes 10 of 15 cases FAIL \u2014 they still detect a broken gate",
+    "quick_suite": {
+      "before_s": 128,
+      "after_s": 118,
+      "suites": "3 (was 2)"
+    },
+    "pre_push_hook": {
+      "seconds": 117,
+      "now_runs": "verify + gate self-test + retention self-test"
+    },
+    "full_suite": "4 pass, 0 fail"
+  },
+  "what_this_closes": "Last turn: \"the self-test still cannot run on every push at 367s.\" It runs on every push now, and the quick suite got FASTER than when it ran one fewer suite.",
+  "still_off_the_hook": "gates-are-load-bearing.sh, ~300s, replays the chain once per gate. Runs from npm run check:all.",
+  "derivations": {}
+}

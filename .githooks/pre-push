@@ -22,7 +22,9 @@ node scripts/audit-verify-chain.mjs --strict || {
 # --quick skips gates-are-load-bearing.sh, which invokes verify eight times and
 # would make every push slow. That suite runs from check:all by hand. Stated so
 # nobody reads this hook as covering everything.
-bash scripts/check-all.sh --quick || {
+# GATING=1 marks this as the run that decides a push. audit-asserted-numbers
+# refuses --skip-sqlite when it is set, so a reduced check can never gate.
+GATING=1 bash scripts/check-all.sh --quick || {
   echo "PUSH REFUSED: a suite failed (see above)" >&2
   exit 1
 }

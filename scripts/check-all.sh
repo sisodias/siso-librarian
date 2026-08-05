@@ -22,7 +22,7 @@
 #
 # MEASURED 2026-08-05, which is why --quick exists:
 #   verify              97s
-#   gate self-test     437s   (runs the whole chain once per case, 15 cases)
+#   gate self-test      56s   (was 437s; --skip-sqlite in the 11 audit cases)
 #   retention          <1s
 #   load-bearing       ~300s  (runs the chain once per gate)
 # The full run took 8m24s as a pre-push hook. A gate that makes pushing painful
@@ -62,7 +62,7 @@ run() {
 
 echo "=== every suite, run to completion ==="
 run "verify chain"        "npm run verify"
-run "gate self-test"      "bash scripts/gate-selftest.sh" 1
+run "gate self-test"      "bash scripts/gate-selftest.sh"
 run "retention self-test" "bash scripts/retention-selftest.sh"
 run "gates load-bearing"  "bash scripts/gates-are-load-bearing.sh" 1
 

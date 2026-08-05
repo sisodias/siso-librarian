@@ -106,7 +106,7 @@ json.dump(d,open(p,'w'),indent=2)"
 # 3. Declared derivations must be re-derived, not trusted.
 check "audit catches a falsified declared number" \
   "metrics/2026-08-04-gq010-underrated-evidence.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 import json
 p='metrics/2026-08-04-gq010-underrated-evidence.json'
@@ -117,7 +117,7 @@ json.dump(d,open(p,'w'),indent=2)"
 #    silently — the exact regression that hid seven unchecked files.
 check "audit notices evidence losing its derivations" \
   "metrics/2026-08-04-gq010-underrated-evidence.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 import json
 p='metrics/2026-08-04-gq010-underrated-evidence.json'
@@ -127,7 +127,7 @@ json.dump(d,open(p,'w'),indent=2)"
 # 5. A reproducer pointing at a missing script reads as covered.
 check "audit catches a reproducer that is not on disk" \
   "metrics/2026-08-04-gq008-cache-block-isolated.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 import json
 p='metrics/2026-08-04-gq008-cache-block-isolated.json'
@@ -137,7 +137,7 @@ json.dump(d,open(p,'w'),indent=2)"
 # 6. A documented command that does not exist.
 check "audit catches a README command with no npm script" \
   "package.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 import json
 p='package.json'
@@ -165,7 +165,7 @@ json.dump(d,open(p,'w'),indent=2)"
 # itself be proven to fire, or the coverage fix becomes another quiet checker.
 check "audit catches a snapshot number contradicting its source" \
   "observatory/snapshot.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 import json
 p='observatory/snapshot.json'
@@ -186,7 +186,7 @@ echo -n "PROBE corrupt file inside a derivation source — "
   T=$(ls "$HOME/SISO_Workspace/great-library-of-siso/registry/releases"/*.json | head -1)
   cp "$T" /tmp/selftest-rel-backup.json
   printf '{ corrupt' > "$T"
-  node scripts/audit-asserted-numbers.mjs --strict >/dev/null 2>&1
+  node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict >/dev/null 2>&1
   st=$?
   cp /tmp/selftest-rel-backup.json "$T"     # restore first, always
   rm -f /tmp/selftest-rel-backup.json
@@ -199,7 +199,7 @@ echo -n "PROBE corrupt file inside a derivation source — "
 # cannot act on is the whole defect.
 check "audit catches a list rendered as a count" \
   "public/index.html" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 import re
 p='public/index.html'
@@ -213,7 +213,7 @@ open(p,'w').write(h)"
 # repo is healthy, which is worse than either failing alone.
 check "audit catches an unparseable claim file" \
   "claims/GQ-010-fame-vs-dependence.claim.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 open('claims/GQ-010-fame-vs-dependence.claim.json','w').write('{ broken')"
 
@@ -222,7 +222,7 @@ open('claims/GQ-010-fame-vs-dependence.claim.json','w').write('{ broken')"
 # skipped with no trace, so a claim grounded in it looked fully checked.
 check "audit catches unparseable evidence a claim grounds in" \
   "metrics/2026-08-04-gq010-underrated-evidence.json" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 open('metrics/2026-08-04-gq010-underrated-evidence.json','w').write('{ broken json')"
 
@@ -232,7 +232,7 @@ open('metrics/2026-08-04-gq010-underrated-evidence.json','w').write('{ broken js
 # the three silent skips already found this session.
 check "audit notices when label resolution stops working" \
   "scripts/lib/snapshot-paths.mjs" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 p='scripts/lib/snapshot-paths.mjs'
 t=open(p).read()
@@ -290,7 +290,7 @@ echo -n "PROBE prose mention does not count as a reference — "
 # resolver failure, and the reason lib/claim-paths.mjs exists at all.
 check "audit notices when the claim reader stops resolving" \
   "scripts/lib/claim-paths.mjs" \
-  "node scripts/audit-asserted-numbers.mjs --strict" \
+  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
   "
 p='scripts/lib/claim-paths.mjs'
 t=open(p).read()

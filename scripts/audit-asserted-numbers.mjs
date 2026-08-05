@@ -79,12 +79,21 @@ const SNAPSHOT = 'observatory/snapshot.json';
 // lived in one, file-bytes and the jsonl kinds in the other. A label declared
 // against the wrong caller resolved to "unavailable" while the gate reported
 // success. Adding a kind here now reaches every path by construction.
-// --skip-sqlite: see the note in the sqlite case. Refuses to combine with
-// --strict, because a run that checks less must never be the run that gates.
+// --skip-sqlite: see the note in the sqlite case.
+//
+// It first refused to combine with --strict. That rule conflated two different
+// things: --strict is an EXIT-CODE switch (one line, `exit 3` if findings), not
+// a coverage switch. Refusing the combination blocked the gate self-test, whose
+// eleven cases need --strict to detect a gate firing and none of which touch a
+// sqlite derivation — verified 2026-08-05 by lifting the rule and confirming a
+// falsified declared number still exits 3.
+//
+// The real danger is narrower: a skipping run standing in for the run that
+// GATES A PUSH. So the rule now targets that directly.
 const skipSqlite = process.argv.includes('--skip-sqlite');
 let sqliteSkipped = 0;
-if (skipSqlite && process.argv.includes('--strict')) {
-  console.error('--skip-sqlite cannot be combined with --strict: a run that skips checks may not gate a push');
+if (skipSqlite && process.env.GATING === '1') {
+  console.error('--skip-sqlite may not be used in a gating run (GATING=1): a run that checks less cannot gate a push');
   process.exit(64);
 }
 
