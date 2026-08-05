@@ -26,13 +26,14 @@
 //   migrate-book-external.mjs --apply       write to the live catalogue
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { vaultRoot } from './lib/vault-paths.mjs';
 import { join } from 'node:path';
 
 const args = process.argv.slice(2);
 const apply = args.includes('--apply');
 
 const BOOKS = `${process.env.HOME}/foundry-data/domains/books/books.sqlite`;
-const VAULT = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault';
+const VAULT = vaultRoot();
 const INGEST = join(VAULT, 'ia-ingest');
 const WANT = 'sources/internet-archive/want-list-weak-subjects.json';
 

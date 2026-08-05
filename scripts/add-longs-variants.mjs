@@ -26,8 +26,9 @@
 //   add-longs-variants.mjs --check   report coverage
 import { existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { corpusDb } from './lib/vault-paths.mjs';
 
-const DB = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite';
+const DB = corpusDb();
 const DICT = '/usr/share/dict/words';
 const check = process.argv.includes('--check');
 // SQL goes on STDIN, not argv. Measured 2026-08-04: a 2,000-row insert of full

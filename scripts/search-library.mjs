@@ -19,8 +19,9 @@
 //   search-library.mjs --stats                  what is searchable
 import { existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { corpusDb } from './lib/vault-paths.mjs';
 
-const DB = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite';
+const DB = corpusDb();
 const args = process.argv.slice(2);
 const flag = (f) => args.includes(f);
 const val = (f, d) => { const i = args.indexOf(f); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
@@ -29,12 +30,20 @@ const query = args.filter((a) => !a.startsWith('--') && args[args.indexOf(a) - 1
 if (!existsSync(DB)) { console.error(`index not available (is the vault mounted?): ${DB}`); process.exit(70); }
 const sq = (sql) => execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
 
+// passage_modern is OPTIONAL: build-external-passages drops and recreates the
+// database, so it is absent between an index rebuild and add-longs-variants.
+// Measured 2026-08-05 against a fixture: --stats threw instead of reporting the
+// tables that DO exist. A stats command that dies on a missing optional table
+// tells the reader nothing about what is present.
+const hasModern = sq("select count(*) from sqlite_master where name='passage_modern';") === '1';
+
 if (flag('--stats')) {
   console.log(sq(`select 'books', count(distinct ext_id) from passage_ext
     union all select 'passages', count(*) from passage_ext
     union all select 'words', sum(words) from passage_ext
     union all select 'with_headings', count(*) from passage_ext where heading is not null
-    union all select 'long_s_passages', count(*) from passage_modern where changed = 1;`));
+    ${hasModern ? "union all select 'long_s_passages', count(*) from passage_modern where changed = 1" : ''};`));
+  if (!hasModern) console.error('note: passage_modern absent — run npm run books:longs-variants. long-s counts omitted, NOT zero.');
   process.exit(0);
 }
 

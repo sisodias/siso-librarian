@@ -25,9 +25,10 @@
 //   build-external-passages.mjs --check   report what is indexed
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { vaultRoot } from './lib/vault-paths.mjs';
 import { join, basename } from 'node:path';
 
-const VAULT = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault';
+const VAULT = vaultRoot();
 const TEXT = join(VAULT, 'ia-ingest', 'text');
 const OUT = join(VAULT, 'ia-ingest', 'external-passages.sqlite');
 const BOOKS = `${process.env.HOME}/foundry-data/domains/books/books.sqlite`;

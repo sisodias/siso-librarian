@@ -21,9 +21,10 @@
 import { writeFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
+import { corpusDb } from './lib/vault-paths.mjs';
 
 const root = process.cwd();
-const DB = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite';
+const DB = corpusDb();
 const OUT = join(root, 'public/library.html');
 
 if (!existsSync(DB)) {

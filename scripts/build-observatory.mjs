@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { corpusDb } from './lib/vault-paths.mjs';
 
 const root = process.cwd();
 const home = process.env.HOME;
@@ -47,7 +48,7 @@ const passageCounts = rowsToObject(sqlite(passagesDb, "select 'passages',count(*
 // Guarded: the vault is external storage and may be unmounted. An absent volume
 // must read as UNKNOWN, never as zero — a confident 0 here would say the books
 // do not exist.
-const externalDb = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite';
+const externalDb = corpusDb();
 const externalCounts = existsSync(externalDb)
   ? rowsToObject(sqlite(externalDb, "select 'books',count(distinct ext_id) from passage_ext union all select 'passages',count(*) from passage_ext union all select 'words',sum(words) from passage_ext;"))
   : { unavailable: 'vault not mounted — counts unknown, NOT zero' };

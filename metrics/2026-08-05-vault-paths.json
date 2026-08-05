@@ -1,0 +1,32 @@
+{
+  "measured_at": "2026-08-05T07:13:31Z",
+  "question": "GQ-001",
+  "subject": "the root cause of three failed probes, fixed at the root",
+  "last_turn": "I found 8 scripts hardcoding the vault path and 1 overridable, then fixed only the symptom",
+  "why_it_mattered": "a script that cannot be pointed at a fixture cannot be tested. Three probes this session reported PASS having measured the real database instead of the copy they were handed.",
+  "built": "scripts/lib/vault-paths.mjs \u2014 vaultRoot, ingestDir, corpusDb, textDir, booksDb, readOnlyUri",
+  "precedent": "third application of the same mechanism \u2014 snapshot-paths after 4 mis-keys, claim-paths after 5, now vault-paths after 3 false passes",
+  "converted": 7,
+  "proven_on_the_probe_that_lied": {
+    "last_turn": "build-library-page against a fixture missing passage_modern -> exit 0 (it read the real db)",
+    "now": "exit 1 against the fixture, exit 0 against the real database"
+  },
+  "a_robustness_gap_the_fixture_exposed": {
+    "what": "search-library --stats THREW on a missing passage_modern instead of reporting the tables that exist",
+    "when_that_happens": "between an index rebuild and add-longs-variants \u2014 build-external-passages drops the database",
+    "fix": "report the four available counts and NAME the missing one rather than printing 0",
+    "why_not_zero": "a zero would say there are no long-s passages; the truth is the table was not built yet"
+  },
+  "a_bad_edit_i_reverted": {
+    "what": "tried to restructure control flow with string replacement and produced broken syntax",
+    "action": "git checkout, re-applied both changes cleanly",
+    "cost": "the revert also undid the path conversion \u2014 had to redo it"
+  },
+  "verified_after": {
+    "rebuild_check": "334 books, passage_modern present, catalogue 334",
+    "full_rebuild": "ran end to end, catalogue and index agree",
+    "suites": "4 pass, 0 fail",
+    "verify_exit": 0
+  },
+  "derivations": {}
+}

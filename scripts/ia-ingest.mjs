@@ -22,6 +22,7 @@
 //   ia-ingest.mjs --tier "English poetry" --limit 10
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, renameSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { vaultRoot } from './lib/vault-paths.mjs';
 import { join } from 'node:path';
 
 const args = process.argv.slice(2);
@@ -29,7 +30,7 @@ const has = (f) => args.includes(f);
 const val = (f, d) => { const i = args.indexOf(f); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 
 const WANT = 'sources/internet-archive/want-list-weak-subjects.json';
-const VAULT = '/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest';
+const VAULT = vaultRoot();
 const limit = Number(val('--limit', '0'));
 const tier = val('--tier', null);
 // Default is a dry run. A script whose default behaviour hits a third party
