@@ -91,6 +91,19 @@ books=$(sqlite3 "file:$DB?mode=ro" 'select count(*) from book_ext;' 2>/dev/null)
 step "3/5 modern-spelling index (MUST follow step 2 — step 2 destroys it)"
 node scripts/add-longs-variants.mjs || { echo "modern index failed" >&2; exit 1; }
 [ "$(have_table passage_modern)" = "1" ] || { echo "passage_modern absent after its own build" >&2; exit 1; }
+# PRESENT is not COMPLETE. Measured 2026-08-05: after a rebuild to 777 books,
+# passage_modern held 334,000 rows against 981,260 passages — a third of the
+# corpus — and this step reported success because the TABLE existed.
+#
+# That is the same presence-versus-completeness distinction I added to the index
+# check earlier in this same run, missed one step later.
+mod_n=$(sqlite3 "file:$DB?mode=ro" 'select count(*) from passage_modern;' 2>/dev/null)
+pas_n=$(sqlite3 "file:$DB?mode=ro" 'select count(*) from passage_ext;' 2>/dev/null)
+if [ "${mod_n:-0}" -ne "${pas_n:-1}" ]; then
+  echo "passage_modern is INCOMPLETE: $mod_n rows against $pas_n passages" >&2
+  exit 1
+fi
+echo "  passage_modern complete: $mod_n rows"
 
 step "4/5 library page (needs BOTH indexes)"
 node scripts/build-library-page.mjs || { echo "page build failed" >&2; exit 1; }

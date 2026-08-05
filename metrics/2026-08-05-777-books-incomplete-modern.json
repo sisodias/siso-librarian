@@ -1,0 +1,48 @@
+{
+  "measured_at": "2026-08-05T10:15:57Z",
+  "question": "GQ-007",
+  "subject": "777 books, and a guard that checked presence instead of completeness",
+  "corpus": {
+    "books": 777,
+    "passages": 981260,
+    "words": 88643008,
+    "headings": 976685
+  },
+  "fifth_list_complete": {
+    "eligible": 443,
+    "fetched": 443,
+    "five_lists_total": "every failure transient, not one book permanently unavailable"
+  },
+  "the_defect": {
+    "symptom": "long_s_passages fell from 160,175 to 53,517 while the corpus GREW",
+    "cause": "passage_modern held 334,000 rows against 981,260 passages \u2014 the modern-spelling build was cut short",
+    "why_the_pipeline_said_success": "the guard checked that the TABLE EXISTS, not that it is complete",
+    "the_irony": "I added exactly this presence-versus-completeness check to the passage index earlier in this same run, and missed it one step later"
+  },
+  "root_cause": "add-longs-variants now exceeds a ten-minute call at 981,260 passages \u2014 the same threshold the rebuild crossed",
+  "fix": "the pipeline now compares passage_modern rows against passage_ext rows and exits 1 on a mismatch",
+  "a_number_that_would_have_been_published": "long_s_passages 53,517 would have gone onto the observatory and the library page as fact. A count that FELL while the corpus grew is the kind of number a reader would have trusted.",
+  "derivations": {},
+  "root_cause_measured": {
+    "first_hypothesis": "the build simply exceeds ten minutes",
+    "what_i_measured": {
+      "offset_1000": "6ms",
+      "offset_900000": "27273ms",
+      "degradation": "4,500x"
+    },
+    "why": "limit/offset makes sqlite walk every skipped row; across 490 batches the tail costs hours",
+    "fix": "rowid-range paging \u2014 an FTS5 table has an implicit rowid, so a range scan is constant-cost per batch",
+    "measured_after": {
+      "same_region_by_rowid": "19ms",
+      "speedup": "1,435x"
+    },
+    "the_general_lesson": "the fix for a slow query is usually an index-shaped query, not a smaller batch \u2014 the same finding as the passage index count(*)"
+  },
+  "a_recovery_that_worked": {
+    "symptom": "\"attempt to write a readonly database (8)\" from a read-only connection",
+    "cause": "a 5.6 MB rollback journal left by the process killed at the ten-minute timeout",
+    "why_read_only_fails": "sqlite must REPLAY the journal to open the database, and a read-only connection cannot",
+    "recovery": "opened writable, sqlite replayed it \u2014 454,000 rows preserved, passage_ext intact at 981,260, journal cleared",
+    "verdict": "no data loss. The rollback journal did exactly its job."
+  }
+}

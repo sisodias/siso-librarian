@@ -99,13 +99,24 @@ const esc = (s) => `'${String(s).replace(/'/g, "''")}'`;
 let done = 0;
 let changedCount = 0;
 
-for (let off = 0; off < total; off += 2000) {
+// ROWID RANGES, not limit/offset. Measured 2026-08-05 at 981,260 passages:
+// offset 1,000 returns in 6ms and offset 900,000 takes 27,273ms — a 4,500x
+// degradation, because sqlite must walk every skipped row. Across 490 batches
+// the tail alone costs hours, and the build died partway leaving
+// passage_modern at 944,000 of 981,260 rows.
+//
+// An FTS5 table has an implicit rowid, so a range scan is constant-cost per
+// batch. Same lesson as the passage index: the fix for a slow query is usually
+// an index-shaped query, not a smaller batch.
+const maxRow = Number(sq('select max(rowid) from passage_ext_search;')) || 0;
+for (let lo = 1; lo <= maxRow; lo += 2000) {
   // JSON, not a delimited line format. Passage bodies contain embedded newlines,
   // so splitting sqlite output on '\n' shreds one row into fragments and emits
   // malformed SQL — the same defect that broke 40 titles into 154 pieces earlier
   // today. json_group_array makes sqlite responsible for its own escaping.
   const rows = JSON.parse(sq(`select json_group_array(json_array(ext_id, seq, body))
-    from (select ext_id, seq, body from passage_ext_search limit 2000 offset ${off});`) || '[]');
+    from (select ext_id, seq, body from passage_ext_search
+          where rowid >= ${lo} and rowid < ${lo + 2000});`) || '[]');
   const vals = [];
   for (const [id, seq, body] of rows) {
     const { out, changed } = modernise(String(body ?? ''));
@@ -114,7 +125,7 @@ for (let off = 0; off < total; off += 2000) {
   }
   if (vals.length) sq(`insert into passage_modern values ${vals.join(',')};`);
   done += rows.length;
-  if (off % 20000 === 0) console.error(`  ${done.toLocaleString()}/${total.toLocaleString()}`);
+  if (lo % 100000 === 1) console.error(`  ${done.toLocaleString()}/${total.toLocaleString()}`);
 }
 
 console.error(`\n${done.toLocaleString()} passages indexed, ${changedCount.toLocaleString()} contained long-s spellings`);
