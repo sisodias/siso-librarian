@@ -684,4 +684,34 @@ console.log(JSON.stringify({
 // Advisory by default: these are historical records, and rewriting committed
 // history to satisfy a checker would be worse than carrying an honest note.
 // --strict makes it a gate for new work.
-if (process.argv.includes('--strict') && findings.length) process.exit(3);
+// AND "NEW WORK" HAS TO MEAN SOMETHING. Measured 2026-08-05: --strict gated on
+// ALL findings including 23 immovable historical ones, so the verify chain ran
+// this gate WITHOUT --strict — the only entry of eleven that could not enforce.
+// The comment above described an intent the code never implemented.
+//
+// The debt is real and bounded: every drift finding is dated 2026-08-03 or
+// 2026-08-04, when I hand-wrote filename timestamps and guessed times hours
+// ahead — 17 of 23 assert a time BEFORE the commit that added them, which no
+// amount of "named early, committed later" explains. Since switching to
+// `date -u` at write time the class is gone: 44 worklogs written 2026-08-05,
+// ZERO drift findings. The cutoff is a fact about a fixed practice, not an
+// amnesty, and the historical set stays visible in the report.
+//
+// severity 'info' never gates. snapshot-undeclared-numbers reports "12 of 51
+// published numbers carry no derivation declaration" — a standing coverage
+// measure with no failing state. Gating on it would block every push while the
+// number never reaches zero: the treadmill the TRIGGER_PATHS comments warn of.
+const DEBT_BEFORE = '2026-08-05';
+const isHistorical = (f) => {
+  const m = String(f.path || f.file || '').match(/(\d{4}-\d{2}-\d{2})/);
+  return Boolean(m) && m[1] < DEBT_BEFORE;
+};
+const acknowledgedDebt = findings.filter(isHistorical);
+const gating = findings.filter((f) => !isHistorical(f) && f.severity !== 'info');
+if (acknowledgedDebt.length) {
+  console.error(`acknowledged debt: ${acknowledgedDebt.length} finding(s) on files dated before ${DEBT_BEFORE} — reported, not gated`);
+}
+if (process.argv.includes('--strict') && gating.length) {
+  console.error(`gating on ${gating.length} finding(s) dated ${DEBT_BEFORE} or later`);
+  process.exit(3);
+}

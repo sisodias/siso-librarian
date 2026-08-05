@@ -1,0 +1,26 @@
+{
+  "measured_at": "2026-08-05T20:48:28Z",
+  "question": "GQ-001",
+  "subject": "the one gate in the chain that could not enforce",
+  "found_by": "noticing audit-asserted-numbers exits 3 standalone but 0 in the chain \u2014 because the chain alone omitted --strict",
+  "why_it_was_omitted": "--strict gated on ALL findings including 23 immovable historical ones; the script comment said \"--strict makes it a gate for new work\" but the code never implemented that",
+  "the_debt_is_real_and_bounded": {
+    "all_drift_findings_dated": "2026-08-03 or 2026-08-04",
+    "the_damning_detail": "17 of 23 assert a time BEFORE the commit that added them \u2014 up to 261 minutes \u2014 which \"named early, committed later\" cannot explain; those were hand-typed",
+    "practice_already_fixed": "44 worklogs written 2026-08-05 with date -u: ZERO drift findings"
+  },
+  "the_fix": "a dated cutoff so --strict gates new work only, plus severity info never gates; historical findings stay visible and counted",
+  "a_real_catch_the_moment_it_gated": "snapshot asserted 235 worklogs against 236 on disk \u2014 the gate caught its first live drift immediately",
+  "verified": {
+    "chain_with_strict": "exit 0",
+    "new_fabricated_timestamp": "exit 3",
+    "after_removing_it": "exit 0"
+  },
+  "my_own_error_this_turn": {
+    "what": "used git reset --hard to revert a probe commit",
+    "cost": "silently discarded my uncommitted edit to audit-asserted-numbers.mjs",
+    "why_bounded": "the claim, ledger and trigger work were already committed",
+    "corrected_method": "git rm + soft reset, which leaves the working tree intact \u2014 used for the second probe"
+  },
+  "derivations": {}
+}
