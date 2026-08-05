@@ -71,6 +71,16 @@ if [ "$CHECK" = "1" ]; then
       echo "  STALE (not truncated): $idx indexed, $texts -> $texts2 texts — a fetch is in flight; rebuild when it finishes"
       exit 0
     fi
+    # Books whose OCR yields no usable paragraph are recorded by the builder.
+    # Measured 2026-08-05: b19602923 is 68,649 chars of scan noise — 4,811
+    # blocks, none reaching 120 characters. It is catalogued and legitimately
+    # un-indexed, and without this the check reads a permanent one-book gap as
+    # a truncated index and fails every run.
+    sk=$(sqlite3 "file:$DB?mode=ro" "select coalesce((select v from corpus_stats where k='skipped_no_paragraphs'),0);" 2>/dev/null)
+    if [ $(( idx + ${sk:-0} )) -ge "${texts:-0}" ]; then
+      echo "  complete: $idx indexed + ${sk:-0} skipped (OCR noise) accounts for $texts texts"
+      exit 0
+    fi
     echo "  INCOMPLETE: the index holds $idx books but $texts texts exist and the count is not moving"
     echo "  A rebuild may have died mid-run — build-external-passages deletes the index before writing."
     exit 8
@@ -84,7 +94,12 @@ step "1/5 catalogue (reads manifests)"
 node scripts/migrate-book-external.mjs --apply || { echo "migration failed" >&2; exit 1; }
 
 step "2/5 passage index (DROPS and recreates the database)"
-node scripts/build-external-passages.mjs || { echo "index build failed" >&2; exit 1; }
+LOGFILE=$(mktemp "/tmp/rebuild-index-XXXXXX.log")
+# PIPESTATUS, not the pipeline exit. `cmd | tee` returns TEE's status, so a
+# failed builder would have passed silently — the same shape as `|| true`
+# swallowing a gate, which I fixed in the verify chain earlier.
+node scripts/build-external-passages.mjs 2>&1 | tee "$LOGFILE"
+[ "${PIPESTATUS[0]}" -eq 0 ] || { echo "index build failed" >&2; exit 1; }
 books=$(sqlite3 "file:$DB?mode=ro" 'select count(*) from book_ext;' 2>/dev/null)
 [ "${books:-0}" -gt 0 ] || { echo "index built but holds no books" >&2; exit 1; }
 
@@ -120,6 +135,19 @@ echo
 if [ "${cat_n:-0}" = "${idx_n:-1}" ]; then
   echo "catalogue and index agree: $cat_n books"
 else
+  # A book can be catalogued and legitimately un-indexed: if its OCR yields no
+  # paragraph over 120 characters, build-external-passages logs "NO PARAGRAPHS
+  # — skipped" and indexes nothing. Measured 2026-08-05: b19602923 is 68,649
+  # chars of pure scan noise — 4,811 blocks, not one reaching 120 characters,
+  # opening "m m §s".
+  #
+  # That is correct behaviour, not a missing manifest. Distinguish them by
+  # counting the skips the builder reported.
+  skipped=$(grep -c 'NO PARAGRAPHS' "$LOGFILE" 2>/dev/null || echo 0)
+  if [ $(( idx_n + skipped )) -eq "${cat_n:-0}" ] && [ "${skipped:-0}" -gt 0 ]; then
+    echo "catalogue $cat_n, index $idx_n — $skipped book(s) yielded no usable paragraphs (OCR noise), which accounts for the difference"
+    exit 0
+  fi
   echo "MISMATCH: catalogue $cat_n, index $idx_n — a manifest is missing or was overwritten" >&2
   exit 9
 fi

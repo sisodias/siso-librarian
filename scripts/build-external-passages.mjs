@@ -153,13 +153,18 @@ const esc = (s) => `'${String(s).replace(/'/g, "''")}'`;
 const now = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
 let totalP = 0;
 let totalH = 0;
+const skippedIds = [];
 let totalW = 0;
 
 for (const f of files) {
   const id = basename(f, '.txt');
   const raw = readFileSync(join(TEXT, f), 'utf8');
   const ps = paragraphs(raw);
-  if (!ps.length) { console.error(`  ${id}: NO PARAGRAPHS — skipped`); continue; }
+  if (!ps.length) {
+    console.error(`  ${id}: NO PARAGRAPHS — skipped`);
+    skippedIds.push(id);
+    continue;
+  }
 
   let heading = null;
   const rows = [];
@@ -193,6 +198,7 @@ for (const f of files) {
 // This builder already holds all three numbers.
 sq(OUT, `create table if not exists corpus_stats (k text primary key, v integer);
 insert or replace into corpus_stats values
+  ('skipped_no_paragraphs', ${skippedIds.length}),
   ('books', ${files.length}), ('passages', ${totalP}), ('words', ${totalW}),
   ('with_headings', ${totalH});`);
 console.error(`\n${totalP} passages, ${totalW.toLocaleString()} words, from ${files.length} books`);

@@ -20,5 +20,49 @@
     "and": "each same-work pair now names the fuller scan, so a curation decision has a recommendation behind it"
   },
   "not_deleted": "still reported, not removed \u2014 which edition a library keeps remains a curation decision",
-  "derivations": {}
+  "derivations": {},
+  "a_scaling_limit_the_pipeline_caught": {
+    "symptom": "the rebuild stopped at step 1 with \"migration failed\"",
+    "cause": "E2BIG \u2014 1,128 insert statements passed as a single argv exceeded the OS argument limit",
+    "the_same_defect_as": "add-longs-variants at 2,000 rows, fixed weeks-equivalent earlier this session by piping SQL on stdin",
+    "fix": "migrate-book-external now pipes SQL on stdin too",
+    "the_guard_worked": "the pipeline refused to continue to the index step rather than building on a failed migration",
+    "after": {
+      "book_external": 1128,
+      "words": 155427334,
+      "existing_tables": "unchanged, verified after the write"
+    }
+  },
+  "batch": {
+    "requested": 200,
+    "first_pass": "199/200",
+    "after_retry": "200/200",
+    "mb": 194.2
+  },
+  "corpus_after": {
+    "books": 1128,
+    "passages": 1635000,
+    "words": 137008950,
+    "long_s": 395158,
+    "indexed": 1127,
+    "skipped_ocr_noise": 1
+  },
+  "a_book_that_legitimately_indexes_to_nothing": {
+    "id": "b19602923",
+    "size": "68,649 chars",
+    "blocks": 4811,
+    "blocks_over_120_chars": 0,
+    "sample": "\"m m \u00a7s\" \u2014 pure OCR noise",
+    "builder_behaviour": "logged \"NO PARAGRAPHS \u2014 skipped\" and indexed nothing, which is correct",
+    "what_it_broke": "BOTH completeness guards read the one-book gap as a truncated index",
+    "fix": "the builder records skipped_no_paragraphs in corpus_stats; both guards subtract it",
+    "now": "\"complete: 1127 indexed + 1 skipped (OCR noise) accounts for 1128 texts\"",
+    "why_not_just_widen_the_tolerance": "a guard that tolerates ANY gap stops detecting a truncated index \u2014 the skip count makes the exception exact"
+  },
+  "a_masking_bug_i_caught_while_adding_the_guard": {
+    "what": "I piped the builder through tee to capture its log",
+    "problem": "\"cmd | tee\" returns TEE exit status, so a FAILED index build would have passed silently",
+    "fix": "PIPESTATUS[0]",
+    "same_shape_as": "|| true swallowing a gate in the verify chain"
+  }
 }

@@ -37,7 +37,11 @@ const VAULT = vaultRoot();
 const INGEST = join(VAULT, 'ia-ingest');
 const WANT = 'sources/internet-archive/want-list-weak-subjects.json';
 
-const sq = (db, sql) => execFileSync('sqlite3', [db, sql], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
+// SQL on STDIN, not argv. Measured 2026-08-05 at 1,128 books: passing the
+// inserts as an argument threw E2BIG — the same OS limit that broke
+// add-longs-variants at 2,000 rows. Piping has no such ceiling, so the
+// batch size becomes a memory choice rather than a hard wall.
+const sq = (db, sql) => execFileSync('sqlite3', [db], { input: sql, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
 
 if (!existsSync(BOOKS)) { console.error(`catalogue missing: ${BOOKS}`); process.exit(70); }
 if (!existsSync(INGEST)) { console.error(`ingest missing (volume mounted?): ${INGEST}`); process.exit(70); }
