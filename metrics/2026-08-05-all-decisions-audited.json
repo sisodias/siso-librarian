@@ -1,0 +1,51 @@
+{
+  "measured_at": "2026-08-05T04:52:28Z",
+  "question": "GQ-009",
+  "subject": "all six open decisions re-derived, not just the two I happened to read",
+  "why": "last turn I found decision 7 was describing work already done \u2014 by reading it. The other five were written the same day under the same conditions. Checking two of six is sampling, not an audit.",
+  "results": {
+    "1 MiniMax route": {
+      "verdict": "HOLDS",
+      "checked": "upstream is still http://127.0.0.1:8080 in the live shim \u2014 route unapplied"
+    },
+    "2 rescue refs": {
+      "verdict": "HOLDS",
+      "checked": "5 refs under refs/rescue/ in SISO_Agency/apps/oracle-streaming, 621 MB bundle on the vault"
+    },
+    "4 Cloudflare ingress": {
+      "verdict": "HOLDS",
+      "checked": "loopback 8765 -> 200, tailnet 100.66.34.21:8765 -> 200, cloudflared still pid 8611"
+    },
+    "6 bifrost log": {
+      "verdict": "STALE, updated",
+      "was": "136 rows past the window, freelist 0",
+      "now": "16 rows, freelist 919,504 (~3.5 GB reusable)",
+      "cause": "I built and ran the eviction after writing it"
+    },
+    "7 IA expansion": {
+      "verdict": "STALE, re-scoped last turn",
+      "detail": "described a plan that had since run twice"
+    },
+    "8 oracle-gate": {
+      "verdict": "HOLDS",
+      "checked": "8.5 GB + 5.2 GB = 13.7 GB exactly, 7.9 MB of unique work still preserved on the vault"
+    }
+  },
+  "two_scares_that_were_my_own_measurement": [
+    {
+      "what": "port 8611 returned 000, looked like a dead service",
+      "actual": "8611 is a PID, not a port \u2014 the decision says \"pid 8611\" and cloudflared is still running under it"
+    },
+    {
+      "what": "git worktree list showed 39 where the decision says 19",
+      "actual": "22 in ~/oracle-gate and 17 elsewhere; my earlier count used a narrower set. The disk figure re-derived to 13.7 GB exactly."
+    }
+  ],
+  "score": {
+    "holds": 4,
+    "stale": 2,
+    "stale_found_by_reading_not_by_a_gate": 2
+  },
+  "the_gap_this_leaves": "nothing re-derives decision numbers automatically. Metrics files have a gate; the prose that asks for his attention does not. Both stale entries were caught by hand, one turn apart.",
+  "derivations": {}
+}

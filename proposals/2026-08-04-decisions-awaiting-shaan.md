@@ -181,6 +181,31 @@ The GQ-008 cache claim is the strongest candidate: it is measured, falsifiable, 
 **Updated 2026-08-04 19:2xZ.** Two of the three options in the original text
 below are now closed, and one genuinely remains a decision for you.
 
+**UPDATED AGAIN 2026-08-05, later.** The correction below is still true — the
+setting does not enforce itself — but I have since built the enforcement, and
+the numbers here have moved because of it.
+
+| | when written | now |
+| --- | ---: | ---: |
+| rows past the 3-day window | 136 | **16** |
+| freelist pages (reusable space) | 0 | **919,504** (~3.5 GB) |
+| file size | 9.42 GB | 9.50 GB |
+
+`npm run log:enforce-retention` now evicts expired rows and nulls the body
+columns nothing derives from — verified to preserve every token column and
+refuse unless the vault slice can still answer all four derivation probes. Run
+once; it is not scheduled, deliberately, because it is the only script here that
+deletes.
+
+**The file still does not shrink**, and I am not claiming it does. VACUUM needs
+~2x the file size in free space (9.5 GB against 19 GB free, with a live writer)
+and failed when tested on a copy. Freed pages are reused by new rows, so the log
+stops growing rather than shrinking.
+
+**Still yours, unchanged:** `disable_content_logging` is 0. That is an
+observability policy — whether you can inspect what your agents actually sent —
+not housekeeping, and retention now bounds the cost either way.
+
 **CORRECTED 2026-08-05.** I wrote below that setting retention to 3 days bounds
 growth. It does not. Measured six hours later: the setting is live at 3, the
 oldest row was **3.15 days old and still present**, **136 rows** sat past the
