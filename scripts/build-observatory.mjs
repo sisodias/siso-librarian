@@ -50,7 +50,11 @@ const passageCounts = rowsToObject(sqlite(passagesDb, "select 'passages',count(*
 // do not exist.
 const externalDb = corpusDb();
 const externalCounts = existsSync(externalDb)
-  ? rowsToObject(sqlite(externalDb, "select 'books',count(distinct ext_id) from passage_ext union all select 'passages',count(*) from passage_ext union all select 'words',sum(words) from passage_ext;"))
+  // Stored aggregates, not live scans. Measured 2026-08-05 over USB at 981,260
+  // passages: count(*) 39.7s, sum(words) 195.8s. Those ran here AND in three
+  // declared derivations the audit re-runs on every gate invocation — which is
+  // what made npm run verify exceed ten minutes.
+  ? rowsToObject(sqlite(externalDb, "select 'books',coalesce((select v from corpus_stats where k='books'),-1) union all select 'passages',coalesce((select v from corpus_stats where k='passages'),-1) union all select 'words',coalesce((select v from corpus_stats where k='words'),-1);"))
   : { unavailable: 'vault not mounted — counts unknown, NOT zero' };
 
 const peopleCounts = rowsToObject(sqlite(peopleDb, "select 'people',count(*) from person union all select 'content_edges',count(*) from person_content union all select 'topic_edges',count(*) from person_topic union all select 'external_ids',count(*) from external_ids union all select 'identity_claims',count(*) from identity_claim union all select 'cross_domain_people',count(*) from v_person_layers where domain_count>1;"));
@@ -308,9 +312,9 @@ const derivations = {
   // sub-second warm. I first wrote "under a second" from expectation, then timed
   // it — the whole point of declaring a derivation is that the number is checked,
   // so a comment justifying it must be checked too.
-  'external_corpus.books': { source: externalDb, kind: 'sqlite', query: "select count(distinct ext_id) from passage_ext;" },
-  'external_corpus.passages': { source: externalDb, kind: 'sqlite', query: "select count(*) from passage_ext;" },
-  'external_corpus.words': { source: externalDb, kind: 'sqlite', query: "select sum(words) from passage_ext;" },
+  'external_corpus.books': { source: externalDb, kind: 'sqlite', query: "select coalesce((select v from corpus_stats where k='books'),-1);" },
+  'external_corpus.passages': { source: externalDb, kind: 'sqlite', query: "select coalesce((select v from corpus_stats where k='passages'),-1);" },
+  'external_corpus.words': { source: externalDb, kind: 'sqlite', query: "select coalesce((select v from corpus_stats where k='words'),-1);" },
   'passages.passages': { source: passagesDb, kind: 'sqlite', query: "select count(*) from passage;" },
   'passages.books': { source: passagesDb, kind: 'sqlite', query: "select count(*) from book_body;" },
   'people_graph.people': { source: peopleDb, kind: 'sqlite', query: "select count(*) from person;" },

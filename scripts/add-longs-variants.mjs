@@ -31,6 +31,7 @@ import { corpusDb } from './lib/vault-paths.mjs';
 const DB = corpusDb();
 const DICT = '/usr/share/dict/words';
 const check = process.argv.includes('--check');
+const resume = process.argv.includes('--resume');
 // SQL goes on STDIN, not argv. Measured 2026-08-04: a 2,000-row insert of full
 // passage bodies exceeded the argv limit and threw E2BIG. Piping has no such
 // ceiling, so batch size becomes a memory choice rather than a hard limit.
@@ -74,11 +75,23 @@ function* combinations(arr, r) {
   }
 }
 
+// BOUNDED. Measured 2026-08-05: this Map is keyed on every distinct
+// f-containing word across 88.6M words — and OCR garbage supplies effectively
+// unlimited variety, so it grew without limit. The build crashed twice near
+// 940,000 of 981,260 rows.
+//
+// 200k entries covers the real vocabulary many times over; beyond that the
+// entries are almost all one-off scan noise, which is exactly what should not
+// be retained.
+const CACHE_MAX = 200000;
 const cache = new Map();
 function modernise(text) {
   let changed = false;
   const out = text.replace(/\b[A-Za-z]*f[A-Za-z]*\b/g, (w) => {
-    if (!cache.has(w)) cache.set(w, unlongs(w));
+    if (!cache.has(w)) {
+      if (cache.size >= CACHE_MAX) cache.clear();
+      cache.set(w, unlongs(w));
+    }
     const m = cache.get(w);
     if (!m) return w;
     changed = true;
@@ -88,12 +101,18 @@ function modernise(text) {
   return { out, changed };
 }
 
-sq(`drop table if exists passage_modern;
+if (!resume) {
+  sq(`drop table if exists passage_modern;
 CREATE VIRTUAL TABLE passage_modern USING fts5(
   ext_id UNINDEXED, seq UNINDEXED, changed UNINDEXED, body_modern,
   tokenize = 'unicode61 remove_diacritics 2');`);
+}
 
-const total = Number(sq('select count(*) from passage_ext;'));
+// max(rowid), NOT count(*). Measured 2026-08-05 on this table at ~1M rows:
+// count(*) did not return in five minutes over USB; max(rowid) answers in
+// 169ms. Same lesson as the passage index — descend the index rather than scan
+// the table.
+const total = Number(sq('select max(rowid) from passage_ext_search;')) || 0;
 console.error(`modernising ${total.toLocaleString()} passages`);
 const esc = (s) => `'${String(s).replace(/'/g, "''")}'`;
 let done = 0;
@@ -109,7 +128,12 @@ let changedCount = 0;
 // batch. Same lesson as the passage index: the fix for a slow query is usually
 // an index-shaped query, not a smaller batch.
 const maxRow = Number(sq('select max(rowid) from passage_ext_search;')) || 0;
-for (let lo = 1; lo <= maxRow; lo += 2000) {
+// RESUME. A crash at 940,000 of 981,260 used to mean starting from zero — and
+// the rebuild takes well over an hour, so a restart is expensive enough that it
+// might simply not happen. Pick up from the highest row already written.
+const startRow = resume ? Number(sq("select coalesce(max(rowid),0) from passage_modern;")) || 0 : 0;
+if (startRow > 0) console.error(`resuming from row ${startRow.toLocaleString()}`);
+for (let lo = startRow + 1; lo <= maxRow; lo += 2000) {
   // JSON, not a delimited line format. Passage bodies contain embedded newlines,
   // so splitting sqlite output on '\n' shreds one row into fragments and emits
   // malformed SQL — the same defect that broke 40 titles into 154 pieces earlier
@@ -128,5 +152,11 @@ for (let lo = 1; lo <= maxRow; lo += 2000) {
   if (lo % 100000 === 1) console.error(`  ${done.toLocaleString()}/${total.toLocaleString()}`);
 }
 
+// Persist the count. Measured 2026-08-05: "select count(*) from passage_modern
+// where changed = 1" did not return in five minutes over USB at ~1M rows,
+// because a filtered count on an FTS5 table must scan it. Two consumers ran
+// that query on every invocation. The builder already has the number.
+sq(`create table if not exists modern_stats (k text primary key, v integer);
+insert or replace into modern_stats values ('rows', ${done}), ('changed', ${changedCount});`);
 console.error(`\n${done.toLocaleString()} passages indexed, ${changedCount.toLocaleString()} contained long-s spellings`);
 console.error(`distinct words converted: ${[...cache.values()].filter(Boolean).length.toLocaleString()}`);

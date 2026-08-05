@@ -152,6 +152,7 @@ CREATE VIRTUAL TABLE passage_ext_search USING fts5(
 const esc = (s) => `'${String(s).replace(/'/g, "''")}'`;
 const now = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
 let totalP = 0;
+let totalH = 0;
 let totalW = 0;
 
 for (const f of files) {
@@ -169,6 +170,7 @@ for (const f of files) {
     rows.push(`(${esc(id)},${i},${p.start},${p.end},${p.text.length},${words},${heading ? esc(heading) : 'null'},${esc(p.text.slice(0, 160))})`);
     fts.push(`(${esc(id)},${i},${heading ? esc(heading) : 'null'},${esc(p.text)})`);
     totalW += words;
+    if (heading) totalH += 1;
   });
 
   // Chunked inserts: one statement per book overflows the argv limit on the
@@ -182,5 +184,16 @@ for (const f of files) {
   console.error(`  ${id}: ${ps.length} passages`);
 }
 
+// Persist the aggregates. Measured 2026-08-05 over USB at 981,260 passages:
+//   count(*)                          39,755ms
+//   count(*) where heading not null  197,863ms
+//   sum(words)                       195,793ms
+//   max(rowid)                            19ms
+// Three whole-table scans, ~430s, recomputed by every consumer on every run.
+// This builder already holds all three numbers.
+sq(OUT, `create table if not exists corpus_stats (k text primary key, v integer);
+insert or replace into corpus_stats values
+  ('books', ${files.length}), ('passages', ${totalP}), ('words', ${totalW}),
+  ('with_headings', ${totalH});`);
 console.error(`\n${totalP} passages, ${totalW.toLocaleString()} words, from ${files.length} books`);
 console.error(`index: ${OUT} (${(statSync(OUT).size / 1048576).toFixed(1)} MB)`);

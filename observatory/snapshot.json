@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T10:04:23.862Z",
+  "generated_at": "2026-08-05T12:59:20.575Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -41,8 +41,8 @@
     "npm_scripts": 49,
     "verify_steps": 11,
     "scripts_on_disk": 43,
-    "metrics_files": 167,
-    "worklogs": 224,
+    "metrics_files": 169,
+    "worklogs": 226,
     "proposals": 18
   },
   "derivations": {
@@ -119,17 +119,17 @@
     "external_corpus.books": {
       "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite",
       "kind": "sqlite",
-      "query": "select count(distinct ext_id) from passage_ext;"
+      "query": "select coalesce((select v from corpus_stats where k='books'),-1);"
     },
     "external_corpus.passages": {
       "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite",
       "kind": "sqlite",
-      "query": "select count(*) from passage_ext;"
+      "query": "select coalesce((select v from corpus_stats where k='passages'),-1);"
     },
     "external_corpus.words": {
       "source": "/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite",
       "kind": "sqlite",
-      "query": "select sum(words) from passage_ext;"
+      "query": "select coalesce((select v from corpus_stats where k='words'),-1);"
     },
     "passages.passages": {
       "source": "/Users/shaansisodia/passages.sqlite",
@@ -483,7 +483,7 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 28.2,
+    "oldest_queued_age_hours": 31.1,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",

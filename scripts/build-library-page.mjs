@@ -47,9 +47,12 @@ const headings = JSON.parse(sq(`select json_group_array(json_array(ext_id, headi
   where heading is not null and length(replace(heading,'  ',' ')) >= 8
   group by ext_id, heading order by ext_id, n desc);`) || '[]');
 
-const words = sq('select sum(words) from passage_ext;');
-const passages = sq('select count(*) from passage_ext;');
-const longS = sq('select count(*) from passage_modern where changed = 1;');
+const words = sq("select coalesce((select v from corpus_stats where k='words'),0);");
+const passages = sq("select coalesce((select v from corpus_stats where k='passages'),0);");
+// Read the stored count. A filtered count(*) on an FTS5 table must scan it —
+// measured 2026-08-05, it did not return in five minutes at ~1M rows.
+// add-longs-variants records the number it already computed.
+const longS = sq("select coalesce((select v from modern_stats where k='changed'),0);");
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 

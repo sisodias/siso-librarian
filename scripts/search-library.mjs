@@ -38,11 +38,13 @@ const sq = (sql) => execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql
 const hasModern = sq("select count(*) from sqlite_master where name='passage_modern';") === '1';
 
 if (flag('--stats')) {
-  console.log(sq(`select 'books', count(distinct ext_id) from passage_ext
-    union all select 'passages', count(*) from passage_ext
-    union all select 'words', sum(words) from passage_ext
-    union all select 'with_headings', count(*) from passage_ext where heading is not null
-    ${hasModern ? "union all select 'long_s_passages', count(*) from passage_modern where changed = 1" : ''};`));
+  // Stored aggregates. Measured 2026-08-05: the three scans below cost ~430s
+  // over USB at 981,260 passages. The builders record them; --stats reads them.
+  console.log(sq(`select 'books', coalesce((select v from corpus_stats where k='books'),-1)
+    union all select 'passages', coalesce((select v from corpus_stats where k='passages'),-1)
+    union all select 'words', coalesce((select v from corpus_stats where k='words'),-1)
+    union all select 'with_headings', coalesce((select v from corpus_stats where k='with_headings'),-1)
+    ${hasModern ? "union all select 'long_s_passages', coalesce((select v from modern_stats where k='changed'),-1)" : ''};`));
   if (!hasModern) console.error('note: passage_modern absent — run npm run books:longs-variants. long-s counts omitted, NOT zero.');
   process.exit(0);
 }

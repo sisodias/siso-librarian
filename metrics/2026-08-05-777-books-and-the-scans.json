@@ -1,0 +1,49 @@
+{
+  "measured_at": "2026-08-05T12:58:54Z",
+  "question": "GQ-007",
+  "subject": "777 books, and the scans that made every gate slow",
+  "corpus": {
+    "books": 777,
+    "passages": 981260,
+    "words": 88643008,
+    "headings": 976685,
+    "long_s": 160175,
+    "library_page": "777 books, 67,361 headings"
+  },
+  "the_fifth_list_is_complete": {
+    "eligible": 443,
+    "fetched": 443,
+    "across_five_lists": "every failure transient \u2014 not one book permanently unavailable"
+  },
+  "the_scans": {
+    "measured_over_usb_at_981260_passages": {
+      "count(*) from passage_ext": "39,755ms",
+      "count(*) where heading is not null": "197,863ms",
+      "sum(words)": "195,793ms",
+      "count(*) from passage_modern where changed": "did not return in 5 minutes",
+      "max(rowid)": "19ms"
+    },
+    "where_they_ran": "search --stats, build-library-page, build-observatory, AND three declared derivations the audit re-runs on every gate invocation",
+    "effect": "npm run verify exceeded ten minutes; search --stats took 506s"
+  },
+  "fix": "the builders persist corpus_stats and modern_stats; every consumer reads them",
+  "measured_after": {
+    "search_stats": "506s -> 0s",
+    "observatory_build": "26s",
+    "verify": "timeout -> 418s",
+    "numbers_identical": true
+  },
+  "the_general_lesson": "the fix for a slow query is an index-shaped query or a stored aggregate \u2014 never a smaller batch. Third time this session.",
+  "two_crashes_and_a_recovery": {
+    "first": "modern index died at 940,000 of 981,260 \u2014 offset paging degraded 6ms at offset 1,000 to 27,273ms at offset 900,000, a 4,500x fall",
+    "fix": "bounded at 200k entries, plus --resume so a crash does not restart an hour of work",
+    "second": "died again near the end \u2014 an UNBOUNDED word cache keyed on every f-containing word across 88.6M words, where OCR garbage supplies unlimited variety",
+    "recovery": "a 5.6 MB rollback journal blocked read-only opens; opening writable let sqlite replay it \u2014 454,000 rows preserved, no data loss"
+  },
+  "a_guard_that_checked_the_wrong_thing": {
+    "what": "the pipeline verified passage_modern EXISTS, not that it is complete",
+    "consequence": "reported success with 334,000 of 981,260 rows, and long_s_passages would have been published as 53,517 \u2014 a count that FELL while the corpus grew",
+    "fix": "the pipeline now compares row counts and exits 1 on a mismatch"
+  },
+  "derivations": {}
+}
