@@ -97,7 +97,7 @@ async function fetchSubject(subject) {
 // Detected HERE, at selection, rather than in corpus-integrity after the
 // download. A check that runs after the bytes have moved is a report; a check
 // that runs before is a filter.
-const GERMAN_TITLE = /\b(für|und|der|die|das|von|zur|des|zeitschrift|geschichte|beiträge|über)\b/i;
+const GERMAN_TITLE = /\b(für|und|der|die|das|von|zur|des|zeitschrift|geschichte|beiträge|über)\b/gi;
 const LATIN_TITLE = /\b(medicinae|doctoris|historia|libri|opera|de|ad|cum|atque|quae)\b/gi;
 // Italian, added 2026-08-05 after "Viaggio al Surinam e nell' interno della
 // Guiana" reached the corpus — 26.7% English-dictionary hit rate, admitted
@@ -113,7 +113,19 @@ const ITALIAN_TITLE = /\b(viaggio|della|delle|nell|degli|dei|sulla|nella|ossia|d
 
 function looksNonEnglish(title) {
   const t = String(title || '');
-  if (GERMAN_TITLE.test(t)) return 'german';
+  // TWO DISTINCT markers, like every other language rule here. German was the
+  // one rule I never tested for false positives, and it showed: measured
+  // 2026-08-05 on 2,045 candidates, ONE marker flags 39 and TWO flags 5 — and
+  // all five are unambiguously German (Versuche und Beobachtungen über,
+  // Beiträge zur gerichtlichen Chemie).
+  //
+  // The 34 single-marker exclusions were wrong in context:
+  //   "von"  — a German NAME particle in "Justus von Liebig : his life and work"
+  //   "des"  — FRENCH, in "Système des connaissances chimiques" (32 volumes)
+  //
+  // A rule tuned on one example excludes good books. I wrote that two turns ago
+  // about Italian and left the German rule single-marker.
+  if (new Set((t.match(GERMAN_TITLE) || []).map((w) => w.toLowerCase())).size >= 2) return 'german';
   if ((t.match(ITALIAN_TITLE) || []).length >= 2) return 'italian';
   // French needs an ACCENT and THREE markers. Measured 2026-08-05 on 1,100
   // candidates: an accent alone flags 4, three of which are English books using

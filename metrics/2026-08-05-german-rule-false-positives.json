@@ -1,0 +1,45 @@
+{
+  "measured_at": "2026-08-05T13:24:04Z",
+  "question": "GQ-007",
+  "subject": "the one language rule I never tested for false positives",
+  "the_defect": {
+    "rule": "German flagged a title on ONE marker; every other language rule requires two",
+    "measured_on_2045_candidates": {
+      "one_marker": 39,
+      "two_markers": 5
+    },
+    "the_five": "all unambiguously German \u2014 Versuche und Beobachtungen \u00fcber, Beitr\u00e4ge zur gerichtlichen Chemie",
+    "the_34_wrongly_excluded": {
+      "von": "a German NAME particle in \"Justus von Liebig : his life and work\" \u2014 an ENGLISH biography",
+      "des": "FRENCH, in \"Syst\u00e8me des connaissances chimiques\" (32 volumes wrongly labelled german)"
+    }
+  },
+  "why_i_missed_it": "I wrote \"a filter tuned on one example is a filter that excludes good books\" two turns ago while adding Italian and French with two-marker thresholds \u2014 and left the German rule, written first, at one marker.",
+  "after_the_fix": {
+    "excluded": 48,
+    "all_genuinely_foreign": true,
+    "french_now_labelled_french": "Syst\u00e8me des connaissances chimiques was being called german",
+    "liebig_admitted": true
+  },
+  "a_test_of_mine_that_failed_wrongly": {
+    "what": "my 5-case test reported 4/5, failing on the Priestley title",
+    "cause": "I truncated the test string before \"der\" \u2014 the real title carries three markers",
+    "lesson": "the rule was right and my abbreviated fixture was wrong"
+  },
+  "sixth_want_list": {
+    "subjects": [
+      "Chemistry",
+      "Botany",
+      "Geology"
+    ],
+    "ia_availability": {
+      "Chemistry": 1300,
+      "Botany": 1139,
+      "Geology": 470
+    },
+    "candidates": 1996,
+    "eligible": 954,
+    "music_skipped": "3,492 available but his tier list says store-but-do-not-extract"
+  },
+  "derivations": {}
+}
