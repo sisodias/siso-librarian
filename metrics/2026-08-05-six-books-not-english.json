@@ -1,0 +1,34 @@
+{
+  "measured_at": "2026-08-05T05:58:11Z",
+  "question": "GQ-007",
+  "subject": "reading the 220 books I added today, and finding six that are not English",
+  "why": "I verified structure \u2014 headings, retention, duplicates \u2014 and never content. An unread book is inventory.",
+  "what_the_new_tier_brought": [
+    "The practice of physick (17th c, 8,867 passages)",
+    "Stanley's History of Philosophy",
+    "The medical and surgical history of the War of the Rebellion",
+    "The medical annals of Maryland 1799-1899"
+  ],
+  "the_finding": {
+    "method": "English-dictionary hit rate per book over 300-char previews",
+    "median": "82.2%",
+    "separation": "every English book above 45%; six books at 18-21%",
+    "what_they_are": "5 German, 1 Latin \u2014 Janus (German medical-history journal), Freind's Historia medicinae",
+    "root_cause": "the want-list filters IA on language:eng and IA's metadata is wrong for these six",
+    "not_ocr_damage": "long-s books score fine \u2014 the dictionary still matches most of their words"
+  },
+  "built": "a language check inside corpus-integrity.mjs",
+  "reported_not_fatal": "a German medical-history journal is a legitimate book the SELECTION let in. Whether the Library wants non-English material is not a decision this gate should make.",
+  "a_probe_of_mine_that_was_too_small": {
+    "what": "injected a fake German book with 5 passages \u2014 not detected",
+    "cause": "the check requires 200+ words before scoring, deliberately, so short books do not produce noise",
+    "retest": "40 passages -> detected at 0.171, suspects 6 -> 7",
+    "lesson": "the check was right and my test was undersized \u2014 the same mistake as asserting a count instead of deriving it"
+  },
+  "a_selection_error_i_made_first": {
+    "what": "used rowid desc to find \"the newest books\" and got London Magazine volumes from the FIRST list",
+    "cause": "the migration rewrites rows, so rowid order is not insertion order",
+    "fix": "selected by want-list identifier instead \u2014 all 119 present"
+  },
+  "derivations": {}
+}
