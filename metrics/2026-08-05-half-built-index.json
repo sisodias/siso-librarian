@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-05T09:26:04Z",
+  "question": "GQ-001",
+  "subject": "a half-built index was indistinguishable from a healthy one",
+  "the_risk_i_noted_and_left": "last turn I wrote that the rebuild now exceeds a ten-minute foreground call. I did not ask what a killed rebuild leaves behind.",
+  "measured": {
+    "simulation": "deleted rows to mimic a rebuild dying at book 300",
+    "result": "an index of 300 books against 673 texts on disk",
+    "what_every_check_said": "\"300 books, 0 dupes\" \u2014 perfectly healthy",
+    "why": "build-external-passages REMOVES the index file before writing, so a death mid-run leaves a plausible, smaller, entirely silent result"
+  },
+  "fix": "--check now compares the index against the source texts on disk",
+  "the_distinction_that_makes_it_usable": {
+    "problem": "a fetch in flight adds texts the index has not seen \u2014 normal and self-correcting",
+    "solution": "look twice. If the text count is still moving, report STALE and exit 0; if it is static, report INCOMPLETE and exit 8",
+    "measured": "677 then 678 twenty seconds apart during a live fetch"
+  },
+  "proven_both_ways": {
+    "real_vault_mid_fetch": "STALE (not truncated): 610 indexed, 680 -> 681 texts \u2014 exit 0",
+    "fixture_truncated_no_fetch": "INCOMPLETE: 2 books but 6 texts and the count is not moving \u2014 exit 8"
+  },
+  "and_the_same_defect_again": {
+    "what": "my first fixture test read the REAL vault \u2014 684 texts instead of the 6 in the fixture",
+    "cause": "rebuild-corpus.sh hardcoded DB, the exact defect I fixed in seven .mjs builders \u2014 sitting in the pipeline that runs them",
+    "fix": "the pipeline now honours VAULT_ROOT and CORPUS_DB",
+    "count": "fourth time this session a probe read the real thing instead of the fixture"
+  },
+  "derivations": {}
+}

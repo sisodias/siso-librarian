@@ -28,7 +28,12 @@ set -uo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT" || exit 1
-DB=/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault/ia-ingest/external-passages.sqlite
+# Honour the same overrides as lib/vault-paths.mjs. Measured 2026-08-05: this
+# was hardcoded, so a fixture test of --check silently read the REAL vault —
+# 684 texts instead of the 6 in the fixture. The same hardcoded-path defect
+# I fixed in seven .mjs builders, sitting in the pipeline that runs them.
+VAULT_ROOT="${VAULT_ROOT:-/Volumes/SISO-STORAGE-VAULT/SISO-VAULT/librarian-vault}"
+DB="${CORPUS_DB:-$VAULT_ROOT/ia-ingest/external-passages.sqlite}"
 CHECK=0
 [ "${1:-}" = "--check" ] && CHECK=1
 
@@ -44,6 +49,32 @@ if [ "$CHECK" = "1" ]; then
   fi
   printf "  %-22s %s rows\n" "catalogue" "$(sqlite3 "file:$HOME/foundry-data/domains/books/books.sqlite?mode=ro" 'select count(*) from book_external;' 2>/dev/null)"
   printf "  %-22s %s\n" "library page" "$([ -f public/library.html ] && echo present || echo MISSING)"
+  # COMPLETENESS, not just presence. Measured 2026-08-05: deleting rows to
+  # simulate a rebuild killed halfway left an index of 300 books against 673
+  # texts on disk, and every check reported healthy — "300 books, 0 dupes".
+  #
+  # build-external-passages removes the index file before writing, so a death
+  # mid-run leaves a plausible, smaller, entirely silent result. The corpus has
+  # outgrown a ten-minute foreground call, which makes that death likelier, not
+  # less.
+  texts=$(ls "$(dirname "$DB")/text"/*.txt 2>/dev/null | wc -l | tr -d ' ')
+  idx=$(sqlite3 "file:$DB?mode=ro" 'select count(*) from book_ext;' 2>/dev/null)
+  printf "  %-22s %s texts on disk\n" "source texts" "$texts"
+  if [ "${idx:-0}" -lt "${texts:-0}" ]; then
+    # STALE or TRUNCATED? A fetch in flight adds texts the index has not seen
+    # yet, which is normal and self-correcting. A truncated index is neither.
+    # Distinguish them by looking twice: if the text count is still moving, a
+    # fetch is running. Measured 2026-08-05: 677 then 678 twenty seconds apart.
+    sleep 12
+    texts2=$(ls "$(dirname "$DB")/text"/*.txt 2>/dev/null | wc -l | tr -d ' ')
+    if [ "${texts2:-0}" -gt "${texts:-0}" ]; then
+      echo "  STALE (not truncated): $idx indexed, $texts -> $texts2 texts — a fetch is in flight; rebuild when it finishes"
+      exit 0
+    fi
+    echo "  INCOMPLETE: the index holds $idx books but $texts texts exist and the count is not moving"
+    echo "  A rebuild may have died mid-run — build-external-passages deletes the index before writing."
+    exit 8
+  fi
   exit 0
 fi
 
