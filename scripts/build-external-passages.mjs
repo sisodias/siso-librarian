@@ -110,7 +110,19 @@ function isHeading(s) {
   // and an all-caps salutation passes every structural test. Excluded by name
   // rather than by length: "Book  V." is 8 characters and IS a heading, so a
   // blunt length rule would discard real structure to remove noise.
-  if (/^(sir|madam|my lord|gentlemen|dear sir)\s*[,.]?$/i.test(s.replace(/\s+/g, ' ').trim())) return false;
+  const c = s.replace(/\s+/g, ' ').trim();
+  if (/^(sir|madam|my lord|gentlemen|dear sir)\s*[,.]?$/i.test(c)) return false;
+  // Bare enumerators and stray months are not headings. Measured 2026-08-05
+  // across 179 books: "II" labelled 496 passages, "IV" 412, "July" 408, plus
+  // OCR fragments like "BEE" and "CHE" — 7.7% of heading coverage.
+  //
+  // Classified BY SHAPE, not length. My earlier length rule counted "PREFACE"
+  // (663 passages) and "Book  V." (536) as noise, which overstated the problem
+  // at 15-19.6% and would have discarded real structure to remove it. A bare
+  // roman numeral carries no information; "Book V." carries the book number.
+  if (/^[IVXLC]+\.?$/.test(c)) return false;
+  if (/^(january|february|march|april|may|june|july|august|september|october|november|december)\.?$/i.test(c)) return false;
+  if (c.replace(/[^A-Za-z]/g, '').length < 4) return false;
   return s.length < 80 && /^[A-Z][A-Za-z .,'-]*$/.test(s) && /[A-Z]{2,}|^(chapter|book|part|letter)\b/i.test(s);
 }
 

@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-05T03:55:48Z",
+  "question": "GQ-007",
+  "subject": "quality at 179 books \u2014 and two numbers of mine that overstated the problem",
+  "why": "growth without a quality check is accumulation. I verified the NEW books read as English but had not re-measured the corpus defects I fixed at 78.",
+  "segmentation_held": {
+    "worst_retention_now": "17.9% (was 1.2% before the whitespace fix)",
+    "investigated_rather_than_assumed": "read the worst file: 31 KB total, 545 of 573 blocks are page numbers, \"/Me.\", and Internet Archive boilerplate. Low retention is CORRECT there \u2014 it is a pamphlet.",
+    "across_the_corpus": {
+      "books_60KB_plus": {
+        "n": 167,
+        "avg_retention": 81.1
+      },
+      "books_under_60KB": {
+        "n": 12,
+        "avg_retention": 69.1
+      }
+    },
+    "honest_note": "a 12-point gap \u2014 size is directionally right but does NOT explain a 17.9% outlier. Retention varies by document type."
+  },
+  "two_numbers_of_mine_that_were_wrong": {
+    "first": "19.6% heading noise at 78 books",
+    "second": "15.0% at 179 books",
+    "why_both_overstated": "both used a LENGTH rule, which counts PREFACE (670 passages) and \"Book  V.\" (536) as noise. Those are legitimate headings \u2014 a bare roman numeral carries no information, but \"Book V.\" carries the book number.",
+    "measured_by_shape_instead": {
+      "structural": 6.2,
+      "genuine_noise": 7.7,
+      "substantive": 86.1
+    }
+  },
+  "fix": {
+    "what": "exclude bare roman numerals, stray month names, and sub-4-letter fragments \u2014 by SHAPE, not length",
+    "result": {
+      "genuine_noise": "7.7% -> 0.0%",
+      "substantive_titles": "86.1% -> 93.6%",
+      "structure_preserved": "PREFACE 670 and \"Book  V.\" 536 both survived"
+    }
+  },
+  "corpus": {
+    "books": 179,
+    "passages": 206574,
+    "words": 17419360,
+    "headings_on_page": 15419,
+    "long_s": 57079
+  },
+  "derivations": {}
+}
