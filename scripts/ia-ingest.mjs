@@ -22,7 +22,7 @@
 //   ia-ingest.mjs --tier "English poetry" --limit 10
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, renameSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { vaultRoot } from './lib/vault-paths.mjs';
+import { ingestDir } from './lib/vault-paths.mjs';
 import { join } from 'node:path';
 
 const args = process.argv.slice(2);
@@ -30,7 +30,13 @@ const has = (f) => args.includes(f);
 const val = (f, d) => { const i = args.indexOf(f); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 
 const WANT = 'sources/internet-archive/want-list-weak-subjects.json';
-const VAULT = vaultRoot();
+// vaultRoot() is the librarian-vault ROOT; this script works inside ia-ingest.
+// Measured 2026-08-05: my refactor set VAULT = vaultRoot() while every join
+// below still assumed the ia-ingest directory, so the resume check looked in
+// the wrong place and reported '0 already on vault' for 36 books that were
+// sitting there. Re-running would have re-downloaded all of them from a
+// volunteer-run archive.
+const VAULT = ingestDir();
 const limit = Number(val('--limit', '0'));
 const tier = val('--tier', null);
 // Default is a dry run. A script whose default behaviour hits a third party

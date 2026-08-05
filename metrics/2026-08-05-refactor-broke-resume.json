@@ -1,0 +1,48 @@
+{
+  "measured_at": "2026-08-05T07:40:05Z",
+  "question": "GQ-007",
+  "subject": "my own refactor broke resume, and would have cost archive.org 36 downloads",
+  "the_bug": {
+    "introduced": "last turn, converting ia-ingest.mjs to lib/vault-paths.mjs",
+    "what": "set VAULT = vaultRoot() \u2014 the librarian-vault ROOT \u2014 while all six joins below still assumed the ia-ingest directory",
+    "symptom": "\"0 already on vault; 36 to fetch\" for 36 books sitting on disk",
+    "cost_if_unnoticed": "36 redundant downloads from a volunteer-run archive, plus manifests written to the wrong directory",
+    "why_the_fixture_test_missed_it": "the fixture supplies its own VAULT_ROOT and the builder wrote and read consistently within it \u2014 the bug only shows against the REAL layout"
+  },
+  "fix": "VAULT = ingestDir(), the helper built for exactly this",
+  "the_other_two_converted_scripts_were_correct": "build-external-passages and migrate-book-external explicitly join ia-ingest/ and books-catalogue/ under the root, so vaultRoot() is right for them",
+  "regression_test_added": {
+    "case": "ingest resume sees books already on the vault",
+    "proven": "reintroduced the bug on a copy \u2014 FAIL with the offending output quoted",
+    "suite": "9 passed, 0 failed"
+  },
+  "the_lesson": "a refactor that passes every test can still break production when the tests supply their own environment. The fixture proved the builder is self-consistent; only the real layout proved it is CORRECT.",
+  "fifth_want_list": {
+    "candidates": 1100,
+    "subjects": [
+      "Natural history",
+      "Astronomy",
+      "Voyages and travels"
+    ],
+    "ia_availability": {
+      "Natural history": 838,
+      "Astronomy": 553,
+      "Voyages and travels": 140
+    },
+    "rights": {
+      "formal-designation": 442,
+      "bare-assertion": 438,
+      "none": 219,
+      "institutional-review": 1
+    },
+    "eligible": 443,
+    "non_english_caught": 4,
+    "examples": [
+      "Bacon's Latin Sylva sylvarvm",
+      "Auctarium Musaei Balfouriani",
+      "Baron von Haller"
+    ],
+    "batch": "120 \u2014 a bounded first batch rather than 443 at once"
+  },
+  "derivations": {}
+}

@@ -103,6 +103,19 @@ else
     bad "modern-spelling builder runs against a fixture" "non-zero exit"
   fi
 
+  # The ingester's RESUME must see files that are already there. Measured
+  # 2026-08-05: a path refactor set VAULT to the vault ROOT while every join
+  # still assumed ia-ingest/, so resume reported "0 already on vault" for 36
+  # books sitting on disk. Re-running would have re-downloaded all of them from
+  # a volunteer-run archive — a silent regression with an external cost.
+  res=$(node "$ROOT/scripts/ia-ingest.mjs" --dry-run 2>&1 | head -1)
+  onvault=$(printf '%s' "$res" | grep -oE '[0-9]+ already on vault' | grep -oE '^[0-9]+')
+  if [ "${onvault:-0}" -gt 0 ]; then
+    ok "ingest resume sees books already on the vault ($onvault)"
+  else
+    bad "ingest resume sees books on the vault" "reported '$res' — it would refetch everything"
+  fi
+
   # Search must answer from the fixture, and must NOT answer from the real index.
   # A word that is actually IN the fixture text. "poem" appears zero times in
   # these two books — they ARE poems, so the word is in the title, not the body.
