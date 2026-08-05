@@ -90,6 +90,28 @@ fi
 
 step() { echo; echo "=== $1 ==="; }
 
+# A CONCURRENT INGEST KILLS THIS 40 MINUTES IN. Measured 2026-08-05: I started a
+# 200-book fetch while a rebuild was running, reasoning that the remaining stages
+# only READ the index. Step 3 died with:
+#
+#   Runtime error near line 1: database is locked (5)
+#
+# The modern-spelling build holds a long write transaction over 2.59M rows, and
+# the ingester writes to the same database. The passage index survived, so the
+# cost was time rather than data — but it was 40 minutes, and it was avoidable.
+#
+# --check already looks for an in-flight fetch by watching the text count move.
+# The REBUILD path never did, which is the half that actually loses work.
+refuse_if_ingesting() {
+  if pgrep -f 'ia-ingest\.mjs' >/dev/null 2>&1; then
+    echo "REFUSING: an ingest is running — it writes to the same database this rebuild locks." >&2
+    echo "  Wait for it to finish, then re-run. (Measured 2026-08-05: a concurrent fetch killed" >&2
+    echo "  the modern-spelling build 40 minutes in with 'database is locked'.)" >&2
+    exit 11
+  fi
+}
+refuse_if_ingesting
+
 step "1/5 catalogue (reads manifests)"
 node scripts/migrate-book-external.mjs --apply || { echo "migration failed" >&2; exit 1; }
 
@@ -117,6 +139,11 @@ books=$(sqlite3 "file:$DB?mode=ro" 'select count(*) from book_ext;' 2>/dev/null)
 [ "${books:-0}" -gt 0 ] || { echo "index built but holds no books" >&2; exit 1; }
 
 step "3/5 modern-spelling index (MUST follow step 2 — step 2 destroys it)"
+# AGAIN HERE, not only at the top. The failure of 2026-08-05 was an ingest
+# started AFTER the rebuild began — the start-up check would have passed it. This
+# is the last moment before the long write transaction, so it is the last moment
+# the answer is still cheap.
+refuse_if_ingesting
 node scripts/add-longs-variants.mjs || { echo "modern index failed" >&2; exit 1; }
 [ "$(have_table passage_modern)" = "1" ] || { echo "passage_modern absent after its own build" >&2; exit 1; }
 # PRESENT is not COMPLETE. Measured 2026-08-05: after a rebuild to 777 books,

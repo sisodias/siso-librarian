@@ -1,0 +1,17 @@
+{
+  "measured_at": "2026-08-05T22:54:22Z",
+  "question": "GQ-001",
+  "subject": "I killed my own rebuild 40 minutes in",
+  "what_i_did": "started a 200-book fetch while a rebuild was running, reasoning that the remaining stages only READ the index",
+  "why_that_was_wrong": "the modern-spelling build holds a long WRITE transaction over 2.59M rows, and the ingester writes to the same database",
+  "the_failure": "Runtime error near line 1: database is locked (5) \u2014 step 3 died, 40 minutes of indexing wasted",
+  "cost_was_time_not_data": "the passage index had already completed: 1,725 books, 2,593,708 passages intact",
+  "the_asymmetry_that_hid_it": "--check already detects an in-flight fetch by watching the text count move; the REBUILD path never did \u2014 and the rebuild path is the half that actually loses work",
+  "the_fix": "refuse_if_ingesting at start AND immediately before step 3, since the failure case was an ingest started AFTER the rebuild began",
+  "verified_both_directions": {
+    "with_a_fake_ia-ingest_running": "exit 11, REFUSING printed",
+    "with_none_running": "clean, guard passes"
+  },
+  "a_second_slip_i_caught": "ps aux | grep -c counted its own pipeline and told me an ingest was still running when none was; confirmed by checking the log had stopped growing",
+  "derivations": {}
+}
