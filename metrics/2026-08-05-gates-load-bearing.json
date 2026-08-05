@@ -1,0 +1,38 @@
+{
+  "measured_at": "2026-08-05T00:41:21Z",
+  "question": "GQ-001",
+  "subject": "are the gates load-bearing? asked systematically instead of by accident",
+  "why": "Yesterday I found by accident that a self-test passed 5 of 6 cases with the script it tested DELETED. The same question applies to every gate in the chain, and nothing had ever asked it.",
+  "built": "scripts/gates-are-load-bearing.sh \u2014 npm run gates:load-bearing",
+  "result": {
+    "load_bearing": 6,
+    "not": 0,
+    "skipped": 1
+  },
+  "what_it_proves_and_what_it_does_not": {
+    "proves": "every gate in the chain is INVOKED and its exit code is honoured",
+    "does_not_prove": "that a gate checks anything meaningful",
+    "how_i_know": "added a gate that prints one line and checks nothing \u2014 it reported PASS, because removing any named file makes the chain fail whether or not the file did work",
+    "so": "gate-selftest.sh answers the second question by breaking artifacts; this answers the first, which nothing did"
+  },
+  "the_finding_worth_keeping": {
+    "what": "appending \"|| true\" to one chain entry made ALL SIX real gates report FAIL",
+    "why": "it swallows the exit code of everything downstream",
+    "significance": "two words in package.json silently disable every gate at once, and nothing else in this repo would notice"
+  },
+  "two_artefacts_of_my_own_design_i_caught": [
+    {
+      "what": "BASELINE FAILED on the first run",
+      "cause": "a scratch copy has one synthetic commit touching every watched path, so all 10 refresh triggers fire",
+      "verdict": "the evaluator working correctly on artificial history, not a defect",
+      "fix": "exclude the git-history gate from this chain; it has its own probe"
+    },
+    {
+      "what": "evaluate-refresh.mjs then reported FAIL (not load-bearing)",
+      "cause": "I excluded it from the chain and still tested removing it \u2014 the chain passed because it never invoked it",
+      "verdict": "that reads as \"not load-bearing\" when the truth is \"not tested\"",
+      "fix": "skip what the chain excludes, and say so"
+    }
+  ],
+  "derivations": {}
+}

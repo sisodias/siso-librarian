@@ -36,7 +36,8 @@
     "library:stats": "node scripts/search-library.mjs --stats",
     "log:enforce-retention": "bash scripts/enforce-log-retention.sh",
     "library:page": "node scripts/build-library-page.mjs",
-    "retention:selftest": "bash scripts/retention-selftest.sh"
+    "retention:selftest": "bash scripts/retention-selftest.sh",
+    "gates:load-bearing": "bash scripts/gates-are-load-bearing.sh"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
