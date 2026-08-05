@@ -203,7 +203,7 @@
     {
       "claim_packet": "claims/GQ-001-enforcement-limits.v2.claim.json",
       "question_id": "GQ-001",
-      "checked_at": "2026-08-05T20:22:38Z",
+      "checked_at": "2026-08-05T21:37:38Z",
       "selectors_used": [
         "GQ-001",
         "enforcement",
@@ -217,7 +217,7 @@
         "a push blocked or not blocked by the hook"
       ],
       "result": "fresh",
-      "evidence_note": "Written 2026-08-05 from five defects fixed the same day. Supersedes v1, whose central measured limit \u2014 'the gates have blocked ZERO pushes' \u2014 was falsified when the pre-push hook refused an actual push on a genuine 200-book index/disk gap. v1's counts also moved: 6 gates to 11, 14 self-test cases to 15, 2 probes to 8. Re-derive by re-running the counts and checking whether any push has been blocked since."
+      "evidence_note": "Re-checked 2026-08-05T21:37:38Z because the claim's own 'verify chain change' trigger fired on the commit that added --strict to audit-asserted-numbers. Counts re-derived unchanged (11/15/8); the chain gained a flag, not an entry. Enforcement evidence strengthened: 3 pushes blocked on 2026-08-05."
     }
   ]
 }
