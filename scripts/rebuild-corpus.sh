@@ -94,7 +94,20 @@ step "1/5 catalogue (reads manifests)"
 node scripts/migrate-book-external.mjs --apply || { echo "migration failed" >&2; exit 1; }
 
 step "2/5 passage index (DROPS and recreates the database)"
-LOGFILE=$(mktemp "/tmp/rebuild-index-XXXXXX.log")
+# TRAILING X's ONLY. BSD mktemp expands X's only at the END of the template, so
+# "rebuild-index-XXXXXX.log" is taken LITERALLY. Measured 2026-08-05: the first
+# rebuild created that literal path; every rebuild after it hit "mkstemp failed:
+# File exists", mktemp exited 1, and LOGFILE became the EMPTY STRING.
+#
+# The damage is downstream and silent. `tee ""` writes nowhere, so the skip
+# guard's `grep -c 'NO PARAGRAPHS' ""` finds nothing, skipped=0, and the branch
+# that forgives a legitimately un-indexed book CANNOT be taken. This run failed
+# with exit 9 on a corpus that was entirely correct.
+#
+# Note the shape: `|| echo 0` swallowed the error, exactly as `|| true` disabled
+# the verify chain earlier. A default that hides a broken input is not a default.
+LOGFILE=$(mktemp "/tmp/rebuild-index-XXXXXX") || { echo "cannot create logfile" >&2; exit 1; }
+[ -n "$LOGFILE" ] && [ -f "$LOGFILE" ] || { echo "logfile empty or absent — the skip guard would read nothing" >&2; exit 1; }
 # PIPESTATUS, not the pipeline exit. `cmd | tee` returns TEE's status, so a
 # failed builder would have passed silently — the same shape as `|| true`
 # swallowing a gate, which I fixed in the verify chain earlier.
@@ -143,7 +156,17 @@ else
   #
   # That is correct behaviour, not a missing manifest. Distinguish them by
   # counting the skips the builder reported.
-  skipped=$(grep -c 'NO PARAGRAPHS' "$LOGFILE" 2>/dev/null || echo 0)
+  # TWO SOURCES, and the durable one wins. The log is a side effect of one run;
+  # corpus_stats.skipped_no_paragraphs is written by the builder into the index
+  # itself and survives a lost logfile. Measured 2026-08-05: the log source read
+  # 0 because LOGFILE was empty, while corpus_stats correctly held 1.
+  skipped=$(sqlite3 "file:$DB?mode=ro" "select coalesce((select v from corpus_stats where k='skipped_no_paragraphs'),-1);" 2>/dev/null)
+  if [ "${skipped:--1}" -lt 0 ]; then
+    # -1 means the builder recorded nothing — NOT that nothing was skipped.
+    # Fall back to the log, and say which source answered.
+    skipped=$(grep -c 'NO PARAGRAPHS' "$LOGFILE" 2>/dev/null || echo 0)
+    echo "  (skip count from the log, not corpus_stats: $skipped)" >&2
+  fi
   if [ $(( idx_n + skipped )) -eq "${cat_n:-0}" ] && [ "${skipped:-0}" -gt 0 ]; then
     echo "catalogue $cat_n, index $idx_n — $skipped book(s) yielded no usable paragraphs (OCR noise), which accounts for the difference"
     exit 0

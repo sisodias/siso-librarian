@@ -1,0 +1,34 @@
+{
+  "measured_at": "2026-08-05T18:25:45Z",
+  "question": "GQ-001",
+  "subject": "a guard that could not fire, because mktemp failed and nothing checked",
+  "symptom": "rebuild of 1,329 books exited 9 with MISMATCH: catalogue 1329, index 1328 \u2014 on a corpus that was entirely correct",
+  "the_corpus_was_fine": {
+    "skipped_book": "b19602923 \u2014 68,649 chars of scan noise, catalogued and correctly un-indexed",
+    "verified": "1 row in book_external, 0 in book_ext \u2014 the legitimate skip the guard exists to forgive"
+  },
+  "root_cause": {
+    "what": "BSD mktemp expands X placeholders ONLY at the end of a template",
+    "the_line": "LOGFILE=$(mktemp \"/tmp/rebuild-index-XXXXXX.log\") \u2014 the .log suffix made it literal",
+    "first_run": "created that literal path",
+    "every_run_after": "mkstemp failed: File exists -> mktemp exits 1 -> LOGFILE is the EMPTY STRING",
+    "the_silent_part": "tee \"\" writes nowhere; grep -c PATTERN \"\" finds nothing; skipped=0; the forgive-an-OCR-skip branch became unreachable",
+    "proven_not_assumed": "a second mktemp on the same literal template returns empty and exits 1 \u2014 reproduced directly"
+  },
+  "why_it_hid": "|| echo 0 turned a broken INPUT into a plausible ANSWER \u2014 the same shape as the || true that disabled the verify chain",
+  "the_fix": {
+    "template": "trailing X only, plus a hard check that LOGFILE is non-empty and exists",
+    "source_of_truth": "read corpus_stats.skipped_no_paragraphs from the index (durable) before the log (per-run); -1 sentinel distinguishes \"not recorded\" from \"zero skips\""
+  },
+  "verified_both_directions_on_the_real_script": {
+    "correct_corpus_with_an_empty_logfile": "exit 0 \u2014 proves it reads corpus_stats, not the log",
+    "five_books_genuinely_deleted": "exit 9 MISMATCH \u2014 still discriminates"
+  },
+  "corpus_after": {
+    "books": 1329,
+    "indexed": 1328,
+    "passages": 2025511,
+    "words": 164880157
+  },
+  "derivations": {}
+}
