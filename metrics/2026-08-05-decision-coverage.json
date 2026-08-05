@@ -1,0 +1,25 @@
+{
+  "measured_at": "2026-08-05T05:22:26Z",
+  "question": "GQ-009",
+  "subject": "decision coverage 4 of 6 -> 5 of 6, and why the sixth stays out",
+  "the_gap": "audit-decisions covered 4 of 6, and the two it missed were exactly the two that had gone stale",
+  "decision_7_added": {
+    "claim": "179 books ingested",
+    "derives": "count(*) from book_external",
+    "holds": true,
+    "design_note": ">= not ==. Ingesting MORE books does not falsify \"179 were ingested\", and an equality check would make this decision contradict itself on the very next ingest \u2014 a gate that breaks on success."
+  },
+  "decision_6_deliberately_excluded": {
+    "claim": "16 rows past the 3-day window",
+    "measured": "read 16, then 20 twenty minutes later",
+    "why_excluded": "a sliding value cannot satisfy an equality check. It fails on every run and trains the reader to ignore the gate \u2014 the same reason routing.requests and free_pages are undeclared.",
+    "what_it_carries_instead": "a before/after table, which is honest about being a snapshot",
+    "stated_in_the_file": "so the exclusion is a decision, not an oversight"
+  },
+  "coverage": {
+    "before": "4 of 6",
+    "after": "5 of 6",
+    "uncheckable_with_reason": 1
+  },
+  "derivations": {}
+}

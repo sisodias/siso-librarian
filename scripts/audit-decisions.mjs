@@ -78,6 +78,26 @@ const CHECKS = [
     },
   },
   {
+    decision: 7,
+    claim: '179 books ingested across two want-lists',
+    derive: () => {
+      const books = process.env.HOME + '/foundry-data/domains/books/books.sqlite';
+      if (!existsSync(books)) return { underivable: 'catalogue not present' };
+      const n = sh('sqlite3 "file:' + books + '?mode=ro" "select count(*) from book_external;"');
+      if (n === null) return { underivable: 'catalogue unreadable' };
+      // >= not ==: ingesting MORE books does not falsify "179 were ingested",
+      // and an equality check would make this decision contradict itself on the
+      // very next ingest.
+      return { holds: Number(n) >= 179, found: n + ' books' };
+    },
+  },
+  // Decision 6 is deliberately NOT checked. It asserts "16 rows past the 3-day
+  // window", and that is a SLIDING value — measured 2026-08-05 it read 16, then
+  // 20 minutes later. An equality check against a moving number fails on every
+  // run and trains the reader to ignore the gate, exactly as routing.requests
+  // did. The decision carries a before/after table instead, which is honest
+  // about being a snapshot.
+  {
     decision: 8,
     claim: '13.7 GB reclaimable across ~/oracle-gate and the literal $HOME dir',
     derive: () => {
