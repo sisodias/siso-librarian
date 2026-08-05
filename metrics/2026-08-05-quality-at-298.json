@@ -1,0 +1,50 @@
+{
+  "measured_at": "2026-08-05T05:44:06Z",
+  "question": "GQ-007",
+  "subject": "quality re-measured after the corpus quadrupled",
+  "why": "the corpus went 78 -> 298 today and the corpus-wide quality checks were last run at 179. Growth without a quality check is accumulation.",
+  "heading_quality_held": {
+    "at_179": {
+      "noise": 0.0,
+      "substantive": 93.6
+    },
+    "at_298": {
+      "noise": 0.0,
+      "substantive": 93.5,
+      "structural": 6.5,
+      "passages_with_headings": 315754
+    },
+    "reading": "the shape-based rule generalised to 119 new books rather than being tuned to the old ones"
+  },
+  "retention_improved": {
+    "at_179": {
+      "large_books": 81.1,
+      "small_books": 69.1,
+      "gap": 12.0
+    },
+    "at_298": {
+      "large_books": 82.6,
+      "small_books": 78.8,
+      "gap": 3.8
+    },
+    "reading": "more large books in the medical-history tier lifted the average and narrowed the size gap"
+  },
+  "the_one_new_low_retention_book_investigated": {
+    "id": "b33462586_0002",
+    "size": "14,643 chars",
+    "what": "an exhibition pamphlet \u2014 269 of 283 blocks are title-page fragments and OCR noise",
+    "verdict": "low retention is CORRECT there, same as the two known pamphlets"
+  },
+  "integrity_at_298": {
+    "exact_duplicates": 0,
+    "shared_passages": 3,
+    "unchanged_from": 179
+  },
+  "reaches_the_reader": {
+    "library_page": "298 books",
+    "observatory": "298 / 318,290 / 27,312,642",
+    "reachability_findings": 0,
+    "note": "verified by fetching the served pages, not by trusting the build"
+  },
+  "derivations": {}
+}
