@@ -41,5 +41,35 @@
     "eligible": 954,
     "music_skipped": "3,492 available but his tier list says store-but-do-not-extract"
   },
-  "derivations": {}
+  "derivations": {},
+  "batch_result": {
+    "requested": 150,
+    "fetched": "150/150 on the FIRST pass",
+    "mb": 178.4,
+    "note": "no BAD_BODY failures at all \u2014 a first across six want-lists",
+    "texts_on_disk": 927
+  },
+  "corpus_after": {
+    "books": 927,
+    "passages": 1284225,
+    "words": 111779952,
+    "headings": 1279098,
+    "long_s": 362277,
+    "library_page": "927 books, 89,845 headings"
+  },
+  "the_first_exact_title_duplicate_in_927_books": {
+    "title": "Annual report of the progress of chemistry and the allied sciences...",
+    "verdict": "NOT duplicated content",
+    "evidence": "2,201 vs 2,483 passages, 1.9 MB vs 2.2 MB, different opening text \u2014 two YEARS of an annual serial",
+    "cause": "IA truncates long titles, so the volume distinction falls off the end",
+    "two_fixes": [
+      "the report now prints passage counts alongside the title, so a reader can tell a truncated serial from a real duplicate without querying",
+      "--strict now fails on identical CONTENT (matching passage counts), not identical strings"
+    ],
+    "proven_both_ways": {
+      "truncated_serial 2201,2483": "exit 0",
+      "injected duplicate 459,459": "exit 5"
+    },
+    "why_it_matters": "a gate that fails on a metadata artefact teaches me to bypass it"
+  }
 }

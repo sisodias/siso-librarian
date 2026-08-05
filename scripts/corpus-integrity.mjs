@@ -67,8 +67,18 @@ try {
   }
   throw err;
 }
-const exactDupes = JSON.parse(sq(`select json_group_array(json_array(title, n)) from (
-  select title, count(*) n from book_ext group by title having n > 1);`) || '[]');
+// Exact title duplicates. Measured 2026-08-05 at 927 books, the first one ever
+// found is NOT duplicated content: two years of "Annual report of the progress
+// of chemistry..." collide because IA TRUNCATES long titles and the volume
+// distinction falls off the end. They hold 2,201 and 2,483 passages with
+// different opening text.
+//
+// So this reports the passage counts alongside the title: identical counts mean
+// a real duplicate, differing counts mean a truncated serial. A reader should
+// not have to query the database to tell those apart.
+const exactDupes = JSON.parse(sq(`select json_group_array(json_array(title, n, sizes)) from (
+  select title, count(*) n, group_concat(passages) sizes
+  from book_ext group by title having n > 1);`) || '[]');
 
 // Fingerprint LONG passages only. Short ones collide on boilerplate — page
 // headers, "CHAPTER I" — and would report duplication that is really typography.
@@ -164,4 +174,16 @@ console.log(JSON.stringify({
 // Only EXACT title duplicates are a failure: those mean the dedup let the same
 // book through twice, which is a defect in the ingest rather than a property of
 // the corpus.
-if (process.argv.includes('--strict') && exactDupes.length) process.exit(5);
+// Fail on identical CONTENT, not identical strings. Measured 2026-08-05: the
+// first exact-title duplicate in 927 books is two years of an annual serial
+// whose distinguishing volume text IA truncated away — 2,201 and 2,483
+// passages, different opening text, both legitimately held.
+//
+// A gate that fails on that teaches me to bypass it. Same-title entries whose
+// passage counts DIFFER are a metadata artefact; entries whose counts MATCH are
+// a real duplicate and still fail.
+const contentDupes = exactDupes.filter(([, , sizes]) => {
+  const parts = String(sizes || '').split(',');
+  return new Set(parts).size === 1;
+});
+if (process.argv.includes('--strict') && contentDupes.length) process.exit(5);
