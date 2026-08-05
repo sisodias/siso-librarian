@@ -1,0 +1,77 @@
+{
+  "measured_at": "2026-08-05T03:32:48Z",
+  "question": "GQ-007",
+  "subject": "back to books \u2014 a second want-list, aimed at the tiers Shaan named",
+  "why_now": "Six turns of gates checking gates, and the last two found bugs only in the gates themselves. The Library has not grown since the 78 books. The mission is books, not scaffolding.",
+  "a_selection_i_rejected": {
+    "what": "the Library's thinnest subjects overall \u2014 Sea stories 399, Psychological fiction 387, War stories 361, and juvenile fiction throughout",
+    "why_rejected": "his tier list says fiction and juvenile are \"store but do not extract\". Mining them would add volume against his stated priorities.",
+    "instead": "searched for thin subjects inside the tiers he named take-first"
+  },
+  "what_the_library_is_thin_on_in_tier_1": {
+    "Mythology, Greek": 20,
+    "Mythology, Norse": 20,
+    "Science -- Philosophy": 21,
+    "Criticism": 22,
+    "Philosophy and religion": 22,
+    "Folklore -- India": 22
+  },
+  "availability_probed_before_building": {
+    "Criticism": 185,
+    "Science -- Philosophy": 13,
+    "Mythology, Greek": 4,
+    "note": "availability varies 46x across three subjects \u2014 worth measuring rather than assuming a subject with few holdings has many candidates"
+  },
+  "want_list": {
+    "candidates": 111,
+    "gutenberg_mirrors_excluded": 73,
+    "rights": {
+      "institutional-review": 84,
+      "formal-designation": 17,
+      "bare-assertion": 9,
+      "none": 1
+    },
+    "eligible_after_rights_gate": 101,
+    "excluded": "10 \u2014 mostly Polish academy bulletins carrying a bare rights assertion"
+  },
+  "different_from_the_first_list": "the first was 72 formal-designation of 81. This one is 84 institutional-review of 111 \u2014 HathiTrust and Princeton copyright determinations rather than Creative Commons marks. Same gate, different evidence grade.",
+  "dedup_now_covers_both_sources": "checked against 74,752 titles including the 78 IA books already held",
+  "derivations": {},
+  "final_result": {
+    "fetched": "101 of 101 eligible",
+    "first_pass": "94 ok, 7 BAD_BODY",
+    "after_retry": "7/7 recovered, 48 KB to 994 KB",
+    "every_failure_was_mine_again": "BAD_BODY is the transient-truncation signature; not one book was actually unavailable",
+    "catalogue": {
+      "book_external_rows": 179,
+      "words": 20167337,
+      "book_table": "79,071 unchanged, verified after the write"
+    },
+    "passage_index": {
+      "books": 179,
+      "passages": 206574,
+      "words": 17419360,
+      "mb": 277.4
+    },
+    "modern_index": {
+      "passages": 206574,
+      "long_s": 57079,
+      "distinct_words_converted": 9792
+    },
+    "library_page": {
+      "books": 179,
+      "headings": 15442,
+      "kb": 663
+    },
+    "search_verified": {
+      "mythology": "Scandinavian mythology passage",
+      "pentateuch": "Old Testament passage",
+      "zxqwvblorptik": "no matches"
+    }
+  },
+  "library_growth_today": {
+    "books": "78 -> 179",
+    "passages": "122,553 -> 206,574",
+    "catalogue_words": "11.5M -> 20.2M"
+  }
+}

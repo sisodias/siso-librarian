@@ -1,37 +1,27 @@
 {
   "schema_version": "want-list-v1",
-  "generated_at": "2026-08-04T16:56:25.334Z",
+  "generated_at": "2026-08-05T03:22:15.760Z",
   "supersedes": "sources/internet-archive/want-list.json",
   "rationale": "Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.",
   "query_totals": [
     {
-      "subject": "English poetry",
-      "fetched": 92,
-      "new": 29
+      "subject": "Criticism",
+      "fetched": 185,
+      "new": 98
     },
     {
-      "subject": "Essays",
-      "fetched": 77,
-      "new": 30
+      "subject": "Science -- Philosophy",
+      "fetched": 13,
+      "new": 11
     },
     {
-      "subject": "Cookery",
-      "fetched": 60,
-      "new": 21
-    },
-    {
-      "subject": "Detective and mystery stories",
-      "fetched": 128,
-      "new": 0
-    },
-    {
-      "subject": "Historical fiction",
-      "fetched": 58,
-      "new": 1
+      "subject": "Mythology, Greek",
+      "fetched": 4,
+      "new": 2
     }
   ],
   "gutenberg_mirrors_excluded": {
-    "count": 309,
+    "count": 73,
     "rule": "identifier ends in \"gut\" — IA-hosted Gutenberg copies, already ingested by the Library"
   },
   "contract": {
@@ -41,814 +31,1114 @@
   },
   "items": [
     {
-      "identifier": "b24976581",
-      "title": "Nugae metricae",
-      "year": 1839,
+      "identifier": "forgeryinchristi00whel",
+      "title": "Forgery in Christianity; a documented record of the foundations of the Christian religion",
+      "year": 1930,
       "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "poetsofchristian00batt",
-      "title": "Poets of Christian thought; evaluations from Dante to T.S. Eliot",
+      "identifier": "hebrewphilosophi00macd",
+      "title": "The Hebrew philosophical genius; a vindication",
+      "year": 1936,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "rcin.org.pl.WA303_9095_A103-1939-4-6_Bull-Int-de-lAc_29585",
+      "title": "Bulletin International de L'Académie Polonaise des Sciences et des Lettres : Classe de Philologie : Classe d'Histoire et de Philosophie. (1939) No. 4-6. I-II Avril-Juin",
       "year": 1947,
       "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "classicaltraditi00murr_1",
-      "title": "The classical tradition in poetry",
-      "year": 1957,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "johndonnehisflig00molo",
-      "title": "John Donne, his flight from mediaevalism",
-      "year": 1944,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976933_0002",
-      "title": "The shorter poems of Robert Bridges",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976945",
-      "title": "John Keats : a critical essay",
-      "year": 1895,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30528793_0001",
-      "title": "Catalogus bibliothecae Harleianae in locos communes distributus cum indice auctorum",
-      "year": 1743,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975448",
-      "title": "Glaucus and Silla ; with other lyrical and pastoral poems",
-      "year": 1819,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28982642",
-      "title": "The village : a poem. In two books",
-      "year": 1783,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "metaphysicallyri00unse",
-      "title": "Metaphysical lyrics & poems of the seventeenth century : Donne to Butler",
-      "year": 1959,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976659",
-      "title": "The design of love",
-      "year": 1893,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976672",
-      "title": "The seasons",
-      "year": 1794,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "doctrinepoetryau00hupp_0",
-      "title": "Doctrine and poetry : Augustine's influence on old English poetry",
-      "year": 1959,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "imagesofeternity00benz",
-      "title": "Images of eternity; studies in the poetry of religious vision from Wordsworth to T. S. Eliot",
-      "year": 1962,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33403223",
-      "title": "Time in English verse rhythm : an empirical study of typical verses by the graphic method",
-      "year": 1908,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28271348",
-      "title": "Vaccinia : or the triumph of beauty",
-      "year": 1806,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24974602",
-      "title": "The poetical works, with the life of the author",
-      "year": 1796,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3041247x",
-      "title": "The poems of Mark Akenside, M.D",
-      "year": 1772,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976921",
-      "title": "The growth of love",
-      "year": 1889,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975783",
-      "title": "The age of clay",
-      "year": 1883,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975667",
-      "title": "Brief recollections, chiefly of Italy",
-      "year": 1835,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28146347",
-      "title": "The Lord of the Isles : a poem",
-      "year": 1815,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29340111",
-      "title": "Bibliotheca Anglo-poetica; or, a descriptive catalogue of a rare and rich collection of early English poetry: in the possession of Longman, Hurst, Rees, Orme and Brown",
-      "year": 1815,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b2497464x",
-      "title": "Ode to an ugly girl; and other poems",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24974432",
-      "title": "Passing thoughts in sonnet stanzas : with other poems, original and translated",
-      "year": 1854,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24975023",
-      "title": "Nature and art : or reminiscences of the International Exhibition, opened in London on May the first, 1862 : a poem, with occasional verses, and elegiac stanzas",
-      "year": 1868,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24976908",
-      "title": "Eros & Psyche. A poem in twelve measures",
-      "year": 1885,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3032760x",
-      "title": "The history of the Royal Society of London, for the Improving of Natural Knowledge",
-      "year": 1667,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28405626",
-      "title": "Infancy : or, the management of children: a didactic poem",
-      "year": 1803,
-      "language": "eng",
-      "tier": "weak-subject:English poetry",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"English poetry\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29325055_0004",
-      "title": "The doctor &c",
-      "year": 1834,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404290",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1748.",
-      "year": 1748,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21911228",
-      "title": "Horae subsecivae",
-      "year": 1889,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21302820",
-      "title": "The original [electronic resource]",
-      "year": 1875,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24756854",
-      "title": "The dynamics of life",
-      "year": 1894,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22034122",
-      "title": "Miscellanies, antiquarian and historical",
-      "year": 1805,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404300",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1749.",
-      "year": 1749,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "willan-72651",
-      "title": "Lectures on ekzema and ekzematous affections, with an introduction on the general pathology of the skin and an appendix of essays and cases",
-      "year": 1870,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b2475819x",
-      "title": "Dissertations",
-      "year": 1892,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404330",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1772.",
-      "year": 1772,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "willan-72742",
-      "title": "Clinical lecture on the mode of formation of secondary abscesses, and some other consequences of a vitiated condition of the blood : delivered at King's College Hospital",
-      "year": 1853,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "willan-72743",
-      "title": "An essay on the surgical treatment of hæmorrhoidal tumours",
-      "year": 1854,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s1id13404350",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1779.",
-      "year": 1779,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28269597",
-      "title": "A dissertation on infanticide, in its relation to physiology and jurisprudence",
-      "year": 1821,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21700850",
-      "title": "A collection of the published writings of William Withey Gull ... : memoir and addresses",
-      "year": 1896,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "ost-english-completemontaign00montuoft",
-      "title": "The Complete Works of Montaigne",
-      "year": 1842,
-      "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
       "rights_provenance": "bare-assertion",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b32887164",
-      "title": "Essays, literary, moral & philosophical",
-      "year": 1798,
+      "identifier": "studiesinliterar00pier_0",
+      "title": "Studies in literary types in seventeenth century America (1607-1710) In two parts",
+      "year": 1939,
       "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "keytooriginalgos00lams",
+      "title": "Key to original Gospels",
+      "year": 1931,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "strangenewgospel00good",
+      "title": "Strange new gospels",
+      "year": 1931,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30350517",
+      "title": "The question about eating of blood stated and examin'd; in answer to two dissertations in a book entitled, Revelation examin'd with candour [by Patrick Delany]",
+      "year": 1732,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id13404320",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1770.",
-      "year": 1770,
+      "identifier": "rcin.org.pl.WA303_8899_A103-1935-7-10_Bull-Int-de-lAc_28239",
+      "title": "Bulletin International de L'Académie Polonaise des Sciences et des Lettres : Classe de Philologie : Classe d'Histoire et de Philosophie. (1935) No. 7-10. Juillet-Décembre",
+      "year": 1936,
       "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "biblebookofgodof00mont",
+      "title": "The Bible: the Book of God and of man",
+      "year": 1948,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "rcin.org.pl.WA303_8838_A103-1923_Bull-Int-de-lAc_18642",
+      "title": "Bulletin International de L'Académie Polonaise des Sciences et des Lettres : Classe de Philologie : Classe d'Histoire et de Philosophie. (1923) No. 1-10 Janvier-Décembre",
+      "year": 1926,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "englishhymnitsde00bens_0",
+      "title": "The English hymn : its development and use in worship",
+      "year": 1962,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "antislaverydisun00unse",
+      "title": "Antislavery and disunion, 1858-1861 : studies in the rhetoric of compromise and conflict",
+      "year": 1963,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "problemofcursein00bric",
+      "title": "The problem of \"curse\" in the Hebrew Bible",
+      "year": 1963,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "silentnightholyn00jaen",
+      "title": "Silent night, holy night: the story of a lovely Christmas song",
+      "year": 1933,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "proofsofauthenti00makr",
+      "title": "Proofs of the authenticity of the Septuagint",
+      "year": 1947,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "textofhabakkukin00brow",
+      "title": "The text of Habakkuk in the ancient commentary from Qumran",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30337410_0001",
+      "title": "The workes of Mr. Iohn Weemse ... Containing these eight bookes. 1. The Christian synagogue. 2. The portrature of the image of God in man, etc",
+      "year": 1636,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21941476",
-      "title": "Nature in disease, illustrated in various discourses and essays : To which are added miscellaneous writings, chiefly on medical subjects",
-      "year": 1854,
+      "identifier": "growthofgospels00gran",
+      "title": "The growth of the Gospels",
+      "year": 1933,
       "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "biblemodernbelie00wall",
+      "title": "The Bible and modern belief; a constructive approach to the present religious upheaval",
+      "year": 1949,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "dariusmedestudyi00whit",
+      "title": "Darius the Mede; a study in historical identification",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "rcin.org.pl.WA51_156538_PTG12019-r1903_History-of-the-conqu_135089",
+      "title": "History of the conquest of Peru : with a preliminary view of the civilisation of the Incas",
+      "year": 1903,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b33097963_0002",
+      "title": "Essays on subjects connected with the literature, popular superstitions, and history of England in the Middle Ages",
+      "year": 1846,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21727909",
-      "title": "Essays and addresses",
-      "year": 1896,
+      "identifier": "literaryhistoryo02tyle",
+      "title": "The literary history of the American revolution, 1763-1783",
+      "year": 1941,
       "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "growthofpentateu00lewy",
+      "title": "The growth of the Pentateuch, a literary, sociological, and biographical approach",
+      "year": 1955,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "jewishunderstand00sand",
+      "title": "A Jewish understanding of the New Testament",
+      "year": 1956,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "atheisminenglish00buck_0",
+      "title": "Atheism in the English renaissance",
+      "year": 1932,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "thosewhoarebapti00fosc",
+      "title": "\"Those who are baptized for the dead,\" I Cor. 15:29 : an exegetical historical dissertation",
+      "year": 1951,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "christianmystici00coll",
+      "title": "Christian mysticism in the Elizabethan age, with its background in mystical methodology",
+      "year": 1940,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "timesofmelvillew00broo",
+      "title": "The times of Melville and Whitman",
+      "year": 1947,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "deadseascrollsmo00zeit",
+      "title": "The Dead Sea scrolls and modern scholarship",
+      "year": 1956,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21928472",
+      "title": "Letter to R.K. Greville, LL.D : being an answer to certain statements contained in a pamphlet entitled \"Singular specimens of the Edinburgh practice of criticism, by John Joseph Griffin\"",
+      "year": 1851,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "dilip-simeon-closing-the-circle-essays-in-contemporary-history-politics-2025",
-      "title": "Closing The Circle Essays In Contemporary History & Politics by Dilip Simeon (2025)",
-      "year": 2025,
+      "identifier": "modernwomenpoets00rose",
+      "title": "Modern women poets of Spanish America: the precursors, Delmira Agustini, Gabriela Histral, Alfonsina Storni, Juana de Ibarbourou",
+      "year": 1945,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain License",
-      "rights_provenance": "not-a-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b24756477",
-      "title": "Medicine, old and new : an introductory address delivered on the occasion of the opening of the winter session 1899-1900 at St. George's Hospital Medical School on Oct. 2nd, 1899",
-      "year": 1899,
+      "identifier": "wisdomoftalmudth00boks",
+      "title": "The wisdom of the Talmud; a thousand years of Jewish thought",
+      "year": 1951,
       "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "bibleasreligionl00foxg",
+      "title": "The Bible as religion and literature",
+      "year": 1934,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b29012739_0003",
+      "title": "Studies of the Greek poets",
+      "year": 1877,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b22039508",
-      "title": "Essays, literary, political and oeconomical",
+      "identifier": "ost-english-2city12p",
+      "title": "A Tale of Two Cties",
+      "year": 1859,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "lineageofladymee00yunc",
+      "title": "The lineage of Lady Meed : the development of mediaeval venality satire",
+      "year": 1963,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "studiesinkohelet00gins",
+      "title": "Studies in Koheleth",
+      "year": 1950,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "lukegreekphysici00scot",
+      "title": "Luke, Greek physician and historian",
+      "year": 1930,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "synonymsofnewtes00tren_0",
+      "title": "Synonyms of the New Testament",
+      "year": 1953,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "rcin.org.pl.WA303_8842_A103-1924_Bull-Int-de-lAc_18643",
+      "title": "Bulletin International de L'Académie Polonaise des Sciences et des Lettres : Classe de Philologie : Classe d'Histoire et de Philosophie. (1924) No. 1-10 Janvier-Décembre",
+      "year": 1927,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "literaryhistoryo00coes",
+      "title": "The literary history of Spanish America",
+      "year": 1941,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "jeremiahprophets00calk",
+      "title": "Jeremiah the prophet; a study in personal religion",
+      "year": 1930,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "newlookatbibletr00bisc",
+      "title": "A new look at the Bible tradition",
+      "year": 1963,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "sevengreatbibles00mart",
+      "title": "Seven great Bibles the sacred Scriptures of Hinduism, Buddhism, Zoroastrianism, Confucianism (Taoism), Mohammedanism, Judaism and Christianity",
+      "year": 1930,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30529967",
+      "title": "The history of the life of Nader Shah, King of Persia. Extracted from an Eastern manuscript, which was translated into French by order of His Majesty the King of Denmark ...",
+      "year": 1773,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28039889",
+      "title": "Song of songs; or, sacred idyls",
       "year": 1803,
       "language": "eng",
-      "tier": "weak-subject:Essays",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21700849",
-      "title": "A collection of the published writings of William Withey Gull ... : medical papers",
-      "year": 1894,
+      "identifier": "thoughtlettersin00lais",
+      "title": "Thought and letters in western Europe, A.D. 500 to 900",
+      "year": 1957,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b24756660",
-      "title": "Essays on conservative medicine and kindred topics",
-      "year": 1874,
+      "identifier": "translatingbible00gran_0",
+      "title": "Translating the Bible",
+      "year": 1961,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id13404340",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1777.",
-      "year": 1777,
+      "identifier": "understandingbib00hunt_0",
+      "title": "Understanding the Bible",
+      "year": 1962,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id11854970",
-      "title": "The London magazine, and monthly chronologer. 1742.",
-      "year": 1742,
+      "identifier": "windowsinmatthew00rich",
+      "title": "Windows in Matthew",
+      "year": 1932,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id13404310",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1754.",
-      "year": 1754,
+      "identifier": "treatyofgreatkin00klin",
+      "title": "Treaty of the great king : the covenant structure of Deuteronomy : studies and commentary",
+      "year": 1963,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "willan-72739",
-      "title": "On the deposition of fibrin on the lining membrane of veins",
-      "year": 1852,
+      "identifier": "mightythreepoush00bras",
+      "title": "The mighty three ; Poushkin, Gogol, Dostoievsky : a critical trilogy",
+      "year": 1934,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "s1id11854980",
-      "title": "The London magazine, or, Gentleman's monthly intelligencer. 1747.",
-      "year": 1747,
+      "identifier": "goldenageinfifth00bedi",
+      "title": "The golden age in the fifth century. An introduction to Armenian literature in perspective",
+      "year": 1963,
       "language": "eng",
-      "tier": "weak-subject:Essays",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Essays\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21901569",
-      "title": "Food and feeding",
-      "year": 1880,
+      "identifier": "justitiadeijusti00sche",
+      "title": "Justitia Dei and justification (Romans, I. 17) in early Latin literature...",
+      "year": 1932,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471733",
-      "title": "The young cook's guide; with practical observations [electronic resource] : a new treatise on French and English cookery, combining economy with elegance. To which is added an appendix, containing M. ",
-      "year": 1836,
+      "identifier": "biblicaltextinma00gord",
+      "title": "The Biblical text in the making",
+      "year": 1937,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21504830",
-      "title": "Soups, broths, purées : with directions how to prepare them easily and economically",
-      "year": 1894,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28407313",
-      "title": "Practical œconomy, or, A proposal for enabling the poor to provide for themselves : with remarks on the establishment of soup houses : and an investigation of the real cause of the present extravagant",
-      "year": 1801,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b2150491x",
-      "title": "Cyclopædia of foods, condiments and beverages : the greatest delicacies and common necessaries",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21459149",
-      "title": "Food and its functions [electronic resource] : a text-book for students of cookery",
-      "year": 1895,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b2147171x",
-      "title": "The chemistry of cookery [electronic resource]",
-      "year": 1885,
-      "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21471812",
-      "title": "Breakfasts, luncheons, and ball suppers [electronic resource]",
+      "identifier": "the-theatre-of-the-greeks",
+      "title": "The Theatre Of The Greeks",
       "year": 1887,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: public domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471691",
-      "title": "The gastronomic regenerator [electronic resource] : a simplified and entirely new system of cookery with nearly two thousand practical receipts suited to the income of all classes. Illustrated with nu",
-      "year": 1847,
+      "identifier": "resurrectionofje00mcca",
+      "title": "The resurrection of Jesus; a new study of the belief that Jesus rose from the dead, of its function as the early Christian cult story, and of the origin of the Gospel literature",
+      "year": 1932,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471745",
-      "title": "The house book or, family chronicle of useful knowledge, and cottage physician [electronic resource] : combining medicine, cookery, diet, general economy, health, sea-bathing, gardening, manufactures,",
-      "year": 1826,
+      "identifier": "historyofindianl00gowe",
+      "title": "A history of Indian literature : from Vedic times to the present day",
+      "year": 1931,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b2147185x_0001",
-      "title": "Cassell's dictionary of cookery [electronic resource] : with numerous illustrations, containing about nine thousand recipes",
-      "year": 1892,
+      "identifier": "prophetsisraelsc00grah",
+      "title": "The prophets and Israel's culture",
+      "year": 1934,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471824",
-      "title": "Beeton's every-day cookery and housekeeping book [electronic resource] : comprising instructions for mistress and servants and a collection of over fifteen hundred practical receipts",
-      "year": 1872,
+      "identifier": "earlychristianli00ridd",
+      "title": "Early Christian life : as reflected in its literature",
+      "year": 1936,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21517824",
-      "title": "Health in the house : 25 lectures in elementary physiology in its application to the daily wants of man and animals, delivered to the wives and children of working-men in Leeds and Saltaire",
-      "year": 1876,
+      "identifier": "newtestamentlife00head",
+      "title": "New Testament life and literature as reflected in the papyri",
+      "year": 1952,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21526886",
-      "title": "The breakfast book : a cookery-book for the morning meal, or, breakfast-table; comprising bills of fare, pasties, and dishes adapted for all occasions",
-      "year": 1865,
+      "identifier": "modernamericancr00sutt_0",
+      "title": "Modern American criticism",
+      "year": 1963,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21537872",
-      "title": "Handbook on the principles of cooking",
-      "year": 1884,
+      "identifier": "b30331420",
+      "title": "A plain and continued exposition of the several prophecies or divine visions of the prophet Daniel, which have or may concern the people of God, whether Jew or Christian; whereunto is annexed a threef",
+      "year": 1681,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
+      "tier": "weak-subject:Criticism",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471708",
-      "title": "An encyclopaedia of domestic economy comprising such subjects as are most immediately connected with housekeeping [electronic resource] : as, the construction of domestic edifices ... duties of servan",
-      "year": 1844,
+      "identifier": "foundersofmiddle00rand_0",
+      "title": "Founders of the Middle Ages",
+      "year": 1957,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471642",
-      "title": "The pantropheon or, history of food, and its preparation, from the earliest ages of the world [electronic resource]",
-      "year": 1853,
+      "identifier": "creativereligiou00cull",
+      "title": "Creative religious literature; a new literary study of the Bible",
+      "year": 1930,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21471848_0001",
-      "title": "The Book of the household [electronic resource] : or, Family dictionary of everything connected with housekeeping and domestic medicine : with the treatment of children, management of the sick room, t",
-      "year": 1862,
+      "identifier": "surveyofchristia00reyn",
+      "title": "A survey of Christian hymnody",
+      "year": 1963,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21450936",
-      "title": "Penny vegetarian cookery [electronic resource] : the science and the art of selecting and preparing a pure, healthful, and sufficient diet",
-      "year": 1891,
+      "identifier": "christianitygoes00good",
+      "title": "Christianity goes to press",
+      "year": 1940,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21901648",
-      "title": "Foods for the fat : a treatise on corpulency, with dietary for its cure",
-      "year": 1889,
+      "identifier": "doesbiblecontrad00arnd",
+      "title": "Does the Bible contradict itself?",
+      "year": 1955,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b21958336",
-      "title": "Our Viands. Whence they come and how they are cooked with a bundle of old recipes from cookery books of the last century",
-      "year": 1893,
+      "identifier": "letpsalmsspeak00tayl",
+      "title": "Let the Psalms speak",
+      "year": 1961,
       "language": "eng",
-      "tier": "weak-subject:Cookery",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Cookery\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "namaqua_by_pierce_egan",
-      "title": "Namaqua by Pierce Egan, PDF Download",
+      "identifier": "historyofearlych00good",
+      "title": "A history of early Christian literature",
+      "year": 1942,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30376610",
+      "title": "An exposition of the Trinity. With a further elucidation of the twelfth chapter of Daniel: one letter to the King: and two to Mr. Pitt, &c",
+      "year": 1796,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "birthofgospelstu00smit",
+      "title": "The birth of the Gospel : a study of the origin and purport of the primitive allegory of the Jesus",
+      "year": 1957,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "childrensreactio00obri",
+      "title": "Children's reactions to radio adaptations of juvenile books",
+      "year": 1950,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "casdla_000265",
+      "title": "Dear Editor, 1978-08-13, Jess Jessop letter to the Editor of PRIDE",
+      "year": 1978,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyrighted. Rights are owned by Lambda Archives of San Diego. Copyright Holder has given Institution permission to prov",
+      "rights_provenance": "none",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "paulbecomesliter00barn",
+      "title": "Paul becomes a literary influence",
+      "year": 1941,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "failureoftheolog00kill_0",
+      "title": "The failure of theology in modern literature",
+      "year": 1963,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "middleclasscultu00wrig_0",
+      "title": "Middle-class culture in Elizabethan England",
+      "year": 1935,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "matthewapostleev00good",
+      "title": "Matthew, apostle and evangelist",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "prophetstheirper00coho_0",
+      "title": "The prophets, their personalities and teachings",
+      "year": 1939,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "psalmstheirmeani00terr",
+      "title": "The psalms and their meaning for today / Samuel Terrien",
+      "year": 1952,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "fourthgospellife00lyma",
+      "title": "The Fourth gospel and the life of to-day",
+      "year": 1931,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "oddlotofnewengla00wins",
+      "title": "An odd lot of New England Puritan personalities, with some observations on the Bay Psalm book",
+      "year": 1942,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "christindramastu00east",
+      "title": "Christ in the drama; a study of the influence of Christ on the drama of England and America. -",
+      "year": 1947,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24975229",
+      "title": "Reflections upon the Gospel according to St. John",
+      "year": 1830,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "rcin.org.pl.WA303_8832_A103-1919_Bull-Int-de-lAc_18660",
+      "title": "Bulletin International de L'Académie Polonaise des Sciences et des Lettres : Classe de Philologie : Classe d'Histoire et de Philosophie. (1919-1920) II Partie",
       "year": 1925,
       "language": "eng",
-      "tier": "weak-subject:Historical fiction",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is now in public domain.",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
       "rights_provenance": "bare-assertion",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Historical fiction\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b3033987x",
+      "title": "Some considerations touching the style of the H. Scriptures",
+      "year": 1661,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b33096041",
+      "title": "An essay on the state of literature and learning under the Anglo-Saxons ; introductory to the first section of the Biographia Britannica literaria of the Royal Society of Literature",
+      "year": 1839,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "bibleinearlymidd00mcna",
+      "title": "The Bible in the early Middle Ages",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "williamshakspere00bald_0",
+      "title": "William Shakspere's petty school",
+      "year": 1943,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "doctrineofmessia00sara",
+      "title": "The doctrine of the Messiah in medieval Jewish literature",
+      "year": 1932,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "anatomyofworldre00mack",
+      "title": "The anatomy of the world; relations between natural and moral law from Donne to Pope",
+      "year": 1958,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "conscienceofisra00vawt",
+      "title": "The conscience of Israel; pre-exilic prophets and prophecy",
+      "year": 1961,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "swedishtheatreof00naes_0",
+      "title": "The Swedish theatre of Chicago, 1868-1950",
+      "year": 1951,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "problemofezekiel00irwi",
+      "title": "The problem of Ezekiel; an inductive study",
+      "year": 1943,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "studyoflanguageo00tsev",
+      "title": "A study of the language of the Biblical Psalms",
+      "year": 1955,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "word-frequency-study-of-matt19-9",
+      "title": "word-frequency-study-of-matt19-9",
+      "year": 2021,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "studiesindaniel00gins",
+      "title": "Studies in Daniel",
+      "year": 1948,
+      "language": "eng",
+      "tier": "weak-subject:Criticism",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Criticism\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b29337707_0001",
+      "title": "The economy of the animal kingdom, considered anatomically, physically, and philosophically",
+      "year": 1846,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30322947",
+      "title": "The Abyssinian philosophy confuted: or, telluris theoria neither sacred, nor agreeable to reason. Being, for the most part, a translation of Petrus [i.e. Bernardino] Ramazzini, Of the wonderful spring",
+      "year": 1697,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "philosophymodern00davi",
+      "title": "Philosophy and modern science",
+      "year": 1953,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "movementsofthoug00mead_0",
+      "title": "Movements of thought in the nineteenth century",
+      "year": 1936,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "horizonsofthough00cong",
+      "title": "The horizons of thought; a study in the dualities of thinking",
+      "year": 1933,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "worldofepitomiza00cong",
+      "title": "A world of epitomizations; a study in the philosophy of the sciences",
+      "year": 1931,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "philosophyofscie00fran_0",
+      "title": "Philosophy of science : the link between science and philosophy",
+      "year": 1957,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "universeyou00neal_0",
+      "title": "The universe and you",
+      "year": 1954,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21727648",
+      "title": "An essay on the general study of experimental philosophy, and the utility of chemistry : introductory to a course of lectures on the philosophy of chemistry, and the connexion of that science with the",
+      "year": 1800,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "warsoffamiliesof00brya",
+      "title": "Wars of families of minds",
+      "year": 1940,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21941373",
+      "title": "Nature and thought : an introduction to a natural philosophy",
+      "year": 1882,
+      "language": "eng",
+      "tier": "weak-subject:Science -- Philosophy",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Science -- Philosophy\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28772702",
+      "title": "Two dissertations. I. On the Graecian mythology. II. An examination of Sir Isaac Newton's objections to the chronology of the Olympiads",
+      "year": 1782,
+      "language": "eng",
+      "tier": "weak-subject:Mythology, Greek",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Mythology, Greek\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "mycenaeanorigino00nils_0",
+      "title": "The Mycenaean origin of Greek mythology",
+      "year": 1932,
+      "language": "eng",
+      "tier": "weak-subject:Mythology, Greek",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Mythology, Greek\" NOT collection:printdisabled NOT collection:inlibrary"
     }
   ]
 }
