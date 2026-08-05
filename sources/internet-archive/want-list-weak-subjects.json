@@ -1,27 +1,38 @@
 {
   "schema_version": "want-list-v1",
-  "generated_at": "2026-08-05T05:05:55.097Z",
+  "generated_at": "2026-08-05T06:16:16.590Z",
   "supersedes": "sources/internet-archive/want-list.json",
   "rationale": "Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.",
   "query_totals": [
     {
-      "subject": "Medicine -- History",
-      "fetched": 124,
+      "subject": "Logic",
+      "fetched": 103,
       "new": 95
     },
     {
-      "subject": "Philosophy -- History",
-      "fetched": 22,
-      "new": 18
+      "subject": "Education -- History",
+      "fetched": 14,
+      "new": 12
     },
     {
-      "subject": "Women -- Education",
+      "subject": "Rhetoric",
       "fetched": 9,
-      "new": 7
+      "new": 2
     }
   ],
+  "non_english_excluded": {
+    "count": 1,
+    "rule": "title carries German function words, or two or more Latin markers — IA language:eng is unreliable",
+    "items": [
+      {
+        "identifier": "tractatusdepraed00will",
+        "title": "The Tractatus de praedestinatione et de praescientia Dei et de futuris contingentibus of W",
+        "looks": "latin"
+      }
+    ]
+  },
   "gutenberg_mirrors_excluded": {
-    "count": 2,
+    "count": 8,
     "rule": "identifier ends in \"gut\" — IA-hosted Gutenberg copies, already ingested by the Library"
   },
   "contract": {
@@ -31,1204 +42,1094 @@
   },
   "items": [
     {
-      "identifier": "b33093064_0001",
-      "title": "American medical biography: or, memoirs of eminent physicians who have flourished in America. To which is prefixed a succinct history of medical science in the United States from the first settlement ",
-      "year": 1828,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33406364",
-      "title": "Doctors of the old school : being curiosities of medicine and ancient practise",
-      "year": 1905,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33095346_0002",
-      "title": "An essay on the antiquity of Hindoo medicine, including an introductory lecture to the course of materia medica and therapeutics delivered at King's College",
+      "identifier": "b28738275",
+      "title": "Inquiries concerning the intellectual powers and the investigation of truth",
       "year": 1837,
       "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
+      "tier": "weak-subject:Logic",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b33447147",
-      "title": "The history of the development of medical science in America as recorded in the American journal of the medical sciences : an historical study",
-      "year": 1901,
+      "identifier": "nasa_techdoc_20040015105",
+      "title": "Solid Waste Management Requirements Definition for Advanced Life Support Missions: Results",
+      "year": 2002,
       "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29827346",
-      "title": "A list of books by some of the old masters of medicine and surgery : together with books on the history of medicine and on medical biography in the possession of Lewis Stephen Pilcher ; with biographi",
-      "year": 1918,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30560767",
-      "title": "Was the Roman Army provided with any medical officers?",
-      "year": 1851,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30507698",
-      "title": "A letter to William Smellie, M.D., containing critical and practical remarks upon his Treatise on the theory and practice of midwifery",
-      "year": 1753,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3308628x",
-      "title": "Observations in midwifery, particularly on the different methods of assisting women in tedious and difficult labours. To which are added, observations on the principal disorders incident to women and ",
-      "year": 1783,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30336892",
-      "title": "The history of physick, or, an account of the rise and progress of the art, and the several discoveries therein from age to age. With remarks on the lives of the most eminent physicians",
-      "year": 1699,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33706748_0002",
-      "title": "History of medicine, from its origin to the nineteenth century : with an appendix, containing a philosophical and historical review of medicine to the present time",
-      "year": 1856,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33632613",
-      "title": "\"The Book of Medicine\" by Asaph",
-      "year": 1949,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30327817",
-      "title": "The compleat practice of physick, in eighteen several books. Wherein is plainly set forth, the nature, differences, diagnostick, and prognostick signs. Together with the cure of all diseases in the bo",
-      "year": 1655,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30370759",
-      "title": "A circular letter to the practitioners of physic and surgery in the State of New-York from the practitioners of physic and surgery in the County and City of New-York; with a memorial intended to be su",
-      "year": 1829,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33462586_0002",
-      "title": "Historical medical exhibition, London",
-      "year": 1905,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33462598_0001",
-      "title": "Historical medical exhibition, London 1913",
-      "year": 1913,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33436320",
-      "title": "A brief sketch of the Historical Club of the Department of Medicine of the University of Pennsylvania",
-      "year": 1903,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33781357",
-      "title": "1831 : a retrospect : being the President's address to the Harveian Society, January 19, 1893",
-      "year": 1893,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30529360_0002",
-      "title": "The history of physick; from the time of Galen, to the beginning of the sixteenth century. Chiefly with regard to practice. In a discourse written to Doctor Mead",
-      "year": 1725,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30524179",
-      "title": "The state of physick, ancient and modern, briefly consider'd: with a plan for the improvement of it",
-      "year": 1732,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30415925",
-      "title": "Johannis Freind medicinae doctoris, Historia medicinae a Galeni tempore usque ad initium saeculi decimi sexti : in qua ea praecipue notantur quae ad praxin pertinent",
-      "year": 1735,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30363603",
-      "title": "The late dreadful plague at Marseilles compared with that terrible plague in London in the year 1665. Together with the method of cure used to those who recovered in London ... : in two parts",
-      "year": 1721,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b31349146",
-      "title": "The medical annals of Maryland, 1799-1899 : prepared for the centennial of the Medical and Chirurgical Faculty",
-      "year": 1903,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b31357696",
-      "title": "A medical history of the state of Indiana",
-      "year": 1911,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33089036_0001",
-      "title": "Sketch of the revolutions of medical science, and views relating to its reform",
-      "year": 1806,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30354225",
-      "title": "The dissection or an examination of Mr. Ingram's Blow, (relative to the death of the late Mr. Clarke,) in which are contained some pertinent cases from Morgagni and Mr. Pott; with some remarks on Mr. ",
-      "year": 1769,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33092242",
-      "title": "A lecture, delivered at the Opening of the Medical Department of the Columbian College in the District of Columbia",
-      "year": 1825,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33290568_0002",
-      "title": "The history of medicine, surgery, and anatomy, from the creation of the world, to the commencement of the nineteenth century",
-      "year": 1831,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21937552",
-      "title": "Memorial to the late James Thomson, Assistant-Surgeon of the forty-fourth Regiment",
-      "year": 1857,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30571212",
-      "title": "Historical steps of modern medicine : an address delivered before the St. Andrews Medical Graduates' Association at the annual session held on December 2, 1871",
-      "year": 1872,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33488812_0001",
-      "title": "The life of Thomas Linacre, Doctor in Medicine ... : with memoirs of his cotemporaries, and of the rise and progress of learning ...",
-      "year": 1835,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33008607_0001",
-      "title": "The modern practice of the London hospitals. Viz. St. Bartholomew's, St. Thomas's, Guy's, St. George's, the Portuguese, and the Lock, at Hyde-Park-Corner",
-      "year": 1770,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30529463_0001",
-      "title": "The history of physick; from the time of Galen, to the beginning of the sixteenth century. Chiefly with regard to practice. In a discourse written to Dr. Mead",
-      "year": 1727,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30480516",
-      "title": "The evolution of medicine and surgery as a science and the evolution of St. George's Hospital as a school : an introductory address delivered October 1, 1890",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33779648",
-      "title": "Memoir of Baron Larrey, surgeon-in-chief of the Grande Armée, from the French",
-      "year": 1861,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33780316",
-      "title": "A typical American, or, Incidents in the life of Dr. John Swinburne, of Albany, the eminent patriot, surgeon, and philanthropist",
-      "year": 1888,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30560822",
-      "title": "[Review of three French editions of Greek and Latin medical texts",
-      "year": 1851,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33469040",
-      "title": "Titles of published papers from the Wellcome Bureau of Scientific Research",
-      "year": 1928,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30353518",
-      "title": "Some account of the asiatic cholera, cholera asphyxia or pulseless plague. With a sketch of its pathology and treatment and advice, relative to its prevention on plantations, premonitory symptoms and ",
-      "year": 1833,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33097252_0001",
-      "title": "On superstitions connected with the history and practice of medicine and surgery",
-      "year": 1844,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21943412",
-      "title": "Notes and recollections of an ambulance surgeon : being an account of work done under the Red Cross during the campaign of 1870",
-      "year": 1871,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33519584",
-      "title": "Illustrations of some of the injuries to which the lower limbs are exposed",
-      "year": 1802,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33781291",
-      "title": "Medical fashions in the nineteenth century : including a sketch of bacterio-mania and the battle of the bacilli",
-      "year": 1884,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30410241_0002",
-      "title": "History of the origin of medicine: an oration, delivered at the anniversary meeting of the Medical Society of London, January 19, 1778, and printed at their request. To which are since added, various ",
-      "year": 1778,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s6072id1366001",
-      "title": "Janus : Central-Magazin für Geschichte und Literärgeschichte der Medicin, ärztliche Biographik, Epidemiographik, medicinische Geographie und Statistik. Volume 1, 1851.",
-      "year": 1851,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33763379_0001",
-      "title": "Peeps into the human hive",
-      "year": 1874,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33462574",
-      "title": "Prospectus : History of Scottish medicine by John D. Comrie : second edition",
-      "year": 1932,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29827802_0001",
-      "title": "A history of the pharaohs ...",
-      "year": 1925,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29335759_0007",
-      "title": "The cyclopædia of practical medicine. Comprising treatises on the nature and treatment of diseases, materia medica and therapeutics, medical jurisprudence, etc. etc",
-      "year": 1833,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30347531",
-      "title": "An historical expostulation: against the beastlye abusers, both of chyrurgerie and physyke, in oure tyme: with a goodlye doctrine and instruction, necessarye to be marked and followed, of all true chi",
-      "year": 1844,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33461934",
-      "title": "Medical facts : interesting, historical, chronological",
-      "year": 1936,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33282122_0002",
-      "title": "Sketch of the history of medicine, from its origin to the commencement of the nineteenth century",
-      "year": 1835,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33458509",
-      "title": "Conversazione at Guildhall to welcome the delegates to the centenary meeting of the British Medical Association in London, Wednesday, 27th July, 1932",
-      "year": 1932,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3054824x_0001",
-      "title": "A practical essay on the use and abuse of warm bathing in gouty cases",
-      "year": 1751,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28755649_0001",
-      "title": "Memoirs of medicine; including a sketch of medical history, from the earliest accounts to the eighteenth century",
-      "year": 1799,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33428608",
-      "title": "The Angier idea : March 1936",
-      "year": 1936,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b32232056",
-      "title": "200 years of American medicine (1776-1976) : an exhibit at the National Library of Medicine",
-      "year": 1976,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s6084id1378429",
-      "title": "Janus : Zeitschrift für Geschichte und Literatur der Medicin. Volume 3, 1848.",
-      "year": 1848,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33469003",
-      "title": "Publications from the Wellcome Historical Medical Museum",
-      "year": 1948,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30327805_0001",
-      "title": "The practice of physick. In seventeen several books. Wherein is plainly set forth, the nature, cause, differences, and several sorts of signs; together with the cure of all diseases in the body",
-      "year": 1668,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22434471",
-      "title": "Biographical sketch of the late Dr. Robert Jackson, inspector of military hospitals",
-      "year": 1835,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b2232012x",
-      "title": "George James Guthrie : a biographical sketch",
-      "year": 1893,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29011413",
-      "title": "The medicine of our forefathers",
-      "year": 1913,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b31912886",
-      "title": "An essay on uterine hemorrhages depending on pregnancy and parturition",
-      "year": 1785,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33778784",
-      "title": "Medical heresies historically considered : a series of critical essays on the origin and evolution of sectarian medicine, embracing a special sketch and review of homœopathy, past and present",
-      "year": 1880,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33429522",
-      "title": "A sketch of the history of medicine in Ireland",
-      "year": 1908,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b31356126_0002",
-      "title": "John of Gaddesden and the Rosa medicinae",
-      "year": 1912,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3329141x_0002",
-      "title": "The Prognostics and Prorrhetics of Hippocrates",
-      "year": 1788,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33446957",
-      "title": "Art in medical history",
-      "year": 1918,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30536960_0002",
-      "title": "Hippocrates upon Air, water, and situation; upon Epidemical diseases; and upon Prognosticks, in acute cases especially. To this is added (by way of comparison) Thucydidesʼs Account of the plague of At",
-      "year": 1734,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30576428",
-      "title": "Historical study of medicine : concluding portion of an address to The Glasgow University Medico-Chirurgical Society, March 15, 1878",
-      "year": 1880,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b28986179",
-      "title": "Cambridgeshire doctors in the olden time, 1466-1827",
-      "year": 1911,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30477372",
-      "title": "The doctor in old New York",
-      "year": 1898,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30569242",
-      "title": "The inaugural address to the members of the Cumberlanmd and Westmorland Branch of the British Medical Associatoin : delivered on June 23rd, 1869, at the Annual Meeting at Penrith",
-      "year": 1869,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21934629_0004",
-      "title": "The medical and surgical history of the War of the Rebellion, (1861-65)",
-      "year": 1888,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3078878x_0002",
-      "title": "A candid and impartial state of the evidence of a very great probability, that there is discovered by Monsieur Le Fevre, a regular physician, residing and practising at Liege in Germany, a specific fo",
-      "year": 1770,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33020966",
-      "title": "Letters from an Arabian philosopher to a nobleman of Greece ; containing very curious and rare observations concerning the philosophy, physick, divinity and customs of the Eastern philosophers",
-      "year": 1707,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3342861x",
-      "title": "The Angier idea : November 1935",
-      "year": 1935,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b29302808_0002",
-      "title": "Diary of the Rev. John Ward, A.M., vicar of Stratford-upon-Avon, extending from 1648 to 1679. From the original MSS. preserved in the library of the Medical Society of London",
-      "year": 1839,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s6072id1378430",
-      "title": "Janus : Central-Magazin für Geschichte und Literärgeschichte der Medicin, ärztliche Biographik, Epidemiographik, medicinische Geographie und Statistik. Volume 2, 1853.",
-      "year": 1853,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21955980",
-      "title": "On the progress of preventive medicine during the Victorian era : being the inaugural address delivered before the Epidemiological Society of London, session 1887-88",
-      "year": 1888,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22274832",
-      "title": "Introductory address to a course of lectures on forensic medicine delivered at King's College, London",
-      "year": 1889,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30546606_0001",
-      "title": "The ancient physician's legacy to his country. Being what he has collected himself in forty-nine years practice: or, an account of the several diseases incident to mankind ... Together with ... remedi",
-      "year": 1733,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22343520",
-      "title": "Notes towards the history of the medical staff of the English Army prior to the accession of the Tudors : enlarged from a paper read before the Public Medicine Section at the Annual Meeting of the Bri",
-      "year": 1873,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30530362",
-      "title": "An essay on the agreement betwixt ancient and modern physicians: or a comparison between the practice of Hippocrates, Sydenham, Galen, and Boerhaave, in acute diseases. Intended to shew, what the prac",
-      "year": 1748,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22434483",
-      "title": "Memoir of the late Dr Robert Jackson, inspector of army hospitals",
-      "year": 1827,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33779545",
-      "title": "Stories of a country doctor",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s2id11854270",
-      "title": "Curious remarks and observations in physics, anatomy, chirurgery, chemistry, botany, and medicine / extracted from the history and memoirs of the Royal Academy of Sciences at Paris ... [and translated",
-      "year": 1753,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s6084id1378428",
-      "title": "Janus : Zeitschrift für Geschichte und Literatur der Medicin. Volume 2, 1847.",
-      "year": 1847,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33286541",
-      "title": "An essay on preternatural labours",
-      "year": 1786,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30517898",
-      "title": "Deformity: an essay",
-      "year": 1755,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3056184x",
-      "title": "Notice of Dr. Daremberg's late publications",
-      "year": 1854,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "s6084id1366000",
-      "title": "Janus : Zeitschrift für Geschichte und Literatur der Medicin. Volume 1, 1846.",
-      "year": 1846,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33469052",
-      "title": "Medicine in history : guide to the exhibition, 26th November 1949 - 31st January 1950, to commemorate the 350th anniversary of the Royal Faculty of Physicians and Surgeons of Glasgow",
-      "year": 1950,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22308751",
-      "title": "Deputy Inspector General of Army Hospitals, Charles Collier, M.D., F.R.S, F.G.S., etc. : a life sketch",
-      "year": 1870,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3033472x",
-      "title": "The secrets of Albertus Magnus : of the vertues of herbs, stones, and certain beasts. Whereunto is newly added, a short discourse of the seven planets, governing the nativities of children. Also a boo",
-      "year": 1691,
-      "language": "eng",
-      "tier": "weak-subject:Medicine -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Medicine -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b32886196",
-      "title": "The doctrines of heathen philosophy, compared with those of Revelation",
-      "year": 1804,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "greatthinkersque00duva_0",
-      "title": "Great thinkers : the quest of life for its meaning",
-      "year": 1937,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33281725_0003",
-      "title": "History of the philosophy of mind : embracing the opinions of all writers on mental science. From the earliest period to the present time",
-      "year": 1848,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30325584",
-      "title": "The history of the Chaldaick philosophy",
-      "year": 1662,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3032483x",
-      "title": "The theory of the earth: containing an account of the original of the earth, and of all the general changes which it hath already undergone, or is to undergo, till the consummation of all things. The ",
-      "year": 1684,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "ourphilosophical00lamp",
-      "title": "Our philosophical traditions; a brief history of philosophy in Western civilization",
-      "year": 1955,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30334676",
-      "title": "Philosophy reformed and improved in four profound tractates. The I discovering the great and deep mysteries of nature: by that learned chymist & physitian Osw: Crollius. The other III discovering the ",
-      "year": 1657,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33292036_0002",
-      "title": "Revelations of Egyptian mysteries; and allegories of the Greek lyric poets clearly interpreted. History of the works of nature. With a discourse on health, according with the wisdom of the ancients",
-      "year": 1850,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30450494",
-      "title": "The history of philosophy: containing the lives, opinions, actions and discourses of the philosophers of every sect. Illustrated with the effigies of divers of them",
-      "year": 1701,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b3339958x",
-      "title": "The philosophy and psychology of Pietro Pomponazzi",
-      "year": 1910,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30526747_0002",
-      "title": "The sacred theory of the earth. Containing an account of the original of the earth, and of all the general changes which it hath already undergone, or is to undergo, till the consummation of all thing",
-      "year": 1719,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b24750712",
-      "title": "Handbook of the history of philosophy",
-      "year": 1874,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "educationphiloso00pric",
-      "title": "Education and philosophical thought",
-      "year": 1962,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30335814",
-      "title": "Reflections upon ancient and modern learning",
-      "year": 1697,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33093908",
-      "title": "A manual of the history of philosophy",
-      "year": 1832,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33285469",
-      "title": "Metaphysical inquiry into the method, objects and result of ancient and modern philosophy",
-      "year": 1833,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b33006209_0001",
-      "title": "A concise history of philosophy and philosophers",
-      "year": 1766,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b30409913",
-      "title": "The history of philosophy: containing the lives, opinions, actions and discourses of the philosophers of every sect",
-      "year": 1743,
-      "language": "eng",
-      "tier": "weak-subject:Philosophy -- History",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Philosophy -- History\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b22303704",
-      "title": "Medical women",
-      "year": 1877,
-      "language": "eng",
-      "tier": "weak-subject:Women -- Education",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21900358",
-      "title": "Female education from a medical point of view : being two lectures delivered at the Philosophical Institution, Edinburgh, November 1882",
-      "year": 1882,
-      "language": "eng",
-      "tier": "weak-subject:Women -- Education",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21695301",
-      "title": "The building of a brain",
-      "year": 1882,
-      "language": "eng",
-      "tier": "weak-subject:Women -- Education",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "b21695477",
-      "title": "Calendar of the Edinburgh Association for the University Education of Women, lecture rooms, 15 Shandwick Place. Session 1890-91",
-      "year": 1890,
-      "language": "eng",
-      "tier": "weak-subject:Women -- Education",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
-      "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
-    },
-    {
-      "identifier": "rush_mss_volume_108",
-      "title": "Notes by Benjamin Rush for lectures on the Application of the principles of natural philosophy, chemistry, and medicine to domestic and culinary purposes, composed for the use of the Young Ladies' Aca",
-      "year": 1787,
-      "language": "eng",
-      "tier": "weak-subject:Women -- Education",
+      "tier": "weak-subject:Logic",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
       "rights_provenance": "bare-assertion",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "historyofcarvers00litt",
-      "title": "History of Carver School of Missions and Social Work",
-      "year": 1958,
+      "identifier": "nasa_techdoc_20000038232",
+      "title": "Aeronautical Engineering: A Continuing Bibliography With Indexes",
+      "year": 2000,
       "language": "eng",
-      "tier": "weak-subject:Women -- Education",
-      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
-      "rights_provenance": "institutional-review",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
     },
     {
-      "identifier": "b22302815",
-      "title": "Objections to the proposed statute for admitting women to the examinations for the degree of Bachelor of Medicine",
-      "year": 1890,
+      "identifier": "b28042086_0001",
+      "title": "The improvement of the mind, or, A supplement to the art of logic : containing a variety of remarks and rules for the attainment and communication of useful knowledge, in religion, in the sciences, an",
+      "year": 1784,
       "language": "eng",
-      "tier": "weak-subject:Women -- Education",
+      "tier": "weak-subject:Logic",
       "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
       "rights_provenance": "formal-designation",
-      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Women -- Education\" NOT collection:printdisabled NOT collection:inlibrary"
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20050147493",
+      "title": "Archiving Space Geodesy Data for 20 Years at the CDDIS",
+      "year": 2004,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19890068326",
+      "title": "Dispersion of jettisoned JP-4 jet fuel by atmospheric turbulence, evaporation, and varying rates of fall of fuel droplets",
+      "year": 1959,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19690025162",
+      "title": "Comparison of post storm non-adiabatic recovery of trapped protons with radial diffusion",
+      "year": 1969,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21302170",
+      "title": "Medical logic [electronic resource]",
+      "year": 1855,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19710018243",
+      "title": "Biomedical Research and Computer Application in Manned Space Flight",
+      "year": 1971,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19900066709",
+      "title": "Liability of contractors and indemnification thereof by NASA for claims for damages arising out of the performance of NASA contracts",
+      "year": 1969,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19890000662",
+      "title": "Standardization of the carbon-phenolic materials and processes. Vol. 2: Test methods and specifications",
+      "year": 1988,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21913316",
+      "title": "Illustrations of the inductive method in medicine",
+      "year": 1891,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "philosophyofscie00mill_0",
+      "title": "Philosophy of scientific method.",
+      "year": 1950,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20050147583",
+      "title": "The Conference Proceedings of the 2003 Air Transport Research Society (ATRS) World Conference, Volume 2",
+      "year": 2003,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19910012213",
+      "title": "Analysis of rolling contact spall life in 440 C steel bearing rims",
+      "year": 1991,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20040110681",
+      "title": "Designing to Control Flight Crew Errors",
+      "year": 1997,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19970001781",
+      "title": "A Model for Particle Microphysics, Turbulent Mixing, and Radiative Transfer in the Stratocumulus-Topped Marine Boundary Layer and Comparisons with Measurements",
+      "year": 1995,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20010097343",
+      "title": "ASCA Observation of an ''X-Ray Shadow'' in the Galactic Plane",
+      "year": 2001,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20020060660",
+      "title": "Image Information Mining Utilizing Hierarchical Segmentation",
+      "year": 2002,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19930005697",
+      "title": "Comments on 'Kinetic Study on the Hexacelsian-Celsian Phase Transformation'",
+      "year": 1992,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19690015424",
+      "title": "Analysis of cylindrical reactor fuel pin for clad stress caused by fission gases",
+      "year": 1969,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "css_005741",
+      "title": "Handbill for Megadeth and others, Cal Expo, July 26, 2005",
+      "year": 2005,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright status unknown. This work may be protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, its repr",
+      "rights_provenance": "none",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19680020818",
+      "title": "The resonance probe",
+      "year": 1968,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19950012615",
+      "title": "Second-order reconstruction of the inflationary potential",
+      "year": 1994,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21305754",
+      "title": "Elements of medical logick, or, Philosophical principles of the practice of physick [electronic resource]",
+      "year": 1825,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b2231684x",
+      "title": "Syllabus of the course of lectures on medical logic, delivered in Marischal College and University, Aberdeen",
+      "year": 1858,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30353865",
+      "title": "An essay on the nature and objects of the course of study, in the class of the philosophy of the human mind and logic, in the University of London",
+      "year": 1830,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19900008748",
+      "title": "Steady-state and transient Zener parameters in viscoplasticity: Drag strength versus yield strength",
+      "year": 1990,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "logicalfoundatio00carn_0",
+      "title": "Logical foundations of probability",
+      "year": 1950,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30564608",
+      "title": "Syllabus of the course of lectures on medical logic, delivered in the University of Aberdeen",
+      "year": 1860,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20050167161",
+      "title": "The Palladium Isotopic Composition in Iron Meteorites",
+      "year": 2005,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19930009389",
+      "title": "Creep fatigue life prediction for engine hot section materials (isotropic)",
+      "year": 1992,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19790010517",
+      "title": "A wave-envelope of sound propagation in nonuniform circular ducts with compressible mean flows",
+      "year": 1979,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20010037916",
+      "title": "Searching the ASRS Database Using QUORUM Keyword Search, Phrase Search, Phrase Generation, and Phrase Discovery",
+      "year": 2001,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19990116716",
+      "title": "Use of Tabulated Thermochemical Data for Pure Compounds",
+      "year": 1999,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030022776",
+      "title": "Catalyzed Ignition of Bipropellants in Microtubes",
+      "year": 2003,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19640001422",
+      "title": "Development of techniques for improving the reliability of digital systems through logical redundancy final report",
+      "year": 1962,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19940019371",
+      "title": "A user view of the EURECA ground segment",
+      "year": 1993,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19840007286",
+      "title": "Cascade Joule-Thomson refrigerators",
+      "year": 1983,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19990004613",
+      "title": "Tunable Far Infrared Studies in Support of Stratospheric Measurements",
+      "year": 1998,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "1955-mul-55-muller-theory-of-asynchronous-circuits-condensed",
+      "title": "1955 Mul 55 Muller Theory Of Asynchronous Circuits Condensed",
+      "year": 2021,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: The original scanned text from: University of Illinois, Graduate College, Digital Computer Laboratory, Internal Report N",
+      "rights_provenance": "none",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19930072987",
+      "title": "New Orleans drinking water project: Summary of first year effort and conclusion",
+      "year": 1985,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20040110832",
+      "title": "Sensor Needs for Control and Health Management of Intelligent Aircraft Engines",
+      "year": 2004,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "css_005138",
+      "title": "Poster for Ben Harper, Jack Johnson and others, Sleep Train Amphitheatre, August 13, 2003",
+      "year": 2003,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright status unknown. This work may be protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, its repr",
+      "rights_provenance": "none",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19660005937",
+      "title": "Fundamentals of engineering cybernetics",
+      "year": 1965,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "logicexistence00foss",
+      "title": "Logic and existence",
+      "year": 1962,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19790073690",
+      "title": "Radiation intensity due to Co60 radioactive fuel gauges",
+      "year": 1966,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "classicsinlogicr00rune",
+      "title": "Classics in logic : readings in epistemology, theory of knowledge and dialectics",
+      "year": 1962,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b33281786_0002",
+      "title": "Elements of medical logick, illustrated by practical proofs and examples",
+      "year": 1821,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19950021869",
+      "title": "Stiffness and strength tailoring in uniform space-filling truss structures",
+      "year": 1992,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "css_005142",
+      "title": "Poster for 2004 Season, Sleep Train Amphitheatre, June - October, 2004",
+      "year": 2004,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright status unknown. This work may be protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, its repr",
+      "rights_provenance": "none",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030015397",
+      "title": "Numerical Simulation of a Convective Turbulence Encounter",
+      "year": 2002,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b31887764",
+      "title": "The logic of life : in reply to G.J. Holyoake's 'Logic of death'",
+      "year": 1850,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b22651986",
+      "title": "Medical logic",
+      "year": 1855,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19910018190",
+      "title": "Variable orifice flow regulator",
+      "year": 1991,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030015733",
+      "title": "Microscopic Foundation and Simulation of Coupled Carrier-Temperature Diffusions in Semiconductor Lasers",
+      "year": 2002,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19820026161",
+      "title": "Sixteenth Annual Conference on Manual Control",
+      "year": 1982,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20020076096",
+      "title": "Stray Light Analysis",
+      "year": 1997,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19940019188",
+      "title": "An analytic study of a two-phase laminar airfoil in simulated heavy rain",
+      "year": 1993,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19680028276",
+      "title": "Sky effect on solar cells calibrated at 80,000 feet",
+      "year": 1968,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19800014305",
+      "title": "Thermal energy storage and transport",
+      "year": 1980,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19890016317",
+      "title": "Model independence of constraints on particle dark matter",
+      "year": 1989,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b33290519",
+      "title": "Remarks on some passages in Sir Gilbert Blane's 'Elements of medical logic'",
+      "year": 1821,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20010069712",
+      "title": "Modeling of Transmittance Degradation Caused by Optical Surface Contamination by Atomic Oxygen Reaction with Adsorbed Silicones",
+      "year": 2001,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b24879472",
+      "title": "The physical and metaphysical works of Lord Bacon : including the Advancement of learning and Novum organum",
+      "year": 1886,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b30337008",
+      "title": "Of the advancement and proficiencie of learning: or the partitions of sciences nine books",
+      "year": 1674,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19960016117",
+      "title": "Space Shuttle solid rocket motor slag expulsion mechanisms",
+      "year": 1995,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19970001824",
+      "title": "Infrared Spectroscopy of Matrix-Isolated Polycyclic Aromatic Hydrocarbon Cations",
+      "year": 1995,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "medievallogicout00boeh",
+      "title": "Medieval logic : an outline of its development from 1250 to c.1400",
+      "year": 1952,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19910008984",
+      "title": "Solid State Technology Branch of NASA Lewis Research Center Second Annual Digest, June 1989 - June 1990",
+      "year": 1990,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20020059540",
+      "title": "Towards 100,000 CPU Cycle-Scavenging by Genetic Algorithms",
+      "year": 2001,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19900067225",
+      "title": "Liquid Rocket Booster (LRB) for the Space Transportation System (STS) systems study. Appendix I: Honeywell avionics trades report",
+      "year": 1989,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19660025536",
+      "title": "Automatic regulation and control Selected parts",
+      "year": 1966,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19710010646",
+      "title": "Atmospheric transmission handbook - A survey of electromagnetic wave transmission in the earth's atmosphere over the frequency /wavelength/ range 3 kHz /100 km/-3000 THz /0.1 micron m/",
+      "year": 1971,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19700017272",
+      "title": "Development of UHF measurements",
+      "year": 1970,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20020060723",
+      "title": "An Overview of Auralization and Psychoacoustics",
+      "year": 1998,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030020801",
+      "title": "Evaluation of Methods to Estimate the Surface Downwelling Longwave Flux during Arctic Winter",
+      "year": 2002,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030063155",
+      "title": "Tests of Submerged Duct Installation on the Ryan FR-1 Airplane in the Ames 40- by 80-Foot Wind Tunnel",
+      "year": 1947,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19940030609",
+      "title": "Prosthetic elbow joint",
+      "year": 1994,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b28042074",
+      "title": "The improvement of the mind : containing a variety of remarks and rules for the attainment and communication of useful knowledge in religion, in the sciences, and in common life",
+      "year": 1785,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21724891",
+      "title": "Elementary lessons in logic : deductive and inductive : with copious questions and examples, and a vocabulary of logical terms",
+      "year": 1896,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20040085951",
+      "title": "Inducer Hydrodynamic Forces in a Cavitating Environment",
+      "year": 2004,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030064085",
+      "title": "Investigation of Rim Cracking in Turbine Wheels with Welded Blades",
+      "year": 1947,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19940013151",
+      "title": "Coefficients for calculating thermodynamic and transport properties of individual species",
+      "year": 1993,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20040085581",
+      "title": "Echo Source Discrimination in Airborne Radar Sounding Data for Mars Analog Studies, Dry Valleys, Antarctica",
+      "year": 2003,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20020047005",
+      "title": "Results of the Second SeaWiFS Data Analysis Round Robin, March 2000 (DARR-00)",
+      "year": 2001,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030015730",
+      "title": "The Statistics of Visual Representation",
+      "year": 2002,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20030014808",
+      "title": "Overview of Atmospheric Ionizing Radiation (AIR) Research: SST - Present",
+      "year": 2002,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19890067908",
+      "title": "A manned mission to Mars: Preliminary design review 2",
+      "year": 1986,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19930072969",
+      "title": "Natural systems for wastewater treatment and water reuse for space and earthly applications",
+      "year": 1987,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_19700007517",
+      "title": "Error analysis of strapdown and local level inertial systems which compute in geographic coordinates",
+      "year": 1969,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "378_748_pom_40_13",
+      "title": "Essay on Reason and Instinct",
+      "year": 1816,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20000120290",
+      "title": "A Probabilistic Approach to Aeropropulsion System Assessment",
+      "year": 2000,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b33038624",
+      "title": "The two bookes of Sr Francis Bacon, of the proficience and advancement of learning, divine and humane",
+      "year": 1633,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "nasa_techdoc_20000004186",
+      "title": "Delamination Modeling of Composites for Improved Crash Analysis",
+      "year": 1999,
+      "language": "eng",
+      "tier": "weak-subject:Logic",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Public Domain",
+      "rights_provenance": "bare-assertion",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Logic\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "storyofeducation00atki_0",
+      "title": "The story of education",
+      "year": 1962,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "interpretativehi00mess_0",
+      "title": "An interpretative history of education",
+      "year": 1931,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b22444294",
+      "title": "Birmingham & Midland Institute : address delivered at the annual meeting of members, 10th January, 1876",
+      "year": 1876,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "storyofeducation00thut",
+      "title": "The story of education; philosophical and historical foundations",
+      "year": 1957,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "developmentofmod00ebyf_0",
+      "title": "The development of modern education in theory",
+      "year": 1934,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "earlyprotestante00unse",
+      "title": "Early Protestant educators : the educational writings of Martin Luther, John Calvin, and other leaders of Protestant thought",
+      "year": 1931,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "churcheducation00swee",
+      "title": "The church and education",
+      "year": 1939,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b3309441x",
+      "title": "Necessity of popular education, as a national object; with hints on the treatment of criminals, and observations on homicidal insanity",
+      "year": 1834,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "popularhistoryof00bens",
+      "title": "A popular history of Christian education",
+      "year": 1943,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "modernpsychologi00rags",
+      "title": "Modern psychologies and education",
+      "year": 1932,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "historyphilosoph00ebyf",
+      "title": "The history and philosophy of education, ancient and medieval",
+      "year": 1940,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "evolutionofcommo00reis",
+      "title": "The evolution of the common school",
+      "year": 1930,
+      "language": "eng",
+      "tier": "weak-subject:Education -- History",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Education -- History\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "b21299699_0001",
+      "title": "Lectures on rhetoric and belles lettres [electronic resource]",
+      "year": 1813,
+      "language": "eng",
+      "tier": "weak-subject:Rhetoric",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: This work is available under the Creative Commons, Public Domain Mark",
+      "rights_provenance": "formal-designation",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Rhetoric\" NOT collection:printdisabled NOT collection:inlibrary"
+    },
+    {
+      "identifier": "principlesofjesu00donn",
+      "title": "Principles of Jesuit education in practice",
+      "year": 1934,
+      "language": "eng",
+      "tier": "weak-subject:Rhetoric",
+      "rights_evidence": "advancedsearch rights:\"public domain\"; item rights: Copyright review: Public domain according to HathiTrust rights database",
+      "rights_provenance": "institutional-review",
+      "query": "mediatype:texts AND rights:\"public domain\" AND language:eng AND subject:\"Rhetoric\" NOT collection:printdisabled NOT collection:inlibrary"
     }
   ]
 }

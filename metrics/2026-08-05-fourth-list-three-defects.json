@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-05T06:38:42Z",
+  "question": "GQ-007",
+  "subject": "a fourth want-list, and three defects it exposed",
+  "corpus": {
+    "books": 334,
+    "passages": 359590,
+    "indexed_words": 31259602,
+    "catalogued_words": 35926285,
+    "headings": 24978,
+    "long_s": 113535
+  },
+  "the_language_filter_worked_on_its_first_live_run": {
+    "caught": "Anselm's Tractatus de praedestinatione et de praescientia Dei \u2014 Latin, excluded BEFORE download",
+    "significance": "the check I moved to selection last turn did its job on the very next list"
+  },
+  "defect_1_manifest_overwrite": {
+    "symptom": "passage index had 334 books, catalogue had 300 \u2014 34 indexed and uncatalogued",
+    "cause": "the manifest filename used slice(0,15) \u2014 MINUTE precision. A fetch and its retry landed in the same minute and the retry OVERWROTE the first manifest.",
+    "damage": "the record of 34 fetched books destroyed; text files survived, provenance did not",
+    "why_it_was_silent": "the migration reads manifests, so those 34 simply never appeared \u2014 no error anywhere",
+    "fix": "second precision plus a refusal to overwrite an existing path",
+    "recovery": "34 entries reconstructed from the text files and want-list, labelled RECONSTRUCTED rather than passed off as original"
+  },
+  "defect_2_dedup_hole": {
+    "found_by": "the shared-passage count jumping 3 -> 324",
+    "cause": "\"Medical logic\" and \"Medical logic [electronic resource]\" are the same book scanned twice; the bracket survived normaliseTitle",
+    "evidence": "1,151 and 1,143 passages, 339 shared fingerprints between exactly that pair",
+    "fix": "strip [...] before normalising",
+    "scale": "the title index dropped 75,008 -> 74,965 \u2014 43 duplicate title-forms collapsed, so this was systematic, not one unlucky pair"
+  },
+  "defect_3_build_ordering": {
+    "symptom": "build-library-page failed with \"no such table: passage_modern\"",
+    "cause": "rebuilding the passage index drops and recreates the database, destroying the modern-spelling table",
+    "so": "add-longs-variants MUST run between them, and nothing enforced or documented that"
+  },
+  "the_324_explained": "339 of them are the one duplicate pair. Everything else is 1-3 passages of ordinary quotation, unchanged from 298 books.",
+  "rights_gate_consistency": {
+    "ingested_by_grade": {
+      "formal-designation": 204,
+      "institutional-review": 94
+    },
+    "bare_assertion_ever_admitted": 0,
+    "this_list": "69 of 109 excluded as bare \"Public Domain\" \u2014 the same rule, not a new stricture"
+  },
+  "derivations": {}
+}

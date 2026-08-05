@@ -30,6 +30,13 @@ export function normaliseTitle(t) {
     // Edition/volume suffixes after an em- or en-dash. "— Complete", "— Vol. II".
     // Cutting at the dash rather than listing suffixes: the set is open-ended and
     // a whitelist would silently miss the next form.
+    // Strip IA's format markers BEFORE anything else. Measured 2026-08-05:
+    // "Medical logic" and "Medical logic [electronic resource]" are the same
+    // book scanned twice, and both entered the corpus because the bracket
+    // survived normalisation — 1,151 and 1,143 passages of the same text.
+    // IA appends this suffix constantly, so it is a systematic hole, not one
+    // unlucky pair.
+    .replace(/\[[^\]]*\]/g, ' ')
     .split(/[—–]/)[0]
     .replace(/[’']/g, '')          // "Vulcan's" -> "vulcans"
     .replace(/[^a-z0-9 ]/g, ' ')

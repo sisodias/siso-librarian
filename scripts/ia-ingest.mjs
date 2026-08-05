@@ -120,7 +120,18 @@ const manifest = {
   note: 'Text only. Nothing was written to books.sqlite — catalogue ingest is a separate reviewed step.',
   results,
 };
-const mpath = join(VAULT, `manifest-${new Date().toISOString().replace(/[:.]/g, '').slice(0, 15)}Z.json`);
+// Second-precision, and REFUSE to overwrite. Measured 2026-08-05: the previous
+// slice(0,15) truncated to the MINUTE, so a fetch and its retry landed in the
+// same minute and the retry silently overwrote the first manifest — destroying
+// the record of 34 fetched books. The text files survived; their provenance did
+// not, and the catalogue migration reads manifests, so those 34 became
+// uncatalogued with no error anywhere.
+//
+// A losing write that reports success is the worst shape of defect here.
+let mpath = join(VAULT, `manifest-${new Date().toISOString().replace(/[:.]/g, '').slice(0, 17)}Z.json`);
+for (let i = 2; existsSync(mpath); i += 1) {
+  mpath = join(VAULT, `manifest-${new Date().toISOString().replace(/[:.]/g, '').slice(0, 17)}Z-${i}.json`);
+}
 writeFileSync(mpath, JSON.stringify(manifest, null, 2) + '\n');
 console.error(`\n${ok.length}/${results.length} fetched, ${(manifest.total_bytes / 1048576).toFixed(1)} MB`);
 console.error(`manifest: ${mpath}`);
