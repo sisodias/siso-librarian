@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T19:21:50.154Z",
+  "generated_at": "2026-08-05T20:26:14.968Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -23,26 +23,26 @@
       "cross_domain_people": 5
     },
     "claim_layer": {
-      "production_claims": 10,
+      "production_claims": 11,
       "portfolio_questions": 8,
-      "refresh_entries": 10,
-      "claims_live": 7,
+      "refresh_entries": 11,
+      "claims_live": 8,
       "claims_disputed": 1,
       "claims_superseded": 2,
       "claims_unreadable": 0
     },
     "external_corpus": {
-      "books": 1329,
-      "passages": 2025511,
-      "words": 164880157
+      "books": 1528,
+      "passages": 2374999,
+      "words": 187678756
     }
   },
   "repo_health": {
     "npm_scripts": 49,
     "verify_steps": 11,
     "scripts_on_disk": 43,
-    "metrics_files": 176,
-    "worklogs": 234,
+    "metrics_files": 177,
+    "worklogs": 235,
     "proposals": 18
   },
   "derivations": {
@@ -328,7 +328,8 @@
       "status": "active",
       "action_status": "proposed",
       "claim_packets": [
-        "claims/GQ-001-enforcement-limits.claim.json"
+        "claims/GQ-001-enforcement-limits.claim.json",
+        "claims/GQ-001-enforcement-limits.v2.claim.json"
       ]
     }
   ],
@@ -336,9 +337,9 @@
     "minimax_8081": "observed",
     "measured": true,
     "window": "last 24h",
-    "requests": 26,
-    "prompt_tokens": 587957,
-    "completion_tokens": 16196,
+    "requests": 24,
+    "prompt_tokens": 584971,
+    "completion_tokens": 16164,
     "source": "~/.config/bifrost/logs.db",
     "note": "Provider and model read from the gateway request log, not from a banner or a config label."
   },
@@ -483,7 +484,7 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 37.4,
+    "oldest_queued_age_hours": 38.5,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",

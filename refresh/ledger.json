@@ -199,6 +199,25 @@
       "evidence_note": "Counted from this session's own worklogs; an initial looser grep gave 5 gate-caught and was reconciled to 3 by counting phrases separately. All three byte ranges verified. Re-checked after d53088c and 8b0083c revised the IA want-list under sources/; 30/30 grounding byte ranges resolve.",
       "next_check": "on any commit touching schemas/, scripts/verify-claim-packets.mjs, sources/, or claims/",
       "note": "re-verified after a39af0e added 101 books to the corpus. The \"new evidence source\" trigger fired on my own ingest. Grounding re-derived BEFORE touching this ledger: 30 byte ranges checked, 0 broken."
+    },
+    {
+      "claim_packet": "claims/GQ-001-enforcement-limits.v2.claim.json",
+      "question_id": "GQ-001",
+      "checked_at": "2026-08-05T20:22:38Z",
+      "selectors_used": [
+        "GQ-001",
+        "enforcement",
+        "gate-self-test",
+        "starvation",
+        "probe-counting"
+      ],
+      "invalidate_on_considered": [
+        "verify chain change",
+        "self-test case count change",
+        "a push blocked or not blocked by the hook"
+      ],
+      "result": "fresh",
+      "evidence_note": "Written 2026-08-05 from five defects fixed the same day. Supersedes v1, whose central measured limit \u2014 'the gates have blocked ZERO pushes' \u2014 was falsified when the pre-push hook refused an actual push on a genuine 200-book index/disk gap. v1's counts also moved: 6 gates to 11, 14 self-test cases to 15, 2 probes to 8. Re-derive by re-running the counts and checking whether any push has been blocked since."
     }
   ]
 }

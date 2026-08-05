@@ -1,6 +1,6 @@
 # Review packet — every live claim, evidence resolved
 
-Generated 2026-08-05T19:22:16.523Z by `scripts/build-review-packet.mjs`.
+Generated 2026-08-05T20:26:41.011Z by `scripts/build-review-packet.mjs`.
 
 Each quote below was read from its source file at build time, not copied from the claim.
 A quote marked **UNRESOLVED** means the byte range no longer matches — treat the claim as unsupported.
@@ -13,7 +13,7 @@ Every claim states a position, a confidence, and an action. The useful review is
 2. Is the confidence justified, or is it a number attached to a hunch?
 3. Is the proposed action the right response, and is it safe?
 
-8 live claims, 2 superseded.
+9 live claims, 2 superseded.
 
 ---
 
@@ -36,6 +36,28 @@ Every claim states a position, a confidence, and an action. The useful review is
 - `"defects_the_selftest_found_on_first_run": 1` — metrics/2026-08-04-gq001-rederived.json [1283:1327], what_is_countable.defects_the_selftest_found_on_first_run
 
 <sub>claims/GQ-001-enforcement-limits.claim.json · claim:GQ-001.enforcement-limits.v1</sub>
+
+---
+
+## GQ-001:enforcement-limits — confidence 0.81, action `done`
+
+**Question.** How should the complete agent workspace be designed across code layout, agent architecture, memory, enforcement, and agent-generated user interfaces?
+
+**Scope.** the enforcement and memory layers, measured over one continuous session
+
+**Position.** Gates became a real enforcement boundary on 2026-08-05, and the same day showed the boundary's own blind spot. GQ-001 v1 measured that the gates had blocked ZERO pushes and concluded they were 'a pre-commit convention rather than an enforcement boundary'. That no longer holds: a pre-push hook REFUSED an actual push today, correctly, on a genuine 200-book gap between the corpus index and the texts on disk. Every count in v1 has also moved — 6 gates to 11, 14 self-test cases to 15, 2 probes to 8. The sharper finding is what enforcement still cannot see. Five defects fixed today shared one shape the entire gate layer was blind to: the input was ABSENT rather than WRONG, and each checker answered as though absent meant fine. mktemp failed silently so a logfile variable became the empty string, making an OCR-skip branch unreachable and failing a correct corpus. A retention job pointed at a file containing the literal text 'not a database' printed 'rows total: unknown' and then 'nothing to do' and exited 0. A coverage audit reported findings [] with checked_files: 0 — its own output carried the evidence and nothing acted on it. Every self-test case broke artifacts by making them WRONG; not one removed an input entirely, so all five would have passed the suite. Worst, six probes in that suite printed PASS and FAIL into a void: forcing a FAIL still produced '15 passed, 0 failed' and exit 0, because the probes are subshells and the counters lived only in check(). For their whole existence those probes were decorative — the same defect they exist to catch, inside the tool used to catch it. So the limit is not that gates miss what only execution finds, as v1 had it; it is that a gate's INPUT is unguarded. A checker proves nothing about its own reachability, and a verdict nobody counts is indistinguishable from a verdict that passed. Fixed by adding starvation cases alongside corruption cases, making all 8 probes exit non-zero and be counted (23 passed / 0 failed healthy; 22/1 and exit 1 when one is forced), and making three checkers refuse on empty rather than default to zero.
+
+**Proposed action.** Guard the INPUT of every checker, not only its output: starvation cases beside corruption cases, probe verdicts counted, and refusal rather than a zero default when a source cannot be read.
+
+**Evidence, resolved from source:**
+
+- `PUSH REFUSED` — metrics/2026-08-05-the-hook-was-right.json [419:431], hook.refusal
+- `decorative for their entire existence` — metrics/2026-08-05-probes-that-printed-into-a-void.json [1066:1103], probes.decorative
+- `EMPTY STRING` — metrics/2026-08-05-the-guard-that-could-not-fire.json [877:889], mktemp.empty
+- `nothing to do` — metrics/2026-08-05-success-against-a-corrupt-database.json [507:520], retention.silent
+- `checked_files: 0` — metrics/2026-08-05-a-gate-that-examined-nothing.json [439:455], coverage.vacuous
+
+<sub>claims/GQ-001-enforcement-limits.v2.claim.json · claim:GQ-001-enforcement-limits-v2</sub>
 
 ---
 

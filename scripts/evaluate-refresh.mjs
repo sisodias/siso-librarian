@@ -36,6 +36,20 @@ const TRIGGER_PATHS = {
   // tripped this, so the cost was a permanent treadmill, not one bad push.
   'new evidence source': ['sources/**/adapter-contract.json', 'sources/**/*contract*.json'],
   'approved action status change': ['claims/'],
+  // GQ-001 is a claim ABOUT the enforcement layer, so the enforcement layer is
+  // its evidence. Measured 2026-08-05: the v2 packet declared these three
+  // triggers, none were in this map, and evaluate-refresh correctly derived
+  // "unknown" against a recorded "fresh" — it will not certify freshness it
+  // cannot check. Registering them here is the honest fix; deleting them from
+  // the claim would have bought a green gate by asking it less.
+  //
+  // Narrow on purpose, per the two comments above: the verify chain lives in
+  // package.json and the case counts live in the two self-test scripts. Watching
+  // all of scripts/ would fire on every edit I make and become the treadmill
+  // those comments warn about.
+  'verify chain change': ['package.json'],
+  'self-test case count change': ['scripts/gate-selftest.sh', 'scripts/rebuild-selftest.sh'],
+  'a push blocked or not blocked by the hook': ['.githooks/pre-push'],
 };
 
 // This gate derives staleness ENTIRELY from git. If git cannot answer, it has
