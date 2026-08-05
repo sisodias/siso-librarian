@@ -22,7 +22,7 @@
 //
 //   audit-verify-chain.mjs           report
 //   audit-verify-chain.mjs --strict  exit non-zero on any finding
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const strict = process.argv.includes('--strict');
@@ -66,13 +66,23 @@ for (const g of named) {
 // And every gate that LOOKS like a gate must be in the chain. A gate dropped
 // from the chain still sits in scripts/ reading as coverage — the silent
 // version of the same defect.
-const EXPECTED = [
-  'scripts/verify-claim-packets.mjs',
-  'scripts/evaluate-refresh.mjs',
-  'scripts/audit-asserted-numbers.mjs',
-  'scripts/derivation-sensitivity.mjs',
-  'scripts/audit-source-coverage.mjs',
-];
+// DERIVED, not hand-listed. The previous version was a literal array, and it
+// drifted the moment I added a gate: corpus-integrity.mjs landed on 2026-08-05
+// implementing --strict, reachable from nothing, and this check reported 0
+// findings because its list had never heard of it. A guard against dropped
+// gates that only knows the gates someone remembered to declare has the exact
+// silent-coverage gap it exists to close.
+//
+// The discriminator is --strict, which is this repo's convention for "exit
+// non-zero on findings". Measured 2026-08-05: it selects 4 scripts, where a
+// naive "exits non-zero" rule selects 20 — twelve of which exit on USAGE
+// errors (ia-ingest with no args, search-library with no query) and are not
+// gates at all.
+const STRICT = /argv\.includes\('--strict'\)/;
+const EXPECTED = readdirSync(join(root, 'scripts'))
+  .filter((f) => f.endsWith('.mjs'))
+  .map((f) => `scripts/${f}`)
+  .filter((g) => STRICT.test(readFileSync(join(root, g), 'utf8')));
 for (const g of EXPECTED) {
   if (existsSync(join(root, g)) && !named.includes(g)) {
     findings.push({

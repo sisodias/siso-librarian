@@ -1,0 +1,41 @@
+{
+  "measured_at": "2026-08-05T04:32:38Z",
+  "question": "GQ-001",
+  "subject": "the guard against dropped gates had dropped a gate",
+  "what_happened": "I built corpus-integrity.mjs last turn and wired it to nothing \u2014 the fifth unreachable mechanism this session. audit-verify-chain.mjs exists to catch exactly that, and reported 0 findings.",
+  "why_it_missed": {
+    "cause": "its EXPECTED set was a hand-written array of five paths",
+    "the_shape_of_the_defect": "a guard against dropped gates that only knows the gates someone remembered to declare has the silent-coverage gap it exists to close",
+    "and": "a hand-maintained list drifts on every addition, silently, forever"
+  },
+  "derived_instead": {
+    "discriminator": "--strict, this repo's convention for 'exit non-zero on findings'",
+    "selects": 4,
+    "a_naive_rule_i_rejected": {
+      "rule": "any script with process.exit(nonzero)",
+      "selects": 20,
+      "why_wrong": "twelve exit on USAGE errors \u2014 ia-ingest with no args, search-library with no query. They are not gates."
+    },
+    "immediate_result": "the derived guard flagged corpus-integrity.mjs on its first run"
+  },
+  "resolved_by_wiring_not_silencing": {
+    "chain_gates": "8 -> 9",
+    "findings": 0
+  },
+  "a_failure_mode_i_checked_before_accepting": {
+    "risk": "the corpus lives on external storage; an unmounted vault would make this gate exit 70 and block EVERY push",
+    "verified": "confirmed by pointing CORPUS_DB at a missing file \u2014 the chain would have failed",
+    "fix": "skip with exit 0 when the index is absent, and PRINT that it skipped",
+    "why_printed": "a skipped check that says nothing is indistinguishable from one that passed",
+    "proven": {
+      "vault_absent": "exit 0, \"skipped: true, NOT a pass\"",
+      "vault_present_with_duplicate": "exit 5"
+    }
+  },
+  "gates": {
+    "verify_exit": 0,
+    "suites": "3 pass, 0 fail",
+    "chain": 9
+  },
+  "derivations": {}
+}
