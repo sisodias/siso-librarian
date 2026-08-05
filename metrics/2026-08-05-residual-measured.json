@@ -1,0 +1,39 @@
+{
+  "measured_at": "2026-08-05T09:46:36Z",
+  "question": "GQ-006",
+  "subject": "\"the residual is permanent\" was a phrase, not a measurement",
+  "what_i_had_been_repeating": "the 22.6 GB passage index has a permanent unverified residual",
+  "what_held": "pragma integrity_check still cannot finish over USB \u2014 killed at 45s with no output. That limit is real.",
+  "what_did_not_hold": "\"cannot run a full integrity check\" is not \"cannot verify\". I had been treating one pragma's limit as the whole verification story.",
+  "measured": {
+    "schema_read": "4ms",
+    "head_200k_rows": "16,466ms",
+    "tail_201k_rows": "18,344ms"
+  },
+  "coverage_before_and_after": {
+    "bands_only": "250,000 rows, 0.60%",
+    "with_endpoints": "651,331 rows, 1.57%",
+    "cost": "about 35 seconds",
+    "improvement": "nearly triples coverage"
+  },
+  "why_the_number_matters": "1.57% is a very different claim from \"unverified\", and the verifier now prints it on every run",
+  "a_bug_in_my_own_edit": {
+    "what": "set passage_ok=0 when an endpoint is unreadable \u2014 but a later line reassigns passage_ok from the band result alone",
+    "consequence": "an unreadable endpoint would have reported SUCCESS",
+    "caught_by": "reading the order of the assignments rather than trusting the edit",
+    "fix": "a separate endpoints_ok flag; both conditions must hold"
+  },
+  "fifth_want_list_complete": {
+    "eligible": 443,
+    "fetched": 443,
+    "note": "every failure across five want-lists has been transient \u2014 not one book permanently unavailable"
+  },
+  "the_italian_filter_proved_itself": "\"The travels of Sig. Pietro della Valle\" fetched correctly \u2014 the two-marker threshold spared an English book with an Italian name",
+  "derivations": {},
+  "a_concurrency_collision_found_by_running_the_gates": {
+    "what": "npm run verify exited 1 with \"database is locked (5)\" while the background rebuild held a write lock",
+    "why_it_matters": "a gate that fails because another process is mid-write reports a defect that does not exist \u2014 the fastest way to train a reader to ignore it",
+    "fix": "corpus-integrity now reports skipped:true with the reason and an explicit \"NOT a pass\"",
+    "verified": "reproduced live against the running rebuild"
+  }
+}

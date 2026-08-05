@@ -70,12 +70,37 @@ for lo in $BANDS; do
   fi
 done
 
+# The ENDS of the table, which the bands do not reach. Measured 2026-08-05:
+# 200,000 rows from the head and 201,326 from the tail read cleanly in ~17s
+# each. That nearly TRIPLES coverage — 0.60% from the bands alone, 1.57% with
+# the ends — for about 35 seconds.
+#
+# Stated precisely because "the residual is permanent" is the phrase I have been
+# repeating, and 1.57% is a very different claim from "unverified". A full
+# pragma integrity_check still cannot finish on 22.6 GB over USB; that limit is
+# real and separate.
+head_n=$(sqlite3 "file:$VAULT?mode=ro&immutable=1" "select count(*) from passage where rowid between 1 and 200000;" 2>/dev/null)
+tail_n=$(sqlite3 "file:$VAULT?mode=ro&immutable=1" "select count(*) from passage where rowid between 41300000 and 41501325;" 2>/dev/null)
+if [ -n "$head_n" ] && [ -n "$tail_n" ] && [ "$head_n" -gt 0 ] && [ "$tail_n" -gt 0 ]; then
+  echo "  endpoints    head $head_n rows, tail $tail_n rows — both readable"
+  rows=$((rows + head_n + tail_n))
+  endpoints_ok=1
+else
+  echo "  endpoints    UNREADABLE (head='$head_n' tail='$tail_n')"
+  endpoints_ok=0
+fi
+
 echo "bands matching: $match/$total   rows compared: $rows"
+echo "coverage: $rows of 41,501,325 rows = $(/usr/bin/python3 -c "print(f'{100*$rows/41501325:.2f}%')")"
 # Recorded now, exited at the very end. Exiting here would skip the people-graph
 # check entirely, so a passage-index failure would HIDE a graph failure — one
 # artifact's problem masking another's is exactly the shape of defect this
 # script exists to surface.
-passage_ok=$([ "$match" -eq "$total" ] && echo 1 || echo 0)
+# BOTH conditions. My first version set passage_ok=0 on an unreadable endpoint
+# and this line then overwrote it from the band result alone — an unreadable
+# endpoint would have reported success. Caught before shipping by reading the
+# order rather than trusting the edit.
+passage_ok=$([ "$match" -eq "$total" ] && [ "${endpoints_ok:-0}" -eq 1 ] && echo 1 || echo 0)
 
 # --- people graph -----------------------------------------------------------
 # 1.09 GB rather than 24 GB, so whole-table counts are affordable here and no

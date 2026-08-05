@@ -46,7 +46,27 @@ if (!existsSync(DB)) {
 const sq = (sql) => execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }).trim();
 
 const SEP = String.fromCharCode(31);
-const books = Number(sq('select count(*) from book_ext;'));
+// A rebuild in flight holds a write lock, and sqlite returns "database is
+// locked (5)". Measured 2026-08-05: npm run verify exited 1 mid-rebuild — a
+// gate reporting a defect that does not exist, which is the fastest way to
+// train a reader to ignore it.
+//
+// Skipped, not failed, and it says which: a locked database is a timing
+// condition, not a corpus problem.
+let books;
+try {
+  books = Number(sq('select count(*) from book_ext;'));
+} catch (err) {
+  if (/database is locked/i.test(String(err.stderr || err.message || ''))) {
+    console.log(JSON.stringify({
+      skipped: true,
+      reason: 'corpus index is locked — a rebuild is in flight',
+      note: 'NOT a pass. Re-run when the rebuild finishes.',
+    }, null, 2));
+    process.exit(0);
+  }
+  throw err;
+}
 const exactDupes = JSON.parse(sq(`select json_group_array(json_array(title, n)) from (
   select title, count(*) n from book_ext group by title having n > 1);`) || '[]');
 
