@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-05T15:42:59Z",
+  "question": "GQ-007",
+  "subject": "telling a duplicate edition from a quotation, by measurement",
+  "the_open_item": "11 duplicate-edition candidates were reported with no guidance on which volume to prefer",
+  "my_first_threshold_was_a_guess": {
+    "rule": "overlap >= 0.5 means the same work",
+    "result": "every KNOWN duplicate read as \"quotation\" \u2014 Selborne at 0.18, Medical logic at 0.28",
+    "why_overlap_fails": "two scans of one book share only 0.18-0.34 of their exact passages, because OCR differences break exact matching"
+  },
+  "the_signal_that_works": {
+    "measure": "size ratio, smaller/larger passage count",
+    "known_duplicates": "0.91 to 1.00 \u2014 1746/1739, 1151/1143, 1052/1033",
+    "the_quotation_pair": "0.60 \u2014 a 746-passage journal quoted inside a 1,238-passage voyage narrative",
+    "threshold": "0.85, derived from these eleven pairs rather than chosen"
+  },
+  "result": {
+    "likely_same_work": 8,
+    "likely_quotation": 3,
+    "and": "each same-work pair now names the fuller scan, so a curation decision has a recommendation behind it"
+  },
+  "not_deleted": "still reported, not removed \u2014 which edition a library keeps remains a curation decision",
+  "derivations": {}
+}
