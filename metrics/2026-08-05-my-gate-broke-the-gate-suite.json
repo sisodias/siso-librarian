@@ -1,0 +1,25 @@
+{
+  "measured_at": "2026-08-05T21:28:30Z",
+  "question": "GQ-001",
+  "subject": "my new gate broke the suite that proves gates are load-bearing",
+  "how_it_surfaced": "the pre-push hook REFUSED the push \u2014 second real enforcement event today \u2014 with BASELINE FAILED: the chain does not pass on a clean copy",
+  "the_cause": {
+    "what": "the load-bearing suite runs the chain on a scratch copy with exactly ONE synthetic commit",
+    "effect": "every worklog add-commit is \"just now\", so all 44 worklogs written today showed hours of drift",
+    "result": "my new --strict gate fired 44 times on a repo with no defect at all"
+  },
+  "why_it_is_the_gate_that_should_change": "the suite already EXCLUDES evaluate-refresh for exactly this reason; an exclusion list is a thing callers forget, and I did. Better for the gate to detect synthetic history itself.",
+  "the_fix": "skip the timestamp check when git history has fewer than 10 commits, and SAY SO as an info finding rather than passing silently",
+  "a_second_defect_the_first_fix_exposed": {
+    "what": "2 declared-derivation findings dated 2026-08-04 still gated",
+    "why": "they carry file=\"metrics/2026-08-04-....json\" and path=\"session.commits\" \u2014 a JSON POINTER, not a filesystem path \u2014 and my isHistorical read path first",
+    "shape": "the same wrong-key class that lib/claim-paths.mjs and lib/snapshot-paths.mjs were built for"
+  },
+  "verified_four_ways": {
+    "real_repo": "exit 0, 25 historical findings reported not gated",
+    "synthetic_history_copy": "exit 0 (was 44 gating findings)",
+    "fabricated_timestamp_on_real_history": "exit 3 \u2014 still catches it",
+    "full_suites": "5 suites pass, 0 fail; 9 load-bearing, 0 not"
+  },
+  "derivations": {}
+}

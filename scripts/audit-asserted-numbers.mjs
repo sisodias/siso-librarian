@@ -36,7 +36,31 @@ function git(args) {
 const TOLERANCE_MIN = 90;
 const worklogs = git(['ls-files', 'worklog/']).split('\n').filter(Boolean);
 
-for (const path of worklogs) {
+// SYNTHETIC HISTORY MAKES THIS CHECK MEANINGLESS, NOT FAILING. Measured
+// 2026-08-05: adding --strict to the verify chain broke the load-bearing suite's
+// BASELINE. That suite runs the chain on a scratch copy with exactly ONE
+// synthetic commit, so every worklog's add-commit is "just now" — 44 files
+// written today each showed hours of drift and the gate fired 44 times on a
+// repo with no defect at all.
+//
+// The suite already knows this shape: it excludes evaluate-refresh for exactly
+// the same reason. Better for the gate to detect it than for every caller to
+// remember to exclude it — an exclusion list is a thing you forget, and I did.
+//
+// One commit is the signature; a real history here is in the thousands. The
+// check is SKIPPED and says so, rather than passing silently — a skip that
+// looks like a pass is the defect I spent today removing.
+const commitCount = Number(git(['rev-list', '--count', 'HEAD']) || 0);
+const syntheticHistory = commitCount > 0 && commitCount < 10;
+if (syntheticHistory) {
+  findings.push({
+    check: 'worklog-timestamp-skipped',
+    severity: 'info',
+    note: `git history has ${commitCount} commit(s) — every add-commit would be the synthetic one, so filename timestamps cannot be checked against anything. SKIPPED, not passed.`,
+  });
+}
+
+for (const path of syntheticHistory ? [] : worklogs) {
   const m = path.match(/(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})-/);
   if (!m) continue; // older worklogs carry no time component
   const [, date, hh, mm] = m;
@@ -702,8 +726,15 @@ console.log(JSON.stringify({
 // measure with no failing state. Gating on it would block every push while the
 // number never reaches zero: the treadmill the TRIGGER_PATHS comments warn of.
 const DEBT_BEFORE = '2026-08-05';
+// `file` BEFORE `path`. Measured 2026-08-05: declared-derivation findings carry
+// file="metrics/2026-08-04-....json" and path="session.commits" — a JSON
+// POINTER, not a filesystem path. Reading path first found no date, so two
+// findings from 2026-08-04 were classified as new work and gated.
+//
+// Same wrong-key shape that lib/claim-paths.mjs and lib/snapshot-paths.mjs were
+// written for: two fields, similar names, different meanings.
 const isHistorical = (f) => {
-  const m = String(f.path || f.file || '').match(/(\d{4}-\d{2}-\d{2})/);
+  const m = String(f.file || f.path || '').match(/(\d{4}-\d{2}-\d{2})/);
   return Boolean(m) && m[1] < DEBT_BEFORE;
 };
 const acknowledgedDebt = findings.filter(isHistorical);
