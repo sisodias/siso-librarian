@@ -1,0 +1,27 @@
+{
+  "measured_at": "2026-08-05T06:52:05Z",
+  "question": "GQ-001",
+  "subject": "the rebuild order existed only in my head",
+  "the_gap": "last turn build-library-page failed with \"no such table: passage_modern\" because rebuilding the passage index DROPS the database. I documented the ordering in a worklog and left it there \u2014 a worklog is not a mechanism.",
+  "the_measured_failure_rate": "I ran this sequence five times and got it wrong once. 20% on a procedure with no enforcement.",
+  "built": "scripts/rebuild-corpus.sh \u2014 npm run corpus:rebuild, five steps in dependency order",
+  "each_step_verifies_the_last": [
+    "index built but holds no books -> exit 1",
+    "passage_modern absent after its own build -> exit 1",
+    "catalogue and index disagree -> exit 9"
+  ],
+  "the_mismatch_guard_matters_most": "the catalogue and index disagreed by 34 books last turn and nothing noticed until I compared them by hand. The pipeline now compares them on every run.",
+  "proven": {
+    "page_build_without_passage_modern": "exit 1",
+    "with_it_restored": "exit 0",
+    "full_pipeline": "5 steps, ends with \"catalogue and index agree: 334 books\""
+  },
+  "a_test_of_mine_that_proved_nothing": {
+    "what": "set CORPUS_DB to a copy with passage_modern dropped, expected exit 1, got exit 0",
+    "cause": "build-library-page.mjs reads a HARDCODED path and ignores CORPUS_DB \u2014 it tested the real database, which was fine",
+    "fix": "renamed the table on the real database instead, restored after \u2014 exit 1 then exit 0",
+    "the_pattern": "third time this session a probe measured my fixture rather than the thing"
+  },
+  "also_corrected": "corpus-integrity carried a note saying \"across 179 books\" long after the corpus reached 334",
+  "derivations": {}
+}

@@ -109,7 +109,7 @@ console.log(JSON.stringify({
   exact_title_duplicate_detail: exactDupes,
   passages_shared_across_books: shared.length,
   shared_detail: shared.slice(0, 10),
-  note: 'Shared passages are reported, not condemned. Across 179 books all three were quotation between related works.',
+  note: 'Shared passages are reported, not condemned. Most are quotation between related works. A pair sharing HUNDREDS of passages is a duplicate book, not quotation — measured 2026-08-05, Medical logic and Medical logic [electronic resource] shared 339.',
 }, null, 2));
 
 // Only EXACT title duplicates are a failure: those mean the dedup let the same

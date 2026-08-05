@@ -45,7 +45,9 @@
     "audit:quick": "node scripts/audit-asserted-numbers.mjs --skip-sqlite",
     "corpus:integrity": "node scripts/corpus-integrity.mjs",
     "audit:reachability": "node scripts/audit-reachability.mjs",
-    "audit:decisions": "node scripts/audit-decisions.mjs"
+    "audit:decisions": "node scripts/audit-decisions.mjs",
+    "corpus:rebuild": "bash scripts/rebuild-corpus.sh",
+    "corpus:check": "bash scripts/rebuild-corpus.sh --check"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
