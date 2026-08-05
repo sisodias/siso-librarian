@@ -1,0 +1,59 @@
+{
+  "measured_at": "2026-08-05T05:01:41Z",
+  "question": "GQ-009",
+  "subject": "the decision queue now re-derives its own claims",
+  "the_gap_i_named_and_left": "last turn: \"nothing re-derives decision numbers automatically. Metrics files have a gate; the prose that asks for Shaan attention does not.\" I stopped at naming it \u2014 the move I have corrected four times this session.",
+  "why_it_matters_more_than_a_stale_metric": "a stale decision spends his attention on something already done",
+  "built": "scripts/audit-decisions.mjs \u2014 npm run audit:decisions, wired into verify",
+  "checks": [
+    {
+      "decision": 1,
+      "claim": "the MiniMax route is NOT applied",
+      "derives": "reads the live shim upstream line"
+    },
+    {
+      "decision": 2,
+      "claim": "5 refs under refs/rescue/",
+      "derives": "git for-each-ref in the source repo"
+    },
+    {
+      "decision": 4,
+      "claim": "the observatory answers 200 on 8765",
+      "derives": "live curl",
+      "live": true
+    },
+    {
+      "decision": 8,
+      "claim": "13.7 GB reclaimable",
+      "derives": "du over both locations, 0.3 GB tolerance"
+    }
+  ],
+  "all_four_hold_today": {
+    "1": "upstream is Bifrost",
+    "2": "5 refs",
+    "4": "HTTP 200",
+    "8": "13.7 GB"
+  },
+  "two_design_rules": [
+    {
+      "rule": "live checks are WARNINGS, never failures",
+      "why": "cloudflared being restarted is not a stale decision. Only a number contradicting what the decision CLAIMS is a finding."
+    },
+    {
+      "rule": "it refuses to report clean when every check maps to a closed decision",
+      "why": "a checker that verifies nothing reads identical to a clean repo \u2014 proven: reports no-decision-claims-checked"
+    }
+  ],
+  "proven_both_directions": {
+    "contradicted_claim": "exit 7, decision-claim-contradicted",
+    "all_decisions_closed": "claims_verified 0, no-decision-claims-checked"
+  },
+  "the_mechanism_caught_me_again": "audit-verify-chain flagged audit-decisions.mjs as gate-dropped-from-chain BEFORE I wired it in \u2014 second turn running. That is what a mechanism does that a lesson does not.",
+  "gates": {
+    "chain": 11,
+    "findings": 0,
+    "verify_exit": 0,
+    "suites": "3 pass, 0 fail"
+  },
+  "derivations": {}
+}
