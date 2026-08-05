@@ -83,6 +83,28 @@ for (const g of EXPECTED) {
   }
 }
 
+// Is the hook actually wired? core.hooksPath is per-clone config, not tracked
+// content, so a fresh clone has the hook FILE and no hook. Measured 2026-08-05:
+// that is the residual left after moving hooks into version control, and a
+// residual nobody is told about is the same defect as an unreachable mechanism.
+try {
+  const { execFileSync } = await import('node:child_process');
+  const hp = execFileSync('git', ['config', '--get', 'core.hooksPath'], { encoding: 'utf8' }).trim();
+  if (hp !== '.githooks') {
+    findings.push({
+      kind: 'hooks-not-wired',
+      found: hp || '(unset)',
+      why: 'core.hooksPath is not .githooks, so the tracked pre-push hook does not run. Fix: npm run hooks:install',
+    });
+  }
+} catch {
+  findings.push({
+    kind: 'hooks-not-wired',
+    found: '(unset)',
+    why: 'core.hooksPath is unset — the tracked pre-push hook does not run. Fix: npm run hooks:install',
+  });
+}
+
 // The guard must be able to fail. If EXPECTED drifts from reality it silently
 // checks nothing, which is exactly the defect it exists to catch.
 const onDisk = EXPECTED.filter((g) => existsSync(join(root, g)));

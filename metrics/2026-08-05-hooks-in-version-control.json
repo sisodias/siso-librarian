@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-05T01:16:56Z",
+  "question": "GQ-001",
+  "subject": "the hook that only protected one clone",
+  "the_residual": ".git/hooks/ is not version-controlled, so a fresh clone had the protection in name only",
+  "fix": {
+    "what": "moved the hook to a tracked .githooks/ directory and set core.hooksPath",
+    "verified_end_to_end": "created a scratch repo with a real bare remote: an intact chain pushed (exit 0), a chain with \"|| true\" was REFUSED with chain-swallows-failure and exit 1",
+    "this_is_git_invoking_the_tracked_hook": "not me calling the script by hand"
+  },
+  "the_residual_that_remains_and_is_now_DETECTED": {
+    "what": "core.hooksPath is per-clone config, not tracked content \u2014 a fresh clone has the hook FILE and no hook",
+    "so": "audit-verify-chain.mjs now reports hooks-not-wired when core.hooksPath is not .githooks",
+    "verified": "0 findings in this repo; hooks-not-wired on a fresh clone",
+    "why_this_matters": "a residual nobody is told about is the same defect as an unreachable mechanism \u2014 the thing I have fixed four times in two days"
+  },
+  "a_baseline_my_own_change_broke": {
+    "what": "gates-are-load-bearing.sh reported BASELINE FAILED immediately after",
+    "cause": "the scratch copy has no core.hooksPath, so the new check fired there \u2014 correctly",
+    "fix": "the scratch copy now wires hooks, matching real conditions",
+    "note": "second time today a guard I added broke a test for a reason unrelated to what the test measures"
+  },
+  "suites": {
+    "verify": 0,
+    "gate_selftest": "15 passed, 0 failed",
+    "retention_selftest": "6 passed, 0 failed",
+    "load_bearing": "7 of 7"
+  },
+  "derivations": {}
+}

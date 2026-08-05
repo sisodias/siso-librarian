@@ -39,7 +39,7 @@
     "retention:selftest": "bash scripts/retention-selftest.sh",
     "gates:load-bearing": "bash scripts/gates-are-load-bearing.sh",
     "audit:verify-chain": "node scripts/audit-verify-chain.mjs",
-    "hooks:install": "cp .githooks-pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
+    "hooks:install": "git config core.hooksPath .githooks && echo \"hooks active: $(git config --get core.hooksPath)\""
   },
   "devDependencies": {
     "ajv": "^8.17.1"

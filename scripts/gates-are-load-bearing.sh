@@ -41,6 +41,11 @@ cd "$W/repo" || exit 1
 # Real git history: the refresh evaluator derives staleness from commits and
 # refuses without them, so a copy with no .git fails for the wrong reason.
 git init -q .
+# Wire hooks in the copy. audit-verify-chain.mjs reports `hooks-not-wired` when
+# core.hooksPath is unset — correct on a fresh clone, and it made the baseline
+# fail here for a reason that has nothing to do with removing a gate. Measured
+# 2026-08-05.
+git config core.hooksPath .githooks
 git -c user.email=s@s -c user.name=s add -A >/dev/null 2>&1
 git -c user.email=s@s -c user.name=s commit -q -m base >/dev/null 2>&1
 : > .lb-marker
