@@ -15,8 +15,14 @@ node scripts/audit-verify-chain.mjs --strict || {
   echo "PUSH REFUSED: the verify chain itself is compromised (see findings above)" >&2
   exit 1
 }
-npm run verify >/dev/null 2>&1 || {
-  echo "PUSH REFUSED: npm run verify failed" >&2
-  npm run verify 2>&1 | tail -12 >&2
+# The full suite, not just the verify chain. Measured 2026-08-05: a change can
+# pass verify and break a self-test — twice that day — and the hook only ran
+# verify, so those reached the next turn unnoticed.
+#
+# --quick skips gates-are-load-bearing.sh, which invokes verify eight times and
+# would make every push slow. That suite runs from check:all by hand. Stated so
+# nobody reads this hook as covering everything.
+bash scripts/check-all.sh --quick || {
+  echo "PUSH REFUSED: a suite failed (see above)" >&2
   exit 1
 }
