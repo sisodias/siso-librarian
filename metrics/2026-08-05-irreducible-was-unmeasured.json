@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-05T03:17:42Z",
+  "question": "GQ-001",
+  "subject": "\"irreducible\" was another unmeasured word",
+  "what_i_wrote_last_turn": "gates-are-load-bearing.sh is \"~300s... irreducible for what it measures\"",
+  "the_word_irreducible": "I used it about the self-test one turn before finding a 6.5x speedup. It deserved the same scrutiny and did not get it.",
+  "re_measured": {
+    "published": "~300s",
+    "actual_today": "57s",
+    "stable_across_runs": [
+      58,
+      58,
+      61
+    ]
+  },
+  "but_57s_was_wrong_for_a_worse_reason": {
+    "arithmetic_that_did_not_add_up": "one chain run is 61s; nine runs should be ~549s, yet the suite finished in 58s",
+    "cause": "audit-verify-chain.mjs joined the chain as the FIRST gate this session. It reports chain-names-missing-gate for any gate named in package.json but absent from disk \u2014 so EVERY removal was caught by the guard, in 0s, before the gate under test ever ran.",
+    "what_the_suite_was_really_reporting": "\"7 load-bearing\" while testing one thing seven times",
+    "this_is_the_defect_the_suite_exists_to_find": "a pass for the wrong reason"
+  },
+  "fix": {
+    "what": "exclude audit-verify-chain.mjs from the chain under test",
+    "honest_result": "289s, 6 load-bearing, each gate genuinely tested",
+    "also": "each SKIP now states its own reason \u2014 the chain-guard was being labelled \"reads git history\", which is true of evaluate-refresh and false of it"
+  },
+  "the_pattern": "Twice in two turns I published a timing I had not re-measured after changing the thing it timed. A number carried forward is an assertion, not a measurement.",
+  "derivations": {}
+}

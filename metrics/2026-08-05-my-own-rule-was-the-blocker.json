@@ -37,5 +37,6 @@
   },
   "what_this_closes": "Last turn: \"the self-test still cannot run on every push at 367s.\" It runs on every push now, and the quick suite got FASTER than when it ran one fewer suite.",
   "still_off_the_hook": "gates-are-load-bearing.sh, ~300s, replays the chain once per gate. Runs from npm run check:all.",
-  "derivations": {}
+  "derivations": {},
+  "correction_2026_08_05": "This file said gates-are-load-bearing.sh is \"~300s, replays the chain once per gate\". The 300s was carried forward, never re-measured. Re-measured today it ran in 57s \u2014 and that was WRONG for a worse reason: audit-verify-chain.mjs had joined the chain as the FIRST gate, and it reports chain-names-missing-gate for any gate absent from disk. So every removal was caught by the guard in 0s rather than by the removed gate. The suite reported \"7 load-bearing\" while testing one thing seven times. Excluding the guard gives the honest result: 289s, 6 load-bearing."
 }

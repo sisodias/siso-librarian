@@ -65,10 +65,20 @@ echo "=== load-bearing test: removing a gate must break verify ==="
 # 10 ledger triggers fire and verify fails for a reason that has nothing to do
 # with the gate being removed. Measured 2026-08-05. Test the chain WITHOUT it;
 # that gate has its own self-test case and its own git probe.
+# Drop audit-verify-chain.mjs too, and this one is subtle. It runs FIRST and
+# reports `chain-names-missing-gate` for any gate named in package.json but not
+# on disk — so once it joined the chain, EVERY removal was caught by the guard
+# rather than by the removed gate's own absence. Measured 2026-08-05: removals
+# failed in 0s instead of 61s, and the suite reported "7 load-bearing" while
+# testing one thing seven times.
+#
+# That is the wrong-reason-pass defect, in the test written to find it. The
+# chain under test excludes the guard; the guard has its own probes.
 CHAIN=$(/usr/bin/python3 -c "
 import json
 v=json.load(open('package.json'))['scripts']['verify']
-keep=[s.strip() for s in v.split('&&') if 'evaluate-refresh' not in s]
+keep=[s.strip() for s in v.split('&&')
+      if 'evaluate-refresh' not in s and 'audit-verify-chain' not in s]
 print(' && '.join(keep))")
 runchain() { bash -c "$CHAIN" >/dev/null 2>&1; }
 
@@ -90,7 +100,13 @@ for g in $GATES; do
   # that was entirely an artefact of my own exclusion.
   case "$CHAIN" in
     *"$g"*) ;;
-    *) echo "SKIP  $(basename "$g") — excluded from this chain (reads git history; covered by its own probe)"; continue ;;
+    *)
+       case "$g" in
+         *audit-verify-chain*) why="runs first and catches ANY missing gate, masking every other result" ;;
+         *evaluate-refresh*)   why="reads git history, which a scratch copy cannot reproduce" ;;
+         *)                    why="not in this chain" ;;
+       esac
+       echo "SKIP  $(basename "$g") — excluded: $why"; continue ;;
   esac
   mv "$g" "$g.removed"
   # npm exits non-zero when a chained command is missing, which is the signal.
