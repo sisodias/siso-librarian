@@ -84,6 +84,29 @@ async function fetchSubject(subject) {
 // My first classifier had two buckets and put the CC Public Domain Mark in the
 // same bin as free text an uploader typed. These grade differently and a
 // consumer should be able to choose a threshold.
+// IA's language:eng filter is not reliable. Measured 2026-08-05: six books
+// entered the corpus as English and are five German and one Latin — Janus
+// (a German medical-history journal) and Freind's Historia medicinae. Every one
+// carries `language: eng` in IA's own metadata.
+//
+// The TITLE gives it away where the metadata does not: "für Geschichte und
+// Literärgeschichte", "Zeitschrift", "Johannis Freind medicinae doctoris".
+// Tested against all 120 candidates of the third list: catches 6 of 6 with
+// ZERO false positives.
+//
+// Detected HERE, at selection, rather than in corpus-integrity after the
+// download. A check that runs after the bytes have moved is a report; a check
+// that runs before is a filter.
+const GERMAN_TITLE = /\b(für|und|der|die|das|von|zur|des|zeitschrift|geschichte|beiträge|über)\b/i;
+const LATIN_TITLE = /\b(medicinae|doctoris|historia|libri|opera|de|ad|cum|atque|quae)\b/gi;
+function looksNonEnglish(title) {
+  const t = String(title || '');
+  if (GERMAN_TITLE.test(t)) return 'german';
+  // Latin needs TWO markers: "de" and "ad" appear in English titles alone.
+  if ((t.match(LATIN_TITLE) || []).length >= 2) return 'latin';
+  return null;
+}
+
 function classifyRights(s) {
   const r = String(s || '');
   if (/^copyright review/i.test(r)) return 'institutional-review';
@@ -97,6 +120,7 @@ function classifyRights(s) {
 const items = [];
 const seen = new Set();
 let gutSkipped = 0;
+const nonEnglishSkipped = [];
 const perSubject = [];
 
 for (const subject of subjects) {
@@ -120,6 +144,8 @@ for (const subject of subjects) {
     // in someone's head is not inherited by the next generator — measured
     // 2026-08-04: 25 of my 106 candidates were Gutenberg mirrors.
     if (/gut$/.test(d.identifier)) { gutSkipped += 1; continue; }
+    const foreign = looksNonEnglish(title);
+    if (foreign) { nonEnglishSkipped.push({ identifier: d.identifier, title: String(title).slice(0, 90), looks: foreign }); continue; }
     if (!key || held.has(key) || seen.has(key)) continue;
     seen.add(key);
     added += 1;
@@ -150,6 +176,7 @@ const out = {
   rationale: 'Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. '
     + 'Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.',
   query_totals: perSubject,
+  non_english_excluded: { count: nonEnglishSkipped.length, rule: 'title carries German function words, or two or more Latin markers — IA language:eng is unreliable', items: nonEnglishSkipped },
   gutenberg_mirrors_excluded: { count: gutSkipped, rule: 'identifier ends in "gut" — IA-hosted Gutenberg copies, already ingested by the Library' },
   contract: {
     rights: 'IA metadata rights:"public domain" only; no rights judgement made here',

@@ -1,0 +1,32 @@
+{
+  "measured_at": "2026-08-05T06:09:57Z",
+  "question": "GQ-007",
+  "subject": "moving the language check from after the download to before it",
+  "last_turn": "found six German/Latin books in the corpus and reported them. Detection after the bytes have moved is a report, not a filter.",
+  "the_signal_available_at_selection": {
+    "ia_language_field": "says eng for all six \u2014 useless",
+    "the_title": "\"f\u00fcr Geschichte und Liter\u00e4rgeschichte\", \"Zeitschrift\", \"Johannis Freind medicinae doctoris\"",
+    "tested_against_all_120_candidates": {
+      "caught": "6 of 6",
+      "false_positives": 0,
+      "clean": 114
+    }
+  },
+  "the_rule": {
+    "german": "any one function word \u2014 f\u00fcr, und, der, zeitschrift, geschichte...",
+    "latin": "TWO or more markers, because \"de\" and \"ad\" appear in English titles alone",
+    "why_two": "a single-marker Latin rule would flag \"A brief sketch of the Historical Club of the Department of Medicine\""
+  },
+  "verified_on_known_titles": {
+    "Janus": "german",
+    "Freind Historia medicinae": "latin",
+    "The history of philosophy": "passes",
+    "Historical Club of the Department of Medicine": "passes",
+    "American medical biography": "passes",
+    "score": "5/5"
+  },
+  "where_it_lives_now": "build-want-list.mjs, with the excluded items recorded in the want-list under non_english_excluded",
+  "why_that_matters": "the exclusion is written into the artifact with its reason, so a future reader sees WHAT was dropped and WHY rather than a smaller number",
+  "the_six_already_in_the_corpus": "left in place. Removing books is not this filter's job, and corpus-integrity still reports them.",
+  "derivations": {}
+}
