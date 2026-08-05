@@ -1,0 +1,52 @@
+{
+  "measured_at": "2026-08-05T04:23:57Z",
+  "question": "GQ-007",
+  "subject": "the corpus checked against itself for the first time",
+  "the_gap": "the ingest dedups CANDIDATES by normalised title before fetching, and nothing had ever verified that worked. Title matching is also blind to the same text arriving under two different titles.",
+  "result": {
+    "books": 179,
+    "passages_fingerprinted": 80123,
+    "exact_title_duplicates": 0,
+    "passages_shared_across_books": 3
+  },
+  "the_three_shared_passages_are_quotation_not_duplication": [
+    {
+      "books": [
+        "b21471745",
+        "b21471848_0001"
+      ],
+      "what": "a childcare passage quoted in two Victorian domestic-economy manuals"
+    },
+    {
+      "books": [
+        "johndonnehisflig00molo",
+        "metaphysicallyri00unse"
+      ],
+      "what": "a Donne criticism passage quoted in two works on metaphysical poetry"
+    },
+    {
+      "books": [
+        "s1id13404340",
+        "s1id13404350"
+      ],
+      "what": "two London Magazine volumes"
+    }
+  ],
+  "i_read_them_rather_than_flagging_them": "a shared passage between related works is what a library SHOULD contain. The check reports them and does not condemn them, because deciding requires reading.",
+  "two_near_duplicates_investigated": {
+    "london_magazine": "8 entries sharing a title prefix \u2014 different YEARS (1747, 1770, 1777...), correctly held as separate volumes",
+    "gull_pair": "b21700849 is \"medical papers\", b21700850 is \"memoir and addresses\" \u2014 different opening text, genuinely two books"
+  },
+  "built": "scripts/corpus-integrity.mjs \u2014 npm run corpus:integrity",
+  "proven_in_both_directions": {
+    "clean_fixture": "exit 0",
+    "duplicate_title_injected": "exit 5"
+  },
+  "a_probe_of_mine_that_tested_nothing": {
+    "what": "my first duplicate test ran the QUERY against a copy, not the script",
+    "why_useless": "the DB path was hardcoded, so the script could never see the fixture",
+    "same_defect_as": "the retention self-test that exercised sqlite instead of the script it tested",
+    "fix": "CORPUS_DB override, then re-tested \u2014 and only then did exit 5 mean anything"
+  },
+  "derivations": {}
+}

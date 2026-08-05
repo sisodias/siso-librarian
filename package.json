@@ -42,7 +42,8 @@
     "hooks:install": "git config core.hooksPath .githooks && echo \"hooks active: $(git config --get core.hooksPath)\"",
     "check:all": "bash scripts/check-all.sh",
     "check:quick": "bash scripts/check-all.sh --quick",
-    "audit:quick": "node scripts/audit-asserted-numbers.mjs --skip-sqlite"
+    "audit:quick": "node scripts/audit-asserted-numbers.mjs --skip-sqlite",
+    "corpus:integrity": "node scripts/corpus-integrity.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1"
