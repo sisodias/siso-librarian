@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-08-05T17:54:14Z",
+  "question": "GQ-001",
+  "subject": "the last suite that was off the hook, now on it",
+  "the_carried_number": "gates-are-load-bearing at 289s, carried as \"too slow for the hook\" for many turns",
+  "re_measured_first": "402s \u2014 it had gone UP, because the chain grew from 8 gates to 11 and this suite replays the chain once per gate",
+  "where_the_cost_actually_is": {
+    "build-observatory": "25,618ms",
+    "audit-asserted-numbers": "24,164ms",
+    "audit-decisions": "7,436ms",
+    "corpus-integrity": "4,221ms",
+    "the_other_six_combined": "under 400ms",
+    "reading": "two gates are 83% of the chain"
+  },
+  "a_probe_of_mine_that_measured_the_wrong_thing": {
+    "what": "timed removals with npm run verify and got 0-1s, concluding removals were free",
+    "why_wrong": "npm run verify includes audit-verify-chain, which catches a missing gate immediately \u2014 but the SUITE excludes it from the chain it replays",
+    "corrected": "baseline 59s, last gate removed 47s, first gate removed 0s \u2014 the chain short-circuits at whatever it removes"
+  },
+  "the_fix": {
+    "what": "moved the three cheap snapshot-independent gates to the front",
+    "constraint_respected": "build-observatory MUST precede audit-asserted-numbers, which re-derives the snapshot it writes",
+    "measured": {
+      "verify": "418s -> 63s",
+      "a_broken_reachability_rule": "~50s -> 0s",
+      "load_bearing_suite": "402s -> 303s"
+    }
+  },
+  "result": "all FIVE suites now gate every push, 417s total \u2014 the last one carried as \"off the hook\" is on it",
+  "derivations": {}
+}

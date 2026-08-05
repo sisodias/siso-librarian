@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "verify": "node scripts/audit-verify-chain.mjs --strict && node scripts/build-observatory.mjs && node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs && node scripts/derivation-sensitivity.mjs && node scripts/audit-source-coverage.mjs --strict && node scripts/corpus-integrity.mjs --strict && node scripts/audit-reachability.mjs --strict && node scripts/audit-decisions.mjs --strict",
+    "verify": "node scripts/audit-verify-chain.mjs --strict && node scripts/audit-source-coverage.mjs --strict && node scripts/audit-reachability.mjs --strict && node scripts/build-observatory.mjs && node scripts/verify-claim-packets.mjs && node scripts/evaluate-refresh.mjs && node scripts/audit-asserted-numbers.mjs && node scripts/build-review-packet.mjs && node scripts/derivation-sensitivity.mjs && node scripts/corpus-integrity.mjs --strict && node scripts/audit-decisions.mjs --strict",
     "refresh:evaluate": "node scripts/evaluate-refresh.mjs",
     "audit:numbers": "node scripts/audit-asserted-numbers.mjs",
     "review:packet": "node scripts/build-review-packet.mjs",

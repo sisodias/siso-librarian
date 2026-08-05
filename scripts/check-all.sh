@@ -65,7 +65,10 @@ run "verify chain"        "npm run verify"
 run "gate self-test"      "bash scripts/gate-selftest.sh"
 run "retention self-test" "bash scripts/retention-selftest.sh"
 run "rebuild self-test"   "bash scripts/rebuild-selftest.sh"
-run "gates load-bearing"  "bash scripts/gates-are-load-bearing.sh" 1
+# No longer marked slow. Measured 2026-08-05: 402s -> 303s after reordering the
+# verify chain so cheap gates run first, and verify itself went 418s -> 63s
+# once the corpus aggregates were stored. It fits on the hook now.
+run "gates load-bearing"  "bash scripts/gates-are-load-bearing.sh"
 
 echo
 if [ "$FAIL" -eq 0 ]; then
