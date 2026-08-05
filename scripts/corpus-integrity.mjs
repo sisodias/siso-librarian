@@ -108,6 +108,35 @@ console.log(JSON.stringify({
   exact_title_duplicates: exactDupes.length,
   exact_title_duplicate_detail: exactDupes,
   passages_shared_across_books: shared.length,
+  // A pair sharing MANY passages is a duplicate edition, not quotation.
+  // Measured 2026-08-05 at 610 books: 6 pairs share more than 50 passages, and
+  // reading them shows why title dedup cannot catch these —
+  //
+  //   876  "The world of wonders" / "The wonders of the universe"
+  //          the same Victorian compilation reissued under a different title,
+  //          identical prefaces
+  //   319  two editions of Gilbert White's Natural History of Selborne with
+  //          different subtitles
+  //
+  // Reported with the count so the scale is visible. NOT deleted: which edition
+  // a library keeps is a curation decision, and both are legitimately public
+  // domain.
+  duplicate_edition_candidates: (() => {
+    const pairs = new Map();
+    for (const s of shared) {
+      const b = [...s.books].sort();
+      for (let i = 0; i < b.length; i += 1) {
+        for (let j = i + 1; j < b.length; j += 1) {
+          const k = `${b[i]}|${b[j]}`;
+          pairs.set(k, (pairs.get(k) || 0) + 1);
+        }
+      }
+    }
+    return [...pairs.entries()]
+      .filter(([, n]) => n > 50)
+      .sort((a, b) => b[1] - a[1])
+      .map(([k, n]) => ({ books: k.split('|'), shared_passages: n }));
+  })(),
   shared_detail: shared.slice(0, 10),
   note: 'Shared passages are reported, not condemned. Most are quotation between related works. A pair sharing HUNDREDS of passages is a duplicate book, not quotation — measured 2026-08-05, Medical logic and Medical logic [electronic resource] shared 339.',
 }, null, 2));

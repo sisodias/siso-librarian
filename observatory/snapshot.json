@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T08:07:27.122Z",
+  "generated_at": "2026-08-05T09:01:27.125Z",
   "bucket_counts": {
     "registry": {
       "works": 25,
@@ -32,17 +32,17 @@
       "claims_unreadable": 0
     },
     "external_corpus": {
-      "books": 458,
-      "passages": 526418,
-      "words": 46525529
+      "books": 610,
+      "passages": 756622,
+      "words": 67175311
     }
   },
   "repo_health": {
     "npm_scripts": 49,
     "verify_steps": 11,
     "scripts_on_disk": 43,
-    "metrics_files": 164,
-    "worklogs": 222,
+    "metrics_files": 165,
+    "worklogs": 223,
     "proposals": 18
   },
   "derivations": {
@@ -483,7 +483,7 @@
     "queued": 3,
     "delivered_ever": 0,
     "oldest_queued_at": "2026-08-04T06:55:07+01:00",
-    "oldest_queued_age_hours": 26.2,
+    "oldest_queued_age_hours": 27.1,
     "files": [
       "2026-08-04T0553-librarian-disk-growth.md",
       "2026-08-04T0640-librarian-ia-rights.md",

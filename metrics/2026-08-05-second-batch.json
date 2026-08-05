@@ -1,0 +1,79 @@
+{
+  "measured_at": "2026-08-05T08:47:51Z",
+  "question": "GQ-007",
+  "subject": "second bounded batch from the 1,100-candidate list",
+  "batch": {
+    "requested": 150,
+    "first_pass": "144 ok, 6 BAD_BODY",
+    "after_retry": "8/8 recovered",
+    "text_files_now": 610
+  },
+  "the_persistent_failure_resolved": {
+    "identifier": "b21500253",
+    "title": "Elementary physiography",
+    "history": "failed three times last turn at 170 bytes against a declared 1,008,087",
+    "now": "fetched successfully",
+    "conclusion": "transient, not unavailable \u2014 five want-lists, and not one book has ever been permanently missing"
+  },
+  "corpus_health_checked_during_the_fetch": {
+    "search_reaches_all_five_lists": [
+      "cookery",
+      "physick",
+      "logic",
+      "astronomy",
+      "mythology"
+    ],
+    "concentration": "top 10 books hold 69,750 of 526,418 passages (13%)",
+    "books_with_100_plus_passages": "405 of 458",
+    "reading": "the corpus is not dominated by a handful of serials"
+  },
+  "dedup_holding_at_scale": {
+    "candidate_titles_colliding_after_normalisation": 0,
+    "pool": 1100,
+    "note": "the [electronic resource] bracket fix is working before anything is fetched"
+  },
+  "derivations_stable": {
+    "rederived": 31,
+    "unavailable": 0,
+    "findings": "3, all severity info"
+  },
+  "an_operational_change": "the full rebuild now exceeds a 10-minute foreground call and must run in the background \u2014 the corpus has outgrown a synchronous rebuild",
+  "derivations": {},
+  "corpus_after": {
+    "books": 610,
+    "passages": 756622,
+    "words": 67175311,
+    "duplicates": 0,
+    "served_page": "610 books"
+  },
+  "duplicate_editions_found": {
+    "count": 6,
+    "threshold": ">50 shared passages",
+    "examples": [
+      {
+        "shared": 873,
+        "books": [
+          "The world of wonders",
+          "The wonders of the universe"
+        ],
+        "what": "the same Victorian compilation reissued under a different title \u2014 identical prefaces"
+      },
+      {
+        "shared": 319,
+        "books": [
+          "Natural history of Selborne",
+          "Natural history of Selborne. Observations..."
+        ],
+        "what": "two editions of Gilbert White with different subtitles"
+      }
+    ],
+    "why_title_dedup_cannot_catch_these": "the titles are genuinely different strings; only the TEXT reveals the duplication",
+    "reported_not_deleted": "which edition a library keeps is a curation decision, and both are legitimately public domain"
+  },
+  "a_borderline_language_flag_investigated": {
+    "book": "Musaeum Tradescantianum (1656)",
+    "rate": 0.406,
+    "verdict": "a mixed book \u2014 English catalogue with Latin verse front matter. The flag is correct; the book is not foreign.",
+    "why_it_matters": "this is why the language check REPORTS rather than excludes"
+  }
+}
