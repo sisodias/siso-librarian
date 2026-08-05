@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-05T18:48:18Z",
+  "question": "GQ-001",
+  "subject": "a gate that reported itself clean having examined zero files",
+  "method": "starved each gate of its input and read what it did \u2014 a grep for guard wording scored two gates at 0, but only ONE of them was actually defective",
+  "the_defect": {
+    "gate": "audit-source-coverage",
+    "behaviour": "run against a directory with an empty sources/, printed checked_files: 0, findings: [], sanity: \"catalogue tables confirmed present\", exit 0",
+    "the_irony": "this gate already warns when one of ITS rules names a missing table \u2014 \"so it can no longer detect anything\" \u2014 and did not apply that reasoning to itself",
+    "evidence_was_in_its_own_output": "checked_files: 0 was printed on every run and nothing acted on it"
+  },
+  "the_fix": "emit a no-source-files-checked finding when zero files are read, so --strict exits 6",
+  "verified": {
+    "empty_sources_dir": "exit 6",
+    "real_repo": "exit 0, 39 files"
+  },
+  "a_gate_that_did_NOT_need_fixing": {
+    "gate": "verify-claim-packets",
+    "first_result": "exit 1 on empty input \u2014 but from a CRASH on a missing schema file, so my test never reached the claims",
+    "retested_properly": "with schema + portfolio + ledger present and claims/ empty, it exits 1 having detected that all 10 portfolio-listed claims are absent",
+    "conclusion": "a genuine cross-check, not vacuous passing \u2014 left alone"
+  },
+  "derivations": {}
+}

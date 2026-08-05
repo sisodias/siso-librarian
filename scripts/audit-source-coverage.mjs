@@ -147,6 +147,21 @@ if (existsSync(dbPath)) {
   sanity = 'catalogue tables confirmed present';
 }
 
+// A GATE THAT READ NOTHING HAS NOT PASSED. Measured 2026-08-05: run against a
+// directory holding an empty sources/, this printed `checked_files: 0`,
+// `findings: []`, `sanity: catalogue tables confirmed present`, and exited 0.
+//
+// The evidence was already in its own output — the count sat right there and
+// nothing acted on it. That is the same defect this file's sibling rule warns
+// about ("names a table that does not exist, so it can no longer detect
+// anything"), applied to the audit itself rather than to the tables it checks.
+if (!files.length) {
+  findings.push({
+    kind: 'no-source-files-checked',
+    why: 'sources/ yielded zero files — this audit examined nothing and cannot detect anything. Empty input is not a clean result.',
+  });
+}
+
 console.log(JSON.stringify({
   checked_files: files.length,
   siblings: SIBLINGS.map((s) => s.tables),
