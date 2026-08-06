@@ -1,0 +1,37 @@
+{
+  "measured_at": "2026-08-06T08:07:47Z",
+  "question": "GQ-001",
+  "subject": "the endpoint I verified did not exist in the running service",
+  "the_first_lesson": "I tested /search on a scratch port, saw six correct responses, and wrote a worklog. The LIVE service still returned 404 \u2014 the running process predated my edit. A verified endpoint that is not deployed is not a feature.",
+  "what_i_found_restarting_it": {
+    "two_servers": "com.siso.librarian-observatory runs python3 -m http.server on 8845; com.siso.observatory runs serve-observatory.mjs on 8765. Both serve public/. I had assumed one.",
+    "consequence": "my endpoint went into the Node one, which is real but was not the server I first inspected"
+  },
+  "three_wrong_diagnoses_before_the_right_one": [
+    {
+      "guess": "launchd cwd is wrong",
+      "disproved": "WorkingDirectory is set correctly in the plist"
+    },
+    {
+      "guess": "bare 'node' is not on launchd's PATH",
+      "disproved": "true (env -i finds nothing) but NOT the cause \u2014 the CLI runs fine with no PATH at all. Fixed anyway with process.execPath, which is correct regardless."
+    },
+    {
+      "guess": "the rebuild holds a write lock",
+      "partly_true": "it did, and the CLI died at its startup schema check \u2014 fixed with sqlite .timeout 5000, verified working DURING the rebuild in 2s. Still not the endpoint failure."
+    }
+  ],
+  "the_actual_cause": {
+    "error": "unable to open database ... authorization denied",
+    "not_permissions": "the file is -rw-r--r-- owned by the same user, and the CLI reads it fine from a terminal",
+    "what_it_is": "macOS TCC withholds removable-volume access from processes launchd starts",
+    "who_can_fix_it": "Full Disk Access in System Settings \u2014 a GUI action, and Shaan's to take"
+  },
+  "what_i_did_instead": "the endpoint now answers 503 with the diagnosis AND the exact remedy, rather than a generic \"search failed\". A permission wall that reads as \"search is broken\" is the kind of thing nobody fixes, because nobody knows what to fix.",
+  "verified": {
+    "live_endpoint": "HTTP 503 naming TCC and the fix",
+    "cli_during_a_rebuild": "2s, real results",
+    "static_pages": "unaffected"
+  },
+  "derivations": {}
+}

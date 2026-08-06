@@ -30,7 +30,15 @@ const query = args.filter((a) => !a.startsWith('--') && args[args.indexOf(a) - 1
 if (!existsSync(DB)) { console.error(`index not available (is the vault mounted?): ${DB}`); process.exit(70); }
 const sq = (sql) => {
   try {
-    return execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
+    // WAIT FOR A LOCK, DO NOT DIE ON ONE. Measured 2026-08-06: while the modern
+    // index was being built — a write transaction over 4.1M rows lasting the
+    // better part of an hour — every query died at the startup schema check, so
+    // the new /search endpoint returned HTTP 500 for the whole rebuild.
+    //
+    // A reader hitting the page during an ingest cycle would conclude search is
+    // broken. -cmd '.timeout' makes sqlite retry for 5s instead of failing at
+    // once, which covers the brief windows between the writer's commits.
+    return execFileSync('sqlite3', ['-cmd', '.timeout 5000', `file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
   } catch (err) {
     // A MALFORMED QUERY IS THE READER'S TYPO, NOT A CRASH. Measured 2026-08-06:
     // searching `'; drop table book_ext;--` produced a Node stack trace. The

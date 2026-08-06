@@ -34,7 +34,12 @@ function createServer() {
     const n = Math.min(Number(url.searchParams.get('limit') || 10) || 10, 50);
     if (!q) { res.writeHead(400, types['.json']); res.end('{"error":"missing q"}'); return; }
     try {
-      const out = execFileSync('node', [join(process.cwd(), 'scripts', 'search-library.mjs'), q, '--limit', String(n)],
+      // process.execPath, NOT bare 'node'. Measured 2026-08-06: under launchd the
+      // endpoint returned 500 for every query because launchd's PATH does not
+      // include /opt/homebrew/bin — `env -i sh -c 'command -v node'` finds
+      // nothing. The interpreter already running this server is the one that can
+      // certainly run the CLI, and it needs no PATH at all.
+      const out = execFileSync(process.execPath, [join(process.cwd(), 'scripts', 'search-library.mjs'), q, '--limit', String(n)],
         { encoding: 'utf8', timeout: 30000, maxBuffer: 8 * 1024 * 1024 });
       res.writeHead(200, { 'Content-Type': types['.json'] });
       res.end(JSON.stringify({ query: q, text: out }));
@@ -44,6 +49,27 @@ function createServer() {
       // Three outcomes, three codes. A reader's typo is not a server fault, and
       // a timeout is not an empty result — conflating them would make "no
       // matches" indistinguishable from "the search never finished".
+      const stderr = String(err?.stderr || '');
+      // TCC, NOT A BUG. Measured 2026-08-06: under launchd this returned 500 for
+      // every query with "unable to open database … authorization denied". The
+      // file is -rw-r--r-- and owned by the same user; the CLI reads it fine from
+      // a terminal. macOS TCC withholds removable-volume access from processes
+      // launchd starts, and granting it needs Full Disk Access in System
+      // Settings — a GUI action, and Shaan's to take, not mine.
+      //
+      // So the endpoint SAYS SO instead of reporting a generic failure. A
+      // permission wall that reads as "search is broken" is the kind of thing
+      // nobody ever fixes, because nobody knows what to fix.
+      if (/authorization denied|unable to open database/i.test(stderr)) {
+        res.writeHead(503, { 'Content-Type': types['.json'] });
+        res.end(JSON.stringify({
+          error: 'the corpus index is not readable by this service',
+          why: 'macOS withholds removable-volume access from launchd-started processes (TCC). The file is readable to the same user from a terminal.',
+          fix: 'System Settings > Privacy & Security > Full Disk Access, add the node binary that runs com.siso.observatory.',
+          query: q,
+        }));
+        return;
+      }
       const timedOut = err?.killed || /ETIMEDOUT|timed out/i.test(String(err?.message || ''));
       const badQuery = err?.status === 65; // EX_DATAERR from search-library.mjs
       const detail = badQuery
