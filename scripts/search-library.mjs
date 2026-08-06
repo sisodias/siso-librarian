@@ -28,7 +28,25 @@ const val = (f, d) => { const i = args.indexOf(f); return i >= 0 && args[i + 1] 
 const query = args.filter((a) => !a.startsWith('--') && args[args.indexOf(a) - 1] !== '--limit').join(' ').trim();
 
 if (!existsSync(DB)) { console.error(`index not available (is the vault mounted?): ${DB}`); process.exit(70); }
-const sq = (sql) => execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
+const sq = (sql) => {
+  try {
+    return execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
+  } catch (err) {
+    // A MALFORMED QUERY IS THE READER'S TYPO, NOT A CRASH. Measured 2026-08-06:
+    // searching `'; drop table book_ext;--` produced a Node stack trace. The
+    // database was never at risk — this connection is mode=ro and FTS5 rejected
+    // the string as invalid grammar — but a search tool that dies on a stray
+    // quote tells the reader nothing about what to fix.
+    const msg = String(err?.stderr || err?.message || '');
+    const m = msg.match(/fts5: (.+)/);
+    if (m) {
+      console.error(`not a valid search expression: ${m[1].trim()}`);
+      console.error('FTS5 syntax: bare words, "quoted phrases", AND / OR / NOT, NEAR(a b).');
+      process.exit(65); // EX_DATAERR — bad input, not a failure of the tool
+    }
+    throw err;
+  }
+};
 
 // passage_modern is OPTIONAL: build-external-passages drops and recreates the
 // database, so it is absent between an index rebuild and add-longs-variants.

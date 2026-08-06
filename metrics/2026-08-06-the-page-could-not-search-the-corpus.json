@@ -1,0 +1,28 @@
+{
+  "measured_at": "2026-08-06T06:41:59Z",
+  "question": "GQ-001",
+  "subject": "the served page searched titles; the CLI searched 3.1 million passages",
+  "the_gap": {
+    "library.html": "a 10.5 MB STATIC file searching titles and chapter headings only",
+    "the_cli": "3,135,554 passages across the printed and modern-spelling indexes",
+    "meaning": "a reader on the web got a fundamentally weaker search than one at a terminal \u2014 the same \"capability exists, nothing surfaces it\" defect the search CLI itself was written to fix, one layer up"
+  },
+  "why_it_was_cheap": "a server already runs \u2014 com.siso.librarian-observatory, 32 lines, serving public/ on 8765. Adding /search is an endpoint, not infrastructure.",
+  "delegates_rather_than_duplicates": "the endpoint shells out to search-library.mjs instead of copying its SQL. That exclusion logic took four failed attempts to get right (rowid join, per-term LIKE, candidate cap); a second copy would drift silently.",
+  "a_defect_the_adversarial_test_found": {
+    "input": "'; drop table book_ext;--",
+    "the_database_was_never_at_risk": "the connection is mode=ro and FTS5 rejected the string as invalid grammar; book_ext still holds 2,124 rows",
+    "but": "the CLI died with a Node stack trace instead of saying what was wrong",
+    "fix": "a malformed query now exits 65 (EX_DATAERR) with the FTS5 reason and a syntax hint; the endpoint maps that to HTTP 400, distinct from 500 (failure) and 504 (timeout)"
+  },
+  "verified": {
+    "valid": "HTTP 200",
+    "stopword the": "HTTP 200 in 3s",
+    "malformed": "HTTP 400 with the exact reason",
+    "missing q": "HTTP 400",
+    "static library.html": "HTTP 200",
+    "path traversal": "HTTP 404"
+  },
+  "a_false_alarm_i_chased": "a 500 that should have been 400 was a STALE server process, not a code defect \u2014 confirmed by inspecting err.status directly (65, as designed) before changing anything",
+  "derivations": {}
+}
