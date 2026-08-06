@@ -230,6 +230,9 @@ import('$ROOT/scripts/lib/selection-rules.mjs').then(m=>{
     [String(m.isCourtFiling(\"Part 2 of the Gardener's Kalendar\")),'false'],
     [String(m.isPhotograph('Mediterranean Style Home, Flintridge, California (front view)')),'true'],
     [String(m.isPhotograph('The Gardener (second edition)')),'false'],
+    [String(m.isBarrenCollection('calcflh_000123')),'true'],
+    [String(m.isBarrenCollection('caggljhs_000207')),'true'],
+    [String(m.isBarrenCollection('b21299055_0002')),'false'],
   ];
   const bad=c.filter(([g,w])=>g!==w);
   console.log(bad.length ? 'FAIL '+JSON.stringify(bad) : 'OK '+c.length);

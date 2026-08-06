@@ -111,6 +111,35 @@ export function isPhotograph(title) {
   return PHOTO_VIEW_TITLE.test(String(title || ''));
 }
 
+// COLLECTIONS THAT HAVE NEVER YIELDED A USABLE TEXT.
+//
+// Measured 2026-08-06 across every manifest, by identifier prefix:
+//
+//   calcflh    0 usable of 128 attempted    ( 0%)
+//   caggljhs  13 usable of 100 attempted    (13%)  — and all 13 are OCR of
+//                                                    handwriting, excluded by
+//                                                    the correspondence rule
+//
+// This is a stronger signal than any title pattern, and I reached it only after
+// writing FOUR title rules that each removed one shape of the same collection
+// and revealed the next: correspondence, street address, court filing, photo
+// view-note. Titles describe items; a prefix describes the SOURCE — and the
+// source is what has no text layer.
+//
+// Empirical, not a guess: each prefix is here because its measured success rate
+// over 100+ real fetch attempts is at or near zero. A collection that starts
+// producing usable text should be removed, and the count above is the evidence
+// to re-check.
+const BARREN_COLLECTIONS = ['calcflh', 'caggljhs'];
+
+export function isBarrenCollection(identifier) {
+  const id = String(identifier || '');
+  return BARREN_COLLECTIONS.some((p) => id.startsWith(p));
+}
+
+// TITLE-BASED rules only. Callers with an identifier should ALSO check
+// isBarrenCollection — kept separate because one takes a title and the other an
+// identifier, and merging them would make the argument ambiguous.
 export function isNotABook(title) {
   return isCorrespondence(title) || isStreetAddress(title)
     || isCourtFiling(title) || isPhotograph(title);

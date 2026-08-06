@@ -1,0 +1,25 @@
+{
+  "measured_at": "2026-08-06T17:32:28Z",
+  "question": "GQ-001",
+  "subject": "four title rules chased one archive; the identifier prefix caught it in one",
+  "the_pattern_of_my_own_errors": "I wrote FOUR title rules \u2014 correspondence, street address, court filing, photo view-note \u2014 and each removed one shape of the same collection and revealed the next. The fifth batch still failed 17 of 27 with \"Colonial Bungalow, Flintridge, California\": a house photograph with no view-note parenthetical, so rule four missed it.",
+  "the_signal_i_should_have_looked_for_first": {
+    "method": "group every NO_TEXT failure across all manifests by IDENTIFIER PREFIX",
+    "calcflh": "0 usable of 128 attempted (0%)",
+    "caggljhs": "13 usable of 100 attempted (13%) \u2014 and all 13 are OCR of handwriting, already excluded",
+    "why_it_is_stronger": "a title describes an ITEM; a prefix describes the SOURCE, and the source is what has no text layer"
+  },
+  "the_fix": "an empirical barren-collection block, learned from measured outcomes rather than guessed from titles. Each prefix is listed with its success rate over 100+ real attempts, so a collection that starts producing text can be re-checked against recorded evidence.",
+  "result": {
+    "want_list": "1449 -> 1445 items",
+    "not_a_book_excluded": 647,
+    "barren_collection_items_remaining": 0,
+    "ninth_list": "complete \u2014 440 of 441 eligible already on vault"
+  },
+  "probe": {
+    "assertions": "17 -> 20",
+    "proven_to_fail": "BARREN_COLLECTIONS emptied -> 23 passed, 1 failed"
+  },
+  "the_lesson": "when a filter needs a fourth special case, the taxonomy is wrong. Four title patterns were four descriptions of one archive; one prefix was the archive.",
+  "derivations": {}
+}

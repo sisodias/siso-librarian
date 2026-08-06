@@ -24,7 +24,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { normaliseTitle } from './ia-title-dedup.mjs';
-import { ageSettled, isNotABook } from './lib/selection-rules.mjs';
+import { ageSettled, isNotABook, isBarrenCollection } from './lib/selection-rules.mjs';
 
 const args = process.argv.slice(2);
 const write = args.includes('--write');
@@ -200,7 +200,11 @@ for (const subject of subjects) {
     // Validated against two real manifests — 87 correct skips, 1 miss, and the
     // 13 apparent false positives are all Cheyney letters that should be skipped
     // too. Zero real books excluded.
-    if (isNotABook(title)) {
+    // The COLLECTION, not the title. Measured 2026-08-06: calcflh is 0 usable of
+    // 128 attempted and caggljhs 13 of 100 — a stronger signal than any title
+    // pattern, and the reason four title rules kept revealing a fifth shape of
+    // the same archive.
+    if (isBarrenCollection(d.identifier) || isNotABook(title)) {
       letterSkipped.push({ identifier: d.identifier, title: String(title).slice(0, 90) });
       continue;
     }
