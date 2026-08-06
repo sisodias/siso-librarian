@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-06T10:52:08Z",
+  "question": "GQ-001",
+  "subject": "every search fix I made today was untested",
+  "the_gap": "search gained ranking, an overlap exclusion, a candidate cap and an exit code on 2026-08-06. Exactly ONE self-test case touched search, and it only asserted that a query returns something at all.",
+  "cases_added": 3,
+  "my_first_ranking_case_was_decoration": {
+    "what_it_did": "counted [term] highlight markers in the snippets",
+    "how_i_caught_it": "deleted an ORDER BY and ran it \u2014 it PASSED",
+    "why": "highlighting has nothing to do with rank; the case name overclaimed what it tested",
+    "the_fix": "compare the CLI top result against the bm25 top result computed independently in SQL, and against the rowid-first row"
+  },
+  "each_case_proven_to_fail_on_its_own_defect": {
+    "ranking": "ORDER BY removed -> FAIL \"CLI gave rowid 1, bm25 says 49\"",
+    "exit_code": "process.exit(65) changed to 0 -> FAIL \"got exit 1\"",
+    "highlighting_probe": "snippet() replaced -> FAIL \"no [term] markers\""
+  },
+  "suite": {
+    "before": "9 passed",
+    "after": "12 passed, 0 failed"
+  },
+  "the_lesson_restated": "a test that passes on a healthy repo proves nothing. I checked all three against their own defect BEFORE recording them \u2014 which is how I caught that one of the three was decoration.",
+  "derivations": {}
+}

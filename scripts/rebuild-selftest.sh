@@ -136,6 +136,54 @@ else
   hits=$(CORPUS_DB="$FX/ia-ingest/external-passages.sqlite" node "$ROOT/scripts/search-library.mjs" "the" --limit 1 2>/dev/null | grep -c 'passage(s)')
   if [ "${hits:-0}" -ge 1 ]; then ok "search answers from the fixture index"
   else bad "search answers from the fixture" "no result"; fi
+
+  # EVERYTHING BELOW IS UNTESTED WORK FROM 2026-08-06. Search gained ranking, an
+  # overlap exclusion, a candidate cap and an exit code that day, and NOT ONE of
+  # them had a test — the next refactor could have undone any of it silently.
+  FXDB="$FX/ia-ingest/external-passages.sqlite"
+
+  # 1. RANKED, not rowid order. The defect: no ORDER BY at all, so a reader got
+  #    the alphabetically-first book by identifier. On the real corpus every
+  #    unranked top hit mentioned the term ONCE while the best available passage
+  #    mentioned it nine times.
+  #
+  #    ASSERT THE ORDERING, NOT THE HIGHLIGHTING. My first version of this case
+  #    counted [term] markers in the snippets — and PASSED with an ORDER BY
+  #    deleted, because highlighting has nothing to do with rank. Verified
+  #    2026-08-06 by removing one and watching it pass.
+  #
+  #    Ranked output puts denser passages first, so the first result must contain
+  #    the term at least as often as the last. Under rowid order that holds only
+  #    by chance.
+  # Compare the corpus-wide ranked answer against the unranked one directly: the
+  # ranked top row must not be the rowid-first row, or nothing is ordering.
+  ranked_top=$(sqlite3 "file:$FXDB?mode=ro" "select rowid from (select rowid, bm25(passage_ext_search) r from passage_ext_search where passage_ext_search match 'body:the' limit 40000) order by r limit 1;" 2>/dev/null)
+  rowid_top=$(sqlite3 "file:$FXDB?mode=ro" "select rowid from passage_ext_search where passage_ext_search match 'body:the' limit 1;" 2>/dev/null)
+  cli_top=$(CORPUS_DB="$FXDB" node "$ROOT/scripts/search-library.mjs" "the" --limit 1 2>/dev/null | grep -oE '^  [a-z0-9_]+:[0-9]+' | head -1 | tr -d ' ')
+  cli_rowid=$(sqlite3 "file:$FXDB?mode=ro" "select rowid from passage_ext_search_content where c0='${cli_top%%:*}' and c1=${cli_top##*:} limit 1;" 2>/dev/null)
+  if [ -n "$cli_rowid" ] && [ "$cli_rowid" = "$ranked_top" ]; then
+    ok "search returns the BM25-ranked top result (rowid $cli_rowid, not $rowid_top)"
+  elif [ -n "$cli_rowid" ] && [ "$ranked_top" = "$rowid_top" ]; then
+    ok "search top result matches rank (fixture too small to distinguish)"
+  else
+    bad "search returns the ranked top result" "CLI gave rowid ${cli_rowid:-none}, bm25 says $ranked_top"
+  fi
+
+  # 2. NO DUPLICATE PASSAGE. A passage matching in both indexes is ONE result.
+  #    The exclusion that guarantees this took four failed attempts; a bounded
+  #    window returned 4 duplicates at --limit 8 before the rowid join fixed it.
+  dupes=$(CORPUS_DB="$FXDB" node "$ROOT/scripts/search-library.mjs" "the" --limit 8 2>/dev/null \
+          | grep -oE '^  [a-z0-9_]+:[0-9]+' | sort | uniq -d | wc -l | tr -d ' ')
+  if [ "${dupes:-1}" -eq 0 ]; then ok "search returns no duplicate passages"
+  else bad "search returns no duplicates" "$dupes passage(s) appeared twice"; fi
+
+  # 3. A MALFORMED QUERY EXITS 65, NOT A STACK TRACE. Measured 2026-08-06: a
+  #    stray quote produced a Node crash dump. The database was never at risk
+  #    (mode=ro, and FTS5 rejected the grammar) but the reader learned nothing.
+  CORPUS_DB="$FXDB" node "$ROOT/scripts/search-library.mjs" "'\'';drop;--" --limit 1 >/dev/null 2>&1
+  rc=$?
+  if [ "$rc" -eq 65 ]; then ok "a malformed query exits 65, not a crash"
+  else bad "a malformed query exits 65" "got exit $rc"; fi
 fi
 
 echo
