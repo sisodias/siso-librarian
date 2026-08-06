@@ -167,6 +167,10 @@ const items = [];
 const seen = new Set();
 let gutSkipped = 0;
 const nonEnglishSkipped = [];
+const letterSkipped = [];
+// "Letter(s) to/from ... <year>" — the archival correspondence shape. Requires a
+// YEAR so that printed periodicals ("Vegetable Growers' News Letter") survive.
+const LETTER_TITLE = /\bletters?\s+(to|from)\b.*(\d{4}-\d{2}-\d{2}|\b\d{4}\b)/i;
 const perSubject = [];
 
 for (const subject of subjects) {
@@ -192,6 +196,27 @@ for (const subject of subjects) {
     if (/gut$/.test(d.identifier)) { gutSkipped += 1; continue; }
     const foreign = looksNonEnglish(title);
     if (foreign) { nonEnglishSkipped.push({ identifier: d.identifier, title: String(title).slice(0, 90), looks: foreign }); continue; }
+    // ARCHIVAL CORRESPONDENCE IS NOT A BOOK. Measured 2026-08-06: a batch of 200
+    // returned 123 OK and 77 failures, and 76 of the 77 were manuscript letters
+    // — "William Cheyney Letter to son 1892-05-16" and its siblings. Handwriting
+    // has no usable OCR layer.
+    //
+    // THE ONES THAT "SUCCEED" ARE WORSE THAN THE ONES THAT FAIL. Thirteen passed
+    // the NO_TEXT and BAD_BODY guards, and their text is OCR of handwriting:
+    // "Pivincelsne aerate", "ieledelbia", "Dhiledilthi" for Philadelphia. They
+    // score 0.54 on the English-dictionary check — ABOVE the 0.45 threshold —
+    // because letterhead ("OFFICE", "COMPANY", "STREET") carries them past it.
+    // So corpus-integrity does not catch them and never would have.
+    //
+    // The pattern is "Letter(s) to/from ... <year>", NOT the word "letter":
+    // "Vegetable Growers' News Letter" is a printed periodical and must survive.
+    // Validated against two real manifests — 87 correct skips, 1 miss, and the
+    // 13 apparent false positives are all Cheyney letters that should be skipped
+    // too. Zero real books excluded.
+    if (LETTER_TITLE.test(String(title))) {
+      letterSkipped.push({ identifier: d.identifier, title: String(title).slice(0, 90) });
+      continue;
+    }
     if (!key || held.has(key) || seen.has(key)) continue;
     seen.add(key);
     added += 1;
@@ -238,6 +263,7 @@ const out = {
   rationale: 'Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. '
     + 'Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.',
   query_totals: perSubject,
+  correspondence_excluded: { count: letterSkipped.length, rule: 'title matches "Letter(s) to/from ... <year>" — archival manuscript correspondence, no usable OCR layer', items: letterSkipped },
   non_english_excluded: { count: nonEnglishSkipped.length, rule: 'title carries German function words, or two or more Latin markers — IA language:eng is unreliable', items: nonEnglishSkipped },
   gutenberg_mirrors_excluded: { count: gutSkipped, rule: 'identifier ends in "gut" — IA-hosted Gutenberg copies, already ingested by the Library' },
   contract: {

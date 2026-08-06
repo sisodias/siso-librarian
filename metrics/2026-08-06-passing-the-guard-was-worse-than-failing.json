@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-06T15:21:00Z",
+  "question": "GQ-001",
+  "subject": "the items that passed the guards were worse than the ones that failed",
+  "the_symptom": "a batch of 200 returned 123 OK and 77 failures \u2014 76 of the 77 were manuscript letters (William Cheyney to his son, 1891-1894)",
+  "the_worse_half": {
+    "what": "THIRTEEN letters PASSED the NO_TEXT and BAD_BODY guards and entered the corpus",
+    "their_text": "OCR of handwriting \u2014 \"Pivincelsne aerate\", \"ieledelbia\", \"Dhiledilthi\" for Philadelphia",
+    "why_no_gate_caught_them": "they score 0.541 and 0.547 on the English-dictionary check, ABOVE the 0.45 threshold, because printed letterhead (OFFICE, COMPANY, STREET) carries them past it",
+    "consequence": "corpus-integrity does not catch these and never would have"
+  },
+  "the_filter": {
+    "pattern": "Letter(s) to/from ... <year> \u2014 requires a YEAR, not merely the word \"letter\"",
+    "why": "Vegetable Growers' News Letter is a printed periodical and must survive",
+    "validated_against_two_real_manifests": {
+      "correct_skips": 87,
+      "missed": 1,
+      "apparent_false_positives": 13,
+      "note": "all 13 are Cheyney letters that should be skipped too \u2014 zero real books excluded"
+    }
+  },
+  "result": {
+    "want_list": "1945 -> 1802 items",
+    "correspondence_excluded": 121,
+    "eligible": "692 -> 572",
+    "remaining_letter_titles": "2, both printed 18th-century pamphlets (A letter to Thomas Trotter : occasioned by his proposal)"
+  },
+  "a_reading_i_had_to_correct": "I first read the 13 as \"real books the filter would discard\" and nearly abandoned it. Opening their text showed they were the same manuscripts \u2014 the trade was never 13 books against 87 wasted fetches.",
+  "derivations": {}
+}
