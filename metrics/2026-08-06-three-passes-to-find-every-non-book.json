@@ -1,0 +1,44 @@
+{
+  "measured_at": "2026-08-06T17:16:53Z",
+  "question": "GQ-001",
+  "subject": "three passes to find every non-book in one want-list",
+  "the_sequence": [
+    {
+      "batch": "200 -> 123 OK",
+      "failures": "76 of 77 manuscript letters",
+      "rule_added": "correspondence"
+    },
+    {
+      "batch": "200 -> 123 OK",
+      "failures": "77 NO_TEXT, zero letters \u2014 property photographs by street address",
+      "rule_added": "street address"
+    },
+    {
+      "batch": "140 -> 103 OK",
+      "failures": "36 NO_TEXT \u2014 court filings and photographs named by STYLE, not address",
+      "rules_added": "court filing, photo view-note"
+    }
+  ],
+  "why_it_took_three": "each rule removed one shape and revealed the next. The Architecture subject pulled in an entire photographic survey of La Canada Flintridge plus a 52-part court docket, and no single pattern describes all of it.",
+  "the_new_rules": {
+    "court_filing": "requires BOTH a \"v.\" case name AND an explicit (Part N of M), so \"Part 2 of the Gardener's Kalendar\" cannot match",
+    "photo_view_note": "a parenthetical view-note \u2014 (front view), (interior detail) \u2014 which a catalogue adds to a photograph and never to a book"
+  },
+  "false_positive_checks": {
+    "photo_pattern_across_the_whole_list": "17 matches, every one a California home from the same survey",
+    "court_pattern": "49 matches, all the same docket",
+    "books_wrongly_excluded": 0
+  },
+  "result": {
+    "want_list": "1552 -> 1449 items",
+    "not_a_book_excluded": 604,
+    "court_photo_address_remaining": 0,
+    "fetch_queue": "140 -> 27 genuine books"
+  },
+  "probe": {
+    "assertions": "13 -> 17",
+    "court_rule_proven_to_fail": "neutered -> 23 passed, 1 failed"
+  },
+  "the_structural_payoff": "all four rules sit behind one isNotABook predicate imported by both builders, so each addition reached the want-list AND the index builder at once \u2014 the thing that had to be fixed by hand when the correspondence rule was added alone.",
+  "derivations": {}
+}

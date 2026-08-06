@@ -88,6 +88,30 @@ export function isStreetAddress(title) {
 // exclusion reaches every call site by construction — the mistake made with the
 // correspondence rule, which had to be added to the index builder separately
 // after it was already in the want-list builder.
+// A COURT DOCKET SPLIT ACROSS 52 PARTS IS NOT 52 BOOKS. Measured 2026-08-06:
+// "People v. Gold Run (Part 49 of 52) - Order Extending time" and 48 siblings.
+// Requires BOTH the "v." case-name form and an explicit part-of-N, so a book
+// titled "Part 2 of the Gardener's Kalendar" cannot match.
+const COURT_FILING_TITLE = /\bv\.\s+\w+.*\(part \d+ of \d+\)/i;
+
+// A PHOTOGRAPH DESCRIBED BY ITS VIEW. The street-address rule missed these:
+// "Mediterranean Style Home, Flintridge, California (front view)" names a style,
+// not an address. The tell is the parenthetical view-note that a catalogue adds
+// to a photograph and never to a book.
+//
+// Checked across the whole want-list: 17 matches, every one a California home
+// from the same survey. Zero books.
+const PHOTO_VIEW_TITLE = /\((front|side|rear|interior|exterior|view|detail)[^)]*\)/i;
+
+export function isCourtFiling(title) {
+  return COURT_FILING_TITLE.test(String(title || ''));
+}
+
+export function isPhotograph(title) {
+  return PHOTO_VIEW_TITLE.test(String(title || ''));
+}
+
 export function isNotABook(title) {
-  return isCorrespondence(title) || isStreetAddress(title);
+  return isCorrespondence(title) || isStreetAddress(title)
+    || isCourtFiling(title) || isPhotograph(title);
 }

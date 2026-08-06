@@ -226,6 +226,10 @@ import('$ROOT/scripts/lib/selection-rules.mjs').then(m=>{
     [String(m.isStreetAddress('Roads and Bridges of Devon')),'false'],
     [String(m.isNotABook('William Cheyney Letter to son 1892-05-16')),'true'],
     [String(m.isNotABook('The Gardener')),'false'],
+    [String(m.isCourtFiling('People v. Gold Run (Part 49 of 52) - Order Extending time')),'true'],
+    [String(m.isCourtFiling(\"Part 2 of the Gardener's Kalendar\")),'false'],
+    [String(m.isPhotograph('Mediterranean Style Home, Flintridge, California (front view)')),'true'],
+    [String(m.isPhotograph('The Gardener (second edition)')),'false'],
   ];
   const bad=c.filter(([g,w])=>g!==w);
   console.log(bad.length ? 'FAIL '+JSON.stringify(bad) : 'OK '+c.length);
