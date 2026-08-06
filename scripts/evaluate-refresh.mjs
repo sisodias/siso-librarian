@@ -100,6 +100,32 @@ function gitCommitsSince(since, paths) {
 
 assertGitUsable();
 
+// SYNTHETIC HISTORY IS UNMEASURABLE, NOT STALE. assertGitUsable catches git being
+// BROKEN; it passes happily on a scratch copy with one synthetic commit that
+// touched every watched path at once — so all triggers fire and every claim
+// reads stale for a reason that has nothing to do with the claims.
+//
+// That is why gates-are-load-bearing EXCLUDES this gate, which means its
+// removal has never been tested: it is the one gate in the chain nobody can
+// prove is load-bearing. Measured 2026-08-06.
+//
+// Detecting it here rather than relying on the caller is the same fix applied to
+// audit-asserted-numbers earlier today. An exclusion list is a thing callers
+// forget; a self-check travels with the gate. One commit is the signature —
+// a real history here is in the thousands.
+const commitCount = Number((() => {
+  try { return execFileSync('git', ['rev-list', '--count', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(); }
+  catch { return '0'; }
+})());
+if (commitCount > 0 && commitCount < 10) {
+  console.log(JSON.stringify({
+    skipped: true,
+    reason: `git history has ${commitCount} commit(s) — every watched path would appear to have changed at once, so no trigger can be evaluated.`,
+    note: 'SKIPPED, not passed. No claim was checked.',
+  }, null, 2));
+  process.exit(0);
+}
+
 if (!existsSync(ledgerPath)) {
   console.error('no refresh ledger found');
   process.exit(1);

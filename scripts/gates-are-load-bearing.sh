@@ -74,11 +74,19 @@ echo "=== load-bearing test: removing a gate must break verify ==="
 #
 # That is the wrong-reason-pass defect, in the test written to find it. The
 # chain under test excludes the guard; the guard has its own probes.
+# evaluate-refresh is NO LONGER EXCLUDED. It now detects synthetic history
+# itself (2026-08-06) and skips with an explicit "SKIPPED, not passed" instead
+# of firing every trigger at once — so it can sit in the chain under test like
+# any other gate.
+#
+# It was the one gate in the chain whose removal had never been tested, purely
+# because the harness could not run it. An exclusion is a permanent blind spot
+# wearing the costume of a known limitation.
 CHAIN=$(/usr/bin/python3 -c "
 import json
 v=json.load(open('package.json'))['scripts']['verify']
 keep=[s.strip() for s in v.split('&&')
-      if 'evaluate-refresh' not in s and 'audit-verify-chain' not in s]
+      if 'audit-verify-chain' not in s]
 print(' && '.join(keep))")
 runchain() { bash -c "$CHAIN" >/dev/null 2>&1; }
 

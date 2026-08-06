@@ -1,0 +1,21 @@
+{
+  "measured_at": "2026-08-06T02:30:24Z",
+  "question": "GQ-001",
+  "subject": "the one gate nobody could prove was load-bearing",
+  "the_situation": "gates-are-load-bearing EXCLUDED evaluate-refresh because a scratch copy has one synthetic commit touching every watched path at once, firing all triggers",
+  "what_that_meant": "its removal had NEVER been tested \u2014 the only gate in the chain with no proof it does anything. An exclusion is a permanent blind spot wearing the costume of a known limitation.",
+  "the_fix": "evaluate-refresh now detects synthetic history itself and skips with an explicit \"SKIPPED, not passed\", exactly as audit-asserted-numbers was taught earlier today; the exclusion was then removed",
+  "why_self_detection_beats_exclusion": "an exclusion list is a thing callers forget \u2014 I forgot it this morning and it cost a blocked push; a self-check travels with the gate",
+  "result": {
+    "before": "9 load-bearing, 2 excluded",
+    "after": "10 load-bearing, 1 excluded",
+    "remaining_exclusion": "audit-verify-chain, which detects ANY missing gate and would mask every other result \u2014 a sound reason, not a blind spot"
+  },
+  "verified": {
+    "real_repo": "exit 0",
+    "synthetic_copy": "skips explicitly, exit 0",
+    "removed_from_the_chain": "chain fails \u2014 PASS"
+  },
+  "a_detail_i_nearly_got_wrong": "I pinned cwd: root on the new git call after noticing the neighbouring call does; without it the count would read whatever repo the cwd happened to be",
+  "derivations": {}
+}
