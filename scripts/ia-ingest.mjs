@@ -49,7 +49,17 @@ const want = JSON.parse(readFileSync(WANT, 'utf8'));
 // Rights gate. 'not-a-designation' is excluded outright: measured 2026-08-04,
 // that value is the literal string "Public Domain License", which is not a real
 // designation and reads as free text an uploader typed.
-const ELIGIBLE = new Set(['formal-designation', 'institutional-review', 'jurisdiction-scoped']);
+//
+// 'age-settled' added 2026-08-06: a work published before 1929 is public domain
+// in the US whatever an uploader typed in the rights field. Measured on the
+// ninth want-list, 538 of 1,076 bare-assertion items (50%) were pre-1929,
+// ranging 1611-1928 — including 1920s periodicals and a 1611 book. On the EIGHTH
+// list only 15 of 2,761 were, so this admits a real population without loosening
+// the grade that catches modern uploads.
+//
+// It is a separate grade, not a widening of bare-assertion, so every manifest
+// still records exactly which evidence admitted each book.
+const ELIGIBLE = new Set(['formal-designation', 'institutional-review', 'jurisdiction-scoped', 'age-settled']);
 
 let items = want.items.filter((i) => ELIGIBLE.has(i.rights_provenance));
 if (tier) items = items.filter((i) => i.tier.endsWith(tier));

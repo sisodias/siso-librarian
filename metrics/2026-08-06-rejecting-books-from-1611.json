@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-06T11:58:45Z",
+  "question": "GQ-001",
+  "subject": "the rights filter was rejecting books from 1611 on a wording technicality",
+  "how_i_got_here": "one turn earlier I examined the same filter, found its 86% rejection rate CORRECT, and wrote down what would change my mind: \"a bare-assertion bucket dominated by pre-1929 material\". The next want-list produced exactly that.",
+  "the_finding": {
+    "eighth_list": "15 of 2,761 bare-assertion items were pre-1929 \u2014 the filter was right",
+    "ninth_list": "538 of 1,076 (50%) are pre-1929, ranging 1611-1928, including 1920s periodicals",
+    "why_they_were_excluded": "classifyRights sees only the rights STRING, so a 1611 book whose metadata says a plain \"Public Domain\" grades identically to a 1994 engineering text with the same string"
+  },
+  "the_fix": "a new age-settled grade, applied where both the year and the grade are known. It upgrades ONLY bare-assertion, never \"none\" or \"not-a-designation\", and requires a finite year \u2014 no year means no upgrade.",
+  "why_a_new_grade_not_a_widened_one": "the manifest still records exactly which evidence admitted each book; folding it into formal-designation would have erased that distinction",
+  "measured_before_after": {
+    "eligible": "154 -> 692 of 1,945",
+    "multiplier": "4.5x"
+  },
+  "verified_both_directions": {
+    "age-settled_years": "1611-1928",
+    "with_year_>=1929_or_missing": "0 (the guard holds)",
+    "pre-1929_left_in_bare-assertion": "0",
+    "what_remains_in_bare-assertion": "1980s-2010s \u2014 165 from the 2000s, 168 from the 1990s, exactly what the grade exists to catch"
+  },
+  "derivations": {}
+}

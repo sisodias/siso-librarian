@@ -138,6 +138,21 @@ function looksNonEnglish(title) {
   return null;
 }
 
+// PUBLIC DOMAIN BY AGE. A work published before 1929 is public domain in the US
+// regardless of what an uploader typed in the rights field. This upgrades ONLY
+// bare-assertion — a grade that already means "the metadata says public domain,
+// with no formal designation behind it" — so it never admits an item whose
+// metadata says nothing at all ('none') or says something contradictory
+// ('not-a-designation').
+//
+// Deliberately conservative on missing data: no year means no upgrade.
+const PD_BY_AGE_BEFORE = 1929;
+function ageSettled(year, grade) {
+  if (grade !== 'bare-assertion') return grade;
+  if (!Number.isFinite(year) || year <= 0) return grade;
+  return year < PD_BY_AGE_BEFORE ? 'age-settled' : grade;
+}
+
 function classifyRights(s) {
   const r = String(s || '');
   if (/^copyright review/i.test(r)) return 'institutional-review';
@@ -192,7 +207,23 @@ for (const subject of subjects) {
       // a 2025 upload is free text an uploader typed. The contract treated both
       // as "IA says public domain". They are not the same evidence.
       rights_evidence: rightsString ? `advancedsearch ${RIGHTS}; item rights: ${rightsString}` : `advancedsearch ${RIGHTS}`,
-      rights_provenance: classifyRights(rightsString),
+      // AGE CAN SETTLE WHAT WORDING CANNOT. classifyRights sees only the rights
+      // STRING, so a 1611 book whose metadata says a plain "Public Domain" grades
+      // as bare-assertion — the same as a 1994 engineering text with the same
+      // string — and is excluded.
+      //
+      // Measured 2026-08-06 on the ninth want-list: 538 of 1,076 bare-assertion
+      // items (50%) were published BEFORE 1929, ranging 1611-1928. On the eighth
+      // list only 15 of 2,761 were. So this is not a blanket loosening: it admits
+      // exactly the books whose age answers the question independently, and
+      // leaves the modern ones — where the metadata string is the only evidence —
+      // excluded, which is what that grade exists for.
+      //
+      // 1929 is the US public-domain cutoff for published works. The grade is
+      // NAMED for its evidence ("age-settled") rather than folded into
+      // formal-designation, so the ingest manifest still records exactly why each
+      // book was admitted.
+      rights_provenance: ageSettled(Number(Array.isArray(d.year) ? d.year[0] : d.year) || null, classifyRights(rightsString)),
       query: q,
     });
   }
