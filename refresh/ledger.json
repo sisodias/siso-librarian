@@ -203,7 +203,7 @@
     {
       "claim_packet": "claims/GQ-001-enforcement-limits.v2.claim.json",
       "question_id": "GQ-001",
-      "checked_at": "2026-08-05T21:37:38Z",
+      "checked_at": "2026-08-06T04:05:19Z",
       "selectors_used": [
         "GQ-001",
         "enforcement",
@@ -217,7 +217,7 @@
         "a push blocked or not blocked by the hook"
       ],
       "result": "fresh",
-      "evidence_note": "Re-checked 2026-08-05T21:37:38Z because the claim's own 'verify chain change' trigger fired on the commit that added --strict to audit-asserted-numbers. Counts re-derived unchanged (11/15/8); the chain gained a flag, not an entry. Enforcement evidence strengthened: 3 pushes blocked on 2026-08-05."
+      "evidence_note": "Re-checked 2026-08-06T04:05:19Z after 'self-test case count change' fired (22 -> 23 cases). Re-derived unchanged: 11 chain entries, 15 check cases, 8 probes. Load-bearing gates 9 -> 10. Pushes blocked: 6."
     }
   ]
 }
