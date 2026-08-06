@@ -1,0 +1,30 @@
+{
+  "measured_at": "2026-08-06T06:06:00Z",
+  "question": "GQ-001",
+  "subject": "my own fix disabled the feature it was protecting, and I only found out by measuring it",
+  "the_first_fix_was_bad": {
+    "what": "a term-frequency budget: skip the modern index when a term is too common to exclude cheaply",
+    "i_called_it": "a stated tradeoff",
+    "what_it_actually_was": "SEVENTEEN of twenty classic long-s words exceeded the budget \u2014 such, those, first, present, cause, himself, house, sense, disease, surface, distance, possible, vessel, season, phosphorus, instrument, passage",
+    "meaning": "the modern index was disabled for 85% of the queries it exists to serve. That is switching the feature off, not trading it."
+  },
+  "how_i_caught_it": "I wrote \"a real loss of long-s recall\" in the worklog and then measured how large the loss was instead of leaving it as an assertion",
+  "the_real_fix": {
+    "key_fact": "passage_modern and passage_ext_search assign the SAME ROWID to the same passage \u2014 verified at rowid 500, antislaverydisun00unse:40 in both",
+    "consequence": "no cross-index set operation is needed: for each modern hit, look up that rowid in the printed index CONTENT TABLE, an ordinary B-tree",
+    "per_term_not_phrase": "FTS matching \"electromagnetic induction\" means both words appear anywhere; literal phrase-LIKE finds only adjacency. Measured FTS 10, phrase-LIKE 2, per-term-LIKE 10 \u2014 the phrase form would have admitted 8 duplicates",
+    "candidate_cap": "LIMIT bounds rows RETURNED, which bounds nothing for a stopword: \"the\" matches 2,723,718 modern rows and nearly all also print \"the\", so the join walked millions to find 3 (58s). Capping CANDIDATES at 40,000 is safe in a way the frequency budget was not \u2014 every candidate is still tested by the same exclusion, so whatever it finds is exactly correct."
+  },
+  "result": {
+    "the": "434042ms -> 2377ms",
+    "such": "skipped entirely -> 483ms with 3 modern-only hits",
+    "those": "skipped -> 527ms",
+    "cause": "skipped -> 577ms",
+    "surface": "skipped -> 345ms",
+    "himfelf": "15057ms -> 217ms",
+    "duplicates_across_9_queries": 0,
+    "long_s_words_now_served": "20 of 20, was 3 of 20"
+  },
+  "the_same_mistake_twice_in_one_file": "I put a BACKTICK inside a template-literal comment, breaking the whole script \u2014 for the SECOND time today. Both times every query returned 0 hits in ~40ms, which reads as speed until you look.",
+  "derivations": {}
+}

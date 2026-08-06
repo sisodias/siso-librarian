@@ -76,78 +76,62 @@ if (useOriginal) {
       where passage_ext_search match 'body:${q}' limit ${limit});`);
   rows.push(...JSON.parse(out || '[]'));
 }
-// HOW COMMON IS THIS TERM? The modern index's overlap exclusion is exact, and
-// its cost is linear in this number, so one cheap count decides whether it is
-// affordable. Counting is 4ms for "telescope", 252ms for "himself", 2.6s for
-// "the" — against 2.2s / 36s / 301s for the exclusion itself.
+// EXCLUDE BY ROWID, NOT BY POSTING LIST. The overlap exclusion used to be an
+// unlimited NOT IN over a MATCH subquery and cost 434 SECONDS on "the": SQLite
+// materialises all 2,723,718 printed matches, then scans the modern index
+// against them.
 //
-// WHY A BUDGET AND NOT A CLEVERER QUERY. Measured 2026-08-06, four ways, all
-// dead ends:
+// A budget on term frequency was the first fix, and it was bad: measured
+// 2026-08-06, SEVENTEEN of twenty classic long-s words — such, those, first,
+// present, cause, himself, house, sense, disease, surface — exceeded it. The
+// modern index was being disabled for 85% of the queries it exists to serve,
+// which is not a tradeoff, it is switching the feature off.
 //
-//   bounded NOT IN window      fast, but returned 4 DUPLICATE passages at
-//                              --limit 8 — correctness traded for speed
-//   JS-side re-query           re-materialised the same posting list the bound
-//                              existed to avoid: 395ms -> 231s
-//   changed=1 pre-filter       necessary but NOT sufficient (a passage can be
-//                              modernised elsewhere and still print the term
-//                              literally), and still 100s on "such"
-//   per-row membership test    ONE lookup costs 97 SECONDS
+// THE KEY FACT: passage_modern and passage_ext_search assign the SAME ROWID to
+// the same passage (verified at rowid 500 — antislaverydisun00unse:40 in both).
+// So the exclusion needs no cross-index set operation at all: for each modern
+// hit, look up that rowid in the printed index's CONTENT TABLE — an ordinary
+// B-tree — and ask whether the printed text contains the terms.
 //
-// The last one explains the other three. ext_id and seq are UNINDEXED columns in
-// the FTS5 table, so ANY filter on them still walks the entire posting list for
-// the term. There is no targeted lookup to be had at this schema. The base table
-// answers the same lookup in 93ms but stores only offsets and a 160-char
-// preview, so it cannot test term membership.
-//
-// THE CURVE IS A CLIFF, NOT A LINE. I first set this from an assumed ~1ms per
-// 9,000 hits and it was wrong: quinine at 4,036 hits costs 181ms, but cause at
-// 46,157 costs 30 SECONDS, and himself at 35,469 costs 6.4s. Hit count alone
-// does not predict the cost, so the budget sits low — at 10,000, comfortably
-// inside the measured-fast region — rather than at an extrapolated boundary I
-// cannot defend.
-//
-// So the budget is not a shortcut around a problem I failed to solve; it is the
-// shape of the constraint. Beyond it the modern index is skipped AND SAID TO BE
-// SKIPPED, which keeps the reader informed rather than silently narrowed.
-const MODERN_EXCLUSION_BUDGET = 10000;
-let modernSkipped = null;
-if (useModern && useOriginal) {
-  const n = Number(sq(`select count(*) from passage_ext_search where passage_ext_search match 'body:${q}';`) || 0);
-  if (n > MODERN_EXCLUSION_BUDGET) {
-    modernSkipped = n;
-    useModern = false;
-  }
-}
+// PER TERM, NOT AS A PHRASE. FTS matching "electromagnetic induction" means both
+// words appear anywhere; a literal LIKE '%electromagnetic induction%' finds only
+// the adjacent phrase. Measured: FTS 10 rows, phrase-LIKE 2, per-term-LIKE 10.
+// The phrase form would have admitted 8 duplicates.
+const terms = query
+  .replace(/["'()]/g, ' ')
+  .split(/\s+/)
+  .filter((t) => t && !/^(and|or|not|near)$/i.test(t))
+  .map((t) => t.toLowerCase().replace(/'/g, "''"));
+const printedHasAll = terms.length
+  ? terms.map((t) => `lower(c.c3) like '%${t}%'`).join(' and ')
+  : '1';
 
 if (useModern) {
   const out = sq(`select json_group_array(json_array('modernised', title, ext_id, seq, snip)) from (
       select b.title, m.ext_id, m.seq, snippet(passage_modern, 3, '[', ']', '…', 14) snip
       from passage_modern m join book_ext b using(ext_id)
       where passage_modern match 'body_modern:${q}'
-        -- ONLY passages the printed index cannot find. Both indexes match the
-        -- same rows first, so asking for the top N of each and deduping yields
-        -- N printed results and nothing new: the modern-only hits sort far below
-        -- the shared ones. Excluding the overlap is what actually surfaces the
-        -- "himfelf" passages the reader came for — 12,924 of them also match the
-        -- printed index, so the exclusion is load-bearing, not decorative.
+        -- ONLY passages the printed index cannot find — the "witneffed",
+        -- "creaturcs" passages a reader searching modern spelling would never
+        -- otherwise reach. The exclusion is load-bearing: without it the shared
+        -- hits crowd out every modern-only one.
         --
-        -- EXACT, AND AFFORDABLE ONLY BECAUSE OF THE PRE-CHECK ABOVE. Unlimited,
-        -- this NOT IN cost 434 SECONDS on "the": SQLite plans it as a LIST
-        -- SUBQUERY, materialising all 2,723,718 printed matches and scanning the
-        -- modern index against them, while raw FTS5 answers the same term in
-        -- 333ms.
+        -- not exists over a SHARED ROWID, so this is a point lookup per candidate
+        -- rather than a scan of the whole printed posting list. See the note above.
+        and not exists (
+          select 1 from passage_ext_search_content c
+          where c.rowid = m.rowid and ${printedHasAll})
+        -- CAP THE CANDIDATES, not just the results. LIMIT N bounds rows
+        -- RETURNED; a stopword bounds nothing, because almost every candidate is
+        -- rejected. Measured 2026-08-06: "the" matches 2,723,718 modern rows and
+        -- nearly all of them also print "the", so the join walked millions to
+        -- find three — 58 seconds.
         --
-        -- Measured 2026-08-06, the cost is linear in printed-hit count — about
-        -- 1ms per 9,000 hits (telescope 2,392 hits/2.2s; himself 35,469/36s;
-        -- the 2,723,718/301s). So the caller counts first and skips the modern
-        -- index entirely when the term is too common to exclude cheaply.
-        --
-        -- I tried two cheaper forms and BOTH were wrong: a bounded window
-        -- returned 4 duplicate passages at --limit 8, and a JS-side re-query
-        -- re-materialised the very posting list the bound existed to avoid
-        -- (395ms -> 231s). Exactness stays; the pre-check pays for it.
-        and (m.ext_id, m.seq) not in (
-          select ext_id, seq from passage_ext_search where passage_ext_search match 'body:${q}')
+        -- This cap is safe in a way the old frequency budget was not: whatever it
+        -- finds is still EXACTLY correct, because every candidate is tested by
+        -- the same exclusion. It stops looking; it does not lower the bar.
+        and m.rowid in (
+          select rowid from passage_modern where passage_modern match 'body_modern:${q}' limit 40000)
       limit ${limit});`);
   rows.push(...JSON.parse(out || '[]'));
 }
@@ -212,9 +196,3 @@ for (const m of merged.slice(0, limit)) {
   console.log(`  ${m.snip.replace(/\s+/g, ' ').trim()}`);
 }
 console.log(`\n${merged.length} passage(s); showing ${Math.min(merged.length, limit)}`);
-// A SKIPPED INDEX MUST SAY SO. Otherwise "3 passages" from one index is
-// indistinguishable from "3 passages" from both, and the reader cannot tell
-// that long-s recall was not applied to this query.
-if (modernSkipped !== null) {
-  console.log(`(modern-spelling index skipped: ${modernSkipped.toLocaleString()} printed matches exceeds the ${MODERN_EXCLUSION_BUDGET.toLocaleString()} budget for exact overlap exclusion — narrow the query to include it)`);
-}
