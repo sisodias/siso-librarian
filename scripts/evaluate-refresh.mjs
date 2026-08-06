@@ -100,37 +100,35 @@ function gitCommitsSince(since, paths) {
 
 assertGitUsable();
 
-// SYNTHETIC HISTORY IS UNMEASURABLE, NOT STALE. assertGitUsable catches git being
-// BROKEN; it passes happily on a scratch copy with one synthetic commit that
-// touched every watched path at once — so all triggers fire and every claim
-// reads stale for a reason that has nothing to do with the claims.
+// SYNTHETIC HISTORY IS UNMEASURABLE, NOT STALE. assertGitUsable catches git
+// being BROKEN; it passes happily on a scratch copy whose first commit imported
+// the entire repository at once — so every watched path looks changed, every
+// trigger fires, and every claim reads stale for reasons that have nothing to
+// do with the claims.
 //
-// That is why gates-are-load-bearing EXCLUDES this gate, which means its
-// removal has never been tested: it is the one gate in the chain nobody can
-// prove is load-bearing. Measured 2026-08-06.
+// THE SIGNAL IS COMMIT WIDTH, NOT COMMIT COUNT. I tried counting commits twice
+// and both thresholds broke a suite. `< 10` made the gate self-test skip (it
+// builds a two-commit repo deliberately, since this gate excludes HEAD); `== 1`
+// then let the load-bearing suite's two-commit baseline fire every trigger.
 //
-// Detecting it here rather than relying on the caller is the same fix applied to
-// audit-asserted-numbers earlier today. An exclusion list is a thing callers
-// forget; a self-check travels with the gate.
-//
-// THE THRESHOLD IS ONE, NOT TEN. My first version skipped below 10 commits and
-// broke FIVE gate self-test cases at once: that suite builds a scratch repo with
-// exactly TWO commits on purpose — "two minimum, because the gate excludes HEAD
-// deliberately" — so a 10-commit floor made every case skip and report GATE DID
-// NOT FIRE. Measured 2026-08-06.
-//
-// One commit is the only count that genuinely cannot be measured: the gate
-// compares against HEAD~1, which does not resolve. At two the comparison is
-// real, however small. A threshold picked for feel rather than for the
-// mechanism took a working suite down with it.
-const commitCount = Number((() => {
-  try { return execFileSync('git', ['rev-list', '--count', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(); }
-  catch { return '0'; }
-})());
-if (commitCount === 1) {
+// Measured 2026-08-06, and the separation is not close: real commits here touch
+// 4, 7, 8 files. A scratch import commit touches 531 — the whole repo. A commit
+// that rewrites everything cannot distinguish "this path changed" from "this
+// path exists", which is the exact property that makes the history unusable.
+const wideImport = (() => {
+  try {
+    const tracked = execFileSync('git', ['ls-files'], { cwd: root, encoding: 'utf8' }).trim().split('\n').length;
+    const first = execFileSync('git', ['rev-list', '--max-parents=0', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim().split('\n')[0];
+    if (!first) return false;
+    const touched = execFileSync('git', ['show', '--name-only', '--format=', first], { cwd: root, encoding: 'utf8' }).trim().split('\n').filter(Boolean).length;
+    // Half the repo in the root commit is an import, not a history.
+    return tracked > 20 && touched > tracked / 2;
+  } catch { return false; }
+})();
+if (wideImport) {
   console.log(JSON.stringify({
     skipped: true,
-    reason: `git history has ${commitCount} commit(s) — every watched path would appear to have changed at once, so no trigger can be evaluated.`,
+    reason: 'the root commit imported most of the repository at once, so every watched path appears changed and no trigger can be evaluated.',
     note: 'SKIPPED, not passed. No claim was checked.',
   }, null, 2));
   process.exit(0);

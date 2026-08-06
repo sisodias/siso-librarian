@@ -36,7 +36,18 @@ cd "$SCRATCH/repo" || exit 1
 # first version of this script did NOT do that, which is how it caught the gate
 # swallowing git failures: the case failed for the right reason via the wrong
 # route. Two commits minimum, because the gate excludes HEAD deliberately.
+# A NARROW ROOT COMMIT, on purpose. evaluate-refresh skips any repo whose root
+# commit imported most of the tree (2026-08-06) — in such a history every watched
+# path looks changed, so no trigger can be distinguished from "this file exists".
+# That check is correct, and it would make this scratch repo unevaluatable if the
+# root commit added all 531 files at once.
+#
+# So: commit ONE file first, then everything else. Three commits, a root that
+# touches a single path, and a history the gate can actually reason about.
 git init -q .
+: > .selftest-root
+git -c user.email=s@s -c user.name=s add .selftest-root >/dev/null 2>&1
+git -c user.email=s@s -c user.name=s commit -q -m "selftest root" >/dev/null 2>&1
 git -c user.email=s@s -c user.name=s add -A >/dev/null 2>&1
 git -c user.email=s@s -c user.name=s commit -q -m "selftest base" >/dev/null 2>&1
 : > .selftest-marker

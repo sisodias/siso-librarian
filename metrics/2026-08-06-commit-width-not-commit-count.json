@@ -1,0 +1,26 @@
+{
+  "measured_at": "2026-08-06T03:45:48Z",
+  "question": "GQ-001",
+  "subject": "two suites wanted opposite things from the same repo, and my threshold could satisfy only one",
+  "the_bind": {
+    "gate_self_test": "builds a 2-commit scratch repo and NEEDS evaluate-refresh to EVALUATE, so its backdated-ledger case can detect staleness",
+    "load_bearing_suite": "builds a 2-commit scratch repo and NEEDS evaluate-refresh to SKIP, or every trigger fires and the baseline fails",
+    "same_shape_opposite_requirement": "no commit-count threshold can satisfy both"
+  },
+  "two_thresholds_that_each_broke_a_suite": {
+    "first": "< 10 commits \u2014 made the gate self-test skip, 5 cases reported GATE DID NOT FIRE",
+    "second": "== 1 commit \u2014 let the load-bearing baseline fire every trigger, BASELINE FAILED in 21s"
+  },
+  "the_real_signal_is_commit_WIDTH": {
+    "measured": "real commits here touch 4, 7, 8 files; a scratch import commit touches 531 \u2014 the whole repo",
+    "why_it_is_the_right_property": "a commit that rewrites everything cannot distinguish \"this path changed\" from \"this path exists\", which is exactly what makes the history unusable",
+    "rule": "root commit touching more than half the tracked files = an import, not a history"
+  },
+  "and_the_self_test_setup_changed_too": "its scratch repo now commits ONE file first, then everything else \u2014 a narrow root commit gives the gate a history it can reason about, instead of demanding the gate ignore a defect",
+  "result": {
+    "gate_self_test": "23 passed, 0 failed",
+    "load_bearing": "10 load-bearing, 0 not (was 9)",
+    "all_suites": "5 pass, 0 fail"
+  },
+  "derivations": {}
+}
