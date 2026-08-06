@@ -62,3 +62,32 @@ export const CORRESPONDENCE_TITLE = /\bletters?\s+(to|from)\b.*(\d{4}-\d{2}-\d{2
 export function isCorrespondence(title) {
   return CORRESPONDENCE_TITLE.test(String(title || ''));
 }
+
+// A STREET ADDRESS IS A PHOTOGRAPH, NOT A BOOK. Measured 2026-08-06: a batch of
+// 200 returned 123 OK and 77 NO_TEXT, and every one of the 77 was either a court
+// filing or a property photograph — "3733 Chevy Chase Drive, La Cañada
+// Flintridge, California (front view)". The Architecture subject pulled in a
+// photographic survey.
+//
+// 91 of 579 eligible items (15%) carry a street-address title. Checked for false
+// positives across the whole list: 365 matches, and ZERO are books — every one
+// belongs to the same survey.
+//
+// Anchored at the START and requiring a street-type word, so "84 Charing Cross
+// Road" as a book title would still need a leading house number AND a street
+// word to match — and a title like "Roads and Bridges of Devon" cannot, because
+// it does not begin with a number.
+const STREET_ADDRESS_TITLE = /^\d+\s+\w.*\b(street|drive|boulevard|avenue|road|lane|court|place|way)\b/i;
+
+export function isStreetAddress(title) {
+  return STREET_ADDRESS_TITLE.test(String(title || '').trim());
+}
+
+// One predicate for every caller: an item that is not a book, whatever the
+// reason. Callers should use this rather than the individual rules, so a new
+// exclusion reaches every call site by construction — the mistake made with the
+// correspondence rule, which had to be added to the index builder separately
+// after it was already in the want-list builder.
+export function isNotABook(title) {
+  return isCorrespondence(title) || isStreetAddress(title);
+}

@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-06T16:48:14Z",
+  "question": "GQ-001",
+  "subject": "the want-list was fetching photographs of houses",
+  "the_symptom": "a batch of 200 returned 123 OK and 77 NO_TEXT \u2014 and unlike the previous batch, ZERO were correspondence",
+  "what_they_are": "property photographs and court filings \u2014 \"3733 Chevy Chase Drive, La Canada Flintridge, California (front view)\". The Architecture subject pulled in a photographic survey.",
+  "scale": {
+    "street_address_titles_among_eligible": "91 of 579 (15%)",
+    "across_the_whole_list": 365
+  },
+  "false_positive_check": "of 365 matches across the entire list, ZERO are books \u2014 every one belongs to the same survey. The pattern is anchored at the start and needs a leading house number AND a street-type word, so \"Roads and Bridges of Devon\" cannot match.",
+  "the_structural_fix": "a single isNotABook predicate combining correspondence and street-address, imported by BOTH the want-list builder and the index builder. The correspondence rule had to be added to the index builder separately, one turn after the want-list builder, because there was no combined predicate \u2014 this prevents the repeat.",
+  "result": {
+    "want_list": "1840 -> 1552 items",
+    "not_a_book_excluded": 510,
+    "street_addresses_remaining": 0,
+    "queue": "239 -> 140 genuine books"
+  },
+  "probe": {
+    "assertions": "9 -> 13",
+    "new_rule_proven_to_fail": "address pattern neutered -> 23 passed, 1 failed"
+  },
+  "derivations": {}
+}

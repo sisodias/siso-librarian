@@ -24,7 +24,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { normaliseTitle } from './ia-title-dedup.mjs';
-import { ageSettled, isCorrespondence } from './lib/selection-rules.mjs';
+import { ageSettled, isNotABook } from './lib/selection-rules.mjs';
 
 const args = process.argv.slice(2);
 const write = args.includes('--write');
@@ -200,7 +200,7 @@ for (const subject of subjects) {
     // Validated against two real manifests — 87 correct skips, 1 miss, and the
     // 13 apparent false positives are all Cheyney letters that should be skipped
     // too. Zero real books excluded.
-    if (isCorrespondence(title)) {
+    if (isNotABook(title)) {
       letterSkipped.push({ identifier: d.identifier, title: String(title).slice(0, 90) });
       continue;
     }
@@ -250,7 +250,7 @@ const out = {
   rationale: 'Subjects the Library is measurably weak in, deduped by title against the 74,674-title catalogue. '
     + 'Novelty tracks scarcity: science fiction (3,291 held) yields 0.9% new, English poetry (232 held) yields 41.3%.',
   query_totals: perSubject,
-  correspondence_excluded: { count: letterSkipped.length, rule: 'title matches "Letter(s) to/from ... <year>" — archival manuscript correspondence, no usable OCR layer', items: letterSkipped },
+  not_a_book_excluded: { count: letterSkipped.length, rule: 'title matches archival correspondence ("Letter(s) to/from ... <year>") or a street address ("3733 Chevy Chase Drive, ...") — manuscripts and property photographs, neither with a usable OCR layer', items: letterSkipped },
   non_english_excluded: { count: nonEnglishSkipped.length, rule: 'title carries German function words, or two or more Latin markers — IA language:eng is unreliable', items: nonEnglishSkipped },
   gutenberg_mirrors_excluded: { count: gutSkipped, rule: 'identifier ends in "gut" — IA-hosted Gutenberg copies, already ingested by the Library' },
   contract: {

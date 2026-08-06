@@ -26,7 +26,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { vaultRoot } from './lib/vault-paths.mjs';
-import { isCorrespondence } from './lib/selection-rules.mjs';
+import { isNotABook } from './lib/selection-rules.mjs';
 import { join, basename } from 'node:path';
 
 const VAULT = vaultRoot();
@@ -184,7 +184,7 @@ const correspondenceIds = [];
 for (const f of files) {
   const id = basename(f, '.txt');
   const knownTitle = titles.get(id) || '';
-  if (isCorrespondence(knownTitle)) {
+  if (isNotABook(knownTitle)) {
     console.error(`  ${id}: ARCHIVAL CORRESPONDENCE — skipped (${knownTitle.slice(0, 48)})`);
     correspondenceIds.push(id);
     continue;

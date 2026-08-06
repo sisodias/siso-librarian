@@ -222,6 +222,10 @@ import('$ROOT/scripts/lib/selection-rules.mjs').then(m=>{
     [String(m.isCorrespondence('William Cheyney Letter to son 1892-05-16')),'true'],
     [String(m.isCorrespondence(\"Vegetable Growers' News Letter\")),'false'],
     [String(m.isCorrespondence('A letter to Thomas Trotter : occasioned by his proposal')),'false'],
+    [String(m.isStreetAddress('3733 Chevy Chase Drive, La Cañada Flintridge, California')),'true'],
+    [String(m.isStreetAddress('Roads and Bridges of Devon')),'false'],
+    [String(m.isNotABook('William Cheyney Letter to son 1892-05-16')),'true'],
+    [String(m.isNotABook('The Gardener')),'false'],
   ];
   const bad=c.filter(([g,w])=>g!==w);
   console.log(bad.length ? 'FAIL '+JSON.stringify(bad) : 'OK '+c.length);
