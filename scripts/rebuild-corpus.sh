@@ -76,7 +76,11 @@ if [ "$CHECK" = "1" ]; then
     # blocks, none reaching 120 characters. It is catalogued and legitimately
     # un-indexed, and without this the check reads a permanent one-book gap as
     # a truncated index and fails every run.
-    sk=$(sqlite3 "file:$DB?mode=ro" "select coalesce((select v from corpus_stats where k='skipped_no_paragraphs'),0);" 2>/dev/null)
+    # BOTH skip reasons. build-external-passages skips OCR-noise books and, from
+    # 2026-08-06, archival correspondence — counted separately so each rule stays
+    # visible, but both must be added back when reconciling against texts on disk.
+    sk=$(sqlite3 "file:$DB?mode=ro" "select coalesce((select v from corpus_stats where k='skipped_no_paragraphs'),0)
+         + coalesce((select v from corpus_stats where k='skipped_correspondence'),0);" 2>/dev/null)
     if [ $(( idx + ${sk:-0} )) -ge "${texts:-0}" ]; then
       echo "  complete: $idx indexed + ${sk:-0} skipped (OCR noise) accounts for $texts texts"
       exit 0
@@ -187,7 +191,8 @@ else
   # corpus_stats.skipped_no_paragraphs is written by the builder into the index
   # itself and survives a lost logfile. Measured 2026-08-05: the log source read
   # 0 because LOGFILE was empty, while corpus_stats correctly held 1.
-  skipped=$(sqlite3 "file:$DB?mode=ro" "select coalesce((select v from corpus_stats where k='skipped_no_paragraphs'),-1);" 2>/dev/null)
+  skipped=$(sqlite3 "file:$DB?mode=ro" "select coalesce((select v from corpus_stats where k='skipped_no_paragraphs'),-1)
+            + coalesce((select v from corpus_stats where k='skipped_correspondence'),0);" 2>/dev/null)
   if [ "${skipped:--1}" -lt 0 ]; then
     # -1 means the builder recorded nothing — NOT that nothing was skipped.
     # Fall back to the log, and say which source answered.

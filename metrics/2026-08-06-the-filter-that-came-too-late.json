@@ -1,0 +1,22 @@
+{
+  "measured_at": "2026-08-06T15:37:38Z",
+  "question": "GQ-001",
+  "subject": "the selection filter did not remove what had already been fetched",
+  "the_gap": "build-want-list gained a correspondence filter, but build-external-passages reads the TEXT DIRECTORY, not the want-list. The 13 manuscript letters already on the vault would have entered the index on the next rebuild regardless.",
+  "verified_they_are_not_indexed_yet": "0 Cheyney books and 0 passages in the current index \u2014 the last rebuild predates that fetch",
+  "the_fix": "the builder now skips the same pattern at index time, counts it separately in corpus_stats, and rebuild-corpus adds BOTH skip categories when reconciling catalogue against index",
+  "nothing_deleted": "the files stay on the vault; they are simply not indexed",
+  "a_hardcoded_path_that_bit_immediately": {
+    "what": "my first fixture test reported 0 correspondence skipped",
+    "why": "the builder read BOOKS from a hardcoded path, so it took titles from the REAL catalogue instead of the fixture \u2014 and the fixture had no rows",
+    "note": "seven other builders had already been moved to lib/vault-paths.mjs for exactly this reason; this one was missed",
+    "fix": "BOOKS_DB override, which is what made the skip testable at all"
+  },
+  "a_number_that_would_have_misled_later": "the builder logged \"from 5 books\" while indexing 2. rebuild-corpus greps that line, and it reads as a corpus size in a worklog a week later. Now: \"from 2 books (3 correspondence skipped)\".",
+  "verified": {
+    "fixture_of_3_letters_and_2_books": "3 skipped, books=2, 64 passages",
+    "files_still_on_disk": 5,
+    "verify_chain": "exit 0"
+  },
+  "derivations": {}
+}

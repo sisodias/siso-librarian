@@ -31,7 +31,13 @@ import { join, basename } from 'node:path';
 const VAULT = vaultRoot();
 const TEXT = join(VAULT, 'ia-ingest', 'text');
 const OUT = join(VAULT, 'ia-ingest', 'external-passages.sqlite');
-const BOOKS = `${process.env.HOME}/foundry-data/domains/books/books.sqlite`;
+// BOOKS_DB, so this can be pointed at a fixture. Measured 2026-08-06: the
+// catalogue path was hardcoded here while seven other builders had already been
+// moved to lib/vault-paths.mjs for exactly this reason — and it bit immediately.
+// A fixture test of the new correspondence skip reported "0 skipped" because the
+// fixture had no book_external rows to supply titles, and the builder read the
+// real catalogue instead of the one under test.
+const BOOKS = process.env.BOOKS_DB || `${process.env.HOME}/foundry-data/domains/books/books.sqlite`;
 const check = process.argv.includes('--check');
 
 // BUSY TIMEOUT. Measured 2026-08-06: no script in this pipeline waited for a
@@ -160,8 +166,29 @@ let totalH = 0;
 const skippedIds = [];
 let totalW = 0;
 
+// ARCHIVAL CORRESPONDENCE, SKIPPED AT INDEX TIME TOO. build-want-list gained a
+// filter for this on 2026-08-06, but that only stops FUTURE fetches: this builder
+// reads the text DIRECTORY, so the 13 manuscript letters already on the vault
+// would enter the index on the next rebuild regardless.
+//
+// They are OCR of handwriting — "Pivincelsne aerate", "Dhiledilthi" for
+// Philadelphia — and they pass every existing guard, including the 0.45
+// English-dictionary check, at 0.541 and 0.547, because printed letterhead
+// carries them past it.
+//
+// The files stay on the vault; nothing is deleted. They are simply not indexed,
+// and the count is recorded so the skip is visible rather than silent.
+const CORRESPONDENCE_TITLE = /\bletters?\s+(to|from)\b.*(\d{4}-\d{2}-\d{2}|\b\d{4}\b)/i;
+const correspondenceIds = [];
+
 for (const f of files) {
   const id = basename(f, '.txt');
+  const knownTitle = titles.get(id) || '';
+  if (CORRESPONDENCE_TITLE.test(knownTitle)) {
+    console.error(`  ${id}: ARCHIVAL CORRESPONDENCE — skipped (${knownTitle.slice(0, 48)})`);
+    correspondenceIds.push(id);
+    continue;
+  }
   const raw = readFileSync(join(TEXT, f), 'utf8');
   const ps = paragraphs(raw);
   if (!ps.length) {
@@ -203,7 +230,19 @@ for (const f of files) {
 sq(OUT, `create table if not exists corpus_stats (k text primary key, v integer);
 insert or replace into corpus_stats values
   ('skipped_no_paragraphs', ${skippedIds.length}),
-  ('books', ${files.length}), ('passages', ${totalP}), ('words', ${totalW}),
+  -- Correspondence skips are counted SEPARATELY from OCR-noise skips: they are
+  -- different reasons and rebuild-corpus reconciles the catalogue against the
+  -- index using these numbers. Folding them together would make one skip look
+  -- like the other and hide which rule fired.
+  ('skipped_correspondence', ${correspondenceIds.length}),
+  -- files.length would count the correspondence files that were never indexed,
+  -- so the catalogue/index reconciliation would report a mismatch that is not one.
+  ('books', ${files.length - correspondenceIds.length}), ('passages', ${totalP}), ('words', ${totalW}),
   ('with_headings', ${totalH});`);
-console.error(`\n${totalP} passages, ${totalW.toLocaleString()} words, from ${files.length} books`);
+// files.length counts what was READ, not what was INDEXED. rebuild-corpus
+// greps this line, and reporting 5 when 2 were indexed is the kind of number
+// that reads as a corpus size in a worklog a week later.
+console.error(`\n${totalP} passages, ${totalW.toLocaleString()} words, from ${files.length - correspondenceIds.length - skippedIds.length} books`
+  + (correspondenceIds.length ? ` (${correspondenceIds.length} correspondence skipped)` : '')
+  + (skippedIds.length ? ` (${skippedIds.length} no-paragraph skipped)` : ''));
 console.error(`index: ${OUT} (${(statSync(OUT).size / 1048576).toFixed(1)} MB)`);
