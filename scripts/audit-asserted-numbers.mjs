@@ -457,10 +457,29 @@ if (existsSync(SNAPSHOT)) {
         note: 'Declared in derivations but its label resolves to no number in the snapshot, so nothing was checked.' });
       continue;
     }
+    // CORRUPT IS NOT LOCKED. The bare `catch { derived = null }` threw away WHY
+    // the derivation failed, so a corrupt source file and a database busy for
+    // ten seconds collapsed to the same 'unverifiable' — the same
+    // information-destroying shape as `|| echo 0`.
+    //
+    // That mattered the moment 'unverifiable' stopped gating (2026-08-06, for
+    // locked databases during a rebuild): the gate self-test's corrupt-source
+    // probe went quiet, because corrupting a registry file now looked exactly
+    // like a transient lock.
+    //
+    // A parse error is a DEFECT in the file and must gate. A lock or a missing
+    // file is an absence of measurement and must not.
     let derived = null;
-    try { derived = derive(d); } catch { derived = null; }
+    let failure = null;
+    try { derived = derive(d); } catch (err) { derived = null; failure = err; }
     if (derived === null) {
-      findings.push({ check: 'metric-count', file: SNAPSHOT, label, asserted, derived: 'unavailable', status: 'unverifiable' });
+      const msg = String(failure?.stderr || failure?.message || '');
+      const corrupt = /JSON|Unexpected token|Unexpected end|parse|malformed|not a database|file is encrypted|disk image is malformed/i.test(msg);
+      findings.push({
+        check: 'metric-count', file: SNAPSHOT, label, asserted, derived: 'unavailable',
+        status: corrupt ? 'source-corrupt' : 'unverifiable',
+        ...(corrupt ? { why: msg.trim().split('\n')[0].slice(0, 160) } : {}),
+      });
       continue;
     }
     countsChecked += 1;
@@ -733,7 +752,29 @@ const DEBT_BEFORE = '2026-08-05';
 //
 // Same wrong-key shape that lib/claim-paths.mjs and lib/snapshot-paths.mjs were
 // written for: two fields, similar names, different meanings.
+// SCOPED TO THE CHECKS THE DEBT IS ACTUALLY MADE OF. Measured 2026-08-06: a
+// bare date cutoff silently disabled FOUR gate self-test cases. Each plants a
+// falsified number in a metrics file dated 2026-08-04 and requires the gate to
+// fire; my cutoff filed those as acknowledged debt and the gate went quiet.
+//
+// I had written the cutoff for one class — 23 worklog-timestamp drifts from
+// before I switched to `date -u` — and then applied it to EVERY check. A
+// falsified number is not stale merely because the file it sits in is old.
+//
+// The real debt, re-derived: 23 worklog-timestamp + 2
+// metrics-reproducible-not-derivable. Nothing else. declared-derivation and
+// metric-count — the ones the self-test plants — are never in it.
+// ONE CHECK, not two. metrics-reproducible-not-derivable was in this set for a
+// day and it broke the case that proves the audit notices its own claim reader
+// failing: breaking lib/claim-paths.mjs makes those 2 findings DISAPPEAR (the
+// audit detects less, not more), so they are the only signal that case has —
+// and filing them as debt made the gate go quiet. Measured 2026-08-06.
+//
+// The cutoff was written for exactly one class: 23 worklog-timestamp drifts from
+// before I switched to `date -u`. Everything else it touched, it broke.
+const DEBT_CHECKS = new Set(['worklog-timestamp']);
 const isHistorical = (f) => {
+  if (!DEBT_CHECKS.has(f.check)) return false;
   const m = String(f.file || f.path || '').match(/(\d{4}-\d{2}-\d{2})/);
   return Boolean(m) && m[1] < DEBT_BEFORE;
 };
@@ -752,6 +793,28 @@ const isHistorical = (f) => {
 const isUnverifiable = (f) => f.status === 'unverifiable' || f.status === 'source_missing';
 const acknowledgedDebt = findings.filter(isHistorical);
 const unverifiable = findings.filter((f) => !isHistorical(f) && isUnverifiable(f));
+// THE CLAIM READER FAILING SHOWS UP AS FINDINGS DISAPPEARING, NOT APPEARING.
+// Measured 2026-08-06: break lib/claim-paths.mjs so grounding stops resolving,
+// and metrics-reproducible-not-derivable goes 2 -> 0 while EVERY other number is
+// unchanged — declared_derivations_rederived stays 31, counts_independently
+// _rederived stays 39, snapshot-undeclared-numbers stays "12 of 51, 12 explained".
+//
+// I guessed at three other signals first (explained < count, metric_count_findings,
+// declaredChecked) and measured each: all three were identical broken and healthy.
+// This is the only one that moves.
+//
+// The audit checks FEWER things and reports no defect — the silent-coverage-loss
+// shape this file exists to catch. An exit code cannot express it, so it is
+// asserted: those two findings depend on grounding resolving, and their
+// disappearance means the reader stopped.
+const reproducibleFindings = findings.filter((f) => f.check === 'metrics-reproducible-not-derivable').length;
+if (!skipSqlite && reproducibleFindings === 0) {
+  findings.push({
+    check: 'claim-reader-resolving-nothing',
+    note: 'metrics-reproducible-not-derivable produced 0 findings. Those depend on the claim reader (lib/claim-paths.mjs) resolving grounding, and 2 are expected here — zero means the reader has stopped resolving and this audit is passing because it checked less, not because nothing is wrong.',
+  });
+}
+
 const gating = findings.filter((f) => !isHistorical(f) && !isUnverifiable(f) && f.severity !== 'info');
 if (unverifiable.length) {
   console.error(`unverifiable: ${unverifiable.length} finding(s) whose source could not be read (locked or missing) — reported, not gated`);

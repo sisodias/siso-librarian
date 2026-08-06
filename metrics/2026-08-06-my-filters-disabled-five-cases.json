@@ -1,0 +1,47 @@
+{
+  "measured_at": "2026-08-06T03:06:02Z",
+  "question": "GQ-001",
+  "subject": "my own filters silently disabled five self-test cases",
+  "how_it_surfaced": "the pre-push hook refused: gate self-test FAIL, five cases reporting GATE DID NOT FIRE \u2014 every one caused by a filter I added earlier the same day",
+  "the_five_causes_each_measured_not_guessed": [
+    {
+      "cause": "skip threshold of <10 commits in evaluate-refresh",
+      "broke": "5 cases at once",
+      "why": "the self-test builds a scratch repo with exactly TWO commits on purpose \u2014 two minimum because the gate excludes HEAD",
+      "fix": "threshold is ONE, the only count that genuinely cannot be measured"
+    },
+    {
+      "cause": "a bare date cutoff classing anything pre-2026-08-05 as debt",
+      "broke": "4 cases planting falsified numbers in files dated 2026-08-04",
+      "why": "a falsified number is not stale merely because the file it sits in is old",
+      "fix": "scope the cutoff to the ONE check the debt is made of \u2014 worklog-timestamp"
+    },
+    {
+      "cause": "metrics-reproducible-not-derivable included in the debt set",
+      "broke": "the claim-reader case",
+      "fix": "removed; the debt is 23 worklog-timestamp findings and nothing else"
+    },
+    {
+      "cause": "--skip-sqlite in two self-test cases",
+      "broke": "those cases",
+      "why": "their planted number derives via sqlite, so skipping it made the defect report source_missing \u2014 unverifiable rather than wrong \u2014 and the gate correctly declined to fire",
+      "fix": "those two cases now run the sqlite derivation"
+    },
+    {
+      "cause": "unverifiable never gates (added for locked databases)",
+      "broke": "the corrupt-source probe",
+      "why": "a corrupt file and a busy database both reached a bare catch { derived = null } and collapsed to the same status",
+      "fix": "preserve the failure reason: a parse error is status source-corrupt and GATES; a lock or missing file stays unverifiable and does not"
+    }
+  ],
+  "three_wrong_guesses_i_measured_and_discarded": "explained < count, metric_count_findings, and declaredChecked were each identical broken and healthy; only metrics-reproducible-not-derivable moved (2 -> 0)",
+  "the_lesson": "every one of these filters was correct for the case it was written for and wrong the moment it was applied to every check. A filter is a claim about which findings do not matter, and it needs the same proof as the finding itself.",
+  "verified": {
+    "verify_chain": "exit 0",
+    "gate_self_test": "23 passed, 0 failed",
+    "rebuild_self_test": "9 passed, 0 failed",
+    "corrupt_source": "exit 3",
+    "genuinely_locked_database": "exit 0"
+  },
+  "derivations": {}
+}

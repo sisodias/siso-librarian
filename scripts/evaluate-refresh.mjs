@@ -111,13 +111,23 @@ assertGitUsable();
 //
 // Detecting it here rather than relying on the caller is the same fix applied to
 // audit-asserted-numbers earlier today. An exclusion list is a thing callers
-// forget; a self-check travels with the gate. One commit is the signature —
-// a real history here is in the thousands.
+// forget; a self-check travels with the gate.
+//
+// THE THRESHOLD IS ONE, NOT TEN. My first version skipped below 10 commits and
+// broke FIVE gate self-test cases at once: that suite builds a scratch repo with
+// exactly TWO commits on purpose — "two minimum, because the gate excludes HEAD
+// deliberately" — so a 10-commit floor made every case skip and report GATE DID
+// NOT FIRE. Measured 2026-08-06.
+//
+// One commit is the only count that genuinely cannot be measured: the gate
+// compares against HEAD~1, which does not resolve. At two the comparison is
+// real, however small. A threshold picked for feel rather than for the
+// mechanism took a working suite down with it.
 const commitCount = Number((() => {
   try { return execFileSync('git', ['rev-list', '--count', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(); }
   catch { return '0'; }
 })());
-if (commitCount > 0 && commitCount < 10) {
+if (commitCount === 1) {
   console.log(JSON.stringify({
     skipped: true,
     reason: `git history has ${commitCount} commit(s) — every watched path would appear to have changed at once, so no trigger can be evaluated.`,

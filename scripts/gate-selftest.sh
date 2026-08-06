@@ -115,9 +115,13 @@ d=json.load(open(p)); d['grounding'][0]['quote']='this text is not at that offse
 json.dump(d,open(p,'w'),indent=2)"
 
 # 3. Declared derivations must be re-derived, not trusted.
+  # NOT --skip-sqlite. Measured 2026-08-06: this case plants a falsified number whose
+  # derivation IS a sqlite query, so skipping sqlite made it report status
+  # source_missing — unverifiable rather than wrong — and the gate correctly
+  # declined to fire. The case was asserting a defect it had made invisible.
 check "audit catches a falsified declared number" \
   "metrics/2026-08-04-gq010-underrated-evidence.json" \
-  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
   "
 import json
 p='metrics/2026-08-04-gq010-underrated-evidence.json'
@@ -324,9 +328,13 @@ probe_done $?
 # returned '' for everything, the audit would find zero grounded metrics and
 # report a clean repo having checked nothing — the same shape as the snapshot
 # resolver failure, and the reason lib/claim-paths.mjs exists at all.
+  # NOT --skip-sqlite. Measured 2026-08-06: this case plants a falsified number whose
+  # derivation IS a sqlite query, so skipping sqlite made it report status
+  # source_missing — unverifiable rather than wrong — and the gate correctly
+  # declined to fire. The case was asserting a defect it had made invisible.
 check "audit notices when the claim reader stops resolving" \
   "scripts/lib/claim-paths.mjs" \
-  "node scripts/audit-asserted-numbers.mjs --skip-sqlite --strict" \
+  "node scripts/audit-asserted-numbers.mjs --strict" \
   "
 p='scripts/lib/claim-paths.mjs'
 t=open(p).read()
