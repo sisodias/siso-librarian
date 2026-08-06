@@ -203,7 +203,7 @@
     {
       "claim_packet": "claims/GQ-001-enforcement-limits.v2.claim.json",
       "question_id": "GQ-001",
-      "checked_at": "2026-08-06T16:56:47Z",
+      "checked_at": "2026-08-06T17:42:31Z",
       "selectors_used": [
         "GQ-001",
         "enforcement",
@@ -217,7 +217,7 @@
         "a push blocked or not blocked by the hook"
       ],
       "result": "fresh",
-      "evidence_note": "Re-checked 2026-08-06T16:56:47Z after the gate self-test went 23 -> 24 (selection-rules probe). Counts re-derived: 11 chain entries, 15 gate cases, 9 probes, 12 rebuild cases."
+      "evidence_note": "Re-checked 2026-08-06T17:42:31Z. Counts: 11 chain entries, 15 gate cases, 9 probes (20 assertions), 12 rebuild cases."
     }
   ]
 }
