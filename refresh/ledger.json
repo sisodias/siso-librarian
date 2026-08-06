@@ -203,7 +203,7 @@
     {
       "claim_packet": "claims/GQ-001-enforcement-limits.v2.claim.json",
       "question_id": "GQ-001",
-      "checked_at": "2026-08-06T04:05:19Z",
+      "checked_at": "2026-08-06T11:31:08Z",
       "selectors_used": [
         "GQ-001",
         "enforcement",
@@ -217,7 +217,7 @@
         "a push blocked or not blocked by the hook"
       ],
       "result": "fresh",
-      "evidence_note": "Re-checked 2026-08-06T04:05:19Z after 'self-test case count change' fired (22 -> 23 cases). Re-derived unchanged: 11 chain entries, 15 check cases, 8 probes. Load-bearing gates 9 -> 10. Pushes blocked: 6."
+      "evidence_note": "Re-checked 2026-08-06T11:31:08Z after the rebuild self-test went 9 -> 12 cases (search ranking, dedup, exit code). Counts re-derived: 11 chain entries, 15 gate cases, 8 probes, 12 rebuild cases."
     }
   ]
 }
