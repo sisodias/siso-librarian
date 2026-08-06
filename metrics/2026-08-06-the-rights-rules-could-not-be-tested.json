@@ -1,0 +1,24 @@
+{
+  "measured_at": "2026-08-06T16:20:39Z",
+  "question": "GQ-001",
+  "subject": "the two rules that decide what enters the corpus could not be tested",
+  "the_gap": "age-settled (which decides the RIGHTS BASIS a book is admitted on) and the correspondence filter (which decides whether an item is a book at all) both lived inside build-want-list.mjs, a script that fetches from the Internet Archive at import time. Neither could be asserted without a network round-trip.",
+  "why_it_matters": "these are the highest-consequence rules in the repo, and \"cannot be pointed at a fixture\" is the defect class that has cost the most here \u2014 it had reached the rights layer",
+  "the_fix": "lib/selection-rules.mjs, imported by both build-want-list and build-external-passages. One definition, so the two call sites cannot drift.",
+  "the_refactor_is_behaviour_preserving": "39 cases compared between the old inline implementations and the extracted ones \u2014 8 years x 4 grades plus 7 titles \u2014 with ZERO disagreements",
+  "a_false_alarm_i_had_to_resolve": "rebuilding the want-list showed 1802 -> 1840 items and 261 grade changes. That is IA returning a different result set on a fresh query, not a logic change \u2014 proven by comparing the two implementations on FIXED inputs instead.",
+  "the_probe": {
+    "assertions": 9,
+    "boundaries_not_happy_paths": "1928 upgrades and 1929 does not; a missing year never upgrades; none and not-a-designation are never promoted however old the work",
+    "both_halves_proven_to_fail": {
+      "cutoff_moved_to_2030": "23 passed, 1 failed",
+      "pattern_broadened_to_/letter/i": "23 passed, 1 failed"
+    }
+  },
+  "i_reintroduced_a_defect_and_caught_it": "my first placement put the probe ABOVE the probe_done helper, so it ran and its result was silently dropped \u2014 the suite still read 23, not 24. That is exactly the decorative-probe defect I fixed yesterday, reproduced within a day.",
+  "suite": {
+    "before": "23 passed",
+    "after": "24 passed, 0 failed"
+  },
+  "derivations": {}
+}

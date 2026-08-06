@@ -24,6 +24,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { normaliseTitle } from './ia-title-dedup.mjs';
+import { ageSettled, isCorrespondence } from './lib/selection-rules.mjs';
 
 const args = process.argv.slice(2);
 const write = args.includes('--write');
@@ -138,20 +139,9 @@ function looksNonEnglish(title) {
   return null;
 }
 
-// PUBLIC DOMAIN BY AGE. A work published before 1929 is public domain in the US
-// regardless of what an uploader typed in the rights field. This upgrades ONLY
-// bare-assertion — a grade that already means "the metadata says public domain,
-// with no formal designation behind it" — so it never admits an item whose
-// metadata says nothing at all ('none') or says something contradictory
-// ('not-a-designation').
-//
-// Deliberately conservative on missing data: no year means no upgrade.
-const PD_BY_AGE_BEFORE = 1929;
-function ageSettled(year, grade) {
-  if (grade !== 'bare-assertion') return grade;
-  if (!Number.isFinite(year) || year <= 0) return grade;
-  return year < PD_BY_AGE_BEFORE ? 'age-settled' : grade;
-}
+// ageSettled and CORRESPONDENCE_TITLE now live in lib/selection-rules.mjs so
+// they can be tested without a network round-trip. See that file for the
+// measurements behind each rule.
 
 function classifyRights(s) {
   const r = String(s || '');
@@ -168,9 +158,6 @@ const seen = new Set();
 let gutSkipped = 0;
 const nonEnglishSkipped = [];
 const letterSkipped = [];
-// "Letter(s) to/from ... <year>" — the archival correspondence shape. Requires a
-// YEAR so that printed periodicals ("Vegetable Growers' News Letter") survive.
-const LETTER_TITLE = /\bletters?\s+(to|from)\b.*(\d{4}-\d{2}-\d{2}|\b\d{4}\b)/i;
 const perSubject = [];
 
 for (const subject of subjects) {
@@ -213,7 +200,7 @@ for (const subject of subjects) {
     // Validated against two real manifests — 87 correct skips, 1 miss, and the
     // 13 apparent false positives are all Cheyney letters that should be skipped
     // too. Zero real books excluded.
-    if (LETTER_TITLE.test(String(title))) {
+    if (isCorrespondence(title)) {
       letterSkipped.push({ identifier: d.identifier, title: String(title).slice(0, 90) });
       continue;
     }

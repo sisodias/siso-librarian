@@ -26,6 +26,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { vaultRoot } from './lib/vault-paths.mjs';
+import { isCorrespondence } from './lib/selection-rules.mjs';
 import { join, basename } from 'node:path';
 
 const VAULT = vaultRoot();
@@ -178,13 +179,12 @@ let totalW = 0;
 //
 // The files stay on the vault; nothing is deleted. They are simply not indexed,
 // and the count is recorded so the skip is visible rather than silent.
-const CORRESPONDENCE_TITLE = /\bletters?\s+(to|from)\b.*(\d{4}-\d{2}-\d{2}|\b\d{4}\b)/i;
 const correspondenceIds = [];
 
 for (const f of files) {
   const id = basename(f, '.txt');
   const knownTitle = titles.get(id) || '';
-  if (CORRESPONDENCE_TITLE.test(knownTitle)) {
+  if (isCorrespondence(knownTitle)) {
     console.error(`  ${id}: ARCHIVAL CORRESPONDENCE — skipped (${knownTitle.slice(0, 48)})`);
     correspondenceIds.push(id);
     continue;

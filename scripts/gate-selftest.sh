@@ -98,6 +98,7 @@ check() {
 #
 # Subshells cannot increment the parent's counters, so they signal by exit status
 # and the parent counts it here.
+
 probe_done() {
   if [ "$1" -eq 0 ]; then PASS=$((PASS+1)); else FAIL=$((FAIL+1)); fi
 }
@@ -195,6 +196,40 @@ echo -n "PROBE the refresh case has a trigger to fire — "
   done
   if [ "$live" -gt 0 ]; then echo "PASS ($live watched path(s) present)"
   else echo "FAIL — no watched path in the scratch repo; case 7 would pass having tested nothing"; exit 1; fi
+)
+probe_done $?
+
+echo -n "PROBE the rights and selection rules hold at their boundaries — "
+(
+  # THE HIGHEST-CONSEQUENCE RULES IN THE REPO, and until 2026-08-06 neither was
+  # testable: both lived inside build-want-list.mjs, which fetches from the
+  # Internet Archive at import time. One decides the RIGHTS BASIS on which a book
+  # is admitted; the other decides whether an item is a book at all.
+  #
+  # Boundaries, not happy paths: 1928 upgrades and 1929 does not; a missing year
+  # never upgrades; 'none' and 'not-a-designation' are never promoted no matter
+  # how old the work is. And a printed periodical whose title contains "Letter"
+  # must survive while a dated manuscript letter does not.
+  out=$(node -e "
+import('$ROOT/scripts/lib/selection-rules.mjs').then(m=>{
+  const c=[
+    [m.ageSettled(1611,'bare-assertion'),'age-settled'],
+    [m.ageSettled(1928,'bare-assertion'),'age-settled'],
+    [m.ageSettled(1929,'bare-assertion'),'bare-assertion'],
+    [m.ageSettled(null,'bare-assertion'),'bare-assertion'],
+    [m.ageSettled(1611,'none'),'none'],
+    [m.ageSettled(1611,'not-a-designation'),'not-a-designation'],
+    [String(m.isCorrespondence('William Cheyney Letter to son 1892-05-16')),'true'],
+    [String(m.isCorrespondence(\"Vegetable Growers' News Letter\")),'false'],
+    [String(m.isCorrespondence('A letter to Thomas Trotter : occasioned by his proposal')),'false'],
+  ];
+  const bad=c.filter(([g,w])=>g!==w);
+  console.log(bad.length ? 'FAIL '+JSON.stringify(bad) : 'OK '+c.length);
+});" 2>&1)
+  case "$out" in
+    OK*) echo "PASS ($out assertions)" ;;
+    *)   echo "FAIL — $out"; exit 1 ;;
+  esac
 )
 probe_done $?
 
