@@ -34,7 +34,11 @@ const OUT = join(VAULT, 'ia-ingest', 'external-passages.sqlite');
 const BOOKS = `${process.env.HOME}/foundry-data/domains/books/books.sqlite`;
 const check = process.argv.includes('--check');
 
-const sq = (db, sql) => execFileSync('sqlite3', [db, sql], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
+// BUSY TIMEOUT. Measured 2026-08-06: no script in this pipeline waited for a
+// lock, so any concurrent reader could end a long build with "database is
+// locked (5)" — it killed a 45-minute modern-index build after 1.39M of 4.13M
+// rows. Writers wait; the corpus stays readable while it rebuilds.
+const sq = (db, sql) => execFileSync('sqlite3', ['-cmd', '.timeout 60000', db, sql], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
 
 if (check) {
   if (!existsSync(OUT)) { console.error(`no index yet: ${OUT}`); process.exit(70); }

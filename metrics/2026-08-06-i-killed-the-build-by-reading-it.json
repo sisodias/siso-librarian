@@ -1,0 +1,29 @@
+{
+  "measured_at": "2026-08-06T09:18:54Z",
+  "question": "GQ-001",
+  "subject": "I killed a 45-minute build by reading the database it was writing \u2014 twice",
+  "what_happened": "testing the search CLI against the live corpus during a rebuild took read locks at a commit point; the modern-index build died with \"database is locked (5)\" after 1,394,000 of 4,130,649 rows. The retry died the same way.",
+  "the_underlying_fragility": "NOT ONE script in the pipeline had a busy timeout \u2014 build-external-passages, migrate-book-external, build-library-page, corpus-integrity and add-longs-variants all failed instantly on any lock contention",
+  "why_that_matters_beyond_my_mistake": "a corpus that cannot be READ while it rebuilds has ~45 minutes of downtime per ingest cycle, and the rebuild is the long-running side \u2014 so it is the side that must wait",
+  "the_fix": {
+    "writers": ".timeout 60000 \u2014 a writer would have to redo 45 minutes",
+    "readers": ".timeout 5000 \u2014 a reader retries a query",
+    "verified": "ran a reader DURING a write: reader exit 0, writer still alive"
+  },
+  "the_guard_i_already_had_did_not_cover_this": "refuse_if_ingesting blocks a rebuild while an INGEST runs; it says nothing about readers, and readers were the problem",
+  "corpus_after": {
+    "books": 2812,
+    "indexed": 2810,
+    "skipped_ocr_noise": 2,
+    "passages": 4130649,
+    "words": 338075724,
+    "long_s_passages": 854750,
+    "distinct_words_converted": 8103
+  },
+  "search_at_4.1M": {
+    "telescope": "5721ms",
+    "such": "730ms",
+    "himfelf": "417ms"
+  },
+  "derivations": {}
+}

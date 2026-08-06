@@ -31,7 +31,11 @@ if (!existsSync(DB)) {
   console.error(`index not available (vault mounted?): ${DB}`);
   process.exit(70);
 }
-const sq = (sql) => execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
+// BUSY TIMEOUT. Measured 2026-08-06: no script in this pipeline waited for a
+// lock, so any concurrent reader could end a long build with "database is
+// locked (5)" — it killed a 45-minute modern-index build after 1.39M of 4.13M
+// rows. Writers wait; the corpus stays readable while it rebuilds.
+const sq = (sql) => execFileSync('sqlite3', ['-cmd', '.timeout 60000', `file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
 
 // json_group_array so sqlite escapes its own output — passage headings contain
 // quotes and newlines, and a delimited format shreds them.

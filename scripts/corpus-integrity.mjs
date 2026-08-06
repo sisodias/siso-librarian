@@ -43,7 +43,11 @@ if (!existsSync(DB)) {
   }, null, 2));
   process.exit(0);
 }
-const sq = (sql) => execFileSync('sqlite3', [`file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }).trim();
+// BUSY TIMEOUT. Measured 2026-08-06: no script in this pipeline waited for a
+// lock, so any concurrent reader could end a long build with "database is
+// locked (5)" — it killed a 45-minute modern-index build after 1.39M of 4.13M
+// rows. Writers wait; the corpus stays readable while it rebuilds.
+const sq = (sql) => execFileSync('sqlite3', ['-cmd', '.timeout 60000', `file:${DB}?mode=ro`], { input: sql, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }).trim();
 
 const SEP = String.fromCharCode(31);
 // A rebuild in flight holds a write lock, and sqlite returns "database is

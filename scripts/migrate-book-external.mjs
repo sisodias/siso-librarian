@@ -41,7 +41,11 @@ const WANT = 'sources/internet-archive/want-list-weak-subjects.json';
 // inserts as an argument threw E2BIG — the same OS limit that broke
 // add-longs-variants at 2,000 rows. Piping has no such ceiling, so the
 // batch size becomes a memory choice rather than a hard wall.
-const sq = (db, sql) => execFileSync('sqlite3', [db], { input: sql, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
+// BUSY TIMEOUT. Measured 2026-08-06: no script in this pipeline waited for a
+// lock, so any concurrent reader could end a long build with "database is
+// locked (5)" — it killed a 45-minute modern-index build after 1.39M of 4.13M
+// rows. Writers wait; the corpus stays readable while it rebuilds.
+const sq = (db, sql) => execFileSync('sqlite3', ['-cmd', '.timeout 60000', db], { input: sql, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
 
 if (!existsSync(BOOKS)) { console.error(`catalogue missing: ${BOOKS}`); process.exit(70); }
 if (!existsSync(INGEST)) { console.error(`ingest missing (volume mounted?): ${INGEST}`); process.exit(70); }

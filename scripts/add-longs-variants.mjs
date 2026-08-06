@@ -35,7 +35,19 @@ const resume = process.argv.includes('--resume');
 // SQL goes on STDIN, not argv. Measured 2026-08-04: a 2,000-row insert of full
 // passage bodies exceeded the argv limit and threw E2BIG. Piping has no such
 // ceiling, so batch size becomes a memory choice rather than a hard limit.
-const sq = (sql, db = DB) => execFileSync('sqlite3', [db], { input: sql, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }).trim();
+// A READER MUST NOT BE ABLE TO KILL A 45-MINUTE BUILD. Measured 2026-08-06: this
+// script had no busy timeout, so ANY concurrent reader taking a lock at a commit
+// point ended the run instantly with "database is locked (5)" — 1,394,000 of
+// 4,130,649 rows written, and the whole build discarded.
+//
+// I caused it myself by testing the search CLI against the live database during
+// a rebuild. But the fragility is the point: a corpus that cannot be read while
+// it is rebuilt is a corpus with an hour of downtime per ingest cycle, and the
+// rebuild is the LONG-RUNNING side, so it is the side that must wait.
+//
+// 60s rather than the reader's 5s: a reader retries a query, a writer would have
+// to redo forty-five minutes.
+const sq = (sql, db = DB) => execFileSync('sqlite3', ['-cmd', '.timeout 60000', db], { input: sql, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }).trim();
 
 if (!existsSync(DB)) { console.error(`index missing (vault mounted?): ${DB}`); process.exit(70); }
 
