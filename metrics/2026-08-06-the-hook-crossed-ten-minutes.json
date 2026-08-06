@@ -1,0 +1,21 @@
+{
+  "measured_at": "2026-08-06T00:18:25Z",
+  "question": "GQ-001",
+  "subject": "the pre-push hook crossed ten minutes and started timing out my own pushes",
+  "symptom": "two consecutive pushes killed at the 10-minute mark; the third succeeded only when run in the background",
+  "the_blind_spot": "check-all.sh reported PASS/FAIL and NO duration, so I could not say which suite had grown without re-running each by hand",
+  "the_fix": "time every suite in the one run() wrapper both suites pass through, and print seconds on the PASS and FAIL lines alike",
+  "first_measurement": {
+    "verify chain": "143s",
+    "gate self-test": "28s",
+    "retention self-test": "0s",
+    "rebuild self-test": "13s",
+    "gates load-bearing": "460s",
+    "total": "644s"
+  },
+  "reading": "load-bearing is 71% on its own and verify is 22% \u2014 together 92%. The other three suites cost 41s combined.",
+  "why_load_bearing_grows": "it replays the entire verify chain once per gate, so every second added to the chain is multiplied by the gate count",
+  "not_yet_acted_on": "this is a measurement, not a fix \u2014 the number is now visible on every run, which is the precondition for deciding whether to act",
+  "why_it_matters": "a gate too slow to run is a gate that gets skipped, which is how the --quick skip list grew in the first place",
+  "derivations": {}
+}

@@ -44,16 +44,26 @@ run() {
     printf "  %-22s SKIP (slow)\n" "$name"
     return
   fi
-  local out status
+  # TIME EVERY SUITE. Measured 2026-08-06: the pre-push hook crossed TEN MINUTES
+  # and started timing out my own pushes, and I could not say which suite had
+  # grown — this script reported pass/fail and no duration, so the only way to
+  # find out was to re-run each by hand.
+  #
+  # A gate too slow to run is a gate that gets skipped, and that is how the
+  # `--quick` skip list grew in the first place. Cost is a number worth watching
+  # BEFORE it forces that choice, not after.
+  local out status start elapsed
+  start=$(date +%s)
   out=$(eval "$cmd" 2>&1); status=$?
+  elapsed=$(( $(date +%s) - start ))
   if [ "$status" -eq 0 ]; then
     # Report the count the suite itself printed. `verify` prints none, and an
     # empty column there is honest — inventing "PASS (0 checks)" would read as
     # coverage that was never claimed.
-    printf "  %-22s PASS  %s\n" "$name" "$(printf '%s' "$out" | grep -oE '[0-9]+ (passed|load-bearing)[^,]*' | tail -1)"
+    printf "  %-22s PASS  %-22s %4ss\n" "$name" "$(printf '%s' "$out" | grep -oE '[0-9]+ (passed|load-bearing)[^,]*' | tail -1)" "$elapsed"
     PASS=$((PASS+1))
   else
-    printf "  %-22s FAIL (exit %s)\n" "$name" "$status"
+    printf "  %-22s FAIL (exit %s) %4ss\n" "$name" "$status" "$elapsed"
     printf '%s\n' "$out" | tail -4 | sed 's/^/      /'
     FAIL=$((FAIL+1))
     FAILED_SUITES="$FAILED_SUITES $name"
