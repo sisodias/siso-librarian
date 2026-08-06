@@ -1,0 +1,20 @@
+{
+  "measured_at": "2026-08-06T00:39:54Z",
+  "question": "GQ-001",
+  "subject": "unverifiable treated as wrong, for the third time today",
+  "symptom": "during a rebuild the gate blocked a push on external_corpus.books/passages/words \u2014 three numbers that were CORRECT and merely unreadable, because the rebuild held a lock on the corpus database",
+  "why_it_matters": "a rebuild takes ~40 minutes; a gate that cannot pass for 40 minutes of every ingest cycle is a gate that gets bypassed",
+  "the_script_already_knew": "it labels these status 'unverifiable' as against a number read and disagreed \u2014 my gating filter simply ignored status",
+  "the_recurring_shape": {
+    "first": "mktemp failed -> empty logfile -> skip branch unreachable -> exit 9 on a correct corpus",
+    "second": "unreadable log database -> counts empty -> nothing to do, exit 0",
+    "third": "locked corpus database -> derivation unavailable -> gated a push on correct numbers",
+    "common_root": "an input that could not be READ being scored as a fact about the thing measured"
+  },
+  "the_fix": "unverifiable and source_missing findings are reported, never gated; they are also NEVER counted as verified",
+  "verified_both_directions": {
+    "during_a_rebuild_db_locked": "exit 0, 3 unverifiable reported",
+    "a_falsified_snapshot_number": "exit 3 \u2014 still catches it, even with the corpus db locked"
+  },
+  "derivations": {}
+}
