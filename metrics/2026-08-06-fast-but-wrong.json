@@ -1,0 +1,40 @@
+{
+  "measured_at": "2026-08-06T10:23:52Z",
+  "question": "GQ-001",
+  "subject": "search was fast and returned the wrong passages",
+  "found_by": "I had spent a long stretch making search FAST and never checked whether its answers were RIGHT. There was no ORDER BY in either query.",
+  "what_a_reader_got": "whatever rows FTS5 yielded first \u2014 rowid order, which is the alphabetically-first book by identifier, not the best match",
+  "the_measured_cost": {
+    "method": "mean occurrences of the search term across the top 5 results",
+    "quinine": "1.0 -> 5.2",
+    "telescope": "1.2 -> 3.6",
+    "botany": "1.2 -> 4.0",
+    "vaccination": "1.4 -> 3.8",
+    "the_concrete_case": "every unranked top hit mentioned the term ONCE; for quinine the best passage in the corpus mentions it NINE times and no reader ever saw it. The new top hit is a London hospital pharmacopoeia with three highlighted occurrences."
+  },
+  "three_structural_lessons_each_measured": [
+    {
+      "what": "a rowid restriction does NOT bound ranking",
+      "evidence": "\"such\" took 208 SECONDS with the cap outside the subquery; the ORDER BY still scored every match",
+      "fix": "bound the MATCH inside the subquery \u2014 62ms, and verified to return the IDENTICAL top 5 as full ranking"
+    },
+    {
+      "what": "snippet() and bm25() both work inside a capped subquery",
+      "why_it_mattered": "I assumed snippet() forced the MATCH to stay in the outer query, which is what blocked the obvious fix"
+    },
+    {
+      "what": "join order dominated everything",
+      "evidence": "joining book_ext before the exclusion made \"himself\" take 87 SECONDS \u2014 cap+rank alone is 65ms and the exclusion adds 68ms; resolving a title for all 40,000 candidates before discarding them was the entire cost",
+      "fix": "exclude, rank, limit, THEN join \u2014 798ms"
+    }
+  ],
+  "result": {
+    "every_query_under": "1.3s",
+    "quinine": "966ms",
+    "himself": "87592ms -> 798ms",
+    "himfelf": "272ms",
+    "duplicates_across_8_queries": 0
+  },
+  "a_recurring_self_inflicted_error": "I put a backtick inside a template-literal SQL comment for the THIRD time in this file today. Swept the whole file afterwards: zero backticks remain inside SQL comments.",
+  "derivations": {}
+}

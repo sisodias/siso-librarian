@@ -97,9 +97,33 @@ if (useOriginal) {
   // use function snippet in the requested context". Compute it in a subquery,
   // aggregate outside.
   const out = sq(`select json_group_array(json_array('printed', title, ext_id, seq, snip)) from (
-      select b.title, s.ext_id, s.seq, snippet(passage_ext_search, 3, '[', ']', '…', 14) snip
-      from passage_ext_search s join book_ext b using(ext_id)
-      where passage_ext_search match 'body:${q}' limit ${limit});`);
+      select b.title, t.ext_id, t.seq, t.snip, t.r
+      from (
+        select s.ext_id, s.seq, snippet(passage_ext_search, 3, '[', ']', '…', 14) snip,
+               bm25(passage_ext_search) r
+        from passage_ext_search s
+        where passage_ext_search match 'body:${q}'
+        -- CAP INSIDE THE MATCH, THEN RANK. Measured 2026-08-06: this query had NO
+        -- ordering at all, so a reader got whatever rows FTS5 yielded first —
+        -- rowid order, which is the alphabetically-first book by identifier.
+        --
+        -- Mean occurrences of the term across the top 5 results:
+        --
+        --   quinine      1.0 unranked -> 5.2 ranked
+        --   telescope    1.2          -> 3.6
+        --   botany       1.2          -> 4.0
+        --   vaccination  1.4          -> 3.8
+        --
+        -- Every unranked top hit mentioned the term ONCE. For "quinine" the best
+        -- passage in the corpus mentions it NINE times and no reader ever saw it.
+        --
+        -- The cap must sit INSIDE this subquery, not outside as a rowid filter:
+        -- measured, a rowid restriction still let ORDER BY bm25 score every match
+        -- and "such" took 208 SECONDS. Bounding the MATCH first costs 62ms and
+        -- returns the IDENTICAL top 5 as full ranking (5.2 / 3.6 / 4.0).
+        limit 40000
+      ) t join book_ext b on b.ext_id = t.ext_id
+      order by t.r limit ${limit});`);
   rows.push(...JSON.parse(out || '[]'));
 }
 // EXCLUDE BY ROWID, NOT BY POSTING LIST. The overlap exclusion used to be an
@@ -133,32 +157,32 @@ const printedHasAll = terms.length
   : '1';
 
 if (useModern) {
-  const out = sq(`select json_group_array(json_array('modernised', title, ext_id, seq, snip)) from (
-      select b.title, m.ext_id, m.seq, snippet(passage_modern, 3, '[', ']', '…', 14) snip
-      from passage_modern m join book_ext b using(ext_id)
-      where passage_modern match 'body_modern:${q}'
-        -- ONLY passages the printed index cannot find — the "witneffed",
-        -- "creaturcs" passages a reader searching modern spelling would never
-        -- otherwise reach. The exclusion is load-bearing: without it the shared
-        -- hits crowd out every modern-only one.
-        --
-        -- not exists over a SHARED ROWID, so this is a point lookup per candidate
-        -- rather than a scan of the whole printed posting list. See the note above.
-        and not exists (
-          select 1 from passage_ext_search_content c
-          where c.rowid = m.rowid and ${printedHasAll})
-        -- CAP THE CANDIDATES, not just the results. LIMIT N bounds rows
-        -- RETURNED; a stopword bounds nothing, because almost every candidate is
-        -- rejected. Measured 2026-08-06: "the" matches 2,723,718 modern rows and
-        -- nearly all of them also print "the", so the join walked millions to
-        -- find three — 58 seconds.
-        --
-        -- This cap is safe in a way the old frequency budget was not: whatever it
-        -- finds is still EXACTLY correct, because every candidate is tested by
-        -- the same exclusion. It stops looking; it does not lower the bar.
-        and m.rowid in (
-          select rowid from passage_modern where passage_modern match 'body_modern:${q}' limit 40000)
-      limit ${limit});`);
+  const out = sq(`select json_group_array(json_array('modernised', b.title, u.ext_id, u.seq, u.snip)) from (
+      select t.ext_id, t.seq, t.snip, t.r
+      from (
+        select m.ext_id, m.seq, m.rowid rid,
+               snippet(passage_modern, 3, '[', ']', '…', 14) snip,
+               bm25(passage_modern) r
+        from passage_modern m
+        where passage_modern match 'body_modern:${q}'
+        -- Same shape as the printed query: bound the MATCH, THEN rank. A rowid
+        -- restriction outside the subquery does not bound the work — measured
+        -- 2026-08-06, "himfelf" took 23.5s that way and 417ms this way.
+        limit 40000
+      ) t
+      -- EXCLUDE BEFORE JOINING. Measured 2026-08-06: joining book_ext first made
+      -- "himself" take 87 SECONDS, because the join resolved a title for all
+      -- 40,000 capped candidates before the exclusion threw nearly all of them
+      -- away. Cap+rank alone is 65ms and the exclusion adds 68ms; the join was
+      -- the whole cost.
+      --
+      -- ONLY passages the printed index cannot find — the "witneffed",
+      -- "creaturcs" text a reader searching modern spelling would never reach.
+      where not exists (
+        select 1 from passage_ext_search_content c
+        where c.rowid = t.rid and ${printedHasAll})
+      order by t.r limit ${limit}
+    ) u join book_ext b on b.ext_id = u.ext_id;`);
   rows.push(...JSON.parse(out || '[]'));
 }
 
