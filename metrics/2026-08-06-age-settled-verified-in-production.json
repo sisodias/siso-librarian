@@ -1,0 +1,22 @@
+{
+  "measured_at": "2026-08-06T14:52:15Z",
+  "question": "GQ-001",
+  "subject": "the age-settled grade, verified in production on its first batch",
+  "context": "the grade admitted 538 pre-1929 books that the rights filter had been rejecting on metadata wording. This is the first batch fetched under it.",
+  "batch_result": {
+    "fetched": 189,
+    "of": 200,
+    "failures": 11
+  },
+  "i_checked_whether_the_new_grade_caused_the_failures": {
+    "all_11_failures_are": "age-settled \u2014 which looked alarming",
+    "but_what_they_actually_are": "manuscript LETTERS (William Cheyney, 1891-1892) with no OCR text layer",
+    "rejected_by": "the existing NO_TEXT and BAD_BODY guards, correctly",
+    "age-settled_books_that_succeeded": 143
+  },
+  "verdict": "the grade works. The failures are a property of handwritten items, not of the rights decision \u2014 and the guards that caught them predate this change.",
+  "corpus": {
+    "texts_on_disk": 3461
+  },
+  "derivations": {}
+}
