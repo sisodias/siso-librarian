@@ -1,0 +1,41 @@
+{
+  "measured_at": "2026-08-06T14:21:13Z",
+  "question": "GQ-001",
+  "subject": "a 128-second regression that did not exist",
+  "what_i_measured_first": {
+    "himself": "127788ms",
+    "quinine": "45074ms",
+    "such": "42362ms"
+  },
+  "what_i_concluded": "a sharp non-linear regression at 4.65M passages \u2014 798ms to 128s for the same query",
+  "how_i_disproved_it": [
+    "printed-only 371ms and modern-only 457ms \u2014 each half fast, so I blamed the exclusion",
+    "the exclusion alone measured 145ms",
+    "the script's EXACT modern query measured 412ms and its exact printed query 328ms",
+    "every component was fast, so I re-ran the CLI itself: 781ms, 783ms"
+  ],
+  "the_actual_cause": "the observatory build was still reading the database when I took the first timings. Contention, not the query.",
+  "a_second_false_alarm_in_the_same_check": {
+    "telescope": "17894ms then 313/136/133ms",
+    "himfelf": "25454ms then 579/210/209ms",
+    "cause": "cold cache \u2014 the vault is USB, so the first touch after a rebuild pays disk"
+  },
+  "warm_state_truth": {
+    "telescope": "137ms",
+    "quinine": "188ms",
+    "himfelf": "211ms",
+    "such": "696ms",
+    "the": "729ms",
+    "himself": "789ms",
+    "botany": "2394ms"
+  },
+  "the_lesson": "I took three measurements while a writer held the database and nearly recorded a defect that does not exist. A timing taken during contention is not a timing. Every number here is now from a warmed, uncontended repeat.",
+  "corpus": {
+    "books": 3272,
+    "indexed": 3270,
+    "skipped_ocr_noise": 2,
+    "passages": 4652447,
+    "words": 385392556
+  },
+  "derivations": {}
+}
