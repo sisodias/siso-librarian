@@ -1,0 +1,48 @@
+{
+  "measured_at": "2026-08-06T05:22:55Z",
+  "question": "GQ-001",
+  "subject": "the search over 3.1M passages took seven minutes for one word",
+  "found_by": "testing whether search still works at 2,125 books \u2014 the interface is the point of the Library and I had not measured it since a fraction of this size",
+  "the_defect": {
+    "query": "the",
+    "before": "434,042ms (7m14s)",
+    "raw_fts5_for_the_same_term": "333ms",
+    "cause": "an unlimited NOT IN over a MATCH subquery; SQLite plans it as a LIST SUBQUERY, materialising all 2,723,718 printed matches then scanning the modern index against them"
+  },
+  "four_attempts_that_failed_and_why": [
+    {
+      "attempt": "bounded NOT IN window",
+      "result": "fast but WRONG \u2014 4 duplicate passages at --limit 8"
+    },
+    {
+      "attempt": "JS-side exact re-query of survivors",
+      "result": "re-materialised the same posting list: 395ms -> 231s"
+    },
+    {
+      "attempt": "changed=1 pre-filter",
+      "result": "necessary but NOT sufficient \u2014 a passage can be modernised elsewhere and still print the term literally; still 100s on \"such\""
+    },
+    {
+      "attempt": "per-row membership lookup",
+      "result": "ONE lookup costs 97 SECONDS"
+    }
+  ],
+  "the_structural_finding": "ext_id and seq are UNINDEXED columns in the FTS5 table, so ANY filter on them still walks the full posting list. No targeted lookup exists at this schema. The base table answers the same lookup in 93ms but stores only offsets and a 160-char preview, so it cannot test term membership.",
+  "the_cost_curve_is_a_cliff_not_a_line": {
+    "quinine_4036_hits": "181ms",
+    "himself_35469_hits": "6404ms",
+    "cause_46157_hits": "29995ms",
+    "consequence": "hit count does not predict cost, so the budget sits low at 10,000 \u2014 inside the measured-fast region rather than at an extrapolated boundary"
+  },
+  "result": {
+    "the": "434042ms -> 551ms",
+    "telescope": "581ms -> 191ms",
+    "himfelf": "15057ms -> 60ms",
+    "every_tested_query": "under 600ms",
+    "duplicates_across_8_queries": 0,
+    "skip_is_stated_not_silent": true
+  },
+  "the_honest_tradeoff": "common words (the, such, himself, cause) now return printed-only results and SAY the modern index was skipped. That is a real loss of long-s recall on exactly the words the index was built for \u2014 but a stated loss beats a seven-minute query or a silent duplicate.",
+  "a_self_inflicted_detour": "my first fix put a BACKTICK inside a template literal comment and broke the whole script \u2014 same class as the mktemp template this morning: a delimiter I did not notice was one",
+  "derivations": {}
+}
