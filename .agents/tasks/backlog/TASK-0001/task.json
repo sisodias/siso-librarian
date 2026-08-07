@@ -1,0 +1,32 @@
+{
+  "id": "TASK-0001",
+  "title": "MiniMax cache patch anchor is absent from the live shim",
+  "status": "backlog",
+  "priority": "high",
+  "domain": "infra",
+  "category": "bugfix",
+  "created_at": "2026-08-07T00:00:00Z",
+  "created_by": "GLS-CONSOLIDATION",
+  "evidence": "LIBRARIAN-REVIEW.html, proposal #1 minimax-cache-route, verdict ACCEPT-WITH-CHANGES. grep -n 'upstreamPath' ~/.config/bifrost/claude-model-catalog.mjs returns NO OUTPUT.",
+  "verified": false,
+  "target_agent": "",
+  "dependencies": [],
+  "spec": {
+    "description": "The measurement is sound and reproduces, but the apply script is written against a shim version that no longer exists on at least one host. The patch anchor is a single exact-match string and that string is ABSENT. The script fails safe - it aborts before touching anything - so the risk is a wasted run, not damage. But the proposal's central promise, 'one command to apply, one to undo', IS NOT CURRENTLY TRUE.",
+    "context": "Not a whitespace drift: the identifier upstreamPath does not occur anywhere in the file, and neither does the literal MiniMax-M3. The path is now computed inline at the call site via bifrostUpstreamPath(req.url) with no model-gated branch. A second claim also fails: the GQ-008 evidence file states the shim 'preserves cache_control and surfaces cache_read_input_tokens', and grep finds neither string. THE DURABLE FIX IS NOT TO UPDATE THE STRING. The shim is actively edited by other processes - backup history shows 5,714 -> 22,098 -> 24,419 bytes - so any string anchor will rot again. Make the patch anchor-independent or drift-detecting, and add a pre-flight assertion that the anchor is present before claiming the operation is reversible. Honest limit from the reviewer: they were on the laptop, the librarian runs on the mini, and the mini did not answer on the tailnet (ping 100.66.34.21, 100% loss), so the accurate claim is that the anchor does not match on at least one machine running this exact file at this exact path. RE-VERIFY ON THE MINI BEFORE ANY APPLY. First independent review of all 17 proposals, 2026-08-07, by a reviewer that did not author them. Read-only: HEAD unchanged at d519a82, no script executed, no file in ~/.config/bifrost/ written. Receipt: .agents/tasks/consolidation-source/LIBRARIAN-REVIEW.html",
+    "acceptance_criteria": [
+      "The patch is anchor-independent or detects drift rather than matching one exact string",
+      "A pre-flight assertion runs before any claim of reversibility",
+      "The anchor is re-verified on the mini before apply is ever run",
+      "The GQ-008 cache_control precondition is re-checked against the live shim"
+    ]
+  },
+  "execution_log": [
+    {
+      "timestamp": "2026-08-07T00:00:00Z",
+      "action": "seeded",
+      "by": "GLS-CONSOLIDATION",
+      "notes": "Seeded from the 2026-08-07 estate consolidation. Durable rationale in .agents/tasks/consolidation-source/."
+    }
+  ]
+}
